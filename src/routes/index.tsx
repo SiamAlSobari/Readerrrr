@@ -1,4 +1,3 @@
-import { getRecomendation, getUpdate } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
