@@ -3,12 +3,12 @@ import { shinigamiService } from "../services/shinigami.service";
 
 export const getRecomendation = createServerFn()
     .handler(async () => {
-        const data = await shinigamiService.getRecomendation("manhua")
+        const data = await shinigamiService.getComicRecomendation("manhua")
         return { data }
     })
 
 export const getUpdate = createServerFn()
     .handler(async () => {
-        const data = await shinigamiService.getUpdate("mirror")
+        const data = await shinigamiService.getComicUpdate("mirror")
         return { data }
     })

@@ -11,14 +11,23 @@ class ShinigamiService {
         this.client = createAxiosClient(this.baseUrl);
     }
 
-    public async getRecomendation(format: string) {
+    public async getComicRecomendation(format: string) {
         const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?format=${format}&page=1&page_size=10&is_recommended=true&sort=latest&sort_order=desc`)
         return res.data
     }
 
-    public async getUpdate(type: string, page: number = 1, pageSize: number = 19) {
-        const res: { data: ApiResponse<Comic> } = await this.client(`${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`)
+    public async getComicUpdate(type: string, page: number = 1, pageSize: number = 19) {
+        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`)
         return res.data
+    }
+
+    public async getComicStatus(status: string) {
+        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include_mode=or&genre_exclude_mode=or&status=${status}&sort=latest&sort_order=desc`)
+        return res.data
+    }
+
+    public async getGenreList(){
+        
     }
 }
 
