@@ -20,6 +20,8 @@
     "@tanstack/react-store": "^0.8.0",
     "@tanstack/router-plugin": "^1.132.0",
     "@tanstack/store": "^0.8.0",
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
     "lucide-react": "^0.561.0",
     "nitro": "latest",
     "react": "^19.2.0",
