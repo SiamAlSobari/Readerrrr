@@ -30,6 +30,10 @@ class ShinigamiService {
        const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(`${getEnv().API_URL}/genre/list`)
        return res.data
     }
+
+    public async getComicGenre(genre: string){
+        
+    }
 }
 
 
