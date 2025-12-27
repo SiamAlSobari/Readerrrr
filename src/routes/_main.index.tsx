@@ -7,9 +7,9 @@ import HeroSection from '@/common/components/HeroSection'
 import { useServerFn } from '@tanstack/react-start'
 import { getComicRecomendation, getPopularComic } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
-import ComicCard from '@/features/comic/ComicCard'
 import { DUMMY_COMICS } from '@/common/data/dummy'
 import PopularComicCard from '@/features/comic/PopularComicCard'
+import BaseComicCard from '@/features/comic/BaseComicCard'
 
 export const Route = createFileRoute('/_main/')({ component: App })
 
@@ -169,7 +169,7 @@ function App() {
 
       <main className="container mx-auto px-6 py-8">
         {/* Hero Section */}
-        <HeroSection />
+        <HeroSection comics={popularComic?.data.data?? []} />
 
 
 
@@ -207,7 +207,7 @@ function App() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                 {DUMMY_COMICS.map((comic) => (
-                  <ComicCard comic={comic} />
+                  <BaseComicCard comic={comic} />
                 ))}
               </div>
             </div>
