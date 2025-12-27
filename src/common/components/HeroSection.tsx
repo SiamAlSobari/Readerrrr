@@ -27,7 +27,7 @@ export default function HeroSlider({ comics }: Props) {
   } as const;
 
   return (
-    <div className="relative mb-10 h-130 overflow-hidden rounded-2xl bg-linear-30-to-br from-black via-zinc-900/30 to-neutral-900
+    <div className="relative mb-10 h-130 overflow-hidden rounded-2xl bg-linear-to-br from-black via-zinc-900/75 to-neutral-900
 ">
       {items.map((comic, index) => {
         const activeSlide = index === active;

@@ -10,7 +10,7 @@ export const getComicRecomendation = createServerFn()
 
 export const getComicUpdate = createServerFn()
     .handler(async () => {
-        const data = await shinigamiService.getComicUpdate("mirror")
+        const data = await shinigamiService.getComicUpdate("mirror",1,6)
         return { data }
     })
 
