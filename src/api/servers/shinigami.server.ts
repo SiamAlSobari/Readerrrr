@@ -19,3 +19,9 @@ export const getGenreList = createServerFn()
         const data = await shinigamiService.getGenreList()
         return { data }
     })
+
+export const getPopularComic = createServerFn()
+    .handler(async () => {
+        const data = await shinigamiService.getPopularComic()
+        return { data }
+    })
