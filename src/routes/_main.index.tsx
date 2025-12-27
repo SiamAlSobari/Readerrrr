@@ -8,17 +8,18 @@ import { useServerFn } from '@tanstack/react-start'
 import { getComicRecomendation } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
 import ComicCard from '@/features/comic/ComicCard'
+import { DUMMY_COMICS } from '@/common/data/dummy'
 
 export const Route = createFileRoute('/_main/')({ component: App })
 
 
 function App() {
   const [activeTab, setActiveTab] = useState('manhwa')
-  const recommendation = useServerFn(getComicRecomendation)
-  const { data: comicRecomendation } = useQuery({
-    queryKey: ['recomendation', activeTab],
-    queryFn: () => recommendation()
-  })
+  // const recommendation = useServerFn(getComicRecomendation)
+  // const { data: comicRecomendation } = useQuery({
+  //   queryKey: ['recomendation', activeTab],
+  //   queryFn: () => recommendation()
+  // })
 
 const TABS = [
   {
@@ -260,7 +261,7 @@ const TABS = [
                 ))}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                {comicRecomendation?.data.data.map((comic) => (
+                {DUMMY_COMICS.map((comic) => (
                   <ComicCard comic={comic} />
                 ))}
               </div>
@@ -270,8 +271,8 @@ const TABS = [
             <div>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <Flame className="w-6 h-6 text-orange-400" />
-                Popular This Week
-                <div className="h-px flex-1 bg-gradient-to-r from-orange-500 to-transparent"></div>
+                Popular All Time
+                <div className="h-px flex-1 bg-linear-to-r from-orange-500 to-transparent"></div>
               </h2>
 
 
@@ -285,7 +286,7 @@ const TABS = [
 
           {/* Right Column - Latest Updates */}
           <div className="space-y-6">
-            <div className="bg-gradient-to-b from-gray-900/50 to-black/50 rounded-2xl p-6">
+            <div className="bg-linear-to-b from-gray-900/50 to-black/50 rounded-2xl p-6">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <Clock className="w-6 h-6 text-green-400" />
                 Latest Updates
