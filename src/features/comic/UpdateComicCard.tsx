@@ -48,9 +48,9 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
 
   if (variant === "compact") {
     return (
-      <div className="group relative flex gap-3 p-3 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl hover:bg-gray-800/40 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-purple-500/10">
+      <div className="group relative flex gap-3 p-3 bg-linear-to-br from-gray-900/50 to-black/50 rounded-xl hover:bg-gray-800/40 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-purple-500/10">
         {/* Background effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-purple-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
         
         <div className="relative w-20 h-28 shrink-0 overflow-hidden rounded-lg">
           <img
@@ -99,9 +99,9 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
 
   // Default variant
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-900/50 via-gray-900/30 to-black/50 p-4 transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800/40 hover:shadow-xl hover:shadow-purple-500/10">
+    <div className="group relative overflow-hidden rounded-xl bg-linear-to-br from-gray-900/50 via-gray-900/30 to-black/50 p-4 transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800/40 hover:shadow-xl hover:shadow-purple-500/10">
       {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-linear-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="relative flex gap-4">
         {/* Image section */}
@@ -216,8 +216,8 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
 
             {/* Rank badge */}
             {comic.rank && comic.rank <= 100 && (
-              <div className="flex items-center gap-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 px-3 py-1 rounded-full">
-                <span className="text-xs font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+              <div className="flex items-center gap-1 bg-linear-to-r from-purple-500/20 to-pink-500/20 px-3 py-1 rounded-full">
+                <span className="text-xs font-bold bg-linear-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
                   Rank #{comic.rank}
                 </span>
               </div>
@@ -230,8 +230,8 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
       {comic.is_recommended && (
         <div className="absolute -top-2 -right-2">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg blur-sm" />
-            <div className="relative bg-gradient-to-r from-yellow-400 to-orange-400 px-3 py-1 rounded-lg text-xs font-bold text-black">
+            <div className="absolute inset-0 bg-linear-to-r from-yellow-500 to-orange-500 rounded-lg blur-sm" />
+            <div className="relative bg-linear-to-r from-yellow-400 to-orange-400 px-3 py-1 rounded-lg text-xs font-bold text-black">
               🔥 Recommended
             </div>
           </div>

@@ -7,7 +7,7 @@ import HeroSection from '@/common/components/HeroSection'
 import { useServerFn } from '@tanstack/react-start'
 import { getComicRecomendation, getComicUpdate, getPopularComic } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
-import { DUMMY_COMICS, POPULAR_COMICS_DUMMY } from '@/common/data/dummy'
+import { DUMMY_COMICS, POPULAR_COMICS_DUMMY, UPDATE_COMICS_DUMMY } from '@/common/data/dummy'
 import PopularComicCard from '@/features/comic/PopularComicCard'
 import BaseComicCard from '@/features/comic/BaseComicCard'
 import Footer from '@/common/components/Footer'
@@ -19,8 +19,8 @@ export const Route = createFileRoute('/_main/')({ component: App })
 function App() {
   const [activeTab, setActiveTab] = useState('manhwa')
   // const recommendation = useServerFn(getComicRecomendation)
-//  const popular = useServerFn(getPopularComic)
-const update = useServerFn(getComicUpdate)
+  //  const popular = useServerFn(getPopularComic)
+  //const update = useServerFn(getComicUpdate)
   // const { data: comicRecomendation } = useQuery({
   //   queryKey: ['recomendation', activeTab],
   //   queryFn: () => recommendation()
@@ -29,10 +29,10 @@ const update = useServerFn(getComicUpdate)
   //   queryKey: ['popular'],
   //   queryFn: () => popular()
   // })
-  const {data: updateCommic} = useQuery({
-    queryKey:["update"],
-    queryFn: () => update()
-  })
+  // const {data: updateCommic} = useQuery({
+  //   queryKey:["update"],
+  //   queryFn: () => update()
+  // })
   const TABS = [
     {
       key: "manhwa",
@@ -50,7 +50,7 @@ const update = useServerFn(getComicUpdate)
       icon: Library, // China
     },
   ] as const;
- 
+
 
 
   return (
@@ -60,7 +60,7 @@ const update = useServerFn(getComicUpdate)
 
       <main className="container mx-auto px-6 py-8">
         {/* Hero Section */}
-        <HeroSection comics={POPULAR_COMICS_DUMMY?? []} />
+        <HeroSection comics={POPULAR_COMICS_DUMMY ?? []} />
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Recommendations */}
@@ -130,8 +130,8 @@ const update = useServerFn(getComicUpdate)
               </h2>
 
               <div className="space-y-4">
-                {updateCommic?.data.data.map((comic) => (
-                  <UpdateComicCard  comic={comic} />
+                {UPDATE_COMICS_DUMMY.map((comic) => (
+                  <UpdateComicCard comic={comic} />
                 ))}
               </div>
 
@@ -140,31 +140,12 @@ const update = useServerFn(getComicUpdate)
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
-
-            {/* Stats Widget */}
-            <div className="bg-linear-to-b from-gray-900/50 to-black/50 rounded-2xl p-6">
-              <h3 className="font-bold text-lg mb-4">Today's Stats</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Total Updates</span>
-                  <span className="text-white font-bold">24</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Active Readers</span>
-                  <span className="text-green-400 font-bold">1.2M</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">New Chapters</span>
-                  <span className="text-red-400 font-bold">48</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </div>
   )
 }
