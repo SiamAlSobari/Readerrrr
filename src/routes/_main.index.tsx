@@ -7,9 +7,10 @@ import HeroSection from '@/common/components/HeroSection'
 import { useServerFn } from '@tanstack/react-start'
 import { getComicRecomendation, getPopularComic } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
-import { DUMMY_COMICS } from '@/common/data/dummy'
+import { DUMMY_COMICS, POPULAR_COMICS_DUMMY } from '@/common/data/dummy'
 import PopularComicCard from '@/features/comic/PopularComicCard'
 import BaseComicCard from '@/features/comic/BaseComicCard'
+import Footer from '@/common/components/Footer'
 
 export const Route = createFileRoute('/_main/')({ component: App })
 
@@ -17,15 +18,15 @@ export const Route = createFileRoute('/_main/')({ component: App })
 function App() {
   const [activeTab, setActiveTab] = useState('manhwa')
   // const recommendation = useServerFn(getComicRecomendation)
-  const popular = useServerFn(getPopularComic)
+//  const popular = useServerFn(getPopularComic)
   // const { data: comicRecomendation } = useQuery({
   //   queryKey: ['recomendation', activeTab],
   //   queryFn: () => recommendation()
   // })
-  const { data: popularComic } = useQuery({
-    queryKey: ['popular'],
-    queryFn: () => popular()
-  })
+  // const { data: popularComic } = useQuery({
+  //   queryKey: ['popular'],
+  //   queryFn: () => popular()
+  // })
 
   const TABS = [
     {
@@ -125,8 +126,8 @@ function App() {
 
   // Latest Update Card
   const UpdateCard = ({ manga }: { manga: typeof dummyData[0] }) => (
-    <div className="flex gap-4 p-4 bg-gradient-to-r from-gray-900/50 to-black/50 rounded-2xl hover:bg-gray-800/30 transition-all duration-300">
-      <div className="relative w-24 h-32 flex-shrink-0 overflow-hidden rounded-xl">
+    <div className="flex gap-4 p-4 bg-linear-to-r from-gray-900/50 to-black/50 rounded-2xl hover:bg-gray-800/30 transition-all duration-300">
+      <div className="relative w-24 h-32 shrink-0 overflow-hidden rounded-xl">
         <img
           src={manga.cover_image_url}
           alt={manga.title}
@@ -169,10 +170,7 @@ function App() {
 
       <main className="container mx-auto px-6 py-8">
         {/* Hero Section */}
-        <HeroSection comics={popularComic?.data.data?? []} />
-
-
-
+        <HeroSection comics={POPULAR_COMICS_DUMMY?? []} />
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Recommendations */}
@@ -222,7 +220,7 @@ function App() {
 
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {popularComic?.data.data.map((comic) => (
+                {POPULAR_COMICS_DUMMY.map((comic) => (
                   <PopularComicCard
                     comic={comic}
                   />
@@ -238,7 +236,7 @@ function App() {
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <Clock className="w-6 h-6 text-green-400" />
                 Latest Updates
-                <div className="h-px flex-1 bg-gradient-to-r from-green-500 to-transparent"></div>
+                <div className="h-px flex-1 bg-linear-to-r from-green-500 to-transparent"></div>
               </h2>
 
               <div className="space-y-4">
@@ -254,7 +252,7 @@ function App() {
             </div>
 
             {/* Stats Widget */}
-            <div className="bg-gradient-to-b from-gray-900/50 to-black/50 rounded-2xl p-6">
+            <div className="bg-linear-to-b from-gray-900/50 to-black/50 rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-4">Today's Stats</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -276,12 +274,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-gray-800 py-8">
-        <div className="container mx-auto px-6 text-center text-gray-400">
-          <p>© 2024 MangaReader. All rights reserved.</p>
-          <p className="mt-2 text-sm">Read your favorite manga anytime, anywhere</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   )
 }
