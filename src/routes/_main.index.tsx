@@ -5,7 +5,7 @@ import { Search, Bookmark, Flame, TrendingUp, Clock, Star, ChevronRight, BookOpe
 import Header from '@/common/components/Header'
 import HeroSection from '@/common/components/HeroSection'
 import { useServerFn } from '@tanstack/react-start'
-import { getComicRecomendation } from '@/api/servers/shinigami.server'
+import { getComicRecomendation, getPopularComic } from '@/api/servers/shinigami.server'
 import { useQuery } from '@tanstack/react-query'
 import ComicCard from '@/features/comic/ComicCard'
 import { DUMMY_COMICS } from '@/common/data/dummy'
@@ -16,10 +16,12 @@ export const Route = createFileRoute('/_main/')({ component: App })
 function App() {
   const [activeTab, setActiveTab] = useState('manhwa')
   // const recommendation = useServerFn(getComicRecomendation)
+  const popular = useServerFn(getPopularComic)
   // const { data: comicRecomendation } = useQuery({
   //   queryKey: ['recomendation', activeTab],
   //   queryFn: () => recommendation()
   // })
+  const {}
 
 const TABS = [
   {
