@@ -47,6 +47,35 @@ export interface Comic {
   taxonomy: Taxonomy;
 }
 
+export interface PopularComic {
+  manga_id: string;
+  title: string;
+  alternative_title: string;
+
+  description: string;
+  release_year: string;
+  status: number;
+
+  country_id: "KR" | "JP" | "CN";
+
+  cover_image_url: string;
+  cover_portrait_url: string;
+
+  view_count: number;
+  bookmark_count: number;
+  rank: number;
+  user_rate: number;
+
+  latest_chapter_id: string;
+  latest_chapter_number: number;
+  latest_chapter_time: string;
+
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+}
+
+
 export interface Taxonomy {
   Artist?: TaxonomyItem[];
   Author?: TaxonomyItem[];

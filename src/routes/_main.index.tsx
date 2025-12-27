@@ -9,6 +9,7 @@ import { getComicRecomendation, getPopularComic } from '@/api/servers/shinigami.
 import { useQuery } from '@tanstack/react-query'
 import ComicCard from '@/features/comic/ComicCard'
 import { DUMMY_COMICS } from '@/common/data/dummy'
+import PopularComicCard from '@/features/comic/PopularComicCard'
 
 export const Route = createFileRoute('/_main/')({ component: App })
 
@@ -21,25 +22,28 @@ function App() {
   //   queryKey: ['recomendation', activeTab],
   //   queryFn: () => recommendation()
   // })
-  const {}
+  const { data: popularComic } = useQuery({
+    queryKey: ['popular'],
+    queryFn: () => popular()
+  })
 
-const TABS = [
-  {
-    key: "manhwa",
-    label: "Manhwa",
-    icon: ScrollText, // Korea style / webtoon
-  },
-  {
-    key: "manga",
-    label: "Manga",
-    icon: BookOpen, // Jepang
-  },
-  {
-    key: "manhua",
-    label: "Manhua",
-    icon: Library, // China
-  },
-] as const;
+  const TABS = [
+    {
+      key: "manhwa",
+      label: "Manhwa",
+      icon: ScrollText, // Korea style / webtoon
+    },
+    {
+      key: "manga",
+      label: "Manga",
+      icon: BookOpen, // Jepang
+    },
+    {
+      key: "manhua",
+      label: "Manhua",
+      icon: Library, // China
+    },
+  ] as const;
   const dummyData = [
     {
       "manga_id": "e113cf28-241b-46f8-b27c-deb8e17b15eb",
@@ -118,67 +122,6 @@ const TABS = [
   ]
 
   // Hero Section Component
-
-  // Manga Card Component
-  const MangaCard = ({ manga }: { manga: typeof dummyData[0] }) => (
-    <div className="group relative bg-gradient-to-b from-gray-900 to-black rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
-      <div className="relative h-64 overflow-hidden">
-        <img
-          src={manga.cover_image_url}
-          alt={manga.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-
-        <div className="absolute top-4 left-4 flex gap-2">
-          <span className="px-2 py-1 bg-black/70 backdrop-blur-sm text-white text-xs font-bold rounded-md">
-            {manga.taxonomy.Format[0].name}
-          </span>
-          <span className="px-2 py-1 bg-red-500/90 text-white text-xs font-bold rounded-md flex items-center gap-1">
-            <Star className="w-3 h-3 fill-white" />
-            {manga.user_rate}
-          </span>
-        </div>
-
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-white font-bold text-lg line-clamp-1">{manga.title}</h3>
-          <div className="flex items-center justify-between mt-2">
-            <span className="text-gray-300 text-sm">Chap {manga.latest_chapter_number}</span>
-            <span className="text-green-400 text-sm font-semibold">
-              {manga.country_id === 'KR' ? '🇰🇷' : '🇨🇳'}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="p-4">
-        <div className="flex flex-wrap gap-1 mb-3">
-          {manga.taxonomy.Genre.slice(0, 3).map((genre, index) => (
-            <span key={index} className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-md">
-              {genre.name}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-between text-sm text-gray-400">
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            <span>Updated</span>
-          </div>
-          <span className="text-green-400">
-            {new Date(manga.chapters[0].created_at).toLocaleDateString('id-ID', {
-              day: 'numeric',
-              month: 'short'
-            })}
-          </span>
-        </div>
-      </div>
-
-      <button className="absolute right-4 bottom-4 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <ChevronRight className="w-5 h-5 text-white" />
-      </button>
-    </div>
-  )
 
   // Latest Update Card
   const UpdateCard = ({ manga }: { manga: typeof dummyData[0] }) => (
@@ -278,10 +221,13 @@ const TABS = [
               </h2>
 
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[...dummyData].reverse().map((manga) => (
-                  <MangaCard key={manga.manga_id} manga={manga} />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {popularComic?.data.data.map((comic) => (
+                  <PopularComicCard
+                    comic={comic}
+                  />
                 ))}
+
               </div>
             </div>
           </div>
