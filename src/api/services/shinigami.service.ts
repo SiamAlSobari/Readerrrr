@@ -1,5 +1,5 @@
 import { createAxiosClient } from "@/common/http/axios.client";
-import { ApiResponse, Comic, PopularComic, TaxonomyItem } from "@/common/interface";
+import { ApiResponse, Comic, PopularComic, TaxonomyItem, UpdateComic } from "@/common/interface";
 import { getEnv } from "@/common/utils/env";
 import { AxiosInstance } from "axios";
 
@@ -17,7 +17,7 @@ class ShinigamiService {
     }
 
     public async getComicUpdate(type: string, page: number = 1, pageSize: number = 19) {
-        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`)
+        const res: { data: ApiResponse<UpdateComic> } = await this.client.get(`${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`)
         return res.data
     }
 

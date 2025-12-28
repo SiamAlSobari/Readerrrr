@@ -1,4 +1,4 @@
-import { Comic, PopularComic } from "@/common/interface";
+import { Comic, PopularComic, UpdateComic } from "@/common/interface";
 
 export const DUMMY_COMICS: Comic[] = [
   {
@@ -191,3 +191,156 @@ export const POPULAR_COMICS_DUMMY: PopularComic[] = [
     deleted_at: null,
   },
 ];
+
+export const UPDATE_COMICS_DUMMY: UpdateComic[] =[
+  {
+    "manga_id": "a1b2c3d4-1111-2222-3333-aaaaaaa0001",
+    "title": "Chronicles of the Time Blade",
+    "alternative_title": "시간의 검 연대기",
+    "description": "Seorang pendekar legendaris terlempar ke masa lalu dan harus memperbaiki takdir yang telah hancur.",
+    "release_year": "2025",
+    "status": 1,
+    "country_id": "KR",
+    "cover_image_url": "https://dummyimage.com/600x800/1f2937/ffffff&text=Time+Blade",
+    "cover_portrait_url": "",
+    "bookmark_count": 3421,
+    "view_count": 185432,
+    "user_rate": 7.8,
+    "rank": 512,
+    "is_recommended": false,
+    "chapters": [
+      {
+        "chapter_id": "ch-001",
+        "chapter_number": 12,
+        "created_at": "2025-12-20T10:12:00Z"
+      },
+      {
+        "chapter_id": "ch-002",
+        "chapter_number": 11,
+        "created_at": "2025-12-13T09:10:00Z"
+      },
+      {
+        "chapter_id": "ch-003",
+        "chapter_number": 10,
+        "created_at": "2025-12-06T08:05:00Z"
+      }
+    ],
+    "latest_chapter_id": "ch-001",
+    "latest_chapter_number": 12,
+    "latest_chapter_time": "2025-12-20T10:12:00Z",
+    "taxonomy": {
+      "Artist": [{ "name": "Studio Alpha", "slug": "studio-alpha" }],
+      "Author": [{ "name": "Kim Han", "slug": "kim-han" }],
+      "Format": [{ "name": "Manhwa", "slug": "manhwa" }],
+      "Genre": [
+        { "name": "Action", "slug": "action" },
+        { "name": "Fantasy", "slug": "fantasy" }
+      ],
+      "Type": [{ "name": "Mirror", "slug": "mirror" }]
+    },
+    "created_at": "2025-10-01T07:00:00Z",
+    "updated_at": "2025-12-20T10:12:00Z",
+    "deleted_at": null
+  },
+
+  {
+    "manga_id": "a1b2c3d4-1111-2222-3333-aaaaaaa0002",
+    "title": "Tower Reset Strategy",
+    "alternative_title": "나만 아는 탑 리셋 공략",
+    "description": "Dunia runtuh dan menara muncul. Hanya satu orang yang tahu cara menyelesaikannya dari awal.",
+    "release_year": "2024",
+    "status": 1,
+    "country_id": "KR",
+    "cover_image_url": "https://dummyimage.com/600x800/111827/ffffff&text=Tower+Reset",
+    "cover_portrait_url": "",
+    "bookmark_count": 8290,
+    "view_count": 2450031,
+    "user_rate": 0,
+    "rank": 210,
+    "is_recommended": false,
+    "chapters": [
+      {
+        "chapter_id": "ch-101",
+        "chapter_number": 56,
+        "created_at": "2025-12-27T17:33:42Z"
+      },
+      {
+        "chapter_id": "ch-102",
+        "chapter_number": 55,
+        "created_at": "2025-12-20T14:10:00Z"
+      },
+      {
+        "chapter_id": "ch-103",
+        "chapter_number": 54,
+        "created_at": "2025-12-13T14:10:00Z"
+      }
+    ],
+    "latest_chapter_id": "ch-101",
+    "latest_chapter_number": 56,
+    "latest_chapter_time": "2025-12-27T17:33:42Z",
+    "taxonomy": {
+      "Artist": [{ "name": "Redice Studio", "slug": "redice-studio" }],
+      "Author": [{ "name": "GoodLuck", "slug": "goodluck" }],
+      "Format": [{ "name": "Manhwa", "slug": "manhwa" }],
+      "Genre": [
+        { "name": "Action", "slug": "action" },
+        { "name": "Adventure", "slug": "adventure" },
+        { "name": "Fantasy", "slug": "fantasy" }
+      ],
+      "Type": [{ "name": "Mirror", "slug": "mirror" }]
+    },
+    "created_at": "2024-11-23T20:58:09Z",
+    "updated_at": "2025-12-27T17:33:42Z",
+    "deleted_at": null
+  },
+
+  {
+    "manga_id": "a1b2c3d4-1111-2222-3333-aaaaaaa0003",
+    "title": "Rune of Destruction",
+    "alternative_title": "파멸의 룬",
+    "description": "Rune terkutuk membangkitkan prajurit yang terperangkap selama ratusan tahun.",
+    "release_year": "2025",
+    "status": 1,
+    "country_id": "KR",
+    "cover_image_url": "https://dummyimage.com/600x800/020617/ffffff&text=Rune+of+Destruction",
+    "cover_portrait_url": "",
+    "bookmark_count": 2140,
+    "view_count": 345900,
+    "user_rate": 7.4,
+    "rank": 690,
+    "is_recommended": false,
+    "chapters": [
+      {
+        "chapter_id": "ch-201",
+        "chapter_number": 18,
+        "created_at": "2025-12-27T17:31:53Z"
+      },
+      {
+        "chapter_id": "ch-202",
+        "chapter_number": 17,
+        "created_at": "2025-12-18T07:02:08Z"
+      },
+      {
+        "chapter_id": "ch-203",
+        "chapter_number": 16,
+        "created_at": "2025-12-11T07:02:08Z"
+      }
+    ],
+    "latest_chapter_id": "ch-201",
+    "latest_chapter_number": 18,
+    "latest_chapter_time": "2025-12-27T17:31:53Z",
+    "taxonomy": {
+      "Artist": [{ "name": "Kang Han", "slug": "kang-han" }],
+      "Author": [{ "name": "Kang Han", "slug": "kang-han" }],
+      "Format": [{ "name": "Manhwa", "slug": "manhwa" }],
+      "Genre": [
+        { "name": "Action", "slug": "action" },
+        { "name": "Fantasy", "slug": "fantasy" }
+      ],
+      "Type": [{ "name": "Mirror", "slug": "mirror" }]
+    },
+    "created_at": "2025-08-28T20:49:34Z",
+    "updated_at": "2025-12-27T17:31:54Z",
+    "deleted_at": null
+  }
+]
