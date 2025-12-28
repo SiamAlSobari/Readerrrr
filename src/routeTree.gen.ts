@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
+import { Route as MainSeriesComicIdIndexRouteImport } from './routes/_main.series.$comicId.index'
 
 const MainRoute = MainRouteImport.update({
   id: '/_main',
@@ -21,24 +22,32 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRoute,
 } as any)
+const MainSeriesComicIdIndexRoute = MainSeriesComicIdIndexRouteImport.update({
+  id: '/series/$comicId/',
+  path: '/series/$comicId/',
+  getParentRoute: () => MainRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
+  '/series/$comicId': typeof MainSeriesComicIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof MainIndexRoute
+  '/series/$comicId': typeof MainSeriesComicIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
   '/_main/': typeof MainIndexRoute
+  '/_main/series/$comicId/': typeof MainSeriesComicIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/series/$comicId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_main' | '/_main/'
+  to: '/' | '/series/$comicId'
+  id: '__root__' | '/_main' | '/_main/' | '/_main/series/$comicId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -61,15 +70,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/series/$comicId/': {
+      id: '/_main/series/$comicId/'
+      path: '/series/$comicId'
+      fullPath: '/series/$comicId'
+      preLoaderRoute: typeof MainSeriesComicIdIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
   }
 }
 
 interface MainRouteChildren {
   MainIndexRoute: typeof MainIndexRoute
+  MainSeriesComicIdIndexRoute: typeof MainSeriesComicIdIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
   MainIndexRoute: MainIndexRoute,
+  MainSeriesComicIdIndexRoute: MainSeriesComicIdIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
