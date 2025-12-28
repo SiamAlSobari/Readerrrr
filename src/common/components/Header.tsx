@@ -1,39 +1,109 @@
-import { Bookmark, Search } from 'lucide-react'
+import { Bookmark, Search, Menu } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger } from "@/common/shadcn-ui/sheet"
+import { Button } from "@/common/shadcn-ui/button"
+import { Input } from "@/common/shadcn-ui/input"
+
+const NAV_ITEMS = ["Home", "Library", "Genres", "Latest", "Popular"]
 
 export default function Header() {
   return (
-      <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-xl border-b border-gray-800">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                MANGA<span className="text-white">READER</span>
-              </h1>
-              
-              <nav className="hidden md:flex items-center gap-6">
-                <a href="#" className="text-white font-semibold hover:text-red-400 transition-colors">Home</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Library</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Genres</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Latest</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Popular</a>
-              </nav>
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between">
+
+          {/* LEFT */}
+          <div className="flex items-center gap-8">
+            {/* LOGO */}
+            <h1 className="text-xl font-extrabold tracking-wide">
+              <span className="bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                MANGA
+              </span>
+              <span className="text-white">READER</span>
+            </h1>
+
+            {/* DESKTOP NAV */}
+            <nav className="hidden md:flex items-center gap-6">
+              {NAV_ITEMS.map(item => (
+                <a
+                  key={item}
+                  href="#"
+                  className="relative text-sm font-medium text-gray-400 transition hover:text-white
+                  after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0
+                  after:bg-red-500 after:transition-all hover:after:w-full"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* RIGHT */}
+          <div className="flex items-center gap-2">
+
+            {/* SEARCH DESKTOP */}
+            <div className="relative hidden md:block">
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <Input
+                placeholder="Search manga..."
+                className="h-10 w-64 rounded-full bg-white/5 pl-11 text-sm
+                border-white/10 focus-visible:ring-red-500"
+              />
             </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input 
-                  type="search" 
-                  placeholder="Search manga..." 
-                  className="pl-10 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-xl w-64 focus:outline-none focus:border-red-500"
-                />
-              </div>
-              <button className="p-2 bg-gray-800 rounded-xl hover:bg-gray-700 transition-colors">
-                <Bookmark className="w-5 h-5" />
-              </button>
-            </div>
+
+            {/* BOOKMARK */}
+            <Button
+              size="icon"
+              variant="ghost"
+              className="rounded-full text-gray-300 hover:bg-white/10 hover:text-white"
+            >
+              <Bookmark className="h-5 w-5" />
+            </Button>
+
+            {/* MOBILE MENU */}
+            <Sheet >
+              <SheetTrigger asChild>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="md:hidden rounded-full text-gray-300 hover:bg-white/10"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent side="left"
+                className="bg-black/80 border-white/10 pt-14">
+                <div className="mt-6 space-y-6">
+
+                  {/* SEARCH MOBILE */}
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <Input
+                      placeholder="Search manga..."
+                      className="h-11 rounded-full bg-white/5 pl-11
+                      border-white/10 focus-visible:ring-red-500"
+                    />
+                  </div>
+
+                  {/* NAV MOBILE */}
+                  <nav className="flex flex-col gap-3">
+                    {NAV_ITEMS.map(item => (
+                      <a
+                        key={item}
+                        href="#"
+                        className="rounded-lg px-3 py-2 text-base font-medium
+                        text-gray-300 hover:bg-white/10 hover:text-white"
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
   )
 }
