@@ -344,3 +344,101 @@ export const UPDATE_COMICS_DUMMY: UpdateComic[] =[
     "deleted_at": null
   }
 ]
+
+
+
+export const DUMMY_COMIC_DETAIL = {
+  manga_id: "84561956-c987-491d-a189-ba1af3c22810",
+  title: "Became The Patron Of Villains",
+  alternative_title: "악당들의 후원자가 되었다",
+  description: `Aku, seorang budak yang bereinkarnasi menjadi seorang bangsawan di dalam game.
+
+Tapi katanya aku cuma karakter figuran yang nanti akan mati dibunuh oleh para penjahat masa depan?
+
+Tidak bisa begitu! Aku akan menuntun mereka ke jalan yang benar dan menikmati hidup mewah sebagai bangsawan!
+
+Untuk mencegah para calon penjahat kecil itu berubah menjadi jahat, aku menjadi dermawan dan membantu mereka mengatasi lingkungan yang keras.
+
+Hasilnya? Mereka semua tumbuh menjadi anak-anak yang luar biasa dan… sepenuhnya normal.
+
+Namun pada akhirnya...
+
+Aku malah menjadi dalang terakhir dari kerajaan.
+
+…Hah?`,
+  release_year: "2025",
+  status: 1,
+  country_id: "KR",
+  cover_image_url:
+    "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/06b7fcc3-026d-47e5-b12d-78e68f8547fd.jpg",
+  cover_portrait_url:
+    "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/f1e0bd9d-fa26-4d0b-88f0-2de2d2321f76.jpg",
+  view_count: 2045733,
+  user_rate: 8.5,
+  bookmark_count: 31199,
+  rank: 259,
+  latest_chapter_number: 15,
+  taxonomy: {
+    Genre: [
+      { slug: "action", name: "Action" },
+      { slug: "fantasy", name: "Fantasy" },
+      { slug: "drama", name: "Drama" },
+    ],
+    Author: [
+      { slug: "menyusul", name: "Menyusul" },
+    ],
+    Artist: [
+      { slug: "menyusul-0", name: "Menyusul" },
+    ],
+    Format: [
+      { slug: "manhwa", name: "Manhwa" },
+    ],
+    Type: [
+      { slug: "project", name: "Project" },
+    ],
+  },
+}
+
+
+export const DUMMY_CHAPTERS = [
+  {
+    chapter_id: "95eacb40-1532-42bd-b39f-87ce42a00dce",
+    chapter_number: 15,
+    thumbnail_image_url:
+      "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/c930004a-4a23-45a9-ae6a-57d5606936de.jpg",
+    view_count: 89258,
+    release_date: "2025-12-26T08:50:30Z",
+  },
+  {
+    chapter_id: "ff2d34aa-cd5d-490c-8768-87f7e2597153",
+    chapter_number: 14,
+    thumbnail_image_url:
+      "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/13037c47-6e77-421f-8585-8c21ea4fda89.jpg",
+    view_count: 121499,
+    release_date: "2025-12-19T13:25:28Z",
+  },
+  {
+    chapter_id: "5f3edd2c-0810-478b-bca2-834b2d257e96",
+    chapter_number: 13,
+    thumbnail_image_url:
+      "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/0de53d63-5526-4be1-a549-be929f02c176.jpg",
+    view_count: 141760,
+    release_date: "2025-12-12T11:32:28Z",
+  },
+  {
+    chapter_id: "8a5674eb-c0ca-44dc-8e35-b61484d9162e",
+    chapter_number: 12,
+    thumbnail_image_url:
+      "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/c38096a6-b045-4a7c-aa3d-4bc76b1a7048.jpg",
+    view_count: 156241,
+    release_date: "2025-12-05T09:24:26Z",
+  },
+  {
+    chapter_id: "5545204a-f5ed-406f-ae7a-971dd63a7cd6",
+    chapter_number: 11,
+    thumbnail_image_url:
+      "https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/97afaa79-36ce-4ed2-83d2-cb66d5f03856.jpg",
+    view_count: 154440,
+    release_date: "2025-11-28T18:33:16Z",
+  },
+]
