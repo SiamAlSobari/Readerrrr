@@ -16,7 +16,7 @@ export default function PopularComicCard({ comic }: Props) {
   const country = COUNTRY_MAP[comic.country_id];
 
   return (
-    <Link params={{ comicId: comic.manga_id }} to="/series/$comicId">
+    <Link search={{page: 1}} params={{ comicId: comic.manga_id }} to="/series/$comicId">
 
 
       <div className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-black/40">

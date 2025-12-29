@@ -100,7 +100,7 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
 
   // Default variant
   return (
-    <Link params={{ comicId: comic.manga_id }} to="/series/$comicId">
+    <Link search={{page: 1}} params={{ comicId: comic.manga_id }} to="/series/$comicId">
 
 
       <div className="group relative overflow-hidden rounded-xl bg-linear-to-br from-gray-900/50 via-gray-900/30 to-black/50 p-4 transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800/40 hover:shadow-xl hover:shadow-purple-500/10">

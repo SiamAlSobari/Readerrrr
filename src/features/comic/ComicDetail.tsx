@@ -3,7 +3,7 @@ import { Button } from "@/common/shadcn-ui/button"
 import { Badge } from "@/common/shadcn-ui/badge"
 import { useState } from "react"
 import { ComicDetail as ComicDetailType } from "@/common/interface"
-import { useCanGoBack, useNavigate, useRouter } from "@tanstack/react-router"
+import { useCanGoBack, useRouter } from "@tanstack/react-router"
 
 export function ComicDetail({ comic }: { comic: ComicDetailType }) {
      const router = useRouter()

@@ -21,7 +21,7 @@ export default function BaseComicCard({ comic }: Props) {
   const country = COUNTRY_MAP[comic.country_id];
   return (
 
-    <Link params={{comicId: comic.manga_id}} to="/series/$comicId">
+    <Link search={{page: 1}} params={{comicId: comic.manga_id}} to="/series/$comicId">
 
       <div className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50">
 

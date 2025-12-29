@@ -1,6 +1,7 @@
 import { getChapterList, getComicDetail } from '@/api/servers/shinigami.server'
 import { ChapterList } from '@/features/comic/ChapterList'
 import { ComicDetail } from '@/features/comic/ComicDetail'
+import ComicDetailSkeleton from '@/features/comic/ComicDetailSkeleton'
 import { createFileRoute } from '@tanstack/react-router'
 
 
@@ -21,7 +22,8 @@ export const Route = createFileRoute('/_main/series/$comicId/')({
     const chapterList = await getChapterList({ data: { comicId: params.comicId, page, pageSize: 24 } })
     console.table(chapterList.data.data)
     return { comicDetail, chapterList }
-  }
+  },
+  pendingComponent: ComicDetailSkeleton
 })
 
 function RouteComponent() {
