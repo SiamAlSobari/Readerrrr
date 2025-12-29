@@ -1,5 +1,5 @@
 import { createAxiosClient } from "@/common/http/axios.client";
-import { ApiResponse, Comic, PopularComic, TaxonomyItem, UpdateComic } from "@/common/interface";
+import { ApiResponse, Comic, ComicDetail, PopularComic, TaxonomyItem, UpdateComic } from "@/common/interface";
 import { getEnv } from "@/common/utils/env";
 import { AxiosInstance } from "axios";
 
@@ -26,18 +26,24 @@ class ShinigamiService {
         return res.data
     }
 
-    public async getGenreList(){
-       const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(`${getEnv().API_URL}/genre/list`)
-       return res.data
+    public async getGenreList() {
+        const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(`${getEnv().API_URL}/genre/list`)
+        return res.data
     }
 
     // public async getComicGenre(genre: string){
-        
+
     // }
 
-    public async getPopularComic(){
-       const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=1&page_size=10`)
-       return res.data
+    public async getPopularComic() {
+        const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=1&page_size=10`)
+        return res.data
+    }
+
+    public async getComicDetail(comicId: string) {
+        const res: { data: ApiResponse<ComicDetail> } = await this.client.get(`${getEnv().API_URL}/detail/${comicId}`)
+        return res.data
+
     }
 }
 
