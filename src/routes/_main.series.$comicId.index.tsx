@@ -1,18 +1,37 @@
-import { DUMMY_CHAPTERS, DUMMY_COMIC_DETAIL } from '@/common/data/dummy'
+import { getChapterList, getComicDetail } from '@/api/servers/shinigami.server'
 import { ChapterList } from '@/features/comic/ChapterList'
 import { ComicDetail } from '@/features/comic/ComicDetail'
 import { createFileRoute } from '@tanstack/react-router'
 
+
+type ChapterSearch = {
+  page: number
+}
+
 export const Route = createFileRoute('/_main/series/$comicId/')({
   component: RouteComponent,
+  validateSearch: (search: Record<string, string>): ChapterSearch =>({
+    page: Number(search.page || 1)
+  }),
+  loaderDeps: ({ search: { page } }) => ({
+    page
+  }),
+  loader: async ({ params, deps: { page } }) => {
+    const comicDetail = await getComicDetail({ data: { comicId: params.comicId } })
+    const chapterList = await getChapterList({ data: { comicId: params.comicId, page, pageSize: 24 } })
+    console.table(chapterList.data.data)
+    return { comicDetail, chapterList }
+  }
 })
 
 function RouteComponent() {
+  const { comicDetail, chapterList } = Route.useLoaderData()
+  const { comicId } = Route.useParams()
+  const {page} = Route.useSearch()
   return (
     <main>
-        <ComicDetail comic={DUMMY_COMIC_DETAIL} />
-        <ChapterList chapters={DUMMY_CHAPTERS} />
-
+      <ComicDetail comic={comicDetail.data.data} />
+      <ChapterList comicId={comicId} meta={chapterList.data.meta} page={page} chapters={chapterList.data.data} />
     </main>
   )
 }

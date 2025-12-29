@@ -4,6 +4,12 @@ export interface ApiResponse<T> {
   meta: Meta;
   data: T[];
 }
+export interface ApiResponseDetail<T> {
+  retcode: number;
+  message: string;
+  meta: Meta;
+  data: T;
+}
 
 export interface Meta {
   request_id: string;

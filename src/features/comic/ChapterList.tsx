@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Eye } from "lucide-react"
 import { Button } from "@/common/shadcn-ui/button"
 import {
@@ -8,6 +7,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/shadcn-ui/dialog"
+import { Meta } from "@/common/interface"
+import { useNavigate } from "@tanstack/react-router"
+import { useInfiniteQuery } from "@tanstack/react-query"
+import { useServerFn } from "@tanstack/react-start"
+import { getChapterList } from "@/api/servers/shinigami.server"
 
 interface Chapter {
   chapter_id: string
@@ -18,20 +22,72 @@ interface Chapter {
 }
 
 interface ChapterListProps {
-  chapters: Chapter[]
-  perPage?: number
+  chapters: Chapter[]       // SSR data (main list)
+  page?: number
+  meta: Meta
+  comicId: string
 }
 
-export function ChapterList({ chapters, perPage = 5 }: ChapterListProps) {
-  const [currentPage, setCurrentPage] = useState(1)
+export function ChapterList({
+  chapters,
+  page = 1,
+  meta,
+  comicId,
+}: ChapterListProps) {
+  const navigate = useNavigate()
+  const chapterList = useServerFn(getChapterList)
 
-  const totalPages = Math.ceil(chapters.length / perPage)
-  const start = (currentPage - 1) * perPage
-  const end = start + perPage
-  const paginatedChapters = chapters.slice(start, end)
+  // SSR
+  const totalPages = meta.total_page
 
-  const goPrev = () => setCurrentPage((p) => Math.max(1, p - 1))
-  const goNext = () => setCurrentPage((p) => Math.min(totalPages, p + 1))
+  function handlePageNext() {
+    navigate({
+      to: ".",
+      search: (prev) => ({ page: (prev.page ?? 1) + 1 }),
+    })
+  }
+
+  function handlePagePrev() {
+    navigate({
+      to: ".",
+      search: (prev) => ({ page: Math.max((prev.page ?? 1) - 1, 1) }),
+    })
+  }
+
+  // CSR
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: ["dialog-chapters", comicId],
+
+    initialPageParam: 1,
+
+    queryFn: ({ pageParam }) =>
+      chapterList({
+        data: {
+          comicId,
+          page: pageParam,
+          pageSize: 50,
+        },
+      }),
+
+    getNextPageParam: (lastPage) => {
+      const meta = lastPage.data.meta
+      return meta.page < meta.total_page
+        ? meta.page + 1
+        : undefined
+    },
+
+    enabled: false,
+  })
+
+
+  const dialogChapters =
+    data?.pages.flatMap((p) => p.data.data) ?? []
 
   return (
     <section className="mx-auto mt-16 max-w-7xl px-4">
@@ -39,8 +95,9 @@ export function ChapterList({ chapters, perPage = 5 }: ChapterListProps) {
         Chapters
       </h2>
 
+      {/* ===== MAIN SSR LIST ===== */}
       <div className="space-y-4">
-        {paginatedChapters.map((ch) => (
+        {chapters.map((ch) => (
           <a
             key={ch.chapter_id}
             href={`/read/${ch.chapter_id}`}
@@ -70,39 +127,49 @@ export function ChapterList({ chapters, perPage = 5 }: ChapterListProps) {
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="mt-10 mb-10 flex flex-wrap items-center justify-center gap-4">
-        <Button
-          onClick={goPrev}
-          disabled={currentPage === 1}
-          className="px-5 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700"
-        >
+      {/* ===== PAGINATION + DIALOG ===== */}
+      <div className="mt-10 mb-10 flex items-center justify-center gap-4">
+        <Button onClick={handlePagePrev} disabled={page === 1}>
           Prev
         </Button>
 
-        {/* Tombol Dialog di tengah */}
-        <Dialog>
+        {/* ===== DIALOG ===== */}
+        <Dialog
+          onOpenChange={(open) => {
+            if (open) {
+              // fetch pertama saat dialog dibuka
+              fetchNextPage()
+            }
+          }}
+        >
           <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              className="px-6 py-2 rounded-lg border border-gray-500 hover:bg-gray-700 hover:text-white"
-            >
-              Lihat Chapter List
-            </Button>
+            <Button variant="outline">Lihat Chapter List</Button>
           </DialogTrigger>
-          <DialogContent className="max-w-lg rounded-xl  border p-6 shadow-2xl">
+
+          <DialogContent className="max-w-lg rounded-xl border p-6">
             <DialogHeader>
-              <DialogTitle className="text-xl font-bold text-white">
-                All Chapters
-              </DialogTitle>
+              <DialogTitle>All Chapters</DialogTitle>
             </DialogHeader>
-            <div className="space-y-2 max-h-96 overflow-y-auto mt-4">
-              {chapters.map((ch) => (
+
+            <div
+              className="mt-4 max-h-96 space-y-2 overflow-y-auto"
+              onScroll={(e) => {
+                const el = e.currentTarget
+                const isBottom =
+                  el.scrollTop + el.clientHeight >=
+                  el.scrollHeight - 20
+
+                if (isBottom && hasNextPage && !isFetchingNextPage) {
+                  fetchNextPage()
+                }
+              }}
+            >
+              {dialogChapters.map((ch) => (
                 <div
                   key={ch.chapter_id}
-                  className="flex items-center justify-between rounded-md p-3 hover:bg-white/5 transition"
+                  className="flex justify-between rounded-md p-3 hover:bg-white/5"
                 >
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm text-white">
                     Chapter {ch.chapter_number}
                   </p>
                   <p className="text-xs text-gray-400">
@@ -110,14 +177,19 @@ export function ChapterList({ chapters, perPage = 5 }: ChapterListProps) {
                   </p>
                 </div>
               ))}
+
+              {(isLoading || isFetchingNextPage) && (
+                <p className="py-4 text-center text-sm text-gray-400">
+                  Loading...
+                </p>
+              )}
             </div>
           </DialogContent>
         </Dialog>
 
         <Button
-          onClick={goNext}
-          disabled={currentPage === totalPages}
-          className="px-5 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700"
+          onClick={handlePageNext}
+          disabled={page === totalPages}
         >
           Next
         </Button>

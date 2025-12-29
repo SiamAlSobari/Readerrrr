@@ -2,8 +2,9 @@ import { Star, Eye, Bookmark, Play } from "lucide-react"
 import { Button } from "@/common/shadcn-ui/button"
 import { Badge } from "@/common/shadcn-ui/badge"
 import { useState } from "react"
+import { ComicDetail as ComicDetailType } from "@/common/interface"
 
-export function ComicDetail({ comic }: { comic: any }) {
+export function ComicDetail({ comic }: { comic: ComicDetailType }) {
     const [imageError, setImageError] = useState({
         cover: false,
         portrait: false,
@@ -75,8 +76,8 @@ export function ComicDetail({ comic }: { comic: any }) {
 
                         {/* Genres */}
                         <div className="flex flex-wrap gap-2 mt-2">
-                            {comic.taxonomy?.Genre?.length > 0 ? (
-                                comic.taxonomy.Genre.map((g: any) => (
+                            {comic.taxonomy?.Genre?.length! > 0 ? (
+                                comic.taxonomy.Genre!.map((g: any) => (
                                     <Badge
                                         key={g.slug}
                                         className="bg-white/10 text-gray-200 hover:bg-white/20 rounded-full"
