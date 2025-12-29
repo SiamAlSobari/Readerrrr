@@ -55,7 +55,6 @@ export default function HeroSlider({ comics }: Props) {
 
               {/* RIGHT: CONTENT */}
               <div className="flex-1 space-y-6">
-                
                 {/* Badges */}
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-sm font-semibold text-white">

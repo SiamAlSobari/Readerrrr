@@ -116,6 +116,38 @@ export interface Chapter {
   created_at: string; // ISO date
 }
 
+export interface ComicDetail {
+  manga_id: string
+  title: string
+  description: string
+  alternative_title: string
+  release_year: string
+  status: number
+  cover_image_url: string
+  cover_portrait_url: string
+  view_count: number
+  user_rate: number
+  latest_chapter_id: string
+  latest_chapter_number: number
+  latest_chapter_time: string // ISO string
+  country_id: string
+  bookmark_count: number
+  rank: number
+  taxonomy: Taxonomy
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
+
+export interface ChapterList {
+  chapter_id: string
+  manga_id: string
+  chapter_title: string
+  chapter_number: number
+  thumbnail_image_url: string
+  view_count: number
+  release_date: string // ISO string
+}
 
 export interface Taxonomy {
   Artist?: TaxonomyItem[];
