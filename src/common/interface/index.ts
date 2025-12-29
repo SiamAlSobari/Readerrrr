@@ -4,6 +4,12 @@ export interface ApiResponse<T> {
   meta: Meta;
   data: T[];
 }
+export interface ApiResponseDetail<T> {
+  retcode: number;
+  message: string;
+  meta: Meta;
+  data: T;
+}
 
 export interface Meta {
   request_id: string;
@@ -163,3 +169,34 @@ export interface TaxonomyItem {
   slug: string;
 }
 
+
+export interface ChapterDetail {
+  chapter_id: string
+  manga_id: string
+
+  chapter_number: number
+  chapter_title: string
+
+  base_url: string
+  base_url_low: string
+
+  chapter: ChapterImages
+
+  thumbnail_image_url: string
+  view_count: number
+
+  prev_chapter_id: string | null
+  prev_chapter_number: number | null
+
+  next_chapter_id: string | null
+  next_chapter_number: number | null
+
+  release_date: string
+  created_at: string
+  updated_at: string
+}
+
+export interface ChapterImages {
+  path: string
+  data: string[] // list filename image
+}
