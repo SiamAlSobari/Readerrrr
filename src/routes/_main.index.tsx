@@ -54,7 +54,7 @@ function App() {
 
   return (
 
-    <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden">
+    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden">
       {/* Hero Section */}
       <HeroSection comics={POPULAR_COMICS_DUMMY ?? []} />
 
@@ -137,7 +137,7 @@ function App() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
 
   )
