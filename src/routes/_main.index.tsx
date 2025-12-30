@@ -94,7 +94,7 @@ function App() {
             {/* Comic Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
               {DUMMY_COMICS.map((comic) => (
-                <BaseComicCard comic={comic} />
+                <BaseComicCard key={comic.manga_id} comic={comic} />
               ))}
             </div>
           </div>
@@ -109,7 +109,7 @@ function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               {POPULAR_COMICS_DUMMY.map((comic) => (
-                <PopularComicCard comic={comic} />
+                <PopularComicCard key={comic.manga_id} comic={comic} />
               ))}
             </div>
           </div>
@@ -126,7 +126,7 @@ function App() {
 
             <div className="space-y-4">
               {UPDATE_COMICS_DUMMY.map((comic) => (
-                <UpdateComicCard comic={comic} />
+                <UpdateComicCard key={comic.manga_id} comic={comic} />
               ))}
             </div>
 
