@@ -1,37 +1,50 @@
-import { Comic } from '@/common/interface'
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
-import { Search, Bookmark, Flame, TrendingUp, Clock, Star, ChevronRight, BookOpen, Library, ScrollText } from 'lucide-react'
-import Header from '@/common/components/Header'
-import HeroSection from '@/common/components/HeroSection'
-import { useServerFn } from '@tanstack/react-start'
-import { getComicRecomendation, getComicUpdate, getPopularComic } from '@/api/servers/shinigami.server'
-import { useQuery } from '@tanstack/react-query'
-import { DUMMY_COMICS, POPULAR_COMICS_DUMMY, UPDATE_COMICS_DUMMY } from '@/common/data/dummy'
-import PopularComicCard from '@/features/comic/PopularComicCard'
-import BaseComicCard from '@/features/comic/BaseComicCard'
-import UpdateComicCard from '@/features/comic/UpdateComicCard'
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import {
+  Flame,
+  TrendingUp,
+  Clock,
+  ChevronRight,
+  BookOpen,
+  Library,
+  ScrollText,
+} from "lucide-react";
+import HeroSection from "@/common/components/HeroSection";
+import { useServerFn } from "@tanstack/react-start";
+import {
+  getComicRecomendation,
+  getComicUpdate,
+  getPopularComic,
+} from "@/api/servers/shinigami.server";
+import { useQuery } from "@tanstack/react-query";
 
-export const Route = createFileRoute('/_main/')({ component: App })
+import PopularComicCard from "@/features/comic/PopularComicCard";
+import BaseComicCard from "@/features/comic/BaseComicCard";
+import UpdateComicCard from "@/features/comic/UpdateComicCard";
+import BaseComicCardSkeleton from "@/features/comic/BaseComicCardSkeleton";
+import PopularComicCardSkeleton from "@/features/comic/PopularComicCardSkeleton";
+import UpdateComicCardSkeleton from "@/features/comic/UpdateComicCardSkeleton";
 
+export const Route = createFileRoute("/_main/")({ component: App });
 
 function App() {
-  const [activeTab, setActiveTab] = useState('manhwa')
-  // const recommendation = useServerFn(getComicRecomendation)
-  //  const popular = useServerFn(getPopularComic)
-  //const update = useServerFn(getComicUpdate)
-  // const { data: comicRecomendation } = useQuery({
-  //   queryKey: ['recomendation', activeTab],
-  //   queryFn: () => recommendation()
-  // })
-  // const { data: popularComic } = useQuery({
-  //   queryKey: ['popular'],
-  //   queryFn: () => popular()
-  // })
-  // const {data: updateCommic} = useQuery({
-  //   queryKey:["update"],
-  //   queryFn: () => update()
-  // })
+  const [activeTab, setActiveTab] = useState("manhwa");
+  const recommendation = useServerFn(getComicRecomendation);
+  const popular = useServerFn(getPopularComic);
+  const update = useServerFn(getComicUpdate);
+  const { data: comicRecomendation, isLoading: comicRecomendationLoading } =
+    useQuery({
+      queryKey: ["recomendation", activeTab],
+      queryFn: () => recommendation(),
+    });
+  const { data: popularComic, isLoading: popularComicLoading } = useQuery({
+    queryKey: ["popular"],
+    queryFn: () => popular({ data: { page: 1, pageSize: 10 } }),
+  });
+  const { data: updateComic, isLoading: updateCommicLoading } = useQuery({
+    queryKey: ["update"],
+    queryFn: () => update(),
+  });
   const TABS = [
     {
       key: "manhwa",
@@ -50,13 +63,10 @@ function App() {
     },
   ] as const;
 
-
-
   return (
-
     <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden">
       {/* Hero Section */}
-      <HeroSection comics={POPULAR_COMICS_DUMMY ?? []} />
+      <HeroSection comics={popularComic?.data.data ?? []} />
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -93,9 +103,15 @@ function App() {
 
             {/* Comic Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-              {DUMMY_COMICS.map((comic) => (
-                <BaseComicCard key={comic.manga_id} comic={comic} />
-              ))}
+              {comicRecomendationLoading
+                ? // Tampilkan skeleton jika loading
+                Array.from({ length: 5 }).map((_, idx) => (
+                  <BaseComicCardSkeleton key={idx} />
+                ))
+                : // Tampilkan cards jika data sudah ada
+                comicRecomendation?.data.data.map((comic) => (
+                  <BaseComicCard key={comic.manga_id} comic={comic} />
+                ))}
             </div>
           </div>
 
@@ -108,9 +124,15 @@ function App() {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-              {POPULAR_COMICS_DUMMY.map((comic) => (
-                <PopularComicCard key={comic.manga_id} comic={comic} />
-              ))}
+              {popularComicLoading ?
+                Array.from({ length: 5 }).map((_, idx) => (
+                  <PopularComicCardSkeleton key={idx} />
+                )) :
+
+                popularComic?.data.data.map((comic) => (
+                  <PopularComicCard key={comic.manga_id} comic={comic} />
+                ))
+              }
             </div>
           </div>
         </div>
@@ -125,9 +147,15 @@ function App() {
             </h2>
 
             <div className="space-y-4">
-              {UPDATE_COMICS_DUMMY.map((comic) => (
-                <UpdateComicCard key={comic.manga_id} comic={comic} />
-              ))}
+              {updateCommicLoading ?
+              
+                Array.from({ length: 5 }).map((_, idx) => (
+                  <UpdateComicCardSkeleton key={idx} />
+                )) :
+                updateComic?.data.data.map((comic) => (
+                  <UpdateComicCard key={comic.manga_id} comic={comic} />
+                ))}
+       
             </div>
 
             <button className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
@@ -138,7 +166,5 @@ function App() {
         </div>
       </div>
     </div>
-
-
-  )
+  );
 }
