@@ -14,3 +14,7 @@ export const comicPaginationValidation = z.object({
   page: z.number(),
   pageSize: z.number(),
 });
+
+export const comicChapterDetailValidation = z.object({
+  chapterId: z.string(),
+});
