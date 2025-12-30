@@ -1,4 +1,4 @@
-import { Comic, PopularComic, UpdateComic } from "@/common/interface";
+import { ChapterDetail, Comic, PopularComic, UpdateComic } from "@/common/interface";
 
 export const DUMMY_COMICS: Comic[] = [
   {
@@ -442,3 +442,36 @@ export const DUMMY_CHAPTERS = [
     release_date: "2025-11-28T18:33:16Z",
   },
 ]
+
+export const DUMMY_CHAPTER_DETAIL: ChapterDetail = {
+  chapter_id: 'a71517fc-726b-4371-aeae-593f6479e00a',
+  manga_id: 'f70af567-5f45-4859-8222-e41eb10ac169',
+  chapter_number: 191,
+  chapter_title: '',
+  base_url: 'https://delivery.shngm.id',
+  base_url_low:
+    'https://delivery.shngm.id/low/unsafe/filters:format(webp):quality(70)',
+  chapter: {
+    path: '/chapter/manga_f70af567-5f45-4859-8222-e41eb10ac169/chapter_a71517fc-726b-4371-aeae-593f6479e00a/',
+    data: [
+      '00-583379.jpg',
+      '01-e42fbb.jpg',
+      '02-48e508.jpg',
+      '03-05230b.jpg',
+      '04-92594a.jpg',
+      '05-de9a6c.jpg',
+      '06-946ebc.jpg',
+    ],
+  },
+  thumbnail_image_url:
+    'https://storage.shngm.id/low/unsafe/filters:format(webp):quality(70)/thumbnail/image/1b1f854d-bdff-49d0-95a4-f73efd6edc67.jpg',
+  view_count: 81020,
+  prev_chapter_id: '1458673d-b8ce-4a6e-a5db-5966b2959701',
+  prev_chapter_number: 190,
+  next_chapter_id: null,
+  next_chapter_number: null,
+  release_date: '2025-12-27T14:33:56Z',
+  created_at: '2025-12-27T14:33:56Z',
+  updated_at: '2025-12-30T15:50:53Z',
+}
+
