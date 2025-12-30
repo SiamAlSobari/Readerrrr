@@ -13,6 +13,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
 import { Route as MainPopularIndexRouteImport } from './routes/_main.popular.index'
 import { Route as MainSeriesComicIdIndexRouteImport } from './routes/_main.series.$comicId.index'
+import { Route as MainReadComicIdChapterIdIndexRouteImport } from './routes/_main.read.$comicId.$chapterId.index'
 
 const MainRoute = MainRouteImport.update({
   id: '/_main',
@@ -33,16 +34,24 @@ const MainSeriesComicIdIndexRoute = MainSeriesComicIdIndexRouteImport.update({
   path: '/series/$comicId/',
   getParentRoute: () => MainRoute,
 } as any)
+const MainReadComicIdChapterIdIndexRoute =
+  MainReadComicIdChapterIdIndexRouteImport.update({
+    id: '/read/$comicId/$chapterId/',
+    path: '/read/$comicId/$chapterId/',
+    getParentRoute: () => MainRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/popular': typeof MainPopularIndexRoute
   '/series/$comicId': typeof MainSeriesComicIdIndexRoute
+  '/read/$comicId/$chapterId': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof MainIndexRoute
   '/popular': typeof MainPopularIndexRoute
   '/series/$comicId': typeof MainSeriesComicIdIndexRoute
+  '/read/$comicId/$chapterId': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,18 +59,20 @@ export interface FileRoutesById {
   '/_main/': typeof MainIndexRoute
   '/_main/popular/': typeof MainPopularIndexRoute
   '/_main/series/$comicId/': typeof MainSeriesComicIdIndexRoute
+  '/_main/read/$comicId/$chapterId/': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/popular' | '/series/$comicId'
+  fullPaths: '/' | '/popular' | '/series/$comicId' | '/read/$comicId/$chapterId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/popular' | '/series/$comicId'
+  to: '/' | '/popular' | '/series/$comicId' | '/read/$comicId/$chapterId'
   id:
     | '__root__'
     | '/_main'
     | '/_main/'
     | '/_main/popular/'
     | '/_main/series/$comicId/'
+    | '/_main/read/$comicId/$chapterId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -98,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainSeriesComicIdIndexRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/read/$comicId/$chapterId/': {
+      id: '/_main/read/$comicId/$chapterId/'
+      path: '/read/$comicId/$chapterId'
+      fullPath: '/read/$comicId/$chapterId'
+      preLoaderRoute: typeof MainReadComicIdChapterIdIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
   }
 }
 
@@ -105,12 +123,14 @@ interface MainRouteChildren {
   MainIndexRoute: typeof MainIndexRoute
   MainPopularIndexRoute: typeof MainPopularIndexRoute
   MainSeriesComicIdIndexRoute: typeof MainSeriesComicIdIndexRoute
+  MainReadComicIdChapterIdIndexRoute: typeof MainReadComicIdChapterIdIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
   MainIndexRoute: MainIndexRoute,
   MainPopularIndexRoute: MainPopularIndexRoute,
   MainSeriesComicIdIndexRoute: MainSeriesComicIdIndexRoute,
+  MainReadComicIdChapterIdIndexRoute: MainReadComicIdChapterIdIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)

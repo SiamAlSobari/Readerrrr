@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { POPULAR_COMICS_DUMMY } from '@/common/data/dummy'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { PopularComicCardBase } from '@/features/comic/PopularComicCardBase'
 import { getPopularComic } from '@/api/servers/shinigami.server'
@@ -10,7 +8,7 @@ type ComicSearch = {
 
 export const Route = createFileRoute('/_main/popular/')({
     validateSearch: (search: Record<string, string>): ComicSearch =>({
-    page: Number(search.page || 5)
+    page: Number(search.page || 1)
   }),
     loaderDeps: ({ search: { page } }) => ({
     page

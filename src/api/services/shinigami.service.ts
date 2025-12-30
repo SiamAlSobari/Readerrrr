@@ -49,6 +49,11 @@ class ShinigamiService {
         const res: { data: ApiResponse<ChapterList> } = await this.client.get(`${getEnv().API_URL}/chapter/${comicId}/list?page=${page}&page_size=${pageSize}&sort_by=chapter_number&sort_order=desc`)
         return res.data
     }
+
+    public async getChapterDetail(chapterId: string) {
+        const res: { data: ApiResponseDetail<ChapterList> } = await this.client.get(`${getEnv().API_URL}/chapter/detail/${chapterId}`)
+        return res.data
+    }
 }
 
 
