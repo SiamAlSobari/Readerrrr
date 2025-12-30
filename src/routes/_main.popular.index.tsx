@@ -32,7 +32,7 @@ function RouteComponent() {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-6">Popular Comics</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {popularComic.data.data.map(comic => (
           <PopularComicCardBase key={comic.manga_id} comic={comic} />
         ))}
