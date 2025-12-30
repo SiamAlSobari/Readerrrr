@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/common/shadcn-ui/dialog"
 import { Meta } from "@/common/interface"
-import { useNavigate } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { useServerFn } from "@tanstack/react-start"
 import { getChapterList } from "@/api/servers/shinigami.server"
@@ -98,9 +98,10 @@ export function ChapterList({
       {/* ===== MAIN SSR LIST ===== */}
       <div className="space-y-4">
         {chapters.map((ch) => (
-          <a
+          <Link
+            to="/read/$comicId/$chapterId"
+            params={{ comicId, chapterId: ch.chapter_id }}
             key={ch.chapter_id}
-            href={`/read/${ch.chapter_id}`}
             className="flex items-center gap-5 rounded-xl border border-white/20
               bg-linear-to-r from-white/5 to-white/10 p-4 backdrop-blur-md
               transition hover:scale-[1.02] hover:border-white/30 hover:shadow-lg"
@@ -123,7 +124,7 @@ export function ChapterList({
               <Eye className="h-5 w-5 text-gray-400" />
               {ch.view_count.toLocaleString()}
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 

@@ -13,7 +13,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
 import { Route as MainPopularIndexRouteImport } from './routes/_main.popular.index'
 import { Route as MainSeriesComicIdIndexRouteImport } from './routes/_main.series.$comicId.index'
-import { Route as MainReadChapterIdIndexRouteImport } from './routes/_main.read.$chapterId.index'
+import { Route as MainReadComicIdChapterIdIndexRouteImport } from './routes/_main.read.$comicId.$chapterId.index'
 
 const MainRoute = MainRouteImport.update({
   id: '/_main',
@@ -34,44 +34,45 @@ const MainSeriesComicIdIndexRoute = MainSeriesComicIdIndexRouteImport.update({
   path: '/series/$comicId/',
   getParentRoute: () => MainRoute,
 } as any)
-const MainReadChapterIdIndexRoute = MainReadChapterIdIndexRouteImport.update({
-  id: '/read/$chapterId/',
-  path: '/read/$chapterId/',
-  getParentRoute: () => MainRoute,
-} as any)
+const MainReadComicIdChapterIdIndexRoute =
+  MainReadComicIdChapterIdIndexRouteImport.update({
+    id: '/read/$comicId/$chapterId/',
+    path: '/read/$comicId/$chapterId/',
+    getParentRoute: () => MainRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/popular': typeof MainPopularIndexRoute
-  '/read/$chapterId': typeof MainReadChapterIdIndexRoute
   '/series/$comicId': typeof MainSeriesComicIdIndexRoute
+  '/read/$comicId/$chapterId': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof MainIndexRoute
   '/popular': typeof MainPopularIndexRoute
-  '/read/$chapterId': typeof MainReadChapterIdIndexRoute
   '/series/$comicId': typeof MainSeriesComicIdIndexRoute
+  '/read/$comicId/$chapterId': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
   '/_main/': typeof MainIndexRoute
   '/_main/popular/': typeof MainPopularIndexRoute
-  '/_main/read/$chapterId/': typeof MainReadChapterIdIndexRoute
   '/_main/series/$comicId/': typeof MainSeriesComicIdIndexRoute
+  '/_main/read/$comicId/$chapterId/': typeof MainReadComicIdChapterIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/popular' | '/read/$chapterId' | '/series/$comicId'
+  fullPaths: '/' | '/popular' | '/series/$comicId' | '/read/$comicId/$chapterId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/popular' | '/read/$chapterId' | '/series/$comicId'
+  to: '/' | '/popular' | '/series/$comicId' | '/read/$comicId/$chapterId'
   id:
     | '__root__'
     | '/_main'
     | '/_main/'
     | '/_main/popular/'
-    | '/_main/read/$chapterId/'
     | '/_main/series/$comicId/'
+    | '/_main/read/$comicId/$chapterId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -108,11 +109,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainSeriesComicIdIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/read/$chapterId/': {
-      id: '/_main/read/$chapterId/'
-      path: '/read/$chapterId'
-      fullPath: '/read/$chapterId'
-      preLoaderRoute: typeof MainReadChapterIdIndexRouteImport
+    '/_main/read/$comicId/$chapterId/': {
+      id: '/_main/read/$comicId/$chapterId/'
+      path: '/read/$comicId/$chapterId'
+      fullPath: '/read/$comicId/$chapterId'
+      preLoaderRoute: typeof MainReadComicIdChapterIdIndexRouteImport
       parentRoute: typeof MainRoute
     }
   }
@@ -121,15 +122,15 @@ declare module '@tanstack/react-router' {
 interface MainRouteChildren {
   MainIndexRoute: typeof MainIndexRoute
   MainPopularIndexRoute: typeof MainPopularIndexRoute
-  MainReadChapterIdIndexRoute: typeof MainReadChapterIdIndexRoute
   MainSeriesComicIdIndexRoute: typeof MainSeriesComicIdIndexRoute
+  MainReadComicIdChapterIdIndexRoute: typeof MainReadComicIdChapterIdIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
   MainIndexRoute: MainIndexRoute,
   MainPopularIndexRoute: MainPopularIndexRoute,
-  MainReadChapterIdIndexRoute: MainReadChapterIdIndexRoute,
   MainSeriesComicIdIndexRoute: MainSeriesComicIdIndexRoute,
+  MainReadComicIdChapterIdIndexRoute: MainReadComicIdChapterIdIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)

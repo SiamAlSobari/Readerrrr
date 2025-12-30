@@ -1,15 +1,15 @@
 import { ChapterDetail } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
 
-export default function ChapterNavigation({ chapter }: { chapter: ChapterDetail }) {
+export default function ChapterNavigation({ chapter, comicId }: { chapter: ChapterDetail, comicId: string }) {
   return (
     <div className="sticky top-0 z-10 bg-black/80 backdrop-blur border-b border-white/10">
       <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* PREV */}
         {chapter.prev_chapter_id ? (
           <Link
-            to="/read/$chapterId"
-            params={{ chapterId: chapter.prev_chapter_id }}
+            to="/read/$comicId/$chapterId"
+            params={{ chapterId: chapter.prev_chapter_id , comicId }}
             className="px-4 py-2 text-sm bg-white/10 hover:bg-white/20 rounded transition"
           >
             ← Ch. {chapter.prev_chapter_number}
@@ -29,8 +29,8 @@ export default function ChapterNavigation({ chapter }: { chapter: ChapterDetail 
         {/* NEXT */}
         {chapter.next_chapter_id ? (
           <Link
-            to="/read/$chapterId"
-            params={{ chapterId: chapter.next_chapter_id }}
+            to="/read/$comicId/$chapterId"
+            params={{ chapterId: chapter.next_chapter_id, comicId }}
             className="px-4 py-2 text-sm bg-white/10 hover:bg-white/20 rounded transition"
           >
             Ch. {chapter.next_chapter_number} →
