@@ -8,8 +8,7 @@ interface Props {
 
 export default function BaseComicCard({ comic }: Props) {
   const genres = comic.taxonomy.Genre?.slice(0, 3) ?? [];
-  const extraGenreCount =
-    (comic.taxonomy.Genre?.length ?? 0) - genres.length;
+  const extraGenreCount = (comic.taxonomy.Genre?.length ?? 0) - genres.length;
   const COUNTRY_MAP: Record<
     string,
     { label: string; flag: string; color: string }
@@ -20,11 +19,12 @@ export default function BaseComicCard({ comic }: Props) {
   };
   const country = COUNTRY_MAP[comic.country_id];
   return (
-
-    <Link search={{page: 1}} params={{comicId: comic.manga_id}} to="/series/$comicId">
-
+    <Link
+      search={{ page: 1 }}
+      params={{ comicId: comic.manga_id }}
+      to="/series/$comicId"
+    >
       <div className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50">
-
         {/* Cover */}
         <div className="relative h-64 overflow-hidden">
           <img
@@ -58,17 +58,17 @@ export default function BaseComicCard({ comic }: Props) {
                 Chapter {comic.latest_chapter_number}
               </span>
 
-              <span className={`text-base ${country?.color ?? "text-gray-400"}`}>
+              <span
+                className={`text-base ${country?.color ?? "text-gray-400"}`}
+              >
                 {country?.flag ?? "🌍"}
               </span>
             </div>
           </div>
         </div>
 
-
         {/* Content */}
         <div className="p-4 space-y-3">
-
           {/* Genre */}
           <div className="flex flex-wrap gap-1.5">
             {genres.map((genre, index) => (
@@ -104,6 +104,5 @@ export default function BaseComicCard({ comic }: Props) {
         </div>
       </div>
     </Link>
-
   );
 }

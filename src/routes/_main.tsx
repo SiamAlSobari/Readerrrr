@@ -1,16 +1,20 @@
-import Footer from '@/common/components/Footer'
-import Header from '@/common/components/Header'
-import { ThemeProvider } from '@/common/providers/ThemeProvider'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import Footer from "@/common/components/Footer";
+import Header from "@/common/components/Header";
+import { ThemeProvider } from "@/common/providers/theme-provider";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_main')({
+export const Route = createFileRoute("/_main")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <ThemeProvider>
-      <Header />
-      <Outlet />
-      <Footer />
-  </ThemeProvider>
+  return (
+    <main>
+      <ThemeProvider>
+        <Header />
+        <Outlet />
+        <Footer />
+      </ThemeProvider>
+    </main>
+  );
 }

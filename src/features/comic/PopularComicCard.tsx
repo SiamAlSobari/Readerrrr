@@ -16,11 +16,12 @@ export default function PopularComicCard({ comic }: Props) {
   const country = COUNTRY_MAP[comic.country_id];
 
   return (
-    <Link search={{page: 1}} params={{ comicId: comic.manga_id }} to="/series/$comicId">
-
-
+    <Link
+      search={{ page: 1 }}
+      params={{ comicId: comic.manga_id }}
+      to="/series/$comicId"
+    >
       <div className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-black/40">
-
         {/* Cover */}
         <div className="relative h-52 overflow-hidden">
           <img
@@ -34,8 +35,7 @@ export default function PopularComicCard({ comic }: Props) {
 
           {/* Rank */}
           <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-yellow-400 backdrop-blur">
-            <TrendingUp className="h-3.5 w-3.5" />
-            #{comic.rank}
+            <TrendingUp className="h-3.5 w-3.5" />#{comic.rank}
           </div>
 
           {/* Rating */}
@@ -59,7 +59,6 @@ export default function PopularComicCard({ comic }: Props) {
 
         {/* Content */}
         <div className="space-y-3 p-4">
-
           {/* Stats */}
           <div className="flex items-center justify-between text-xs text-gray-400">
             <div className="flex items-center gap-2">
@@ -89,7 +88,6 @@ export default function PopularComicCard({ comic }: Props) {
           </div>
         </div>
       </div>
-
     </Link>
   );
 }
