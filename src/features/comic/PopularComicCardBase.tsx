@@ -61,33 +61,33 @@ export function PopularComicCardBase({ comic }: Props) {
         </div>
 
         {/* Hover Overlay - lebih smooth dan readable */}
-        <div className="absolute inset-0 bg-liear-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
-          <div className="absolute inset-x-0 bottom-0 p-5 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <div className="space-y-4">
-              {/* Rating */}
-              <div className="flex items-center gap-3">
-                <Star className="h-6 w-6 fill-yellow-400 text-yellow-400 drop-shadow-md" />
-                <span className="text-2xl font-bold drop-shadow-lg">
-                  {comic.user_rate.toFixed(1)}
-                </span>
-              </div>
-
-              {/* Details */}
-              <div className="space-y-2 text-sm">
-                <p className="font-semibold">Chapter {comic.latest_chapter_number}</p>
-                <p className="flex items-center gap-2 opacity-90">
-                  <Clock className="h-4 w-4" />
-                  {new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-                <p className="opacity-80 text-xs">{comic.release_year}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+ {/* Hover Overlay - smooth, readable, dan bener gradientnya */}
+<div className="absolute inset-0 bg-linear-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+  <div className="absolute inset-x-0 bottom-0 p-5 text-white translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+    <div className="space-y-4">
+      {/* Rating */}
+      <div className="flex items-center gap-3">
+        <Star className="h-6 w-6 fill-yellow-400 text-yellow-400 drop-shadow-md" />
+        <span className="text-2xl font-bold drop-shadow-lg">
+          {comic.user_rate.toFixed(1)}
+        </span>
+      </div>
+      {/* Details */}
+      <div className="space-y-2 text-sm">
+        <p className="font-semibold">Chapter {comic.latest_chapter_number}</p>
+        <p className="flex items-center gap-2 opacity-90">
+          <Clock className="h-4 w-4" />
+          {new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+        <p className="opacity-80 text-xs">{comic.release_year}</p>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </Link>
   );

@@ -2,10 +2,19 @@ import { Bookmark, Search, Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/common/shadcn-ui/sheet"
 import { Button } from "@/common/shadcn-ui/button"
 import { Input } from "@/common/shadcn-ui/input"
+import { Link } from "@tanstack/react-router"
 
-const NAV_ITEMS = ["Home", "Library", "Genres", "Latest", "Popular"]
 
 export default function Header() {
+  const NAV_ITEMS = [{
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Popular",
+    href: "/popular",
+  }
+  ]
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -24,15 +33,18 @@ export default function Header() {
             {/* DESKTOP NAV */}
             <nav className="hidden md:flex items-center gap-6">
               {NAV_ITEMS.map(item => (
-                <a
-                  key={item}
-                  href="#"
-                  className="relative text-sm font-medium text-gray-400 transition hover:text-white
-                  after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0
-                  after:bg-red-500 after:transition-all hover:after:w-full"
-                >
-                  {item}
-                </a>
+                <Link to={item.href} >
+                  {({ isActive }) => (
+                    <span
+                      className={`relative text-sm font-medium text-gray-400 transition hover:text-white
+                      after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0
+                      after:bg-red-500 after:transition-all hover:after:w-full
+                      ${isActive ? "after:w-full" : ""}`}
+                    >
+                      {item.name}
+                    </span>
+                  )}
+                </Link>
               ))}
             </nav>
           </div>
@@ -87,16 +99,7 @@ export default function Header() {
 
                   {/* NAV MOBILE */}
                   <nav className="flex flex-col gap-3">
-                    {NAV_ITEMS.map(item => (
-                      <a
-                        key={item}
-                        href="#"
-                        className="rounded-lg px-3 py-2 text-base font-medium
-                        text-gray-300 hover:bg-white/10 hover:text-white"
-                      >
-                        {item}
-                      </a>
-                    ))}
+
                   </nav>
                 </div>
               </SheetContent>
