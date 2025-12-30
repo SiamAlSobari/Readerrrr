@@ -1,10 +1,13 @@
+import { getChapterDetail } from "@/api/servers/shinigami.server";
 import { DUMMY_CHAPTER_DETAIL } from "@/common/data/dummy";
 import { Button } from "@/common/shadcn-ui/button";
 import ChapterNavigation from "@/features/comic/ChapterNavigation";
+import { useQuery } from "@tanstack/react-query";
 import {
   createFileRoute,
   useNavigate,
 } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/_main/read/$comicId/$chapterId/")({
@@ -12,20 +15,25 @@ export const Route = createFileRoute("/_main/read/$comicId/$chapterId/")({
 });
 
 function ReadChapterPage() {
-  const chapter = DUMMY_CHAPTER_DETAIL;
-  const { comicId } = Route.useParams();
+  const { comicId, chapterId } = Route.useParams();
+  const chapterDetail =  useServerFn(getChapterDetail)
   // const router = useRouter()
   // const canGoBack = useCanGoBack()
   const navigate = useNavigate();
+
+  const {data: chapter, isLoading} = useQuery({
+    queryKey: ["chapter", chapterId],
+    queryFn: () => chapterDetail({ data: { chapterId } }),
+  })
 
   return (
     <div className="bg-black text-white min-h-screen">
       {/* TOP NAV */}
       <ChapterNavigation
-        key={chapter.chapter_id}
+        key={chapter?.data.data.chapter_id}
         comicId={comicId}
-        chapter={chapter}
-      />
+        chapter={chapter?.data.data!}
+/>
 
       {/* ACTION BAR */}
       <div
@@ -65,7 +73,7 @@ function ReadChapterPage() {
         </Button>
 
         <span className="text-sm text-white/50">
-          Chapter {chapter.chapter_number}
+          Chapter {chapter?.data.data.chapter_number}
         </span>
       </div>
 
@@ -81,8 +89,8 @@ function ReadChapterPage() {
           bg-black
         "
       >
-        {chapter.chapter.data.map((img, index) => {
-          const imageUrl = `${chapter.base_url_low}${chapter.chapter.path}${img}`;
+        {chapter?.data.data.chapter.data.map((img, index) => {
+          const imageUrl = `${chapter.data.data.base_url_low}${chapter.data.data.chapter.path}${img}`;
 
           return (
             <img
@@ -104,11 +112,11 @@ function ReadChapterPage() {
 
       {/* BOTTOM NAV */}
       <div className="mt-6">
-        <ChapterNavigation
-          key={chapter.chapter_id}
-          comicId={comicId}
-          chapter={chapter}
-        />
+      {/* <ChapterNavigation
+        key={chapter?.data.data.chapter_id}
+        comicId={comicId}
+        chapter={chapter?.data.data!}
+/> */}
       </div>
     </div>
   );
