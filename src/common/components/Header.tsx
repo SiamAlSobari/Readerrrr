@@ -8,6 +8,7 @@ export default function Header() {
   const NAV_ITEMS = [
     { name: "Home", href: "/" },
     { name: "Popular", href: "/popular" },
+    { name: "Genre", href: "/genre" },
   ]
 
   return (
