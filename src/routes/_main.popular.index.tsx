@@ -3,18 +3,18 @@ import { PopularComicCardBase } from '@/features/comic/PopularComicCardBase'
 import { getPopularComic } from '@/api/servers/shinigami.server'
 
 type ComicSearch = {
-  page : number
+  page: number
 }
 
 export const Route = createFileRoute('/_main/popular/')({
-    validateSearch: (search: Record<string, string>): ComicSearch =>({
+  validateSearch: (search: Record<string, string>): ComicSearch => ({
     page: Number(search.page || 1)
   }),
-    loaderDeps: ({ search: { page } }) => ({
+  loaderDeps: ({ search: { page } }) => ({
     page
   }),
   loader: async ({ deps: { page } }) => {
-    const popularComic = await getPopularComic({data: {page, pageSize: 24}})
+    const popularComic = await getPopularComic({ data: { page, pageSize: 24 } })
     return { popularComic }
   },
   component: RouteComponent,
@@ -22,8 +22,8 @@ export const Route = createFileRoute('/_main/popular/')({
 
 
 function RouteComponent() {
-    const { popularComic } = Route.useLoaderData()
-    const {page} = Route.useSearch()
+  const { popularComic } = Route.useLoaderData()
+  const { page } = Route.useSearch()
 
   const totalPages = popularComic.data.meta.total_page
 
@@ -39,32 +39,32 @@ function RouteComponent() {
       </div>
 
       {/* Pagination */}
-  <div className="flex justify-center items-center gap-4 mt-6">
-  {/* Prev Button */}
-  <Link
-    to="."
-    search={(prev) => ({ page: prev.page ? prev.page - 1 : 1 })}
-    disabled={page <= 1}
-    className="px-3 py-1 rounded border disabled:opacity-50 hover:bg-gray-100 transition"
-  >
-    Prev
-  </Link>
+      <div className="flex justify-center items-center gap-4 mt-6">
+        {/* Prev Button */}
+        <Link
+          to="."
+          search={(prev) => ({ page: prev.page ? prev.page - 1 : 1 })}
+          disabled={page <= 1}
+          className="px-3 py-1 rounded border disabled:opacity-50 hover:bg-gray-100 transition"
+        >
+          Prev
+        </Link>
 
-  {/* Page Info */}
-  <span>
-    Page {page} of {totalPages}
-  </span>
+        {/* Page Info */}
+        <span>
+          Page {page} of {totalPages}
+        </span>
 
-  {/* Next Button */}
-  <Link
-    to="."
-    search={(prev) => ({ page: (prev.page ?? 1) + 1 })}
-    disabled={page >= totalPages}
-    className="px-3 py-1 rounded border disabled:opacity-50 hover:bg-gray-100 transition"
-  >
-    Next
-  </Link>
-</div>
+        {/* Next Button */}
+        <Link
+          to="."
+          search={(prev) => ({ page: (prev.page ?? 1) + 1 })}
+          disabled={page >= totalPages}
+          className="px-3 py-1 rounded border disabled:opacity-50 hover:bg-gray-100 transition"
+        >
+          Next
+        </Link>
+      </div>
     </div>
   )
 }

@@ -43,7 +43,7 @@ export default function HeroSlider({ comics }: Props) {
             `}
           >
             <div className="flex h-full items-center gap-10 px-10">
-              
+
               {/* LEFT: COVER */}
               <div className="w-70 shrink-0">
                 <img
