@@ -1,7 +1,7 @@
 import { Comic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
 import { Clock, Star } from "lucide-react";
-
+import { motion } from "framer-motion";
 interface Props {
   comic: Comic;
 }
@@ -24,7 +24,15 @@ export default function BaseComicCard({ comic }: Props) {
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
     >
-      <div className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50">
+        <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    whileHover={{ y: -6, scale: 1.03 }}
+    transition={{ type: "spring", stiffness: 220, damping: 20 }}
+    className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50"
+  >
+
+
         {/* Cover */}
         <div className="relative h-64 overflow-hidden">
           <img
@@ -102,7 +110,7 @@ export default function BaseComicCard({ comic }: Props) {
             </span>
           </div>
         </div>
-      </div>
+  </motion.div>
     </Link>
   );
 }

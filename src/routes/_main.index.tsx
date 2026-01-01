@@ -17,6 +17,7 @@ import {
   getPopularComic,
 } from "@/api/servers/shinigami.server";
 import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion"
 
 import PopularComicCard from "@/features/comic/PopularComicCard";
 import BaseComicCard from "@/features/comic/BaseComicCard";
@@ -64,7 +65,14 @@ function App() {
   ] as const;
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden"
+    >
+
+
       {/* Hero Section */}
       <HeroSection comics={popularComic?.data.data ?? []} />
 
@@ -102,17 +110,25 @@ function App() {
             </div>
 
             {/* Comic Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-              {comicRecomendationLoading
-                ? // Tampilkan skeleton jika loading
-                Array.from({ length: 5 }).map((_, idx) => (
-                  <BaseComicCardSkeleton key={idx} />
-                ))
-                : // Tampilkan cards jika data sudah ada
-                comicRecomendation?.data.data.map((comic) => (
-                  <BaseComicCard key={comic.manga_id} comic={comic} />
-                ))}
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"
+              >
+                {comicRecomendationLoading
+                  ? Array.from({ length: 5 }).map((_, idx) => (
+                    <BaseComicCardSkeleton key={idx} />
+                  ))
+                  : comicRecomendation?.data.data.map((comic) => (
+                    <BaseComicCard key={comic.manga_id} comic={comic} />
+                  ))}
+              </motion.div>
+            </AnimatePresence>
+
           </div>
 
           {/* Popular Section */}
@@ -146,17 +162,34 @@ function App() {
               <div className="h-px flex-1 bg-linear-to-r from-green-500 to-transparent"></div>
             </h2>
 
-            <div className="space-y-4">
-              {updateCommicLoading ?
-              
-                Array.from({ length: 5 }).map((_, idx) => (
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: { staggerChildren: 0.08 },
+                },
+              }}
+              className="space-y-4"
+            >
+              {updateCommicLoading
+                ? Array.from({ length: 5 }).map((_, idx) => (
                   <UpdateComicCardSkeleton key={idx} />
-                )) :
-                updateComic?.data.data.map((comic) => (
-                  <UpdateComicCard key={comic.manga_id} comic={comic} />
+                ))
+                : updateComic?.data.data.map((comic) => (
+                  <motion.div
+                    key={comic.manga_id}
+                    variants={{
+                      hidden: { opacity: 0, x: 20 },
+                      show: { opacity: 1, x: 0 },
+                    }}
+                  >
+                    <UpdateComicCard comic={comic} />
+                  </motion.div>
                 ))}
-       
-            </div>
+            </motion.div>
+
 
             <button className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
               View All Updates
@@ -165,6 +198,6 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
