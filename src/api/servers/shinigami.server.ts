@@ -48,3 +48,9 @@ export const getChapterDetail = createServerFn()
         const chapter = await shinigamiService.getChapterDetail(data.chapterId)
         return { data: chapter }
     })
+
+export const genGenreList = createServerFn()
+    .handler(async () => {
+        const data = await shinigamiService.getGenreList()
+        return { data }
+    })

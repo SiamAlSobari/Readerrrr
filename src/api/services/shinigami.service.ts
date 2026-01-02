@@ -5,7 +5,7 @@ import { AxiosInstance } from "axios";
 
 class ShinigamiService {
     private client: AxiosInstance;
-    private baseUrl = "https://08.shinigami.asia/";
+    private baseUrl = "https://09.shinigami.asia/";
 
     constructor() {
         this.client = createAxiosClient(this.baseUrl);

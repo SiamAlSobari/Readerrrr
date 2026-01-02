@@ -163,8 +163,6 @@ function App() {
             </h2>
 
             <motion.div
-              initial="hidden"
-              animate="show"
               variants={{
                 hidden: {},
                 show: {

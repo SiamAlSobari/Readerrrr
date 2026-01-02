@@ -6,22 +6,18 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DUMMY_COMICS } from '@/common/data/dummy'
+import { getGenreList } from '@/api/servers/shinigami.server'
 
 export const Route = createFileRoute('/_main/genre/')({
   component: RouteComponent,
+  loader: async () => {
+    const genres = await getGenreList()
+    return { genres }
+  }
 })
 
 
 
-const GENRES = [
-  { slug: 'action', name: 'Action' },
-  { slug: 'adult', name: 'Adult' },
-  { slug: 'drama', name: 'Drama' },
-  { slug: 'fantasy', name: 'Fantasy' },
-  { slug: 'horror', name: 'Horror' },
-  { slug: 'isekai', name: 'Isekai' },
-  { slug: 'romance', name: 'Romance' },
-]
 
 
 
@@ -42,6 +38,7 @@ const cardVariants = {
 
 
 function RouteComponent() {
+  const { genres } = Route.useLoaderData()
   const [activeGenre, setActiveGenre] = useState('action')
 
   const filteredComics = useMemo(() => {
@@ -53,7 +50,7 @@ function RouteComponent() {
   }, [activeGenre])
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className=" mx-auto px-4 py-6">
       <div className="grid grid-cols-1 md:grid-cols-[230px_1fr] gap-6">
 
         {/* ================= SIDEBAR ================= */}
@@ -61,9 +58,9 @@ function RouteComponent() {
           <h2 className="text-sm font-semibold mb-2">Genres</h2>
           <Separator className="mb-3" />
 
-          <ScrollArea className="h-[420px]">
-            <div className="space-y-1 pr-2">
-              {GENRES.map((genre) => {
+          <ScrollArea className="h-120">
+            <div className="space-y-1 grid grid-cols-2 pr-2">
+              {genres.data.data.map((genre) => {
                 const active = activeGenre === genre.slug
 
                 return (
