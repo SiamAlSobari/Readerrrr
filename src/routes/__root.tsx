@@ -30,23 +30,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         name: 'description',
-        content: 'MANGA READER – Baca manga online terbaru, populer, dan lengkap dengan mudah dan gratis.',
+        content: 'MANGA READER – Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis.',
       },
       {
         name: 'keywords',
-        content: 'manga, baca manga, manga online, manga terbaru, manga populer, manga reader',
+        content: 'KOMIK, baca KOMIK, KOMIK online, KOMIK terbaru, KOMIK populer, KOMIK reader',
       },
       {
         name: 'author',
-        content: 'MANGA READER',
+        content: 'KOMIK READER',
       },
       {
         property: 'og:title',
-        content: 'MANGA READER – Baca Manga Online Terbaru & Populer',
+        content: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
       },
       {
         property: 'og:description',
-        content: 'Nikmati ribuan manga terbaru dan populer secara gratis dengan MANGA READER. Akses mudah, cepat, dan lengkap!',
+        content: 'Nikmati ribuan KOMIK terbaru dan populer secara gratis dengan KOMIK READER. Akses mudah, cepat, dan lengkap!',
       },
       {
         property: 'og:type',
@@ -54,7 +54,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         property: 'og:url',
-        //content: 'https://mangareader.com', // ganti dengan domain lo
+        //content: 'https://KOMIKreader.com', // ganti dengan domain lo
       },
       {
         property: 'og:image',
@@ -66,11 +66,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         name: 'twitter:title',
-        content: 'MANGA READER – Baca Manga Online Terbaru & Populer',
+        content: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
       },
       {
         name: 'twitter:description',
-        content: 'Nikmati ribuan manga terbaru dan populer secara gratis dengan MANGA READER. Akses mudah, cepat, dan lengkap!',
+        content: 'Nikmati ribuan KOMIK terbaru dan populer secara gratis dengan KOMIK READER. Akses mudah, cepat, dan lengkap!',
       },
       {
         name: 'twitter:image',
@@ -84,11 +84,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         rel: 'icon',
-        href: '/manga_reader.png',
+        href: '/komik_reader.png',
         type: 'image/x-icon',
       },
     ],
-    title: 'MANGA READER – Baca Manga Online Terbaru & Populer',
+    title: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
   }),
 
 

@@ -33,7 +33,7 @@ export default function Header() {
           <div className="flex items-center gap-8">
             <Link to="/" className="text-xl font-black tracking-wide">
               <span className="bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                MANGA
+                COMIC
               </span>
               <span className="text-white">READER</span>
             </Link>
