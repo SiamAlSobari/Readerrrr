@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Flame,
@@ -33,6 +33,7 @@ function App() {
   const recommendation = useServerFn(getComicRecomendation);
   const popular = useServerFn(getPopularComic);
   const update = useServerFn(getComicUpdate);
+  const navigate = useNavigate();
   const { data: comicRecomendation, isLoading: comicRecomendationLoading } =
     useQuery({
       queryKey: ["recomendation", activeTab],
@@ -189,7 +190,7 @@ function App() {
             </motion.div>
 
 
-            <button className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
+            <button onClick={() => navigate({ to: "/update" })} className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
               View All Updates
               <ChevronRight className="w-4 h-4" />
             </button>
