@@ -22,3 +22,7 @@ export const comicChapterDetailValidation = z.object({
 export const comicRecomendationValidation = z.object({
   format: z.string(),
 });
+
+export const comicGenreValidation = z.object({
+  genre: z.string(),
+});

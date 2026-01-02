@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { shinigamiService } from "../services/shinigami.service";
-import { comicChapterDetailValidation, comicChapterListValidation, comicDetailValidation, comicPaginationValidation, comicRecomendationValidation } from "@/common/validation/comic.validation";
+import { comicChapterDetailValidation, comicChapterListValidation, comicDetailValidation, comicGenreValidation, comicPaginationValidation, comicRecomendationValidation } from "@/common/validation/comic.validation";
 
 
 export const getComicRecomendation = createServerFn()
@@ -54,4 +54,11 @@ export const genGenreList = createServerFn()
     .handler(async () => {
         const data = await shinigamiService.getGenreList()
         return { data }
+    })
+
+export const getComicGenre = createServerFn()
+    .inputValidator(comicGenreValidation)
+    .handler(async ({data}) => {
+        const comic = await shinigamiService.getComicGenre(data.genre)
+        return { data: comic }
     })
