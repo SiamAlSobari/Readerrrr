@@ -20,7 +20,6 @@ export const Route = createFileRoute('/_main/series/$comicId/')({
   loader: async ({ params, deps: { page } }) => {
     const comicDetail = await getComicDetail({ data: { comicId: params.comicId } })
     const chapterList = await getChapterList({ data: { comicId: params.comicId, page, pageSize: 24 } })
-    console.table(chapterList.data.data)
     return { comicDetail, chapterList }
   },
   pendingComponent: ComicDetailSkeleton

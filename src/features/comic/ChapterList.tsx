@@ -7,6 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/shadcn-ui/dialog"
+import { formatDistanceToNow } from "date-fns"
+import { id } from "date-fns/locale"
 import { Meta } from "@/common/interface"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { useInfiniteQuery } from "@tanstack/react-query"
@@ -116,7 +118,7 @@ export function ChapterList({
                 Chapter {ch.chapter_number}
               </p>
               <p className="text-sm text-gray-400">
-                {new Date(ch.release_date).toLocaleDateString()}
+                {new Date(ch.release_date).toLocaleDateString()} | {formatDistanceToNow(new Date(ch.release_date), { locale: id, addSuffix: true })}
               </p>
             </div>
 
