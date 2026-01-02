@@ -7,6 +7,7 @@ import { Eye, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 import type { ApiResponse, UpdateComic } from "@/common/interface";
+import { API_URL } from "@/common/utils/env";
 
 
 export const Route = createFileRoute("/_main/update/")({
@@ -100,7 +101,7 @@ function RouteComponent() {
     queryKey: ["comic-update", type, page],
     queryFn: async () => {
       const url =
-        `https://api.shngm.io/v1/manga/list` +
+        `${API_URL}/manga/list` +
         `?type=${type}` +
         `&page=${page}` +
         `&page_size=16` +
@@ -108,14 +109,7 @@ function RouteComponent() {
         `&sort=latest` +
         `&sort_order=desc`;
 
-      console.log("FETCH →", url);
-
       const res = await fetch(url);
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch");
-      }
-
       const json = await res.json();
 
       // IMPORTANT: return LIST-NYA
