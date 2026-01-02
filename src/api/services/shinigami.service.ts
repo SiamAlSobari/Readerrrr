@@ -31,9 +31,9 @@ class ShinigamiService {
         return res.data
     }
 
-    // public async getComicGenre(genre: string){
+    public async getComicGenre(genre: string){
 
-    // }
+    }
 
     public async getPopularComic(page: number = 1, pageSize: number = 16) {
         const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`)
