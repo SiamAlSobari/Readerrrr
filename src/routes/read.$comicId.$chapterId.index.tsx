@@ -7,7 +7,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/_main/read/$comicId/$chapterId/")({
+export const Route = createFileRoute("/read/$comicId/$chapterId/")({
   component: ReadChapterPage,
 });
 

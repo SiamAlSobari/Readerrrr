@@ -20,7 +20,7 @@ export default function ChapterNavigation({ chapter, comicId }: Props) {
     chapter.next_chapter_number !== null
 
   return (
-    <div className="sticky top-0 z-10 bg-black/80 backdrop-blur border-b border-white/10">
+    <div className=" bg-black/80 backdrop-blur border-b border-white/10">
       <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* PREV */}
         {hasPrev ? (

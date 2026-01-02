@@ -18,3 +18,11 @@ export const comicPaginationValidation = z.object({
 export const comicChapterDetailValidation = z.object({
   chapterId: z.string(),
 });
+
+export const comicRecomendationValidation = z.object({
+  format: z.string(),
+});
+
+export const comicGenreValidation = z.object({
+  genre: z.string(),
+});

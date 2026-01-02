@@ -24,13 +24,13 @@ export default function BaseComicCard({ comic }: Props) {
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
     >
-        <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    whileHover={{ y: -6, scale: 1.03 }}
-    transition={{ type: "spring", stiffness: 220, damping: 20 }}
-    className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50"
-  >
+      <motion.div
+        // initial={{ opacity: 0, y: 20 }}
+        // animate={{ opacity: 1, y: 0 }}
+        // whileHover={{ y: -6, scale: 1.03 }}
+        // transition={{ type: "spring", stiffness: 220, damping: 20 }}
+        className="group relative rounded-2xl overflow-hidden bg-linear-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/50"
+      >
 
 
         {/* Cover */}
@@ -110,7 +110,7 @@ export default function BaseComicCard({ comic }: Props) {
             </span>
           </div>
         </div>
-  </motion.div>
+      </motion.div>
     </Link>
   );
 }

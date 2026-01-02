@@ -36,7 +36,7 @@ function App() {
   const { data: comicRecomendation, isLoading: comicRecomendationLoading } =
     useQuery({
       queryKey: ["recomendation", activeTab],
-      queryFn: () => recommendation(),
+      queryFn: () => recommendation({ data: { format: activeTab } }),
     });
   const { data: popularComic, isLoading: popularComicLoading } = useQuery({
     queryKey: ["popular"],
@@ -163,8 +163,6 @@ function App() {
             </h2>
 
             <motion.div
-              initial="hidden"
-              animate="show"
               variants={{
                 hidden: {},
                 show: {

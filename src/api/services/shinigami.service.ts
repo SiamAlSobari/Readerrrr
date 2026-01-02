@@ -5,7 +5,7 @@ import { AxiosInstance } from "axios";
 
 class ShinigamiService {
     private client: AxiosInstance;
-    private baseUrl = "https://08.shinigami.asia/";
+    private baseUrl = "https://09.shinigami.asia/";
 
     constructor() {
         this.client = createAxiosClient(this.baseUrl);
@@ -31,9 +31,10 @@ class ShinigamiService {
         return res.data
     }
 
-    // public async getComicGenre(genre: string){
-
-    // }
+    public async getComicGenre(genre: string) {
+        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include=${genre}&genre_include_mode=or&genre_exclude_mode=or&sort=latest&sort_order=desc`)
+        return res.data
+    }
 
     public async getPopularComic(page: number = 1, pageSize: number = 16) {
         const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`)
