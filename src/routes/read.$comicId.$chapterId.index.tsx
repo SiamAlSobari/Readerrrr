@@ -1,11 +1,13 @@
 import { getChapterDetail } from "@/api/servers/shinigami.server";
 import { Button } from "@/common/shadcn-ui/button";
-import { ChapterImage } from "@/features/comic/ChapterImage";
-import ChapterNavigation from "@/features/comic/ChapterNavigation";
+import { setChapterHistory } from "@/common/utils/chapter-history";
+import { ChapterImage } from "@/features/chapter/ChapterImage";
+import ChapterNavigation from "@/features/chapter/ChapterNavigation";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/read/$comicId/$chapterId/")({
   component: ReadChapterPage,
@@ -14,14 +16,23 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
 function ReadChapterPage() {
   const { comicId, chapterId } = Route.useParams();
   const chapterDetail = useServerFn(getChapterDetail);
-  // const router = useRouter()
-  // const canGoBack = useCanGoBack()
   const navigate = useNavigate();
 
-  const { data: chapter} = useQuery({
+  const { data: chapter } = useQuery({
     queryKey: ["chapter", chapterId],
     queryFn: () => chapterDetail({ data: { chapterId } }),
   });
+
+  useEffect(() => {
+    if (!chapter?.data.data) return;
+    setChapterHistory({
+      comic_id: comicId,
+      chapter_id: chapter?.data.data.chapter_id,
+      chapter_number: chapter?.data.data.chapter_number,
+      last_read_time: Date.now(),
+    });
+    console.log('data history tersimpan');
+  }, [chapter?.data.data, comicId, chapterId]);
 
   return (
     <div className="bg-black text-white min-h-screen">

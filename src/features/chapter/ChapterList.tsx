@@ -14,6 +14,7 @@ import { Link, useNavigate } from "@tanstack/react-router"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { useServerFn } from "@tanstack/react-start"
 import { getChapterList } from "@/api/servers/shinigami.server"
+import { getLastReadChapter } from "@/common/utils/chapter-history"
 
 interface Chapter {
   chapter_id: string
@@ -90,6 +91,8 @@ export function ChapterList({
 
   const dialogChapters =
     data?.pages.flatMap((p) => p.data.data) ?? []
+  const lastRead = getLastReadChapter(comicId)
+  console.log(lastRead)
 
   return (
     <section className="mx-auto mt-16 max-w-7xl px-4">
@@ -98,6 +101,50 @@ export function ChapterList({
       </h2>
 
       {/* ===== MAIN SSR LIST ===== */}
+      {lastRead && (
+        <div
+          className="
+      mb-6
+      rounded-xl
+      border border-emerald-400/30
+      bg-emerald-400/10
+      p-4
+      flex items-center justify-between
+    "
+        >
+          <div>
+            <p className="text-sm text-emerald-300 font-medium">
+              Terakhir dibaca
+            </p>
+            <p className="text-white font-semibold">
+              Chapter {lastRead.chapter_number}
+            </p>
+            <p className="text-xs text-emerald-200">
+              {formatDistanceToNow(lastRead.last_read_time, {
+                addSuffix: true,
+                locale: id,
+              })}
+            </p>
+          </div>
+
+          <Button
+            size="sm"
+            className="bg-emerald-500 hover:bg-emerald-600 text-black"
+            onClick={() =>
+              navigate({
+                to: "/read/$comicId/$chapterId",
+                params: {
+                  comicId,
+                  chapterId: lastRead.chapter_id,
+                },
+              })
+            }
+          >
+            Lanjutkan
+          </Button>
+        </div>
+      )}
+
       <div className="space-y-4">
         {chapters.map((ch) => (
           <Link
