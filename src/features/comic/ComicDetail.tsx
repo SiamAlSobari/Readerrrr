@@ -1,9 +1,9 @@
-import { Star, Eye, Bookmark, Play, ArrowLeft } from "lucide-react"
+import { Star, Eye,  Play, ArrowLeft } from "lucide-react"
 import { Button } from "@/common/shadcn-ui/button"
 import { Badge } from "@/common/shadcn-ui/badge"
 import { useState } from "react"
 import { ComicDetail as ComicDetailType } from "@/common/interface"
-import { useCanGoBack, useNavigate, useRouter } from "@tanstack/react-router"
+import {  useNavigate } from "@tanstack/react-router"
 
 export function ComicDetail({ comic }: { comic: ComicDetailType }) {
     const navigation = useNavigate()
@@ -112,20 +112,23 @@ export function ComicDetail({ comic }: { comic: ComicDetailType }) {
 
                         {/* CTA */}
                         <div className="flex gap-4 pt-4">
-                            <Button className="bg-red-500 hover:bg-red-600 gap-2">
+                            <Button onClick={() => navigation({
+                                to:'/read/$comicId/$chapterId',
+                                params: {chapterId: comic.latest_chapter_id, comicId: comic.manga_id}
+                            })} className="bg-red-500 hover:bg-red-600 gap-2">
                                 <Play className="w-5 h-5" />
                                 {comic.latest_chapter_number
                                     ? `Read Chapter ${comic.latest_chapter_number}`
                                     : "Start Reading"}
                             </Button>
 
-                            <Button
+                            {/* <Button
                                 variant="secondary"
                                 className="bg-white/10 hover:bg-white/20 text-white gap-2"
                             >
                                 <Bookmark className="w-5 h-5" />
                                 Bookmark
-                            </Button>
+                            </Button> */}
                         </div>
                     </div>
                 </div>

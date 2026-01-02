@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Book, Star, Trophy, TrendingUp } from "lucide-react";
 import { PopularComic } from "@/common/interface";
+import { useNavigate } from "@tanstack/react-router";
 
 interface Props {
   comics: PopularComic[];
@@ -9,6 +10,7 @@ interface Props {
 export default function HeroSlider({ comics }: Props) {
   const items = comics.slice(0, 3);
   const [active, setActive] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!items.length) return;
@@ -97,7 +99,7 @@ export default function HeroSlider({ comics }: Props) {
                 </div>
 
                 {/* CTA */}
-                <button className="rounded-xl bg-red-500 px-8 py-3 font-semibold text-white transition hover:scale-105 hover:bg-red-600">
+                <button onClick={() => navigate({ to: `/comics/${comic.manga_id}` })} className="rounded-xl bg-red-500 px-8 py-3 font-semibold text-white transition hover:scale-105 hover:bg-red-600">
                   Read Now
                 </button>
               </div>
