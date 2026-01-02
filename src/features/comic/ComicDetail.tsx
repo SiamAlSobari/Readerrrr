@@ -3,12 +3,10 @@ import { Button } from "@/common/shadcn-ui/button"
 import { Badge } from "@/common/shadcn-ui/badge"
 import { useState } from "react"
 import { ComicDetail as ComicDetailType } from "@/common/interface"
-import { useCanGoBack, useRouter } from "@tanstack/react-router"
+import { useCanGoBack, useNavigate, useRouter } from "@tanstack/react-router"
 
 export function ComicDetail({ comic }: { comic: ComicDetailType }) {
-     const router = useRouter()
-       const canGoBack = useCanGoBack()
-
+    const navigation = useNavigate()
     const [imageError, setImageError] = useState({
         cover: false,
         portrait: false,
@@ -39,16 +37,14 @@ export function ComicDetail({ comic }: { comic: ComicDetailType }) {
             <div className="relative z-20 flex flex-col gap-6 p-4 sm:p-6 md:p-10">
                 {/* 🔙 BUTTON KEMBALI */}
                 <div>
-                    {canGoBack && (
                         <Button
                             variant="secondary"
                             className="gap-2 bg-white/10 hover:bg-white/20 text-white"
-                            onClick={() => router.history.back()}
+                            onClick={() => navigation({ to: "/" })}
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Kembali
                         </Button>
-                    )}
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-6">
