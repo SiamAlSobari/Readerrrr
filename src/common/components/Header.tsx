@@ -9,6 +9,7 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "Popular", href: "/popular" },
     { name: "Genre", href: "/genre" },
+    {name: "Update", href: "/update"},
   ]
 
   return (
