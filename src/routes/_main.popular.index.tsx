@@ -16,6 +16,47 @@ export const Route = createFileRoute('/_main/popular/')({
     const popularComic = await getPopularComic({ data: { page, pageSize: 24 } })
     return { popularComic }
   },
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'description',
+        content:
+          'Temukan komik & comic reader terpopuler yang paling banyak dibaca! Update terbaru dan favorit pembaca di komik READER.',
+      },
+      {
+        name: 'keywords',
+        content: 'komik populer, comic populer, popular komik, popular comic, komik reader, comic reader',
+      },
+      { name: 'author', content: 'MANGA READER' },
+
+      // Open Graph
+      { property: 'og:title', content: 'MANGA READER – Popular Manga & Comic Reader' },
+      {
+        property: 'og:description',
+        content:
+          'Jelajahi daftar manga & comic reader terpopuler, favorit pembaca, dan update terbaru di MANGA READER!',
+      },
+      { property: 'og:type', content: 'website' },
+     // { property: 'og:url', content: 'https://mangareader.com/popular' },
+      { property: 'og:image', content: '/komik_reader.png' },
+
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Komik READER – Popular Manga & Comic Reader' },
+      {
+        name: 'twitter:description',
+        content:
+          'Jelajahi daftar komik & comic reader terpopuler, favorit pembaca, dan update terbaru di komik READER!',
+      },
+      { name: 'twitter:image', content: '/komik_reader.png' },
+    ],
+    links: [
+      { rel: 'icon', href: '/komik_reader.png', type: 'image/x-icon' },
+    ],
+    title: 'Komik READER – Popular Komik & Comic Reader',
+  }),
   component: RouteComponent,
 })
 

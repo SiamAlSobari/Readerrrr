@@ -29,7 +29,52 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        name: 'description',
+        content: 'MANGA READER – Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis.',
+      },
+      {
+        name: 'keywords',
+        content: 'KOMIK, baca KOMIK, KOMIK online, KOMIK terbaru, KOMIK populer, KOMIK reader',
+      },
+      {
+        name: 'author',
+        content: 'KOMIK READER',
+      },
+      {
+        property: 'og:title',
+        content: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
+      },
+      {
+        property: 'og:description',
+        content: 'Nikmati ribuan KOMIK terbaru dan populer secara gratis dengan KOMIK READER. Akses mudah, cepat, dan lengkap!',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:url',
+        //content: 'https://KOMIKreader.com', // ganti dengan domain lo
+      },
+      {
+        property: 'og:image',
+        content: '/komik_reader.png', // ganti dengan logo / cover gambar
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
+      },
+      {
+        name: 'twitter:description',
+        content: 'Nikmati ribuan KOMIK terbaru dan populer secara gratis dengan KOMIK READER. Akses mudah, cepat, dan lengkap!',
+      },
+      {
+        name: 'twitter:image',
+        content: '/komik_reader.png', // ganti dengan logo / cover gambar
       },
     ],
     links: [
@@ -37,8 +82,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon',
+        href: '/komik_reader.png',
+        type: 'image/x-icon',
+      },
     ],
+    title: 'KOMIK READER – Baca KOMIK Online Terbaru & Populer',
   }),
+
 
   shellComponent: RootDocument,
 })

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Flame,
@@ -26,13 +26,55 @@ import BaseComicCardSkeleton from "@/features/comic/BaseComicCardSkeleton";
 import PopularComicCardSkeleton from "@/features/comic/PopularComicCardSkeleton";
 import UpdateComicCardSkeleton from "@/features/comic/UpdateComicCardSkeleton";
 
-export const Route = createFileRoute("/_main/")({ component: App });
+export const Route = createFileRoute("/_main/")({
+  component: App,
+ head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "description",
+        content:
+          "Baca ribuan Komik online terbaru, populer, dan lengkap di Komik READER. Gratis dan mudah diakses.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Komik, baca Komik, Komik online, Komik terbaru, Komik populer, Komik READER",
+      },
+      { name: "author", content: "Komik READER" },
+
+      // Open Graph
+      { property: "og:title", content: "Komik READER – Home" },
+      {
+        property: "og:description",
+        content:
+          "Baca ribuan Komik online terbaru dan populer di Komik READER. Gratis dan mudah diakses.",
+      },
+      { property: "og:type", content: "website" },
+     // { property: "og:url", content: "https://Komikreader.com/" }, // ganti domain lo
+      { property: "og:image", content: "/komik_reader.png" }, // logo / cover home
+
+      // Twitter Card
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Komik READER – Home" },
+      {
+        name: "twitter:description",
+        content:
+          "Baca ribuan Komik online terbaru dan populer di KOMIK READER. Gratis dan mudah diakses.",
+      },
+      { name: "twitter:image", content: "/komik_reader.png" },
+    ],
+    title: "Komik READER – Home",
+  }),
+});
 
 function App() {
   const [activeTab, setActiveTab] = useState("manhwa");
   const recommendation = useServerFn(getComicRecomendation);
   const popular = useServerFn(getPopularComic);
   const update = useServerFn(getComicUpdate);
+  const navigate = useNavigate();
   const { data: comicRecomendation, isLoading: comicRecomendationLoading } =
     useQuery({
       queryKey: ["recomendation", activeTab],
@@ -189,7 +231,7 @@ function App() {
             </motion.div>
 
 
-            <button className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
+            <button onClick={() => navigate({ to: "/update" })} className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
               View All Updates
               <ChevronRight className="w-4 h-4" />
             </button>
