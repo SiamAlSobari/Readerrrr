@@ -112,11 +112,11 @@ function ReadChapterPage() {
 
       {/* BOTTOM NAV */}
       <div className="mt-6">
-        {/* <ChapterNavigation
+        <ChapterNavigation
         key={chapter?.data.data.chapter_id}
         comicId={comicId}
         chapter={chapter?.data.data!}
-/> */}
+/>
       </div>
     </div>
   );
