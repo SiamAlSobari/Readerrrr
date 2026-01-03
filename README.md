@@ -1,290 +1,433 @@
-Welcome to your new TanStack app! 
+# Komik READER
 
-# Getting Started
+**Domain Web: [komik-reader.my.id](https://komik-reader.my.id)**
 
-To run this application:
+## Deskripsi Proyek
 
-```bash
-npm install
-npm run start
+Komik READER adalah aplikasi web modern untuk membaca komik online yang dibangun menggunakan teknologi terkini. Aplikasi ini menyediakan pengalaman membaca komik yang lancar, responsif, dan user-friendly dengan fitur-fitur lengkap untuk menemukan, menjelajahi, dan menikmati ribuan judul komik dari berbagai genre.
+
+## Teknologi Utama
+
+- **Frontend Framework**: React 19 dengan TypeScript
+- **Build Tool**: Vite
+- **Routing**: TanStack Router dengan dukungan SSR
+- **State Management**: TanStack Query untuk data fetching dan caching
+- **UI Components**: Shadcn UI (berbasis Radix UI primitives)
+- **Styling**: Tailwind CSS 4
+- **HTTP Client**: Axios
+- **Animation**: Framer Motion
+- **Icons**: Lucide React
+- **Form Validation**: Zod
+- **Date Handling**: date-fns
+- **Web Scraping**: Cheerio (untuk parsing data)
+- **SSR/SSG**: TanStack Start dengan Nitro
+
+## Fitur Utama
+
+### 🏠 Halaman Utama
+- **Hero Section**: Banner utama dengan navigasi cepat
+- **Rekomendasi Komik**: Daftar komik yang direkomendasikan berdasarkan format
+- **Komik Terbaru**: Update komik terbaru dengan pagination
+- **Komik Populer**: Daftar komik populer sepanjang masa
+
+### 📚 Detail Komik
+- **Informasi Lengkap**: Judul, deskripsi, genre, status, rating, dan statistik
+- **Cover Image**: Background blur dengan overlay untuk estetika
+- **Chapter List**: Daftar chapter dengan thumbnail, tanggal rilis, dan view count
+- **Pagination**: Navigasi chapter dengan infinite scroll
+- **History Reading**: Pelacakan chapter terakhir yang dibaca
+
+### 📖 Pembacaan Chapter
+- **Image Viewer**: Tampilan gambar chapter dengan navigasi
+- **Responsive Design**: Optimasi untuk desktop dan mobile
+- **Navigation**: Tombol navigasi antar chapter
+- **Loading States**: Skeleton loading untuk performa
+
+### 🔍 Pencarian
+- **Search Functionality**: Pencarian komik berdasarkan judul
+- **Real-time Results**: Hasil pencarian instan
+
+### 🏷️ Genre
+- **Daftar Genre**: Kategori komik lengkap
+- **Filter by Genre**: Komik berdasarkan genre tertentu
+- **No Results Handling**: Pesan untuk genre tanpa komik
+
+### 🎨 UI/UX
+- **Dark/Light Theme**: Tema yang dapat disesuaikan
+- **Responsive Layout**: Desain mobile-first
+- **Smooth Animations**: Transisi halus dengan Framer Motion
+- **Loading Skeletons**: Placeholder untuk loading states
+- **Error Handling**: Penanganan error yang elegan
+
+## Struktur Proyek
+
+```
+src/
+├── api/
+│   ├── servers/          # Server functions untuk SSR
+│   └── services/         # API services
+├── common/
+│   ├── components/       # Komponen bersama (Header, Footer, dll.)
+│   ├── data/            # Data dummy
+│   ├── http/            # Konfigurasi HTTP client
+│   ├── interface/       # TypeScript interfaces
+│   ├── libs/            # Utility libraries
+│   ├── providers/       # Context providers
+│   ├── shadcn-ui/       # UI components
+│   ├── utils/           # Utility functions
+│   └── validation/      # Schema validation
+├── features/
+│   ├── chapter/         # Komponen chapter
+│   ├── comic/           # Komponen komik
+│   └── genre/           # Komponen genre
+├── integrations/        # Integrasi third-party
+├── routes/              # File-based routing
+└── styles.css           # Global styles
 ```
 
-# Building For Production
+## API Integration
 
-To build this application for production:
+Aplikasi terintegrasi dengan API eksternal dari `https://09.shinigami.asia/` yang menyediakan:
 
+- Daftar komik rekomendasi
+- Komik terbaru dan update
+- Komik populer
+- Detail komik
+- Daftar chapter
+- Data genre
+- Pencarian komik
+
+## Development Setup
+
+### Prerequisites
+- Node.js (versi terbaru)
+- npm atau yarn
+
+### Installation
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run dev
+```
+Aplikasi akan berjalan di `http://localhost:3000`
+
+### Build
 ```bash
 npm run build
 ```
 
-## Testing
+### Preview
+```bash
+npm run preview
+```
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
-
+### Testing
 ```bash
 npm run test
 ```
 
-## Styling
+## Konfigurasi
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+- **Port Development**: 3000
+- **SSR Enabled**: Ya, menggunakan TanStack Start
+- **Path Aliases**: `@/*` mengarah ke `./src/*`
+- **Environment Variables**: Dikonfigurasi melalui `env.ts`
 
+## Optimasi Performa
 
+- **Code Splitting**: Automatic dengan Vite
+- **Image Optimization**: Lazy loading dan error handling
+- **Caching**: TanStack Query untuk caching API responses
+- **SSR**: Server-side rendering untuk SEO dan performa
+- **Bundle Analysis**: Devtools untuk monitoring
 
+## Browser Support
 
-## Routing
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
+- Chrome (versi terbaru)
+- Firefox (versi terbaru)
+- Safari (versi terbaru)
+- Edge (versi terbaru)
 
-### Adding A Route
+## Komponen Utama
 
-To add a new route to your application just add another a new file in the `./src/routes` directory.
+### Header Component
+- **Logo**: "COMICREADER" dengan gradient merah-oranye
+- **Navigasi**: Home, Popular, Genre, Update dengan active state indicators
+- **Search Bar**: Pencarian real-time untuk desktop dan mobile
+- **Mobile Menu**: Sheet overlay untuk navigasi mobile
+- **Responsive Design**: Sticky header dengan backdrop blur
 
-TanStack will automatically generate the content of the route file for you.
+### Footer Component
+- **Copyright**: © 2026 ComikReader. All rights reserved.
+- **Tagline**: "Read your favorite Comic anytime, anywhere"
+- **Simple Layout**: Centered text dengan gradient background
 
-Now that you have two routes you can use a `Link` component to navigate between them.
+### Hero Section
+- **Slider Auto**: 3 komik populer dengan auto-rotate setiap 6 detik
+- **Cover Display**: Gambar cover dengan overlay informasi
+- **Country Badges**: Manhwa (Korea), Manga (Jepang), Manhua (China)
+- **Action Buttons**: "Read Now" dan "View Details"
+- **Statistics**: Rating, views, bookmarks dengan icons
 
-### Adding Links
+### Comic Cards
+- **PopularComicCard**: Card untuk komik populer dengan rank display
+- **BaseComicCard**: Card standar dengan cover dan info dasar
+- **UpdateComicCard**: Card untuk update dengan tanggal terbaru
+- **Skeleton Loading**: Placeholder animasi untuk loading states
+- **Hover Effects**: Scale dan shadow transitions
 
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
+### Chapter Components
+- **ChapterList**: Infinite scroll dengan pagination
+- **ChapterImage**: Viewer gambar dengan navigasi
+- **ChapterNavigation**: Tombol prev/next chapter
+- **History Tracking**: LocalStorage untuk chapter terakhir dibaca
 
-```tsx
-import { Link } from "@tanstack/react-router";
+## Data Models
+
+### Comic Interface
+```typescript
+interface Comic {
+  manga_id: string;
+  title: string;
+  alternative_title: string;
+  description: string;
+  country_id: string; // "KR", "JP", "CN"
+  release_year: string;
+  cover_image_url: string;
+  cover_portrait_url: string;
+  bookmark_count: number;
+  view_count: number;
+  rank: number;
+  status: number;
+  user_rate: number;
+  latest_chapter_id: string;
+  latest_chapter_number: number;
+  taxonomy: Taxonomy;
+}
 ```
 
-Then anywhere in your JSX you can use it like so:
+### Chapter History
+- **LocalStorage**: Penyimpanan chapter terakhir per komik
+- **Max Entries**: 1000 entries untuk performa
+- **Auto Cleanup**: Filter duplikat dan sort by time
 
-```tsx
-<Link to="/about">About</Link>
-```
+## Validation & Security
 
-This will create a link that will navigate to the `/about` route.
+### Zod Schemas
+- **comicDetailValidation**: Validasi ID komik
+- **comicChapterListValidation**: Validasi pagination chapter
+- **comicPaginationValidation**: Validasi page dan pageSize
+- **comicChapterDetailValidation**: Validasi chapter ID
+- **comicRecomendationValidation**: Validasi format rekomendasi
+- **comicGenreValidation**: Validasi genre filter
 
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
+### Error Handling
+- **API Error Responses**: Penanganan retcode dan message
+- **Image Fallback**: Default images untuk cover yang gagal load
+- **Network Errors**: Retry logic dengan TanStack Query
+- **Validation Errors**: User feedback untuk input invalid
 
-### Using A Layout
+## UI/UX Features
 
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
+### Theme System
+- **Dark Theme**: Default theme dengan black/gray palette
+- **Gradient Accents**: Red-orange gradients untuk branding
+- **Glass Morphism**: Backdrop blur effects
+- **Consistent Spacing**: Tailwind spacing scale
 
-Here is an example layout that includes a header:
+### Animations
+- **Framer Motion**: Smooth transitions dan micro-interactions
+- **Hero Slider**: Slide transitions dengan easing
+- **Hover States**: Scale transforms pada cards
+- **Loading Animations**: Pulse effects pada skeletons
 
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+### Responsive Breakpoints
+- **Mobile**: < 768px - Single column layout
+- **Tablet**: 768px - 1024px - Grid 2 columns
+- **Desktop**: > 1024px - Grid 3-4 columns
+- **Large Desktop**: > 1280px - Extended layouts
 
-import { Link } from "@tanstack/react-router";
+## Environment Configuration
 
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/people",
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json() as Promise<{
-      results: {
-        name: string;
-      }[];
-    }>;
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData();
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    );
-  },
-});
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
-
+### Server Environment
 ```bash
-npm install @tanstack/react-query @tanstack/react-query-devtools
+API_URL=https://09.shinigami.asia/
 ```
 
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
-
-```tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-// ...
-
-const queryClient = new QueryClient();
-
-// ...
-
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
-
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-import "./App.css";
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ["people"],
-    queryFn: () =>
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  });
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
+### Client Environment
 ```bash
-npm install @tanstack/store
+VITE_API_URL_CLIENT=https://09.shinigami.asia/
 ```
 
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
+### Development Environment
+- **Port**: 3000
+- **Hot Reload**: Enabled
+- **DevTools**: TanStack DevTools integrated
+- **TypeScript**: Strict mode enabled
 
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store } from "@tanstack/store";
-import "./App.css";
+## Build & Deployment
 
-const countStore = new Store(0);
-
-function App() {
-  const count = useStore(countStore);
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  );
-}
-
-export default App;
+### Build Process
+```bash
+npm run build
 ```
+- **Vite Build**: Optimized production build
+- **SSR Generation**: Static pages dengan TanStack Start
+- **Asset Optimization**: Image compression dan code splitting
+- **Bundle Analysis**: Size monitoring
 
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
+### Deployment Options
+- **Vercel**: Recommended untuk SSR
+- **Netlify**: Static deployment
+- **Docker**: Containerized deployment
+- **Node.js Server**: Traditional hosting
 
-Let's check this out by doubling the count using derived state.
+### Performance Metrics
+- **Lighthouse Score**: Target 90+ untuk semua metrics
+- **Bundle Size**: < 500KB gzipped
+- **First Contentful Paint**: < 1.5s
+- **Time to Interactive**: < 3s
 
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store, Derived } from "@tanstack/store";
-import "./App.css";
+## Development Guidelines
 
-const countStore = new Store(0);
+### Code Style
+- **TypeScript Strict**: No any types, strict null checks
+- **ESLint**: Configured untuk consistency
+- **Prettier**: Code formatting
+- **Path Aliases**: @/* untuk clean imports
 
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-});
-doubledStore.mount();
+### Component Patterns
+- **Functional Components**: React hooks pattern
+- **Props Interface**: Typed props untuk type safety
+- **Default Props**: Sensible defaults
+- **Error Boundaries**: Graceful error handling
 
-function App() {
-  const count = useStore(countStore);
-  const doubledCount = useStore(doubledStore);
+### State Management
+- **TanStack Query**: Server state management
+- **Local State**: React useState untuk UI state
+- **Context**: Theme provider untuk global state
+- **LocalStorage**: Persistent user preferences
 
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  );
-}
+## Testing Strategy
 
-export default App;
-```
+### Unit Tests
+- **Component Testing**: React Testing Library
+- **Utility Functions**: Jest untuk pure functions
+- **API Mocks**: MSW untuk API testing
 
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
+### Integration Tests
+- **Route Testing**: TanStack Router testing
+- **API Integration**: End-to-end API flows
+- **User Journeys**: Critical user paths
 
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
+### E2E Testing
+- **Playwright**: Cross-browser testing
+- **CI/CD**: Automated test runs
+- **Visual Regression**: Screenshot comparisons
 
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
+## Roadmap
 
-# Demo files
+### Short Term (Q1 2026)
+- [ ] Offline reading capability
+- [ ] Bookmark/favorites system
+- [ ] Advanced search filters
+- [ ] User authentication
+- [ ] Reading progress sync
 
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
+### Medium Term (Q2 2026)
+- [ ] PWA features
+- [ ] Multi-language support
+- [ ] Dark/light theme toggle
+- [ ] Reading statistics
+- [ ] Social sharing
 
-# Learn More
+### Long Term (2026+)
+- [ ] Mobile app (React Native)
+- [ ] Custom reading themes
+- [ ] Community features
+- [ ] Premium subscriptions
+- [ ] AI recommendations
 
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+## Contributing
+
+### Development Setup
+1. Fork repository
+2. Clone locally
+3. Install dependencies: `npm install`
+4. Start dev server: `npm run dev`
+5. Create feature branch
+6. Make changes with tests
+7. Submit pull request
+
+### Code Standards
+- Follow existing TypeScript/React patterns
+- Add proper JSDoc comments
+- Include unit tests for new features
+- Update README for significant changes
+- Follow conventional commit messages
+
+### Pull Request Process
+- **Title**: [Feature/Bug] Brief description
+- **Description**: Detailed changes and rationale
+- **Testing**: How to test the changes
+- **Screenshots**: UI changes screenshots
+- **Breaking Changes**: Mark if any
+
+## Troubleshooting
+
+### Common Issues
+
+**Build Errors**
+- Clear node_modules: `rm -rf node_modules && npm install`
+- Check TypeScript errors: `npx tsc --noEmit`
+- Verify environment variables
+
+**API Issues**
+- Check API_URL in environment
+- Verify network connectivity
+- Check browser console for CORS errors
+
+**Performance Issues**
+- Enable React DevTools Profiler
+- Check bundle size with `npm run build`
+- Optimize images and lazy loading
+
+**Styling Issues**
+- Verify Tailwind config
+- Check CSS imports in styles.css
+- Test responsive breakpoints
+
+## License
+
+Proyek ini bersifat privat dan tidak untuk distribusi publik.
+
+## Acknowledgments
+
+- **Shinigami API**: Data source untuk komik
+- **Shadcn UI**: UI component library
+- **TanStack**: Router, Query, dan Start frameworks
+- **Vite**: Fast build tool
+- **Tailwind CSS**: Utility-first CSS framework
+
+## Support
+
+Untuk dukungan teknis atau pertanyaan:
+- Email: support@komik-reader.my.id
+- Website: [komik-reader.my.id](https://komik-reader.my.id)
+- GitHub Issues: Laporkan bug atau request fitur
+
+---
+
+**Last Updated**: January 3, 2026
+**Version**: 1.0.0
+
+## Lisensi
+
+Proyek ini bersifat privat dan tidak untuk distribusi publik.
+
+## Kontak
+
+Untuk informasi lebih lanjut, kunjungi [komik-reader.my.id](https://komik-reader.my.id)
