@@ -7,10 +7,10 @@ export default function Footer() {
     ">
       <div className="container mx-auto px-6 text-center text-gray-300">
         <p className="font-medium">
-          © 2024 MangaReader. All rights reserved.
+          © 2026 ComikReader. All rights reserved.
         </p>
         <p className="mt-2 text-sm text-gray-400">
-          Read your favorite manga anytime, anywhere
+          Read your favorite Comic anytime, anywhere
         </p>
       </div>
     </footer>
