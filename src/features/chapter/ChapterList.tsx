@@ -145,37 +145,66 @@ export function ChapterList({
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {chapters.map((ch) => (
           <Link
             to="/read/$comicId/$chapterId"
             params={{ comicId, chapterId: ch.chapter_id }}
             key={ch.chapter_id}
-            className="flex items-center gap-5 rounded-xl border border-white/20
-              bg-linear-to-r from-white/5 to-white/10 p-4 backdrop-blur-md
-              transition hover:scale-[1.02] hover:border-white/30 hover:shadow-lg"
+            className="
+        group
+        flex flex-col sm:flex-row
+        gap-4
+        rounded-xl
+        border border-white/10
+        bg-white/5
+        p-3 sm:p-4
+        backdrop-blur
+        transition
+        hover:border-white/20
+        hover:bg-white/10
+        active:scale-[0.99]
+      "
           >
+            {/* THUMBNAIL */}
             <img
               src={ch.thumbnail_image_url}
-              className="h-20 w-32 rounded-lg object-cover shadow-sm"
+              alt={`Chapter ${ch.chapter_number}`}
+              className="
+          h-40 sm:h-20
+          w-full sm:w-32
+          rounded-lg
+          object-cover
+          shrink-0
+        "
             />
 
-            <div className="flex-1">
-              <p className="font-semibold text-lg text-white">
-                Chapter {ch.chapter_number}
-              </p>
-              <p className="text-sm text-gray-400">
-                {new Date(ch.release_date).toLocaleDateString()} | {formatDistanceToNow(new Date(ch.release_date), { locale: id, addSuffix: true })}
-              </p>
-            </div>
+            {/* CONTENT */}
+            <div className="flex flex-1 flex-col justify-between gap-2">
+              <div>
+                <p className="text-base sm:text-lg font-semibold text-white">
+                  Chapter {ch.chapter_number}
+                </p>
 
-            <div className="flex items-center gap-2 text-sm text-gray-300 font-medium">
-              <Eye className="h-5 w-5 text-gray-400" />
-              {ch.view_count.toLocaleString()}
+                <p className="text-xs sm:text-sm text-gray-400">
+                  {new Date(ch.release_date).toLocaleDateString()} •{" "}
+                  {formatDistanceToNow(new Date(ch.release_date), {
+                    locale: id,
+                    addSuffix: true,
+                  })}
+                </p>
+              </div>
+
+              {/* META (mobile-friendly) */}
+              <div className="flex items-center gap-2 text-xs text-gray-300">
+                <Eye className="h-4 w-4 text-gray-400" />
+                <span>{ch.view_count.toLocaleString()} views</span>
+              </div>
             </div>
           </Link>
         ))}
       </div>
+
 
       {/* ===== PAGINATION + DIALOG ===== */}
       <div className="mt-10 mb-10 flex items-center justify-center gap-4">
