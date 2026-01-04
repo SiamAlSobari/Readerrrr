@@ -244,6 +244,7 @@ export function ChapterList({
               }}
             >
               {dialogChapters.map((ch) => (
+                
                 <div
                   key={ch.chapter_id}
                   className="flex justify-between rounded-md p-3 hover:bg-white/5"
