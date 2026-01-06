@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.tsx", "src/features/comic/PopularComicCardBase.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "src/features/comic/PopularComicCardBase.tsx", "scripts/generate.js"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",

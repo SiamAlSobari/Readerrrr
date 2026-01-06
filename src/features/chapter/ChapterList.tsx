@@ -244,18 +244,20 @@ export function ChapterList({
               }}
             >
               {dialogChapters.map((ch) => (
-                
-                <div
-                  key={ch.chapter_id}
-                  className="flex justify-between rounded-md p-3 hover:bg-white/5"
-                >
-                  <p className="text-sm text-white">
-                    Chapter {ch.chapter_number}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {new Date(ch.release_date).toLocaleDateString()}
-                  </p>
-                </div>
+                <Link to="/read/$comicId/$chapterId" key={ch.chapter_id} params={{ comicId, chapterId: ch.chapter_id }}>
+
+                  <div
+                    key={ch.chapter_id}
+                    className="flex justify-between rounded-md p-3 hover:bg-white/5"
+                  >
+                    <p className="text-sm text-white">
+                      Chapter {ch.chapter_number}
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      {new Date(ch.release_date).toLocaleDateString()}
+                    </p>
+                  </div>
+                </Link>
               ))}
 
               {(isLoading || isFetchingNextPage) && (
