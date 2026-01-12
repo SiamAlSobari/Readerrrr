@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
 import { Route as MainUpdateIndexRouteImport } from './routes/_main.update.index'
@@ -18,6 +20,16 @@ import { Route as MainGenreIndexRouteImport } from './routes/_main.genre.index'
 import { Route as ReadComicIdChapterIdIndexRouteImport } from './routes/read.$comicId.$chapterId.index'
 import { Route as MainSeriesComicIdIndexRouteImport } from './routes/_main.series.$comicId.index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MainRoute = MainRouteImport.update({
   id: '/_main',
   getParentRoute: () => rootRouteImport,
@@ -60,6 +72,8 @@ const MainSeriesComicIdIndexRoute = MainSeriesComicIdIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/popular': typeof MainPopularIndexRoute
@@ -69,6 +83,8 @@ export interface FileRoutesByFullPath {
   '/read/$comicId/$chapterId': typeof ReadComicIdChapterIdIndexRoute
 }
 export interface FileRoutesByTo {
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/popular': typeof MainPopularIndexRoute
@@ -80,6 +96,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_main/': typeof MainIndexRoute
   '/_main/genre/': typeof MainGenreIndexRoute
   '/_main/popular/': typeof MainPopularIndexRoute
@@ -91,6 +109,8 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/'
     | '/genre'
     | '/popular'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/read/$comicId/$chapterId'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/'
     | '/genre'
     | '/popular'
@@ -110,6 +132,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_main'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/_main/'
     | '/_main/genre/'
     | '/_main/popular/'
@@ -121,11 +145,27 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   MainRoute: typeof MainRouteWithChildren
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ReadComicIdChapterIdIndexRoute: typeof ReadComicIdChapterIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_main': {
       id: '/_main'
       path: ''
@@ -207,6 +247,8 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ReadComicIdChapterIdIndexRoute: ReadComicIdChapterIdIndexRoute,
 }
 export const routeTree = rootRouteImport
