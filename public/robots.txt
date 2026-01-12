@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://komik-reader.my.id/sitemap.xml
