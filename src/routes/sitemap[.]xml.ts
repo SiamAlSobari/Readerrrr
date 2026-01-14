@@ -7,7 +7,7 @@ export const Route = createFileRoute('/sitemap.xml')({
             GET: async () => {
                 // ⚠️ ambil list komik (pakai page besar)
                 const res = await shinigamiService.getPopularComic(1, 24)
-                const comics = res.data ?? []
+                const comics = res.data
 
                 const comicUrls = comics.map((comic) => `
   <url>
