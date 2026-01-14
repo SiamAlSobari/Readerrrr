@@ -13,7 +13,16 @@ class ShinigamiService {
     }
 
     public async getComicRecomendation(format: string) {
+        const cacheKey = `comic_recomendation_${format}`;
+
+        const cached = await client.get(cacheKey);
+        if (cached) {
+            console.log("📌 Recomendation dari Redis cache");
+            return JSON.parse(cached) as ApiResponse<Comic>;
+        }
         const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?format=${format}&page=1&page_size=10&is_recommended=true&sort=latest&sort_order=desc`)
+        // Simpan object lengkap, sama seperti API
+        await client.set(cacheKey, JSON.stringify(res.data), "EX", 604800); // 7 hari
         return res.data
     }
 
