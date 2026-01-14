@@ -27,57 +27,57 @@ class ShinigamiService {
         return res.data
     }
 
-    public async getGenreList() {
+    public async getGenreList(): Promise<ApiResponse<TaxonomyItem>> {
         const cacheKey = "genre_list";
 
-        // 1️⃣ Cek cache dulu
         const cached = await client.get(cacheKey);
         if (cached) {
             console.log("📌 Genre dari Redis cache");
             return JSON.parse(cached) as ApiResponse<TaxonomyItem>;
         }
 
-        // 2️⃣ Kalau nggak ada cache, fetch dari API
         const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(
             `${getEnv().API_URL}/genre/list`
         );
 
-        // 3️⃣ Simpan ke Redis selama 1 jam (3600 detik)
-        await client.set(cacheKey, JSON.stringify(res.data.data), "EX", 604800); // 7 hari
+        // Simpan object lengkap, sama seperti API
+        await client.set(cacheKey, JSON.stringify(res.data), "EX", 604800); // 7 hari
 
         console.log("📌 Genre dari API");
         return res.data;
     }
 
+
     public async getComicGenre(genre: string) {
         const cacheKey = `comic_genre_${genre}`;
 
-        // 1️⃣ Cek cache dulu
         const cached = await client.get(cacheKey);
         if (cached) {
-            console.log("📌 Comic genre dari Redis cache");
+            console.log("📌 Genre dari Redis cache");
             return JSON.parse(cached) as ApiResponse<Comic>;
-
         }
-        console.log("📌 Comic genre dari API ");
+        // 1️⃣ Cek cache dulu
         const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include=${genre}&genre_include_mode=or&genre_exclude_mode=or&sort=latest&sort_order=desc`)
-        // 3️⃣ Simpan ke Redis selama 2 hari
-        await client.set(cacheKey, JSON.stringify(res.data.data), "EX", 172800);
+        // Simpan object lengkap, sama seperti API
+        await client.set(cacheKey, JSON.stringify(res.data), "EX", 172800); // 2 hari
+
+        console.log("📌 Genre dari API");
         return res.data
     }
 
     public async getPopularComic(page: number = 1, pageSize: number = 16) {
         const cacheKey = `popular_comic_${page}_${pageSize}`;
 
-        // 1️⃣ Cek cache dulu
         const cached = await client.get(cacheKey);
         if (cached) {
-            console.log("📌 Popular comic dari Redis cache");
+            console.log("📌 Popular dari Redis cache");
             return JSON.parse(cached) as ApiResponse<PopularComic>;
         }
         const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`)
-        // 3️⃣ Simpan ke Redis selama 2 hari
-        await client.set(cacheKey, JSON.stringify(res.data.data), "EX", 172800);
+        // Simpan object lengkap, sama seperti API
+        await client.set(cacheKey, JSON.stringify(res.data), "EX", 172000); // 2 hari
+
+        console.log("📌 Popular dari API");
         return res.data
     }
 
