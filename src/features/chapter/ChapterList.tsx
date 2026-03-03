@@ -92,7 +92,6 @@ export function ChapterList({
   const dialogChapters =
     data?.pages.flatMap((p) => p.data.data) ?? []
   const lastRead = getLastReadChapter(comicId)
-  console.log(lastRead)
 
   return (
     <section className="mx-auto mt-16 max-w-7xl px-4">

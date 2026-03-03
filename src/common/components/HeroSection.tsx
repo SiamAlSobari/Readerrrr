@@ -29,8 +29,10 @@ export default function HeroSlider({ comics }: Props) {
   } as const;
 
   return (
-    <div className="relative mb-10 h-130 overflow-hidden rounded-2xl bg-linear-to-br from-black via-zinc-900/75 to-neutral-900
-">
+    <div
+      className="relative mb-10 h-130 overflow-hidden rounded-2xl bg-linear-to-br from-black via-zinc-900/75 to-neutral-900
+"
+    >
       {items.map((comic, index) => {
         const activeSlide = index === active;
         const country = COUNTRY_MAP[comic.country_id];
@@ -39,13 +41,14 @@ export default function HeroSlider({ comics }: Props) {
           <div
             key={comic.manga_id}
             className={`absolute inset-0 transition-all duration-700
-              ${activeSlide
-                ? "opacity-100 translate-x-0 z-10"
-                : "opacity-0 translate-x-6 z-0 pointer-events-none"}
+              ${
+                activeSlide
+                  ? "opacity-100 translate-x-0 z-10"
+                  : "opacity-0 translate-x-6 z-0 pointer-events-none"
+              }
             `}
           >
             <div className="flex h-full items-center gap-10 px-10">
-
               {/* LEFT: COVER */}
               <div className="w-70 shrink-0">
                 <img
@@ -63,7 +66,9 @@ export default function HeroSlider({ comics }: Props) {
                     <TrendingUp className="h-4 w-4" />
                     TRENDING
                   </span>
-                  <span className={`rounded-full px-3 py-1 text-sm font-semibold ${country.color}`}>
+                  <span
+                    className={`rounded-full px-3 py-1 text-sm font-semibold ${country.color}`}
+                  >
                     {country.label}
                   </span>
                 </div>
@@ -99,7 +104,18 @@ export default function HeroSlider({ comics }: Props) {
                 </div>
 
                 {/* CTA */}
-                <button onClick={() => navigate({ to: `/comics/${comic.manga_id}` })} className="rounded-xl bg-red-500 px-8 py-3 font-semibold text-white transition hover:scale-105 hover:bg-red-600">
+                <button
+                  onClick={() =>
+                    navigate({
+                      to: `/read/$comicId/$chapterId`,
+                      params: {
+                        chapterId: comic.latest_chapter_id,
+                        comicId: comic.manga_id,
+                      },
+                    })
+                  }
+                  className="rounded-xl bg-red-500 px-8 py-3 font-semibold text-white transition hover:scale-105 hover:bg-red-600"
+                >
                   Read Now
                 </button>
               </div>

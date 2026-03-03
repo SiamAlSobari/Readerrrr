@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
+import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainUpdateIndexRouteImport } from './routes/_main.update.index'
 import { Route as MainSearchIndexRouteImport } from './routes/_main.search.index'
 import { Route as MainPopularIndexRouteImport } from './routes/_main.popular.index'
@@ -37,6 +38,11 @@ const MainRoute = MainRouteImport.update({
 const MainIndexRoute = MainIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHomeRoute = MainHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
   getParentRoute: () => MainRoute,
 } as any)
 const MainUpdateIndexRoute = MainUpdateIndexRouteImport.update({
@@ -74,6 +80,7 @@ const MainSeriesComicIdIndexRoute = MainSeriesComicIdIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/home': typeof MainHomeRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/popular': typeof MainPopularIndexRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/home': typeof MainHomeRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/popular': typeof MainPopularIndexRoute
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_main/home': typeof MainHomeRoute
   '/_main/': typeof MainIndexRoute
   '/_main/genre/': typeof MainGenreIndexRoute
   '/_main/popular/': typeof MainPopularIndexRoute
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/home'
     | '/'
     | '/genre'
     | '/popular'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
   to:
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/home'
     | '/'
     | '/genre'
     | '/popular'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/_main'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/_main/home'
     | '/_main/'
     | '/_main/genre/'
     | '/_main/popular/'
@@ -178,6 +190,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MainIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/home': {
+      id: '/_main/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof MainHomeRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/update/': {
@@ -226,6 +245,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface MainRouteChildren {
+  MainHomeRoute: typeof MainHomeRoute
   MainIndexRoute: typeof MainIndexRoute
   MainGenreIndexRoute: typeof MainGenreIndexRoute
   MainPopularIndexRoute: typeof MainPopularIndexRoute
@@ -235,6 +255,7 @@ interface MainRouteChildren {
 }
 
 const MainRouteChildren: MainRouteChildren = {
+  MainHomeRoute: MainHomeRoute,
   MainIndexRoute: MainIndexRoute,
   MainGenreIndexRoute: MainGenreIndexRoute,
   MainPopularIndexRoute: MainPopularIndexRoute,

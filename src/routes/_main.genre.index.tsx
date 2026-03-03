@@ -1,21 +1,75 @@
-import { Badge } from '@/common/shadcn-ui/badge'
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { getComicGenre, getGenreList } from '@/api/servers/shinigami.server'
-import { useServerFn } from '@tanstack/react-start'
-import { useQuery } from '@tanstack/react-query'
-import LoadingGrid from '@/features/comic/LoadingGrid'
-import GenreList from '@/features/genre/GenreList'
-import NoResultComicGenre from '@/features/genre/NoResultComicGenre'
+import { Badge } from "@/common/shadcn-ui/badge";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
+import { getComicGenre, getGenreList } from "@/api/servers/shinigami.server";
+import { queryOptions, useQuery } from "@tanstack/react-query";
+import LoadingGrid from "@/features/comic/LoadingGrid";
+import GenreList from "@/features/genre/GenreList";
+import NoResultComicGenre from "@/features/genre/NoResultComicGenre";
+import z from "zod";
 
-export const Route = createFileRoute('/_main/genre/')({
+const searchPValidate = z.object({
+  g: z.string().default("action"),
+});
+
+export const genresQuery = queryOptions({
+  queryKey: ["genres"],
+  queryFn: () => getGenreList(),
+  staleTime: 1000 * 60 * 10, // 10 menit
+});
+
+export const comicsByGenreQuery = (g: string) =>
+  queryOptions({
+    queryKey: ["comics", g],
+    queryFn: () => getComicGenre({ data: { genre: g } }),
+  });
+
+export const Route = createFileRoute("/_main/genre/")({
   component: RouteComponent,
-  loader: async () => {
-    const genres = await getGenreList()
-    return { genres }
+  validateSearch: searchPValidate,
+  loaderDeps: ({ search: { g } }) => ({ g }),
+  loader: async ({ context, deps: { g } }) => {
+    const genres = await context.queryClient.ensureQueryData(genresQuery);
+    const comics = await context.queryClient.ensureQueryData(
+      comicsByGenreQuery(g),
+    );
+    return { genres, comics };
   },
-})
+  head: ({ loaderData }) => {
+    const genreList = loaderData?.genres.data.data ?? [];
+    const comicList = loaderData?.comics.data.data ?? [];
+    const title = "Genre Comics";
+    const description = `Browse ${comicList.length} comics in ${genreList.length} genres.`;
+    return {
+      meta: [
+        {
+          name: "title",
+          content: title,
+        },
+        {
+          name: "description",
+          content: description,
+        },
+        {
+          property: "og:title",
+          content: title,
+        },
+        ...comicList.map((item) => ({
+          property: "og:description",
+          content: item.description,
+        })),
+        ...comicList.map((item) => ({
+          property: "og:image",
+          content: item.cover_image_url,
+        })),
+        ...genreList.map((item) => ({
+          property: "keywords",
+          content: item.name,
+        })),
+      ],
+    };
+  },
+});
 
 const gridVariants = {
   hidden: { opacity: 0 },
@@ -23,43 +77,32 @@ const gridVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.06 },
   },
-}
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: 20 },
-}
-
-
+};
 
 function RouteComponent() {
-  const { genres } = Route.useLoaderData()
-  const comicGenre = useServerFn(getComicGenre)
-  const [activeGenre, setActiveGenre] = useState('action')
+  const { g } = Route.useSearch();
 
-  const {
-    data: comics,
-    isLoading,
-  } = useQuery({
-    queryKey: ['genre', activeGenre],
-    queryFn: () => comicGenre({ data: { genre: activeGenre } }),
-  })
+  const { data: genres } = useQuery(genresQuery);
 
-  const list = comics?.data.data ?? []
-
+  const { data: comicsGenre, isLoading } = useQuery(comicsByGenreQuery(g));
+  const list = comicsGenre?.data.data ?? [];
+  const genreList = genres?.data.data ?? [];
   return (
     <div className="mx-auto px-4 py-6">
       <div className="grid grid-cols-1 md:grid-cols-[230px_1fr] gap-6">
-        <GenreList activeGenre={activeGenre} setActiveGenre={setActiveGenre} genres={genres.data.data} />
+        <GenreList activeGenre={g} genres={genreList} />
         <section>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold capitalize">
-              {activeGenre} Comics
-            </h2>
+            <h2 className="text-lg font-semibold capitalize">{g} Comics</h2>
 
             <Badge variant="secondary">
-              {isLoading ? 'Loading...' : `${list.length} Result`}
+              {isLoading ? "Loading..." : `${list.length} Result`}
             </Badge>
           </div>
 
@@ -70,7 +113,7 @@ function RouteComponent() {
               <NoResultComicGenre key="empty" />
             ) : (
               <motion.div
-                key={activeGenre}
+                key={g}
                 variants={gridVariants}
                 initial="hidden"
                 animate="show"
@@ -122,5 +165,5 @@ function RouteComponent() {
         </section>
       </div>
     </div>
-  )
+  );
 }

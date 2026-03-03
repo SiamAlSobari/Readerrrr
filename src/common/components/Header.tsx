@@ -1,34 +1,33 @@
-import { Search, Menu, X } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/common/shadcn-ui/sheet"
-import { Button } from "@/common/shadcn-ui/button"
-import { Input } from "@/common/shadcn-ui/input"
-import { Link, useNavigate } from "@tanstack/react-router"
-import { useState } from "react"
+import { Search, Menu, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/common/shadcn-ui/sheet";
+import { Button } from "@/common/shadcn-ui/button";
+import { Input } from "@/common/shadcn-ui/input";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 
 export default function Header() {
-  const [desktopQuery, setDesktopQuery] = useState("")
-  const [mobileQuery, setMobileQuery] = useState("")
-  const navigate = useNavigate()
+  const [desktopQuery, setDesktopQuery] = useState("");
+  const [mobileQuery, setMobileQuery] = useState("");
+  const navigate = useNavigate();
 
   const NAV_ITEMS = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/home" },
     { name: "Popular", href: "/popular" },
     { name: "Genre", href: "/genre" },
     { name: "Update", href: "/update" },
-  ]
+  ];
 
   const handleSearch = (query: string) => {
-    if (!query.trim()) return
-    navigate({ to: "/search", search: { q: query.trim() } })
-    setDesktopQuery("")
-    setMobileQuery("")
-  }
+    if (!query.trim()) return;
+    navigate({ to: "/search", search: { q: query.trim() } });
+    setDesktopQuery("");
+    setMobileQuery("");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
       <div className="px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
-          
           {/* LEFT */}
           <div className="flex items-center gap-8">
             <Link to="/" className="text-xl font-black tracking-wide">
@@ -39,7 +38,7 @@ export default function Header() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
-              {NAV_ITEMS.map(item => (
+              {NAV_ITEMS.map((item) => (
                 <Link key={item.name} to={item.href}>
                   {({ isActive }) => (
                     <span
@@ -59,12 +58,11 @@ export default function Header() {
 
           {/* RIGHT */}
           <div className="flex items-center gap-3">
-            
             {/* SEARCH DESKTOP */}
             <form
               onSubmit={(e) => {
-                e.preventDefault()
-                handleSearch(desktopQuery)
+                e.preventDefault();
+                handleSearch(desktopQuery);
               }}
               className="relative hidden md:block group"
             >
@@ -117,14 +115,16 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
 
-              <SheetContent side="left" className="bg-black/95 border-white/10 pt-10 w-80">
+              <SheetContent
+                side="left"
+                className="bg-black/95 border-white/10 pt-10 w-80"
+              >
                 <div className="space-y-8">
-
                   {/* SEARCH MOBILE */}
                   <form
                     onSubmit={(e) => {
-                      e.preventDefault()
-                      handleSearch(mobileQuery)
+                      e.preventDefault();
+                      handleSearch(mobileQuery);
                     }}
                     className="relative px-4"
                   >
@@ -162,14 +162,16 @@ export default function Header() {
 
                   {/* NAV MOBILE */}
                   <nav className="flex flex-col px-4">
-                    {NAV_ITEMS.map(item => (
+                    {NAV_ITEMS.map((item) => (
                       <Link key={item.name} to={item.href}>
                         {({ isActive }) => (
                           <span
                             className={`block py-3 text-lg font-medium transition
-                            ${isActive
-                              ? "text-white border-l-4 border-red-500 pl-4"
-                              : "text-gray-300 hover:text-white pl-5"}`}
+                            ${
+                              isActive
+                                ? "text-white border-l-4 border-red-500 pl-4"
+                                : "text-gray-300 hover:text-white pl-5"
+                            }`}
                           >
                             {item.name}
                           </span>
@@ -177,7 +179,6 @@ export default function Header() {
                       </Link>
                     ))}
                   </nav>
-
                 </div>
               </SheetContent>
             </Sheet>
@@ -185,5 +186,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

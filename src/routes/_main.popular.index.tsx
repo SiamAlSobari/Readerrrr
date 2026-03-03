@@ -1,69 +1,72 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { PopularComicCardBase } from '@/features/comic/PopularComicCardBase'
-import { getPopularComic } from '@/api/servers/shinigami.server'
-import { motion } from 'framer-motion'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PopularComicCardBase } from "@/features/comic/PopularComicCardBase";
+import { getPopularComic } from "@/api/servers/shinigami.server";
+import { motion } from "framer-motion";
 
 type ComicSearch = {
-  page: number
-}
+  page: number;
+};
 
-export const Route = createFileRoute('/_main/popular/')({
+export const Route = createFileRoute("/_main/popular/")({
   validateSearch: (search): ComicSearch => ({
     page: Number(search.page || 1),
   }),
   loaderDeps: ({ search: { page } }) => ({ page }),
   loader: async ({ deps: { page } }) => {
-    const popularComic = await getPopularComic({ data: { page, pageSize: 24 } })
-    return { popularComic }
+    const popularComic = await getPopularComic({
+      data: { page, pageSize: 24 },
+    });
+    return { popularComic };
   },
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        name: 'description',
-        content:
-          'Temukan komik & comic reader terpopuler yang paling banyak dibaca! Update terbaru dan favorit pembaca di komik READER.',
-      },
-      {
-        name: 'keywords',
-        content: 'komik populer, comic populer, popular komik, popular comic, komik reader, comic reader',
-      },
-      { name: 'author', content: 'MANGA READER' },
 
-      // Open Graph
-      { property: 'og:title', content: 'MANGA READER – Popular Manga & Comic Reader' },
-      {
-        property: 'og:description',
-        content:
-          'Jelajahi daftar manga & comic reader terpopuler, favorit pembaca, dan update terbaru di MANGA READER!',
-      },
-      { property: 'og:type', content: 'website' },
-     // { property: 'og:url', content: 'https://mangareader.com/popular' },
-      { property: 'og:image', content: '/komik_reader.png' },
+  head: ({ loaderData }) => {
+    const list = loaderData?.popularComic.data.data ?? [];
 
-      // Twitter Card
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Komik READER – Popular Manga & Comic Reader' },
-      {
-        name: 'twitter:description',
-        content:
-          'Jelajahi daftar komik & comic reader terpopuler, favorit pembaca, dan update terbaru di komik READER!',
-      },
-      { name: 'twitter:image', content: '/komik_reader.png' },
-    ],
-    links: [
-      { rel: 'icon', href: '/komik_reader.png', type: 'image/x-icon' },
-    ],
-    title: 'Komik READER – Popular Komik & Comic Reader',
-  }),
+    const title = "Popular Comics";
+    const description = `Browse ${list.length} trending comics right now.`;
+    return {
+      meta: [
+        {
+          name: "title",
+          content: title,
+        },
+        {
+          name: "description",
+          content: description,
+        },
+
+        // LOOP OG IMAGE DARI LIST
+        ...list
+          .filter((item) => item.cover_image_url)
+          .map((item) => ({
+            property: "og:image",
+            content: item.cover_image_url,
+          })),
+
+        // Optional: loop title juga (biasanya gak perlu semua)
+        ...list.slice(0, 3).map((item) => ({
+          property: "og:see_also",
+          content: item.title,
+        })),
+        
+        ...list.map((item) => ({
+          property: "og:description",
+          content: item.description,
+        })),
+        ...list.map((item) => ({
+          property: "keywords",
+          content: item.title,
+        })),
+      ],
+    };
+  },
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  const { popularComic } = Route.useLoaderData()
-  const { page } = Route.useSearch()
-  const totalPages = popularComic.data.meta.total_page
+  const { popularComic } = Route.useLoaderData();
+  const { page } = Route.useSearch();
+  const totalPages = popularComic.data.meta.total_page;
 
   return (
     <div className="p-6">
@@ -119,5 +122,5 @@ function RouteComponent() {
         </Link>
       </div>
     </div>
-  )
+  );
 }
