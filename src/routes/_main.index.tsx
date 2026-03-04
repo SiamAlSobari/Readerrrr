@@ -339,20 +339,6 @@ function App() {
           </motion.div>
         </div>
       </section>
-
-      {/* Footer Note */}
-      <footer className="py-8 px-4 border-t border-gray-800">
-        <div className="container mx-auto text-center">
-          <p className="text-gray-500 text-sm flex items-center justify-center gap-2 mb-2">
-            <Clock className="w-4 h-4" />
-            Update setiap hari • Gratis selamanya
-          </p>
-          <p className="text-gray-600 text-xs">
-            © 2024 Komik READER. Made with{" "}
-            <Heart className="w-3 h-3 inline text-red-500" /> for comic lovers
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
