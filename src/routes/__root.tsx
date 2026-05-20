@@ -80,6 +80,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: "twitter:image",
         content: "/komik_reader.png", // ganti dengan logo / cover gambar
       },
+      {
+        name: "theme-color",
+        content: "#000000",
+      },
     ],
     links: [
       {
@@ -91,6 +95,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         href: "/komik_reader.png",
         type: "image/x-icon",
       },
+      {
+        rel: "apple-touch-icon",
+        href: "/komik_reader.png",
+      },
+      {
+        rel: "manifest",
+        href: "/manifest.webmanifest",
+      },
     ],
     title: "KOMIK READER – Baca KOMIK Online Terbaru & Populer",
   }),
@@ -101,6 +113,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 function RootDocument({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     inject();
+    
+    // Register Service Worker for PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch((err) => {
+          console.error("SW registration failed: ", err);
+        });
+      });
+    }
   }, []);
   return (
     <html lang="en">
