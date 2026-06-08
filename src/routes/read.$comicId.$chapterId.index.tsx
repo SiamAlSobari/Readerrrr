@@ -8,9 +8,36 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import { JsonLd } from "@/common/components/JsonLd";
+
+const SITE_URL = "https://komik-reader.my.id";
 
 export const Route = createFileRoute("/read/$comicId/$chapterId/")({
   component: ReadChapterPage,
+  head: ({ params, match }) => ({
+    meta: [
+      {
+        name: "description",
+        content: `Baca Chapter ${params.chapterId} KOMIK online gratis di KOMIK READER. Nikmati pengalaman membaca komik terbaik.`,
+      },
+      { property: "og:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
+      {
+        property: "og:description",
+        content: `Baca Chapter ${params.chapterId} komik online gratis. Update terbaru setiap hari di KOMIK READER.`,
+      },
+      { property: "og:url", content: `${SITE_URL}${location.pathname}` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
+      {
+        name: "twitter:description",
+        content: `Baca Chapter ${params.chapterId} komik online gratis di KOMIK READER.`,
+      },
+    ],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
+    ],
+    title: `Chapter ${params.chapterId} - Baca KOMIK Online | KOMIK READER`,
+  }),
 });
 
 function ReadChapterPage() {
@@ -36,6 +63,30 @@ function ReadChapterPage() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      {chapter?.data.data && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: `Chapter ${chapter.data.data.chapter_number} - ${chapter.data.data.chapter_title || ""}`,
+            description: `Baca Chapter ${chapter.data.data.chapter_number} komik online gratis di KOMIK READER.`,
+            url: `${SITE_URL}/read/${comicId}/${chapterId}`,
+          }}
+        />
+      )}
+      {chapter?.data.data && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, item: { "@id": SITE_URL, name: "Beranda" } },
+              { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: "Detail Komik" } },
+              { "@type": "ListItem", position: 3, item: { "@id": `${SITE_URL}/read/${comicId}/${chapterId}`, name: `Chapter ${chapter.data.data.chapter_number}` } },
+            ],
+          }}
+        />
+      )}
       {/* TOP NAV */}
       <ChapterNavigation
         key={chapter?.data.data.chapter_id}

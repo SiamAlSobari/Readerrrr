@@ -12,47 +12,48 @@ import { API_URL } from "@/common/utils/env";
 
 export const Route = createFileRoute("/_main/update/")({
   component: RouteComponent,
-    head: () => ({
+  head: ({ match }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         name: "description",
         content:
-          "Update manga & comic reader terbaru setiap hari! Jangan ketinggalan chapter terbaru favoritmu di MANGA READER.",
+          "Update KOMIK terbaru setiap hari! Jangan ketinggalan chapter terbaru favoritmu di KOMIK READER.",
       },
       {
         name: "keywords",
         content:
-          "komik terbaru, comic terbaru, update komik, update comic, latest komik, latest comic, komik reader, comic reader",
+          "komik terbaru, update komik, komik update hari ini, manga terbaru, manhwa terbaru, manhua terbaru, komik reader",
       },
-      { name: "author", content: "komik READER" },
+      { name: "author", content: "KOMIK READER" },
 
       // Open Graph
-      { property: "og:title", content: "KOMIK READER – Update Manga & Comic Terbaru" },
+      { property: "og:title", content: "KOMIK READER – Update KOMIK Terbaru" },
       {
         property: "og:description",
         content:
-          "Dapatkan update manga & comic reader terbaru setiap hari! Jangan ketinggalan chapter favoritmu di MANGA READER.",
+          "Dapatkan update KOMIK terbaru setiap hari! Jangan ketinggalan chapter favoritmu di KOMIK READER.",
       },
       { property: "og:type", content: "website" },
-      //{ property: "og:url", content: "https://mangareader.com/update" },
+      { property: "og:url", content: `https://komik-reader.my.id${match.pathname}` },
       { property: "og:image", content: "/komik_reader.png" },
 
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "KOMIK READER – Update Manga & Comic Terbaru" },
+      { name: "twitter:title", content: "KOMIK READER – Update KOMIK Terbaru" },
       {
         name: "twitter:description",
         content:
-          "Dapatkan update manga | manhwa | manhua & comic reader terbaru setiap hari! Jangan ketinggalan chapter favoritmu di MANGA READER.",
+          "Dapatkan update manga, manhwa, manhua terbaru setiap hari! Jangan ketinggalan chapter favoritmu di KOMIK READER.",
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
     links: [
+      { rel: "canonical", href: `https://komik-reader.my.id${match.pathname}` },
       { rel: "icon", href: "/komik_reader.png", type: "image/x-icon" },
     ],
-    title: "KOMIK READER – Update Manga | Manhwa | Manhua & Comic Terbaru",
+    title: "KOMIK READER – Update Manga, Manhwa & Manhua Terbaru",
   }),
 });
 

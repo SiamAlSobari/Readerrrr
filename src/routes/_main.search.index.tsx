@@ -11,11 +11,29 @@ type Search = {
   q: string
 }
 
+const SITE_URL = "https://komik-reader.my.id";
+
 export const Route = createFileRoute('/_main/search/')({
   validateSearch: (search: Record<string, string>): Search => ({
     q: search.q,
   }),
   component: RouteComponent,
+  head: ({ match }) => ({
+    meta: [
+      { name: "description", content: "Cari dan temukan ribuan judul KOMIK favoritmu di KOMIK READER. Manga, Manhwa, Manhua terlengkap." },
+      { name: "keywords", content: "cari komik, search komik, komik online, baca komik, manga, manhwa, manhua" },
+      { property: "og:title", content: "Cari KOMIK - KOMIK READER" },
+      { property: "og:description", content: "Cari dan temukan ribuan judul KOMIK favoritmu di KOMIK READER." },
+      { property: "og:url", content: `${SITE_URL}${location.pathname}` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Cari KOMIK - KOMIK READER" },
+      { name: "twitter:description", content: "Cari dan temukan ribuan judul KOMIK favoritmu di KOMIK READER." },
+    ],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
+    ],
+    title: "Cari KOMIK - Baca Manga, Manhwa & Manhua | KOMIK READER",
+  }),
 })
 
 const PAGE_SIZE = 12

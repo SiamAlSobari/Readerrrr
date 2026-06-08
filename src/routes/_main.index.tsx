@@ -17,44 +17,47 @@ import {
 
 export const Route = createFileRoute("/_main/")({
   component: App,
-  head: () => ({
+  head: ({ match }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         name: "description",
         content:
-          "Baca ribuan Komik online terbaru, populer, dan lengkap di Komik READER. Gratis dan mudah diakses.",
+          "Baca ribuan KOMIK online terbaru, populer, dan lengkap di KOMIK READER. Gratis dan mudah diakses.",
       },
       {
         name: "keywords",
         content:
-          "Komik, baca Komik, Komik online, Komik terbaru, Komik populer, Komik READER",
+          "KOMIK, baca KOMIK, KOMIK online, KOMIK terbaru, KOMIK populer, KOMIK READER, manga, manhwa, manhua",
       },
-      { name: "author", content: "Komik READER" },
+      { name: "author", content: "KOMIK READER" },
 
       // Open Graph
-      { property: "og:title", content: "Komik READER – Home" },
+      { property: "og:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
       {
         property: "og:description",
         content:
-          "Baca ribuan Komik online terbaru dan populer di Komik READER. Gratis dan mudah diakses.",
+          "Baca ribuan KOMIK online terbaru dan populer di KOMIK READER. Gratis dan mudah diakses.",
       },
       { property: "og:type", content: "website" },
-      // { property: "og:url", content: "https://Komikreader.com/" }, // ganti domain lo
-      { property: "og:image", content: "/komik_reader.png" }, // logo / cover home
+      { property: "og:url", content: `https://komik-reader.my.id${match.pathname}` },
+      { property: "og:image", content: "/komik_reader.png" },
 
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Komik READER – Home" },
+      { name: "twitter:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
       {
         name: "twitter:description",
         content:
-          "Baca ribuan Komik online terbaru dan populer di KOMIK READER. Gratis dan mudah diakses.",
+          "Baca ribuan KOMIK online terbaru dan populer di KOMIK READER. Gratis dan mudah diakses.",
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
-    title: "Komik READER – Home",
+    links: [
+      { rel: "canonical", href: `https://komik-reader.my.id${match.pathname}` },
+    ],
+    title: "KOMIK READER – Baca KOMIK Online Gratis",
   }),
 });
 

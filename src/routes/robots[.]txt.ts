@@ -6,6 +6,8 @@ export const Route = createFileRoute('/robots.txt')({
       GET: async () => {
         const robots = `User-agent: *
 Allow: /
+Disallow: /search
+Crawl-Delay: 10
 
 Sitemap: https://komik-reader.my.id/sitemap.xml`
 

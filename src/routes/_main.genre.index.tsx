@@ -35,38 +35,31 @@ export const Route = createFileRoute("/_main/genre/")({
     );
     return { genres, comics };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, match }) => {
     const genreList = loaderData?.genres.data.data ?? [];
     const comicList = loaderData?.comics.data.data ?? [];
-    const title = "Genre Comics";
-    const description = `Browse ${comicList.length} comics in ${genreList.length} genres.`;
+    const firstImage = comicList.find((c) => c.cover_image_url)?.cover_image_url;
+    const genreNames = genreList.map((g) => g.name).join(", ");
+    const SITE_URL = "https://komik-reader.my.id";
+
+    const title = "Genre Comics - KOMIK READER";
+    const description = `Jelajahi ${comicList.length} komik dalam ${genreList.length} genre: ${genreNames}. Baca KOMIK online gratis di KOMIK READER.`;
     return {
       meta: [
-        {
-          name: "title",
-          content: title,
-        },
-        {
-          name: "description",
-          content: description,
-        },
-        {
-          property: "og:title",
-          content: title,
-        },
-        ...comicList.map((item) => ({
-          property: "og:description",
-          content: item.description,
-        })),
-        ...comicList.map((item) => ({
-          property: "og:image",
-          content: item.cover_image_url,
-        })),
-        ...genreList.map((item) => ({
-          property: "keywords",
-          content: item.name,
-        })),
+        { name: "description", content: description },
+        { name: "keywords", content: `genre komik, ${genreNames}, baca komik, komik online` },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: `${SITE_URL}/genre` },
+        ...(firstImage ? [{ property: "og:image" as const, content: firstImage }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
       ],
+      links: [
+        { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
+      ],
+      title,
     };
   },
 });

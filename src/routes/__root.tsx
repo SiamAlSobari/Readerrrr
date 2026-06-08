@@ -13,13 +13,16 @@ import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import React from "react";
+import { JsonLd } from "@/common/components/JsonLd";
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
+const SITE_URL = "https://komik-reader.my.id";
+
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  head: () => ({
+  head: ({ match }) => ({
     meta: [
       {
         charSet: "utf-8",
@@ -31,12 +34,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         name: "description",
         content:
-          "MANGA READER – Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis.",
+          "Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis. Nikmati ribuan judul Manga, Manhwa, dan Manhua terbaru!",
       },
       {
         name: "keywords",
         content:
-          "KOMIK, baca KOMIK, KOMIK online, KOMIK terbaru, KOMIK populer, KOMIK reader",
+          "KOMIK, baca KOMIK, KOMIK online, KOMIK terbaru, KOMIK populer, KOMIK reader, manga, manhwa, manhua",
       },
       {
         name: "author",
@@ -57,11 +60,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         property: "og:url",
-        //content: 'https://KOMIKreader.com', // ganti dengan domain lo
+        content: `${SITE_URL}${match.pathname}`,
       },
       {
         property: "og:image",
-        content: "/komik_reader.png", // ganti dengan logo / cover gambar
+        content: "/komik_reader.png",
       },
       {
         name: "twitter:card",
@@ -78,7 +81,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         name: "twitter:image",
-        content: "/komik_reader.png", // ganti dengan logo / cover gambar
+        content: "/komik_reader.png",
       },
       {
         name: "theme-color",
@@ -86,6 +89,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
     links: [
+      {
+        rel: "canonical",
+        href: `${SITE_URL}${match.pathname}`,
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -114,7 +121,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     inject();
     
-    // Register Service Worker for PWA
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("/sw.js").catch((err) => {
@@ -124,9 +130,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     }
   }, []);
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <HeadContent />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "KOMIK READER",
+            url: SITE_URL,
+            description:
+              "Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis.",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+              },
+              "query-input": "required name=search_term_string",
+            },
+          }}
+        />
       </head>
       <body>
         {children}

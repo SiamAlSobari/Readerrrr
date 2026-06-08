@@ -19,45 +19,29 @@ export const Route = createFileRoute("/_main/popular/")({
     return { popularComic };
   },
 
-  head: ({ loaderData }) => {
+  head: ({ loaderData, match }) => {
     const list = loaderData?.popularComic.data.data ?? [];
+    const firstImage = list.find((item) => item.cover_image_url)?.cover_image_url;
+    const SITE_URL = "https://komik-reader.my.id";
 
-    const title = "Popular Comics";
-    const description = `Browse ${list.length} trending comics right now.`;
+    const title = "Popular Comics - KOMIK READER";
+    const description = `Jelajahi ${list.length} komik populer dan trending terbaru di KOMIK READER.`;
     return {
       meta: [
-        {
-          name: "title",
-          content: title,
-        },
-        {
-          name: "description",
-          content: description,
-        },
-
-        // LOOP OG IMAGE DARI LIST
-        ...list
-          .filter((item) => item.cover_image_url)
-          .map((item) => ({
-            property: "og:image",
-            content: item.cover_image_url,
-          })),
-
-        // Optional: loop title juga (biasanya gak perlu semua)
-        ...list.slice(0, 3).map((item) => ({
-          property: "og:see_also",
-          content: item.title,
-        })),
-        
-        ...list.map((item) => ({
-          property: "og:description",
-          content: item.description,
-        })),
-        ...list.map((item) => ({
-          property: "keywords",
-          content: item.title,
-        })),
+        { name: "description", content: description },
+        { name: "keywords", content: "komik populer, komik trending, komik terbaik, komik viral, komik reader" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: `${SITE_URL}/popular` },
+        ...(firstImage ? [{ property: "og:image" as const, content: firstImage }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
       ],
+      links: [
+        { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
+      ],
+      title,
     };
   },
   component: RouteComponent,
