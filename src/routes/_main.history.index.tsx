@@ -7,6 +7,8 @@ import { id } from "date-fns/locale";
 import { getChapterHistory, deleteHistoryItem, clearAllHistory, ChapterHistory } from "@/common/utils/chapter-history";
 import { Button } from "@/common/shadcn-ui/button";
 import { JsonLd } from "@/common/components/JsonLd";
+import { useServerFn } from "@tanstack/react-start";
+import { getComicDetail } from "@/api/servers/shinigami.server";
 
 const SITE_URL = "https://komik-reader.my.id";
 
@@ -46,11 +48,62 @@ function HistoryPage() {
   const [historyList, setHistoryList] = useState<ChapterHistory[]>([]);
   const [mounted, setMounted] = useState(false);
   const [showConfirmClear, setShowConfirmClear] = useState(false);
+  const [healingIds, setHealingIds] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
+  const comicDetail = useServerFn(getComicDetail);
 
   useEffect(() => {
-    setHistoryList(getChapterHistory());
+    const rawHistory = getChapterHistory();
+    setHistoryList(rawHistory);
     setMounted(true);
+
+    const healHistory = async () => {
+      let updated = false;
+      const newHistory = [...rawHistory];
+
+      // Identify items that need healing
+      const idsToHeal = rawHistory.filter(h => !h.comic_title || !h.comic_cover_url).map(h => h.comic_id);
+      if (idsToHeal.length === 0) return;
+
+      // Mark them as healing in UI
+      const healingMap: Record<string, boolean> = {};
+      idsToHeal.forEach(id => { healingMap[id] = true; });
+      setHealingIds(healingMap);
+
+      for (let i = 0; i < newHistory.length; i++) {
+        const item = newHistory[i];
+        if (!item.comic_title || !item.comic_cover_url) {
+          try {
+            const res = await comicDetail({ data: { comicId: item.comic_id } });
+            if (res?.data?.data) {
+              newHistory[i] = {
+                ...item,
+                comic_title: res.data.data.title,
+                comic_cover_url: res.data.data.cover_portrait_url || res.data.data.cover_image_url,
+              };
+              updated = true;
+            }
+          } catch (e) {
+            console.error("Failed to heal item:", item.comic_id, e);
+          } finally {
+            setHealingIds(prev => {
+              const copy = { ...prev };
+              delete copy[item.comic_id];
+              return copy;
+            });
+          }
+        }
+      }
+
+      if (updated) {
+        setHistoryList(newHistory);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("chapter-history", JSON.stringify(newHistory));
+        }
+      }
+    };
+
+    healHistory();
   }, []);
 
   const handleDelete = (comicId: string) => {
@@ -157,6 +210,8 @@ function HistoryPage() {
                   locale: id,
                 });
 
+                const isHealing = healingIds[item.comic_id] || !item.comic_title;
+
                 return (
                   <motion.div
                     key={item.comic_id}
@@ -169,7 +224,9 @@ function HistoryPage() {
                   >
                     {/* Cover image */}
                     <div className="w-20 h-28 sm:w-24 sm:h-32 bg-zinc-850 rounded-xl overflow-hidden shrink-0 relative shadow-inner">
-                      {item.comic_cover_url ? (
+                      {isHealing ? (
+                        <div className="w-full h-full bg-zinc-800 animate-pulse" />
+                      ) : item.comic_cover_url ? (
                         <img
                           src={item.comic_cover_url}
                           alt={item.comic_title || "Cover komik"}
@@ -178,7 +235,7 @@ function HistoryPage() {
                           decoding="async"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-zinc-800 text-zinc-600 text-xs">
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-850 text-zinc-650 text-xs">
                           No Cover
                         </div>
                       )}
@@ -187,14 +244,18 @@ function HistoryPage() {
                     {/* Metadata & Actions */}
                     <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
                       <div>
-                        <Link
-                          to="/series/$comicId"
-                          params={{ comicId: item.comic_id }}
-                          search={{ page: 1 }}
-                          className="font-bold text-base sm:text-lg text-white hover:text-red-400 transition-colors line-clamp-1 truncate block mb-1 pr-8"
-                        >
-                          {item.comic_title || item.comic_id}
-                        </Link>
+                        {isHealing ? (
+                          <div className="h-6 w-48 bg-zinc-800 rounded-md animate-pulse mb-2" />
+                        ) : (
+                          <Link
+                            to="/series/$comicId"
+                            params={{ comicId: item.comic_id }}
+                            search={{ page: 1 }}
+                            className="font-bold text-base sm:text-lg text-white hover:text-red-400 transition-colors line-clamp-1 truncate block mb-1 pr-8"
+                          >
+                            {item.comic_title}
+                          </Link>
+                        )}
 
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-400">
                           <span className="flex items-center gap-1">
