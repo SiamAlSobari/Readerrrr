@@ -3,18 +3,31 @@ import { Sheet, SheetContent, SheetTrigger } from "@/common/shadcn-ui/sheet";
 import { Button } from "@/common/shadcn-ui/button";
 import { Input } from "@/common/shadcn-ui/input";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
   const [desktopQuery, setDesktopQuery] = useState("");
   const [mobileQuery, setMobileQuery] = useState("");
   const navigate = useNavigate();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const NAV_ITEMS = [
     { name: "Home", href: "/home" },
     { name: "Popular", href: "/popular" },
     { name: "Genre", href: "/genre" },
     { name: "Update", href: "/update" },
+    { name: "History", href: "/history" },
   ];
 
   const handleSearch = (query: string) => {
@@ -69,6 +82,7 @@ export default function Header() {
               <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
 
               <Input
+                ref={searchInputRef}
                 value={desktopQuery}
                 onChange={(e) => setDesktopQuery(e.target.value)}
                 placeholder="Search manga..."

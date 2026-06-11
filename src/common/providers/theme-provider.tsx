@@ -62,11 +62,6 @@ export function ThemeProvider({
     },
   }
 
-  // ⬅️ PENTING: hindari hydration mismatch
-  if (!mounted) {
-    return null
-  }
-
   return (
     <ThemeProviderContext.Provider value={value}>
       {children}

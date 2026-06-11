@@ -1,4 +1,4 @@
-import { getChapterDetail } from "@/api/servers/shinigami.server";
+import { getChapterDetail, getComicDetail } from "@/api/servers/shinigami.server";
 import { Button } from "@/common/shadcn-ui/button";
 import { setChapterHistory } from "@/common/utils/chapter-history";
 import { ChapterImage } from "@/features/chapter/ChapterImage";
@@ -43,6 +43,7 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
 function ReadChapterPage() {
   const { comicId, chapterId } = Route.useParams();
   const chapterDetail = useServerFn(getChapterDetail);
+  const comicDetail = useServerFn(getComicDetail);
   const navigate = useNavigate();
 
   const { data: chapter } = useQuery({
@@ -50,16 +51,23 @@ function ReadChapterPage() {
     queryFn: () => chapterDetail({ data: { chapterId } }),
   });
 
+  const { data: comic } = useQuery({
+    queryKey: ["comic", comicId],
+    queryFn: () => comicDetail({ data: { comicId } }),
+  });
+
   useEffect(() => {
     if (!chapter?.data.data) return;
     setChapterHistory({
       comic_id: comicId,
-      chapter_id: chapter?.data.data.chapter_id,
-      chapter_number: chapter?.data.data.chapter_number,
+      chapter_id: chapter.data.data.chapter_id,
+      chapter_number: chapter.data.data.chapter_number,
       last_read_time: Date.now(),
+      comic_title: comic?.data.data?.title,
+      comic_cover_url: comic?.data.data?.cover_portrait_url || comic?.data.data?.cover_image_url,
     });
     console.log('data history tersimpan');
-  }, [chapter?.data.data, comicId, chapterId]);
+  }, [chapter?.data.data, comic?.data.data, comicId, chapterId]);
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -81,7 +89,7 @@ function ReadChapterPage() {
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, item: { "@id": SITE_URL, name: "Beranda" } },
-              { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: "Detail Komik" } },
+              { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: comic?.data.data?.title || "Detail Komik" } },
               { "@type": "ListItem", position: 3, item: { "@id": `${SITE_URL}/read/${comicId}/${chapterId}`, name: `Chapter ${chapter.data.data.chapter_number}` } },
             ],
           }}
@@ -156,6 +164,7 @@ function ReadChapterPage() {
               key={index}
               src={imageUrl}
               alt={`Page ${index + 1}`}
+              priority={index === 0}
             />
           );
         })}

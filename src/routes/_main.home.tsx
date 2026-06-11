@@ -82,9 +82,11 @@ export const Route = createFileRoute("/_main/home")({
     title: "KOMIK READER – Baca KOMIK Online Gratis",
   }),
   loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(queryPopularComic);
-    await context.queryClient.ensureQueryData(queryUpdateComic);
-    await context.queryClient.ensureQueryData(queryRecommendation("manhwa"));
+    await Promise.all([
+      context.queryClient.ensureQueryData(queryPopularComic),
+      context.queryClient.ensureQueryData(queryUpdateComic),
+      context.queryClient.ensureQueryData(queryRecommendation("manhwa")),
+    ]);
   },
 });
 

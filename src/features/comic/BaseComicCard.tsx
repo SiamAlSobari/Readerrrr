@@ -38,6 +38,8 @@ export default function BaseComicCard({ comic }: Props) {
           <img
             src={comic.cover_image_url}
             alt={comic.title}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
 

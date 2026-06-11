@@ -169,6 +169,8 @@ export function ChapterList({
             <img
               src={ch.thumbnail_image_url}
               alt={`Chapter ${ch.chapter_number}`}
+              loading="lazy"
+              decoding="async"
               className="
           h-40 sm:h-20
           w-full sm:w-32

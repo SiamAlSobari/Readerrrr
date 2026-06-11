@@ -3,6 +3,8 @@ export interface ChapterHistory {
     chapter_number: number
     comic_id: string
     last_read_time: number
+    comic_title?: string
+    comic_cover_url?: string
 }
 
 
@@ -38,4 +40,16 @@ export const setChapterHistory = (history: ChapterHistory) => {
 
 export function getLastReadChapter(comicId: string) {
   return getChapterHistory().find((h) => h.comic_id === comicId)
+}
+
+export function clearAllHistory() {
+  if (typeof window === 'undefined') return
+  localStorage.removeItem(STORAGE_KEY)
+}
+
+export function deleteHistoryItem(comicId: string) {
+  if (typeof window === 'undefined') return
+  const histories = getChapterHistory()
+  const filtered = histories.filter((h) => h.comic_id !== comicId)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered))
 }

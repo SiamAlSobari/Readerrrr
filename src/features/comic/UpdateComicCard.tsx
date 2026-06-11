@@ -57,6 +57,8 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
           <img
             src={imageError ? "/placeholder-comic.jpg" : comic.cover_image_url}
             alt={comic.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             onError={() => setImageError(true)}
           />
@@ -113,6 +115,8 @@ export default function UpdateComicCard({ comic, variant = "default" }: Props) {
             <img
               src={imageError ? "/placeholder-comic.jpg" : comic.cover_image_url}
               alt={comic.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               onError={() => setImageError(true)}
             />

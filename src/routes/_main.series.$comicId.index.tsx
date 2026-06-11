@@ -21,8 +21,10 @@ export const Route = createFileRoute('/_main/series/$comicId/')({
     page
   }),
   loader: async ({ params, deps: { page } }) => {
-    const comicDetail = await getComicDetail({ data: { comicId: params.comicId } })
-    const chapterList = await getChapterList({ data: { comicId: params.comicId, page, pageSize: 24 } })
+    const [comicDetail, chapterList] = await Promise.all([
+      getComicDetail({ data: { comicId: params.comicId } }),
+      getChapterList({ data: { comicId: params.comicId, page, pageSize: 24 } })
+    ]);
     return { comicDetail, chapterList }
   },
   pendingComponent: ComicDetailSkeleton,

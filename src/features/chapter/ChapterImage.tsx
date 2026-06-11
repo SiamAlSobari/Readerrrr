@@ -3,9 +3,10 @@ import { useState } from "react"
 type Props = {
   src: string
   alt: string
+  priority?: boolean
 }
 
-export function ChapterImage({ src, alt }: Props) {
+export function ChapterImage({ src, alt, priority }: Props) {
   const [loaded, setLoaded] = useState(false)
 
   return (
@@ -19,7 +20,9 @@ export function ChapterImage({ src, alt }: Props) {
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding={priority ? "sync" : "async"}
         onLoad={() => setLoaded(true)}
         className={`
           w-full
