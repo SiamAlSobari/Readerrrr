@@ -6,8 +6,8 @@ import ChapterNavigation from "@/features/chapter/ChapterNavigation";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Play, Pause, Sparkles, Image as ImageIcon } from "lucide-react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { JsonLd } from "@/common/components/JsonLd";
 
 const SITE_URL = "https://komik-reader.my.id";
@@ -18,20 +18,25 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
     meta: [
       {
         name: "description",
-        content: `Baca Chapter ${params.chapterId} KOMIK online gratis di KOMIK READER. Nikmati pengalaman membaca komik terbaik.`,
+        content: `Baca Chapter ${params.chapterId} KOMIK online gratis Bahasa Indonesia di KOMIK READER. Gambar jernih, load cepat, tanpa iklan mengganggu.`,
+      },
+      {
+        name: "keywords",
+        content: `baca chapter ${params.chapterId}, komik chapter ${params.chapterId}, manhwa chapter ${params.chapterId}, komik online, komik reader`,
       },
       { property: "og:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
       {
         property: "og:description",
-        content: `Baca Chapter ${params.chapterId} komik online gratis. Update terbaru setiap hari di KOMIK READER.`,
+        content: `Baca Chapter ${params.chapterId} komik online gratis dengan tampilan reader terbaik dan gambar jernih di KOMIK READER.`,
       },
-      { property: "og:url", content: `${SITE_URL}${location.pathname}` },
+      { property: "og:url", content: `${SITE_URL}${match.pathname}` },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
       {
         name: "twitter:description",
         content: `Baca Chapter ${params.chapterId} komik online gratis di KOMIK READER.`,
       },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
     links: [
       { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
@@ -46,7 +51,13 @@ function ReadChapterPage() {
   const comicDetail = useServerFn(getComicDetail);
   const navigate = useNavigate();
 
-  const { data: chapter } = useQuery({
+  const [useHighQuality, setUseHighQuality] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [autoScrollSpeed, setAutoScrollSpeed] = useState(2); // pixels per frame
+  const autoScrollRef = useRef<number | null>(null);
+
+  const { data: chapter, isLoading: isChapterLoading } = useQuery({
     queryKey: ["chapter", chapterId],
     queryFn: () => chapterDetail({ data: { chapterId } }),
   });
@@ -56,127 +67,286 @@ function ReadChapterPage() {
     queryFn: () => comicDetail({ data: { comicId } }),
   });
 
+  const chapterData = chapter?.data?.data;
+  const comicData = comic?.data?.data;
+
+  // Save reading history
   useEffect(() => {
-    if (!chapter?.data.data) return;
+    if (!chapterData) return;
     setChapterHistory({
       comic_id: comicId,
-      chapter_id: chapter.data.data.chapter_id,
-      chapter_number: chapter.data.data.chapter_number,
+      chapter_id: chapterData.chapter_id,
+      chapter_number: chapterData.chapter_number,
       last_read_time: Date.now(),
-      comic_title: comic?.data.data?.title,
-      comic_cover_url: comic?.data.data?.cover_portrait_url || comic?.data.data?.cover_image_url,
+      comic_title: comicData?.title,
+      comic_cover_url: comicData?.cover_portrait_url || comicData?.cover_image_url,
     });
-    console.log('data history tersimpan');
-  }, [chapter?.data.data, comic?.data.data, comicId, chapterId]);
+  }, [chapterData, comicData, comicId, chapterId]);
+
+  // Track Reading Progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const currentProgress = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+        setReadingProgress(currentProgress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Preload adjacent images
+  useEffect(() => {
+    if (!chapterData?.chapter?.data) return;
+    const images = chapterData.chapter.data;
+    const baseUrl = useHighQuality ? chapterData.base_url : chapterData.base_url_low;
+    const path = chapterData.chapter.path;
+
+    // Preload first 5 images immediately
+    images.slice(0, 5).forEach(img => {
+      const imgObj = new Image();
+      imgObj.src = `${baseUrl}${path}${img}`;
+    });
+  }, [chapterData, useHighQuality]);
+
+  // Auto Scroll Loop
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
+    const scrollStep = () => {
+      window.scrollBy({ top: autoScrollSpeed, behavior: "instant" });
+      if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 10) {
+        autoScrollRef.current = requestAnimationFrame(scrollStep);
+      } else {
+        setIsAutoScrolling(false);
+      }
+    };
+    autoScrollRef.current = requestAnimationFrame(scrollStep);
+  }, [autoScrollSpeed]);
+
+  useEffect(() => {
+    if (isAutoScrolling) {
+      startAutoScroll();
+    } else {
+      if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
+    }
+    return () => {
+      if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
+    };
+  }, [isAutoScrolling, startAutoScroll]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" && chapterData?.prev_chapter_id) {
+        navigate({
+          to: "/read/$comicId/$chapterId",
+          params: { comicId, chapterId: chapterData.prev_chapter_id },
+        });
+      } else if (e.key === "ArrowRight" && chapterData?.next_chapter_id) {
+        navigate({
+          to: "/read/$comicId/$chapterId",
+          params: { comicId, chapterId: chapterData.next_chapter_id },
+        });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [chapterData, comicId, navigate]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const imagesList = chapterData?.chapter?.data ?? [];
+  const primaryBaseUrl = useHighQuality ? chapterData?.base_url : chapterData?.base_url_low;
+  const fallbackBaseUrl = useHighQuality ? chapterData?.base_url_low : chapterData?.base_url;
+  const path = chapterData?.chapter?.path ?? "";
 
   return (
-    <div className="bg-black text-white min-h-screen">
-      {chapter?.data.data && (
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: `Chapter ${chapter.data.data.chapter_number} - ${chapter.data.data.chapter_title || ""}`,
-            description: `Baca Chapter ${chapter.data.data.chapter_number} komik online gratis di KOMIK READER.`,
-            url: `${SITE_URL}/read/${comicId}/${chapterId}`,
-          }}
+    <div className="bg-black text-white min-h-screen relative selection:bg-red-500 selection:text-white">
+      {/* READING PROGRESS BAR */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-zinc-900 z-50">
+        <div
+          className="h-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 transition-all duration-150"
+          style={{ width: `${readingProgress}%` }}
         />
-      )}
-      {chapter?.data.data && (
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, item: { "@id": SITE_URL, name: "Beranda" } },
-              { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: comic?.data.data?.title || "Detail Komik" } },
-              { "@type": "ListItem", position: 3, item: { "@id": `${SITE_URL}/read/${comicId}/${chapterId}`, name: `Chapter ${chapter.data.data.chapter_number}` } },
-            ],
-          }}
-        />
-      )}
-      {/* TOP NAV */}
-      <ChapterNavigation
-        key={chapter?.data.data.chapter_id}
-        comicId={comicId}
-        chapter={chapter?.data.data!}
-      />
+      </div>
 
-      {/* ACTION BAR */}
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-180
-          sm:max-w-160
-          md:max-w-170
-          lg:max-w-170
-          px-4
-          py-4
-          flex items-center gap-3
-        "
-      >
-        <Button
-          variant="secondary"
-          className="
-              gap-2
-              bg-white/10
-              hover:bg-white/20
-              text-white
-              border border-white/10
-            "
-          onClick={() => {
-            navigate({
-              to: "/series/$comicId",
-              params: { comicId },
-              search: {
-                page: 1,
+      {/* SEO STRUCTURED DATA */}
+      {chapterData && (
+        <>
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "ComicIssue",
+              name: `Chapter ${chapterData.chapter_number} - ${chapterData.chapter_title || comicData?.title || ""}`,
+              issueNumber: chapterData.chapter_number,
+              isPartOf: {
+                "@type": "ComicSeries",
+                name: comicData?.title || "Komik",
+                url: `${SITE_URL}/series/${comicId}`,
               },
-            });
-          }}
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Kembali
-        </Button>
+              image: comicData?.cover_portrait_url || comicData?.cover_image_url,
+              url: `${SITE_URL}/read/${comicId}/${chapterId}`,
+            }}
+          />
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, item: { "@id": SITE_URL, name: "Beranda" } },
+                { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: comicData?.title || "Detail Komik" } },
+                { "@type": "ListItem", position: 3, item: { "@id": `${SITE_URL}/read/${comicId}/${chapterId}`, name: `Chapter ${chapterData.chapter_number}` } },
+              ],
+            }}
+          />
+        </>
+      )}
 
-        <span className="text-sm text-white/50">
-          Chapter {chapter?.data.data.chapter_number}
-        </span>
-      </div>
-
-      {/* READER */}
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-180
-          sm:max-w-160
-          md:max-w-170
-          lg:max-w-170
-          bg-black
-        "
-      >
-        {chapter?.data.data.chapter.data.map((img, index) => {
-          const imageUrl = `${chapter.data.data.base_url_low}${chapter.data.data.chapter.path}${img}`;
-
-          return (
-            <ChapterImage
-              key={index}
-              src={imageUrl}
-              alt={`Page ${index + 1}`}
-              priority={index === 0}
-            />
-          );
-        })}
-      </div>
-
-      {/* BOTTOM NAV */}
-      <div className="mt-6">
+      {/* TOP CHAPTER NAVIGATION */}
+      {chapterData && (
         <ChapterNavigation
-        key={chapter?.data.data.chapter_id}
-        comicId={comicId}
-        chapter={chapter?.data.data!}
-/>
+          key={chapterData.chapter_id}
+          comicId={comicId}
+          chapter={chapterData}
+        />
+      )}
+
+      {/* TOOLBAR & CONTROL BAR */}
+      <div className="mx-auto w-full max-w-3xl px-4 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-900">
+        <div className="flex items-center gap-2">
+          <Button
+            variant="secondary"
+            className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 rounded-xl text-xs"
+            onClick={() => {
+              navigate({
+                to: "/series/$comicId",
+                params: { comicId },
+                search: { page: 1 },
+              });
+            }}
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Detail Komik
+          </Button>
+
+          {chapterData && (
+            <span className="text-xs font-semibold text-zinc-400">
+              Ch. {chapterData.chapter_number}
+            </span>
+          )}
+        </div>
+
+        {/* CONTROLS */}
+        <div className="flex items-center gap-2">
+          {/* HD Quality Toggle */}
+          <button
+            onClick={() => setUseHighQuality(prev => !prev)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+              useHighQuality
+                ? "bg-red-500/20 border-red-500/40 text-red-400"
+                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+            }`}
+            title="Ubah Kualitas Gambar"
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span>{useHighQuality ? "Kualitas HD" : "Hemat Data"}</span>
+          </button>
+
+          {/* Auto Scroll Toggle */}
+          <button
+            onClick={() => setIsAutoScrolling(prev => !prev)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+              isAutoScrolling
+                ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400 animate-pulse"
+                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+            }`}
+            title="Auto Scroll Reader"
+          >
+            {isAutoScrolling ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+            <span>Auto Scroll</span>
+          </button>
+        </div>
+      </div>
+
+      {/* MANHWA READER CONTAINER */}
+      <main className="mx-auto w-full max-w-3xl bg-black min-h-[60vh] shadow-2xl">
+        {isChapterLoading ? (
+          <div className="py-24 text-center space-y-4">
+            <div className="w-10 h-10 border-3 border-red-500 border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-sm text-zinc-400 font-medium">Memuat chapter manhwa...</p>
+          </div>
+        ) : imagesList.length === 0 ? (
+          <div className="py-24 text-center text-zinc-500">
+            Chapter tidak memiliki gambar atau tidak tersedia.
+          </div>
+        ) : (
+          imagesList.map((img, index) => {
+            const primaryUrl = `${primaryBaseUrl}${path}${img}`;
+            const fallbackUrl = `${fallbackBaseUrl}${path}${img}`;
+
+            return (
+              <ChapterImage
+                key={`${chapterId}-${index}`}
+                src={primaryUrl}
+                fallbackSrc={fallbackUrl}
+                alt={`Halaman ${index + 1} Chapter ${chapterData?.chapter_number || ""}`}
+                pageNumber={index + 1}
+                priority={index < 3}
+              />
+            );
+          })
+        )}
+      </main>
+
+      {/* BOTTOM NAVIGATION */}
+      {chapterData && (
+        <div className="mt-8 pb-16">
+          <ChapterNavigation
+            key={chapterData.chapter_id}
+            comicId={comicId}
+            chapter={chapterData}
+          />
+        </div>
+      )}
+
+      {/* FLOATING ACTION BAR */}
+      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-zinc-900/90 border border-zinc-800 backdrop-blur-md px-3 py-2 rounded-2xl shadow-2xl">
+        <span className="text-xs font-semibold text-zinc-300 px-2">
+          {readingProgress}%
+        </span>
+
+        {chapterData?.prev_chapter_id && (
+          <button
+            onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.prev_chapter_id! } })}
+            className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors"
+            title="Chapter Sebelumnya"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+        )}
+
+        {chapterData?.next_chapter_id && (
+          <button
+            onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.next_chapter_id! } })}
+            className="p-2 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors font-bold"
+            title="Chapter Selanjutnya"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        )}
+
+        <button
+          onClick={scrollToTop}
+          className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 ml-1"
+          title="Kembali ke atas"
+        >
+          <ArrowUp className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );

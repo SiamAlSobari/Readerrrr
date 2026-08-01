@@ -1,34 +1,35 @@
-import { Eye } from "lucide-react"
-import { Button } from "@/common/shadcn-ui/button"
+import { Eye, Search, ArrowUpDown, Clock } from "lucide-react";
+import { Button } from "@/common/shadcn-ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/common/shadcn-ui/dialog"
-import { formatDistanceToNow } from "date-fns"
-import { id } from "date-fns/locale"
-import { Meta } from "@/common/interface"
-import { Link, useNavigate } from "@tanstack/react-router"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { useServerFn } from "@tanstack/react-start"
-import { getChapterList } from "@/api/servers/shinigami.server"
-import { getLastReadChapter } from "@/common/utils/chapter-history"
+} from "@/common/shadcn-ui/dialog";
+import { formatDistanceToNow } from "date-fns";
+import { id } from "date-fns/locale";
+import { Meta } from "@/common/interface";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { getChapterList } from "@/api/servers/shinigami.server";
+import { getLastReadChapter } from "@/common/utils/chapter-history";
+import { useState, useMemo } from "react";
 
 interface Chapter {
-  chapter_id: string
-  chapter_number: number
-  thumbnail_image_url: string
-  release_date: string
-  view_count: number
+  chapter_id: string;
+  chapter_number: number;
+  thumbnail_image_url: string;
+  release_date: string;
+  view_count: number;
 }
 
 interface ChapterListProps {
-  chapters: Chapter[]       // SSR data (main list)
-  page?: number
-  meta: Meta
-  comicId: string
+  chapters: Chapter[]; // SSR data
+  page?: number;
+  meta: Meta;
+  comicId: string;
 }
 
 export function ChapterList({
@@ -37,27 +38,28 @@ export function ChapterList({
   meta,
   comicId,
 }: ChapterListProps) {
-  const navigate = useNavigate()
-  const chapterList = useServerFn(getChapterList)
+  const navigate = useNavigate();
+  const chapterList = useServerFn(getChapterList);
+  const [filterQuery, setFilterQuery] = useState("");
+  const [dialogFilterQuery, setDialogFilterQuery] = useState("");
+  const [sortAsc, setSortAsc] = useState(false);
 
-  // SSR
-  const totalPages = meta.total_page
+  const totalPages = meta.total_page;
 
   function handlePageNext() {
     navigate({
       to: ".",
       search: (prev) => ({ page: (prev.page ?? 1) + 1 }),
-    })
+    });
   }
 
   function handlePagePrev() {
     navigate({
       to: ".",
       search: (prev) => ({ page: Math.max((prev.page ?? 1) - 1, 1) }),
-    })
+    });
   }
 
-  // CSR
   const {
     data,
     fetchNextPage,
@@ -66,9 +68,7 @@ export function ChapterList({
     isLoading,
   } = useInfiniteQuery({
     queryKey: ["dialog-chapters", comicId],
-
     initialPageParam: 1,
-
     queryFn: ({ pageParam }) =>
       chapterList({
         data: {
@@ -77,48 +77,98 @@ export function ChapterList({
           pageSize: 50,
         },
       }),
-
     getNextPageParam: (lastPage) => {
-      const meta = lastPage.data.meta
-      return meta.page < meta.total_page
-        ? meta.page + 1
-        : undefined
+      const metaData = lastPage.data.meta;
+      return metaData.page < metaData.total_page ? metaData.page + 1 : undefined;
     },
-
     enabled: false,
-  })
+  });
 
+  const rawDialogChapters = useMemo(
+    () => data?.pages.flatMap((p) => p.data.data) ?? [],
+    [data]
+  );
 
-  const dialogChapters =
-    data?.pages.flatMap((p) => p.data.data) ?? []
-  const lastRead = getLastReadChapter(comicId)
+  const filteredChapters = useMemo(() => {
+    let list = [...chapters];
+    if (filterQuery.trim()) {
+      const q = filterQuery.trim().toLowerCase();
+      list = list.filter((ch) => `ch ${ch.chapter_number}`.includes(q) || `${ch.chapter_number}`.includes(q));
+    }
+    if (sortAsc) {
+      list.sort((a, b) => a.chapter_number - b.chapter_number);
+    } else {
+      list.sort((a, b) => b.chapter_number - a.chapter_number);
+    }
+    return list;
+  }, [chapters, filterQuery, sortAsc]);
+
+  const filteredDialogChapters = useMemo(() => {
+    let list = [...rawDialogChapters];
+    if (dialogFilterQuery.trim()) {
+      const q = dialogFilterQuery.trim().toLowerCase();
+      list = list.filter((ch) => `ch ${ch.chapter_number}`.includes(q) || `${ch.chapter_number}`.includes(q));
+    }
+    if (sortAsc) {
+      list.sort((a, b) => a.chapter_number - b.chapter_number);
+    } else {
+      list.sort((a, b) => b.chapter_number - a.chapter_number);
+    }
+    return list;
+  }, [rawDialogChapters, dialogFilterQuery, sortAsc]);
+
+  const lastRead = getLastReadChapter(comicId);
 
   return (
-    <section className="mx-auto mt-16 max-w-7xl px-4">
-      <h2 className="mb-8 text-2xl font-bold text-white tracking-wide">
-        Chapters
-      </h2>
+    <section className="mx-auto mt-12 max-w-7xl px-4">
+      {/* HEADER & CONTROLS */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl font-extrabold text-white tracking-wide">
+            Daftar Chapter
+          </h2>
+          <p className="text-xs text-zinc-400 mt-1">
+            Total {meta.total_data || chapters.length} Chapter tersedia
+          </p>
+        </div>
 
-      {/* ===== MAIN SSR LIST ===== */}
+        <div className="flex items-center gap-3">
+          {/* Quick Chapter Filter Input */}
+          <div className="relative flex-1 sm:w-48">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500" />
+            <input
+              type="text"
+              value={filterQuery}
+              onChange={(e) => setFilterQuery(e.target.value)}
+              placeholder="Cari Ch..."
+              className="w-full pl-9 pr-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500/50"
+            />
+          </div>
+
+          {/* Sort Order Toggle */}
+          <button
+            onClick={() => setSortAsc((prev) => !prev)}
+            className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors flex items-center gap-1.5 text-xs font-medium"
+            title="Urutkan Chapter"
+          >
+            <ArrowUpDown className="w-3.5 h-3.5 text-red-400" />
+            <span>{sortAsc ? "Terlama" : "Terbaru"}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* LAST READ BANNER */}
       {lastRead && (
-        <div
-          className="
-      mb-6
-      rounded-xl
-      border border-emerald-400/30
-      bg-emerald-400/10
-      p-4
-      flex items-center justify-between
-    "
-        >
+        <div className="mb-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 flex items-center justify-between backdrop-blur-xs">
           <div>
-            <p className="text-sm text-emerald-300 font-medium">
-              Terakhir dibaca
-            </p>
-            <p className="text-white font-semibold">
+            <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold mb-0.5">
+              <Clock className="w-3.5 h-3.5" />
+              <span>Terakhir Dibaca</span>
+            </div>
+            <p className="text-white font-bold text-base">
               Chapter {lastRead.chapter_number}
             </p>
-            <p className="text-xs text-emerald-200">
+            <p className="text-xs text-emerald-300/80 mt-0.5">
               {formatDistanceToNow(lastRead.last_read_time, {
                 addSuffix: true,
                 locale: id,
@@ -128,7 +178,7 @@ export function ChapterList({
 
           <Button
             size="sm"
-            className="bg-emerald-500 hover:bg-emerald-600 text-black"
+            className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl shadow-lg shadow-emerald-500/20"
             onClick={() =>
               navigate({
                 to: "/read/$comicId/$chapterId",
@@ -144,127 +194,163 @@ export function ChapterList({
         </div>
       )}
 
-      <div className="space-y-3">
-        {chapters.map((ch) => (
-          <Link
-            to="/read/$comicId/$chapterId"
-            params={{ comicId, chapterId: ch.chapter_id }}
-            key={ch.chapter_id}
-            className="
-        group
-        flex flex-col sm:flex-row
-        gap-4
-        rounded-xl
-        border border-white/10
-        bg-white/5
-        p-3 sm:p-4
-        backdrop-blur
-        transition
-        hover:border-white/20
-        hover:bg-white/10
-        active:scale-[0.99]
-      "
-          >
-            {/* THUMBNAIL */}
-            <img
-              src={ch.thumbnail_image_url}
-              alt={`Chapter ${ch.chapter_number}`}
-              loading="lazy"
-              decoding="async"
-              className="
-          h-40 sm:h-20
-          w-full sm:w-32
-          rounded-lg
-          object-cover
-          shrink-0
-        "
-            />
+      {/* MAIN LIST */}
+      <div className="space-y-2.5">
+        {filteredChapters.length === 0 ? (
+          <div className="text-center py-10 text-zinc-500 text-sm">
+            Tidak ada chapter yang cocok dengan "{filterQuery}".
+          </div>
+        ) : (
+          filteredChapters.map((ch) => {
+            const isRead = lastRead?.chapter_id === ch.chapter_id;
 
-            {/* CONTENT */}
-            <div className="flex flex-1 flex-col justify-between gap-2">
-              <div>
-                <p className="text-base sm:text-lg font-semibold text-white">
-                  Chapter {ch.chapter_number}
-                </p>
+            return (
+              <Link
+                to="/read/$comicId/$chapterId"
+                params={{ comicId, chapterId: ch.chapter_id }}
+                key={ch.chapter_id}
+                className={`
+                  group flex flex-col sm:flex-row gap-3 rounded-2xl border p-3 sm:p-3.5 transition-all duration-200
+                  ${
+                    isRead
+                      ? "bg-emerald-950/20 border-emerald-500/30 hover:border-emerald-500/50"
+                      : "bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/80"
+                  }
+                `}
+              >
+                {/* THUMBNAIL */}
+                <div className="h-32 sm:h-20 w-full sm:w-32 rounded-xl overflow-hidden bg-zinc-850 shrink-0 relative">
+                  <img
+                    src={ch.thumbnail_image_url}
+                    alt={`Thumbnail Chapter ${ch.chapter_number}`}
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {isRead && (
+                    <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-emerald-500 text-[10px] font-bold text-black shadow-md">
+                      Dibaca
+                    </span>
+                  )}
+                </div>
 
-                <p className="text-xs sm:text-sm text-gray-400">
-                  {new Date(ch.release_date).toLocaleDateString()} •{" "}
-                  {formatDistanceToNow(new Date(ch.release_date), {
-                    locale: id,
-                    addSuffix: true,
-                  })}
-                </p>
-              </div>
+                {/* CONTENT */}
+                <div className="flex flex-1 flex-col justify-between gap-1 pr-2">
+                  <div>
+                    <p className="text-base font-bold text-white group-hover:text-red-400 transition-colors">
+                      Chapter {ch.chapter_number}
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-1">
+                      {new Date(ch.release_date).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}{" "}
+                      •{" "}
+                      {formatDistanceToNow(new Date(ch.release_date), {
+                        locale: id,
+                        addSuffix: true,
+                      })}
+                    </p>
+                  </div>
 
-              {/* META (mobile-friendly) */}
-              <div className="flex items-center gap-2 text-xs text-gray-300">
-                <Eye className="h-4 w-4 text-gray-400" />
-                <span>{ch.view_count.toLocaleString()} views</span>
-              </div>
-            </div>
-          </Link>
-        ))}
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-400 mt-2">
+                    <Eye className="h-3.5 w-3.5 text-zinc-500" />
+                    <span>{ch.view_count.toLocaleString("id-ID")} dibaca</span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })
+        )}
       </div>
 
-
-      {/* ===== PAGINATION + DIALOG ===== */}
-      <div className="mt-10 mb-10 flex items-center justify-center gap-4">
-        <Button onClick={handlePagePrev} disabled={page === 1}>
-          Prev
+      {/* PAGINATION + DIALOG */}
+      <div className="mt-8 mb-12 flex flex-wrap items-center justify-center gap-3">
+        <Button
+          onClick={handlePagePrev}
+          disabled={page === 1}
+          variant="outline"
+          className="rounded-xl border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-xs"
+        >
+          Sebelumnya
         </Button>
 
-        {/* ===== DIALOG ===== */}
+        {/* ALL CHAPTERS DIALOG */}
         <Dialog
           onOpenChange={(open) => {
-            if (open) {
-              // fetch pertama saat dialog dibuka
-              fetchNextPage()
+            if (open && rawDialogChapters.length === 0) {
+              fetchNextPage();
             }
           }}
         >
           <DialogTrigger asChild>
-            <Button variant="outline">Lihat Chapter List</Button>
+            <Button
+              variant="secondary"
+              className="rounded-xl bg-red-500/10 hover:bg-red-500 hover:text-white border border-red-500/20 text-red-400 font-semibold text-xs transition-colors"
+            >
+              Lihat Semua ({meta.total_data || "Chapter"})
+            </Button>
           </DialogTrigger>
 
-          <DialogContent className="max-w-lg rounded-xl border p-6">
+          <DialogContent className="max-w-lg rounded-3xl bg-zinc-900 border border-zinc-800 p-6 text-white">
             <DialogHeader>
-              <DialogTitle>All Chapters</DialogTitle>
+              <DialogTitle className="text-xl font-bold text-white flex items-center justify-between">
+                <span>Semua Chapter</span>
+                <span className="text-xs font-normal text-zinc-400">
+                  {rawDialogChapters.length} dimuat
+                </span>
+              </DialogTitle>
             </DialogHeader>
 
-            <div
-              className="mt-4 max-h-96 space-y-2 overflow-y-auto"
-              onScroll={(e) => {
-                const el = e.currentTarget
-                const isBottom =
-                  el.scrollTop + el.clientHeight >=
-                  el.scrollHeight - 20
+            {/* Quick Filter in Dialog */}
+            <div className="relative mt-2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+              <input
+                type="text"
+                value={dialogFilterQuery}
+                onChange={(e) => setDialogFilterQuery(e.target.value)}
+                placeholder="Ketik nomor chapter (misal: 15)..."
+                className="w-full pl-9 pr-3 py-2 bg-zinc-950 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500/50"
+              />
+            </div>
 
+            <div
+              className="mt-4 max-h-80 space-y-1.5 overflow-y-auto pr-1"
+              onScroll={(e) => {
+                const el = e.currentTarget;
+                const isBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 30;
                 if (isBottom && hasNextPage && !isFetchingNextPage) {
-                  fetchNextPage()
+                  fetchNextPage();
                 }
               }}
             >
-              {dialogChapters.map((ch) => (
-                <Link to="/read/$comicId/$chapterId" key={ch.chapter_id} params={{ comicId, chapterId: ch.chapter_id }}>
-
-                  <div
-                    key={ch.chapter_id}
-                    className="flex justify-between rounded-md p-3 hover:bg-white/5"
-                  >
-                    <p className="text-sm text-white">
-                      Chapter {ch.chapter_number}
-                    </p>
-                    <p className="text-xs text-gray-400">
-                      {new Date(ch.release_date).toLocaleDateString()}
-                    </p>
-                  </div>
+              {filteredDialogChapters.map((ch) => (
+                <Link
+                  to="/read/$comicId/$chapterId"
+                  key={ch.chapter_id}
+                  params={{ comicId, chapterId: ch.chapter_id }}
+                  className="flex items-center justify-between rounded-xl p-3 bg-zinc-950/50 hover:bg-zinc-800/80 border border-zinc-850 hover:border-zinc-700 transition-colors"
+                >
+                  <span className="text-sm font-semibold text-white">
+                    Chapter {ch.chapter_number}
+                  </span>
+                  <span className="text-xs text-zinc-500">
+                    {new Date(ch.release_date).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
                 </Link>
               ))}
 
               {(isLoading || isFetchingNextPage) && (
-                <p className="py-4 text-center text-sm text-gray-400">
-                  Loading...
-                </p>
+                <div className="py-4 text-center text-xs text-zinc-400 flex items-center justify-center gap-2">
+                  <div className="w-3.5 h-3.5 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
+                  <span>Memuat chapter berikutnya...</span>
+                </div>
               )}
             </div>
           </DialogContent>
@@ -273,10 +359,12 @@ export function ChapterList({
         <Button
           onClick={handlePageNext}
           disabled={page === totalPages}
+          variant="outline"
+          className="rounded-xl border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-xs"
         >
-          Next
+          Selanjutnya
         </Button>
       </div>
     </section>
-  )
+  );
 }
