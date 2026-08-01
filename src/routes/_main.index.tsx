@@ -14,6 +14,9 @@ import {
   ScrollText,
   Flame,
 } from "lucide-react";
+import { JsonLd } from "@/common/components/JsonLd";
+
+const SITE_URL = "https://komik-reader.my.id";
 
 export const Route = createFileRoute("/_main/")({
   component: App,
@@ -33,7 +36,6 @@ export const Route = createFileRoute("/_main/")({
       },
       { name: "author", content: "KOMIK READER" },
 
-      // Open Graph
       { property: "og:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
       {
         property: "og:description",
@@ -41,10 +43,9 @@ export const Route = createFileRoute("/_main/")({
           "Baca ribuan KOMIK online terbaru dan populer di KOMIK READER. Gratis dan mudah diakses.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: `https://komik-reader.my.id${match.pathname}` },
+      { property: "og:url", content: `${SITE_URL}${match.pathname}` },
       { property: "og:image", content: "/komik_reader.png" },
 
-      // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
       {
@@ -55,7 +56,7 @@ export const Route = createFileRoute("/_main/")({
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
     links: [
-      { rel: "canonical", href: `https://komik-reader.my.id${match.pathname}` },
+      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
     ],
     title: "KOMIK READER – Baca KOMIK Online Gratis",
   }),
@@ -110,11 +111,20 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-black to-gray-900 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black text-white">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "KOMIK READER",
+          url: SITE_URL,
+          description: "Baca KOMIK online terbaru, populer, dan lengkap dengan mudah dan gratis.",
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 py-20 overflow-hidden">
-        {/* Animated Background - More Subtle */}
-        <div className="absolute inset-0 overflow-hidden opacity-30">
+        <div className="absolute inset-0 overflow-hidden opacity-30 pointer-events-none">
           <motion.div
             animate={{
               scale: [1, 1.1, 1],
@@ -147,7 +157,6 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -160,20 +169,17 @@ function App() {
               </span>
             </motion.div>
 
-            {/* Main Heading */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
               Baca Komik Favoritmu
               <br />
               <span className="text-red-400">Kapan Saja, Dimana Saja</span>
             </h1>
 
-            {/* Description */}
-            <p className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
               Nikmati ribuan judul Manga, Manhwa, dan Manhua terbaru dengan
               kualitas HD. Gratis, tanpa iklan mengganggu!
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -189,14 +195,13 @@ function App() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate({ to: "/genre" })}
-                className="px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl font-semibold text-lg transition-colors"
+                className="px-8 py-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl font-semibold text-lg transition-colors"
               >
                 Jelajahi Genre
               </motion.button>
             </div>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -209,13 +214,13 @@ function App() {
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 hover:border-gray-700 transition-colors"
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-4 sm:p-6 hover:border-zinc-700 transition-colors"
               >
                 <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-red-400" />
                 <div className="text-2xl sm:text-3xl font-bold text-white">
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400 mt-1">
+                <div className="text-xs sm:text-sm text-zinc-400 mt-1">
                   {stat.label}
                 </div>
               </motion.div>
@@ -238,7 +243,7 @@ function App() {
               <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-red-400" />
               Kenapa Pilih Kami?
             </h2>
-            <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto">
               Platform terbaik dengan fitur lengkap dan pengalaman membaca yang
               maksimal
             </p>
@@ -252,7 +257,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-gray-700 hover:bg-gray-800/50 transition-all group"
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 hover:bg-zinc-800/50 transition-all group"
               >
                 <feature.icon
                   className={`w-10 h-10 ${feature.iconColor} mb-4 group-hover:scale-110 transition-transform`}
@@ -260,7 +265,7 @@ function App() {
                 <h3 className="text-xl font-bold text-white mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-400 text-sm">{feature.description}</p>
+                <p className="text-zinc-400 text-sm">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -268,7 +273,7 @@ function App() {
       </section>
 
       {/* Popular Categories */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-900/30">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-zinc-900/30">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -281,7 +286,7 @@ function App() {
               <Library className="w-6 h-6 sm:w-8 sm:h-8 text-orange-400" />
               Genre Populer
             </h2>
-            <p className="text-gray-400 text-base sm:text-lg">
+            <p className="text-zinc-400 text-base sm:text-lg">
               Temukan komik favoritmu dari berbagai genre
             </p>
           </motion.div>
@@ -302,7 +307,7 @@ function App() {
                     search: { g: genre.name.toLowerCase() },
                   })
                 }
-                className="bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-gray-600 rounded-xl p-6 transition-all font-semibold text-white flex items-center justify-center gap-2"
+                className="bg-zinc-900/50 hover:bg-zinc-800/50 border border-zinc-800 hover:border-zinc-700 rounded-xl p-6 transition-all font-semibold text-white flex items-center justify-center gap-2"
               >
                 <genre.icon className="w-5 h-5" />
                 {genre.name}
@@ -320,13 +325,13 @@ function App() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-3xl p-8 sm:p-12 text-center"
+            className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-3xl p-8 sm:p-12 text-center"
           >
-            <Star className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400 mx-auto mb-6" />
+            <Star className="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Siap Memulai Petualangan?
             </h2>
-            <p className="text-gray-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-zinc-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
               Bergabung dengan jutaan pembaca lainnya dan temukan komik
               favoritmu sekarang juga!
             </p>

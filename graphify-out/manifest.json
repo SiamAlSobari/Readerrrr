@@ -30,9 +30,9 @@
     "semantic_hash": "c47025fdd72fbb6d123517bf0b58e7c0"
   },
   "src/api/services/shinigami.service.ts": {
-    "mtime": 1772534157.9136572,
-    "ast_hash": "c20a30db67d18562592c923e7105505c",
-    "semantic_hash": "c20a30db67d18562592c923e7105505c"
+    "mtime": 1785587187.6178012,
+    "ast_hash": "1a13a4b31a79fb69b4949a16e124c6f7",
+    "semantic_hash": ""
   },
   "src/common/components/Footer.tsx": {
     "mtime": 1772534157.9146402,
@@ -45,9 +45,9 @@
     "semantic_hash": "144e752b1608fbe929eac54de94d30ea"
   },
   "src/common/components/HeroSection.tsx": {
-    "mtime": 1772538622.1977715,
-    "ast_hash": "3c3dd01482e81b9f379b5bc6988c4019",
-    "semantic_hash": "3c3dd01482e81b9f379b5bc6988c4019"
+    "mtime": 1785587219.4460082,
+    "ast_hash": "1b2041edf46ce7381820b15fe0562931",
+    "semantic_hash": ""
   },
   "src/common/components/JsonLd.tsx": {
     "mtime": 1781184468.1857126,
@@ -165,9 +165,9 @@
     "semantic_hash": "31f8fbff2c84afc5e402deeec0394cdc"
   },
   "src/features/comic/BaseComicCard.tsx": {
-    "mtime": 1781184482.0346305,
-    "ast_hash": "ed8cd022f573814680ee02ffa650945f",
-    "semantic_hash": "ed8cd022f573814680ee02ffa650945f"
+    "mtime": 1785587195.6395128,
+    "ast_hash": "74bcb8fc243447e717ee0ee864f96c6f",
+    "semantic_hash": ""
   },
   "src/features/comic/BaseComicCardSkeleton.tsx": {
     "mtime": 1772534157.9276538,
@@ -190,14 +190,14 @@
     "semantic_hash": "321f62e515c039d25824f2d8e8728f77"
   },
   "src/features/comic/PopularComicCard.tsx": {
-    "mtime": 1772534157.9286387,
-    "ast_hash": "de2e4aa82f5332b3443435b395529fde",
-    "semantic_hash": "de2e4aa82f5332b3443435b395529fde"
+    "mtime": 1785587200.0849442,
+    "ast_hash": "91ad56bdfc403c06f2baa155e2415019",
+    "semantic_hash": ""
   },
   "src/features/comic/PopularComicCardBase.tsx": {
-    "mtime": 1772534157.9286387,
-    "ast_hash": "1589024e027da661b1bf1086781103df",
-    "semantic_hash": "1589024e027da661b1bf1086781103df"
+    "mtime": 1785587235.932516,
+    "ast_hash": "0e4425bb7eb10bdfb716d088eb60dcba",
+    "semantic_hash": ""
   },
   "src/features/comic/PopularComicCardBaseSkeleton.tsx": {
     "mtime": 1772534157.9286387,
@@ -210,9 +210,9 @@
     "semantic_hash": "45fa301d1bd9363d9464ffbaf096c485"
   },
   "src/features/comic/UpdateComicCard.tsx": {
-    "mtime": 1781184564.655113,
-    "ast_hash": "0e63934c94121428bf9b6eb7f9707eb4",
-    "semantic_hash": "0e63934c94121428bf9b6eb7f9707eb4"
+    "mtime": 1785587209.8037212,
+    "ast_hash": "f3fafab29af2089ef12845c523df225f",
+    "semantic_hash": ""
   },
   "src/features/comic/UpdateComicCardSkeleton.tsx": {
     "mtime": 1772534157.9296544,
@@ -270,14 +270,14 @@
     "semantic_hash": "bf27c45c82da1d390d854fc0b3ffb165"
   },
   "src/routes/_main.index.tsx": {
-    "mtime": 1780853663.781317,
-    "ast_hash": "e1217b373ab0af738b4be76194087f6c",
-    "semantic_hash": "e1217b373ab0af738b4be76194087f6c"
+    "mtime": 1785587253.9269242,
+    "ast_hash": "ae8bc477b5e7a739b04a0a2341854315",
+    "semantic_hash": ""
   },
   "src/routes/_main.popular.index.tsx": {
-    "mtime": 1780853663.7833173,
-    "ast_hash": "1283f3d2f621ec880c24a7c862ad1769",
-    "semantic_hash": "1283f3d2f621ec880c24a7c862ad1769"
+    "mtime": 1785587227.1476734,
+    "ast_hash": "49bdb80c2b387da63292ab1a49e10419",
+    "semantic_hash": ""
   },
   "src/routes/_main.search.index.tsx": {
     "mtime": 1785586151.0434232,
@@ -295,9 +295,9 @@
     "semantic_hash": "2ff5c5b899923fa935e9da2018670311"
   },
   "src/routes/_main.update.index.tsx": {
-    "mtime": 1780853663.7853174,
-    "ast_hash": "5bd4f6f3c641e292ead6e7016f5253d4",
-    "semantic_hash": "5bd4f6f3c641e292ead6e7016f5253d4"
+    "mtime": 1785587245.0962808,
+    "ast_hash": "5369304430f7f0421bb9853b6b9748ec",
+    "semantic_hash": ""
   },
   "src/routes/read.$comicId.$chapterId.index.tsx": {
     "mtime": 1785585827.4364831,
@@ -383,5 +383,10 @@
     "mtime": 1772534157.9316542,
     "ast_hash": "6660c603a75367fe491c4d052b0f1546",
     "semantic_hash": "6660c603a75367fe491c4d052b0f1546"
+  },
+  ".agents/rules/antigravity-rtk-rules.md": {
+    "mtime": 1785587301.4545407,
+    "ast_hash": "73323e859081ca0acf785018ffcc031c",
+    "semantic_hash": ""
   }
 }

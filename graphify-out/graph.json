@@ -424,8 +424,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_separator",
-      "community": 14,
-      "community_name": "@radix-ui/react-separator",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@radix-ui/react-separator"
     },
     {
@@ -435,8 +435,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "radix_ui_react_separator",
-      "community": 14,
-      "community_name": "@radix-ui/react-separator",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@radix-ui/react-separator"
     },
     {
@@ -666,8 +666,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_tanstack_router_plugin",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 44,
+      "community_name": "@tanstack/router-plugin",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -677,8 +677,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tanstack_router_plugin",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 44,
+      "community_name": "@tanstack/router-plugin",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -710,8 +710,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_vercel_analytics",
-      "community": 38,
-      "community_name": "@vercel/analytics",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -721,8 +721,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "vercel_analytics",
-      "community": 38,
-      "community_name": "@vercel/analytics",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -732,8 +732,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "package_dependencies_axios",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 38,
+      "community_name": "axios",
       "norm_label": "axios"
     },
     {
@@ -743,8 +743,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "axios",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 38,
+      "community_name": "axios",
       "norm_label": "axios"
     },
     {
@@ -798,8 +798,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_dependencies_clsx",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 43,
+      "community_name": "clsx",
       "norm_label": "clsx"
     },
     {
@@ -809,8 +809,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "clsx",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 43,
+      "community_name": "clsx",
       "norm_label": "clsx"
     },
     {
@@ -952,8 +952,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "package_dependencies_react",
-      "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community": 26,
+      "community_name": "react",
       "norm_label": "react"
     },
     {
@@ -963,8 +963,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "react",
-      "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community": 26,
+      "community_name": "react",
       "norm_label": "react"
     },
     {
@@ -996,8 +996,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "package_dependencies_tailwind_merge",
-      "community": 26,
-      "community_name": "tailwind-merge",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1007,8 +1007,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tailwind_merge",
-      "community": 26,
-      "community_name": "tailwind-merge",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1425,7 +1425,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "shinigami.server.ts"
     },
@@ -1437,7 +1437,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicrecomendation",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "getcomicrecomendation"
     },
     {
@@ -1448,7 +1448,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicupdate",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "getcomicupdate"
     },
     {
@@ -1459,7 +1459,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getgenrelist",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "getgenrelist"
     },
     {
@@ -1469,8 +1469,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getpopularcomic",
-      "community": 9,
-      "community_name": "_main.home.tsx",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "getpopularcomic"
     },
     {
@@ -1481,7 +1481,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicdetail",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "getcomicdetail"
     },
     {
@@ -1492,7 +1492,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getchapterlist",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "getchapterlist"
     },
     {
@@ -1502,7 +1502,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getchapterdetail",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "getchapterdetail"
     },
@@ -1513,7 +1513,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_gengenrelist",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "gengenrelist"
     },
@@ -1525,7 +1525,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicgenre",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "getcomicgenre"
     },
     {
@@ -1536,7 +1536,7 @@
       "_origin": "ast",
       "id": "src_api_services_shinigami_service",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "shinigami.service.ts"
     },
     {
@@ -1547,7 +1547,7 @@
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "shinigamiservice"
     },
     {
@@ -1558,106 +1558,128 @@
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_constructor",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".constructor()"
+    },
+    {
+      "label": ".safeGetCache()",
+      "file_type": "code",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_api_services_shinigami_service_shinigamiservice_safegetcache",
+      "community": 0,
+      "community_name": "shinigami.service.ts",
+      "norm_label": ".safegetcache()"
+    },
+    {
+      "label": ".safeSetCache()",
+      "file_type": "code",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "community": 0,
+      "community_name": "shinigami.service.ts",
+      "norm_label": ".safesetcache()"
     },
     {
       "label": ".getComicRecomendation()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L15",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicrecomendation",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getcomicrecomendation()"
     },
     {
       "label": ".getComicUpdate()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L29",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicupdate",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getcomicupdate()"
     },
     {
       "label": ".getComicStatus()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L34",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicstatus",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getcomicstatus()"
     },
     {
       "label": ".getGenreList()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L39",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getgenrelist()"
     },
     {
       "label": ".getComicGenre()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L60",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicgenre",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getcomicgenre()"
     },
     {
       "label": ".getPopularComic()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L77",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getpopularcomic",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getpopularcomic()"
     },
     {
       "label": ".getComicDetail()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L93",
+      "source_location": "L107",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicdetail",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getcomicdetail()"
     },
     {
       "label": ".getChapterList()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L98",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getchapterlist",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getchapterlist()"
     },
     {
       "label": ".getChapterDetail()",
       "file_type": "code",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L103",
+      "source_location": "L131",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getchapterdetail",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": ".getchapterdetail()"
     },
     {
@@ -1700,8 +1722,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_common_components_header_header",
-      "community": 2,
-      "community_name": "cn",
+      "community": 10,
+      "community_name": "_main.tsx",
       "norm_label": "header()"
     },
     {
@@ -1712,7 +1734,7 @@
       "_origin": "ast",
       "id": "src_common_components_herosection",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "herosection.tsx"
     },
     {
@@ -1723,7 +1745,7 @@
       "_origin": "ast",
       "id": "src_common_components_herosection_props",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
@@ -1734,7 +1756,7 @@
       "_origin": "ast",
       "id": "src_common_components_herosection_heroslider",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "heroslider()"
     },
     {
@@ -1745,7 +1767,7 @@
       "_origin": "ast",
       "id": "src_common_components_jsonld",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "jsonld.tsx"
     },
     {
@@ -1756,7 +1778,7 @@
       "_origin": "ast",
       "id": "src_common_components_jsonld_jsonld",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "jsonld()"
     },
     {
@@ -1788,7 +1810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_data_dummy",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "dummy.ts"
     },
@@ -1799,7 +1821,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_common_data_dummy_dummy_comics",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "dummy_comics"
     },
@@ -1810,7 +1832,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "src_common_data_dummy_popular_comics_dummy",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "popular_comics_dummy"
     },
@@ -1821,7 +1843,7 @@
       "source_location": "L195",
       "_origin": "ast",
       "id": "src_common_data_dummy_update_comics_dummy",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "update_comics_dummy"
     },
@@ -1832,7 +1854,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "src_common_data_dummy_dummy_comic_detail",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "dummy_comic_detail"
     },
@@ -1843,7 +1865,7 @@
       "source_location": "L403",
       "_origin": "ast",
       "id": "src_common_data_dummy_dummy_chapters",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "dummy_chapters"
     },
@@ -1854,7 +1876,7 @@
       "source_location": "L446",
       "_origin": "ast",
       "id": "src_common_data_dummy_dummy_chapter_detail",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "dummy_chapter_detail"
     },
@@ -1866,7 +1888,7 @@
       "_origin": "ast",
       "id": "src_common_http_axios_client",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "axios.client.ts"
     },
     {
@@ -1877,7 +1899,7 @@
       "_origin": "ast",
       "id": "src_common_http_axios_client_createaxiosclient",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "createaxiosclient()"
     },
     {
@@ -1888,7 +1910,7 @@
       "_origin": "ast",
       "id": "src_common_http_headers",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "headers.ts"
     },
     {
@@ -1899,7 +1921,7 @@
       "_origin": "ast",
       "id": "src_common_http_headers_getscraperheaders",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "getscraperheaders()"
     },
     {
@@ -1909,7 +1931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_interface_index",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "index.ts"
     },
@@ -1921,7 +1943,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_apiresponse",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "apiresponse"
     },
     {
@@ -1932,7 +1954,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_apiresponsedetail",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "apiresponsedetail"
     },
     {
@@ -1954,7 +1976,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_comic",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "comic"
     },
     {
@@ -1965,7 +1987,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_popularcomic",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomic"
     },
     {
@@ -1975,7 +1997,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_common_interface_index_updatecomic",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "updatecomic"
     },
@@ -1986,7 +2008,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "src_common_interface_index_chapter",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "chapter"
     },
@@ -1997,8 +2019,8 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "src_common_interface_index_comicdetail",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "comicdetail"
     },
     {
@@ -2009,7 +2031,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_chapterlist",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "chapterlist"
     },
     {
@@ -2019,7 +2041,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "src_common_interface_index_taxonomy",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "taxonomy"
     },
@@ -2031,7 +2053,7 @@
       "_origin": "ast",
       "id": "src_common_interface_index_taxonomyitem",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "taxonomyitem"
     },
     {
@@ -2041,7 +2063,7 @@
       "source_location": "L173",
       "_origin": "ast",
       "id": "src_common_interface_index_chapterdetail",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "chapterdetail"
     },
@@ -2052,7 +2074,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "src_common_interface_index_chapterimages",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "chapterimages"
     },
@@ -2064,7 +2086,7 @@
       "_origin": "ast",
       "id": "src_common_libs_redis",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "redis.ts"
     },
     {
@@ -2075,7 +2097,7 @@
       "_origin": "ast",
       "id": "src_common_libs_redis_client",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "client"
     },
     {
@@ -2184,8 +2206,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_badge",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "badge.tsx"
     },
     {
@@ -2195,8 +2217,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_badge_badgevariants",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "badgevariants"
     },
     {
@@ -2206,8 +2228,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_badge_badge",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "badge()"
     },
     {
@@ -2658,7 +2680,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapter-history.ts"
     },
     {
@@ -2669,7 +2691,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_chapterhistory",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapterhistory"
     },
     {
@@ -2680,7 +2702,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_getchapterhistory",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "getchapterhistory()"
     },
     {
@@ -2691,7 +2713,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_setchapterhistory",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "setchapterhistory()"
     },
     {
@@ -2702,7 +2724,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_getlastreadchapter",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "getlastreadchapter()"
     },
     {
@@ -2713,7 +2735,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_clearallhistory",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "clearallhistory()"
     },
     {
@@ -2724,7 +2746,7 @@
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_deletehistoryitem",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "deletehistoryitem()"
     },
     {
@@ -2735,7 +2757,7 @@
       "_origin": "ast",
       "id": "src_common_utils_env",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "env.ts"
     },
     {
@@ -2746,7 +2768,7 @@
       "_origin": "ast",
       "id": "src_common_utils_env_getenv",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "getenv"
     },
     {
@@ -2757,7 +2779,7 @@
       "_origin": "ast",
       "id": "src_common_utils_env_api_url",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "api_url"
     },
     {
@@ -2767,7 +2789,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comic.validation.ts"
     },
@@ -2778,7 +2800,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicdetailvalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicdetailvalidation"
     },
@@ -2789,7 +2811,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicchapterlistvalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicchapterlistvalidation"
     },
@@ -2800,7 +2822,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicpaginationvalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicpaginationvalidation"
     },
@@ -2811,7 +2833,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicchapterdetailvalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicchapterdetailvalidation"
     },
@@ -2822,7 +2844,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicrecomendationvalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicrecomendationvalidation"
     },
@@ -2833,7 +2855,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_common_validation_comic_validation_comicgenrevalidation",
-      "community": 3,
+      "community": 5,
       "community_name": "shinigami.server.ts",
       "norm_label": "comicgenrevalidation"
     },
@@ -2845,7 +2867,7 @@
       "_origin": "ast",
       "id": "src_features_chapter_chapterimage",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapterimage.tsx"
     },
     {
@@ -2856,7 +2878,7 @@
       "_origin": "ast",
       "id": "src_features_chapter_chapterimage_props",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "props"
     },
     {
@@ -2867,7 +2889,7 @@
       "_origin": "ast",
       "id": "src_features_chapter_chapterimage_chapterimage",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapterimage()"
     },
     {
@@ -2911,7 +2933,7 @@
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlist",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapterlist()"
     },
     {
@@ -2921,7 +2943,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_chapter_chapternavigation",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "chapternavigation.tsx"
     },
@@ -2932,7 +2954,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "src_features_chapter_chapternavigation_props",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "props"
     },
@@ -2943,7 +2965,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "src_features_chapter_chapternavigation_chapternavigation",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "chapternavigation()"
     },
@@ -2955,29 +2977,29 @@
       "_origin": "ast",
       "id": "src_features_comic_basecomiccard",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "basecomiccard.tsx"
     },
     {
       "label": "Props",
       "file_type": "code",
       "source_file": "src/features/comic/BaseComicCard.tsx",
-      "source_location": "L5",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccard_props",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "props"
     },
     {
       "label": "BaseComicCard()",
       "file_type": "code",
       "source_file": "src/features/comic/BaseComicCard.tsx",
-      "source_location": "L9",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccard_basecomiccard",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "basecomiccard()"
     },
     {
@@ -2988,7 +3010,7 @@
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "basecomiccardskeleton.tsx"
     },
     {
@@ -2999,7 +3021,7 @@
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton_basecomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "basecomiccardskeleton()"
     },
     {
@@ -3009,8 +3031,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_comicdetail",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "comicdetail.tsx"
     },
     {
@@ -3020,8 +3042,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_features_comic_comicdetail_comicdetail",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "comicdetail()"
     },
     {
@@ -3032,7 +3054,7 @@
       "_origin": "ast",
       "id": "src_features_comic_comicdetailskeleton",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "comicdetailskeleton.tsx"
     },
     {
@@ -3043,7 +3065,7 @@
       "_origin": "ast",
       "id": "src_features_comic_comicdetailskeleton_comicdetailskeleton",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "comicdetailskeleton()"
     },
     {
@@ -3054,7 +3076,7 @@
       "_origin": "ast",
       "id": "src_features_comic_loadinggrid",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "loadinggrid.tsx"
     },
     {
@@ -3065,7 +3087,7 @@
       "_origin": "ast",
       "id": "src_features_comic_loadinggrid_loadinggrid",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "loadinggrid()"
     },
     {
@@ -3076,29 +3098,29 @@
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccard.tsx"
     },
     {
       "label": "Props",
       "file_type": "code",
       "source_file": "src/features/comic/PopularComicCard.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard_props",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
       "label": "PopularComicCard()",
       "file_type": "code",
       "source_file": "src/features/comic/PopularComicCard.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard_popularcomiccard",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccard()"
     },
     {
@@ -3109,29 +3131,29 @@
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardbase.tsx"
     },
     {
       "label": "Props",
       "file_type": "code",
       "source_file": "src/features/comic/PopularComicCardBase.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_props",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
       "label": "PopularComicCardBase()",
       "file_type": "code",
       "source_file": "src/features/comic/PopularComicCardBase.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_popularcomiccardbase",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardbase()"
     },
     {
@@ -3164,7 +3186,7 @@
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardskeleton.tsx"
     },
     {
@@ -3175,7 +3197,7 @@
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardskeleton_popularcomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardskeleton()"
     },
     {
@@ -3185,7 +3207,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccard",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "updatecomiccard.tsx"
     },
@@ -3196,7 +3218,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccard_props",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "props"
     },
@@ -3207,7 +3229,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccard_updatecomiccard",
-      "community": 0,
+      "community": 9,
       "community_name": "index.ts",
       "norm_label": "updatecomiccard()"
     },
@@ -3219,7 +3241,7 @@
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "updatecomiccardskeleton.tsx"
     },
     {
@@ -3230,7 +3252,7 @@
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccardskeleton_updatecomiccardskeleton",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "updatecomiccardskeleton()"
     },
     {
@@ -3240,8 +3262,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_genre_genrelist",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "genrelist.tsx"
     },
     {
@@ -3252,7 +3274,7 @@
       "_origin": "ast",
       "id": "src_features_genre_genrelist_props",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "props"
     },
     {
@@ -3262,8 +3284,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_features_genre_genrelist_genrelist",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 5,
+      "community_name": "shinigami.server.ts",
       "norm_label": "genrelist()"
     },
     {
@@ -3274,7 +3296,7 @@
       "_origin": "ast",
       "id": "src_features_genre_noresultcomicgenre",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "noresultcomicgenre.tsx"
     },
     {
@@ -3285,7 +3307,7 @@
       "_origin": "ast",
       "id": "src_features_genre_noresultcomicgenre_noresultcomicgenre",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "noresultcomicgenre()"
     },
     {
@@ -3296,7 +3318,7 @@
       "_origin": "ast",
       "id": "src_integrations_tanstack_query_devtools",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "devtools.tsx"
     },
     {
@@ -3637,7 +3659,7 @@
       "_origin": "ast",
       "id": "src_routes_root",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "__root.tsx"
     },
     {
@@ -3648,7 +3670,7 @@
       "_origin": "ast",
       "id": "src_routes_root_myroutercontext",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "myroutercontext"
     },
     {
@@ -3669,8 +3691,8 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_routes_root_rootdocument",
-      "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community": 26,
+      "community_name": "react",
       "norm_label": "rootdocument()"
     },
     {
@@ -3681,7 +3703,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "_main.genre.index.tsx"
     },
     {
@@ -3692,7 +3714,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_searchpvalidate",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "searchpvalidate"
     },
     {
@@ -3703,7 +3725,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_genresquery",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "genresquery"
     },
     {
@@ -3714,7 +3736,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_comicsbygenrequery",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "comicsbygenrequery()"
     },
     {
@@ -3725,7 +3747,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_route",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "route"
     },
     {
@@ -3736,7 +3758,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_gridvariants",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "gridvariants"
     },
     {
@@ -3747,7 +3769,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_cardvariants",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "cardvariants"
     },
     {
@@ -3758,7 +3780,7 @@
       "_origin": "ast",
       "id": "src_routes_main_genre_index_routecomponent",
       "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community_name": "shinigami.server.ts",
       "norm_label": "routecomponent()"
     },
     {
@@ -3769,7 +3791,7 @@
       "_origin": "ast",
       "id": "src_routes_main_history_index",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "_main.history.index.tsx"
     },
     {
@@ -3791,7 +3813,7 @@
       "_origin": "ast",
       "id": "src_routes_main_history_index_historypage",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "historypage()"
     },
     {
@@ -3802,7 +3824,7 @@
       "_origin": "ast",
       "id": "src_routes_main_home",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "_main.home.tsx"
     },
     {
@@ -3813,7 +3835,7 @@
       "_origin": "ast",
       "id": "src_routes_main_home_queryrecommendation",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "queryrecommendation()"
     },
     {
@@ -3824,7 +3846,7 @@
       "_origin": "ast",
       "id": "src_routes_main_home_querypopularcomic",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "querypopularcomic"
     },
     {
@@ -3835,7 +3857,7 @@
       "_origin": "ast",
       "id": "src_routes_main_home_queryupdatecomic",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "queryupdatecomic"
     },
     {
@@ -3857,7 +3879,7 @@
       "_origin": "ast",
       "id": "src_routes_main_home_routecomponent",
       "community": 9,
-      "community_name": "_main.home.tsx",
+      "community_name": "index.ts",
       "norm_label": "routecomponent()"
     },
     {
@@ -3867,15 +3889,15 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_index",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "_main.index.tsx"
     },
     {
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/_main.index.tsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "src_routes_main_index_route",
       "community": 1,
@@ -3886,11 +3908,11 @@
       "label": "App()",
       "file_type": "code",
       "source_file": "src/routes/_main.index.tsx",
-      "source_location": "L64",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "src_routes_main_index_app",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "app()"
     },
     {
@@ -3900,41 +3922,41 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_popular_index",
-      "community": 9,
-      "community_name": "_main.home.tsx",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "_main.popular.index.tsx"
     },
     {
       "label": "ComicSearch",
       "file_type": "code",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L6",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_comicsearch",
-      "community": 9,
-      "community_name": "_main.home.tsx",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "comicsearch"
     },
     {
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L10",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_route",
-      "community": 9,
-      "community_name": "_main.home.tsx",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "route"
     },
     {
       "label": "RouteComponent()",
       "file_type": "code",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L50",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_routecomponent",
-      "community": 9,
-      "community_name": "_main.home.tsx",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "routecomponent()"
     },
     {
@@ -3945,7 +3967,7 @@
       "_origin": "ast",
       "id": "src_routes_main_search_index",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "_main.search.index.tsx"
     },
     {
@@ -3956,7 +3978,7 @@
       "_origin": "ast",
       "id": "src_routes_main_search_index_search",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "search"
     },
     {
@@ -3966,8 +3988,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_routes_main_search_index_route",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "route"
     },
     {
@@ -3978,7 +4000,7 @@
       "_origin": "ast",
       "id": "src_routes_main_search_index_routecomponent",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "routecomponent()"
     },
     {
@@ -3989,7 +4011,7 @@
       "_origin": "ast",
       "id": "src_routes_main_search_index_gridskeleton",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "gridskeleton()"
     },
     {
@@ -4000,7 +4022,7 @@
       "_origin": "ast",
       "id": "src_routes_main_search_index_notfound",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "notfound()"
     },
     {
@@ -4011,7 +4033,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "_main.series.$comicid.index.tsx"
     },
     {
@@ -4022,7 +4044,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_chaptersearch",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chaptersearch"
     },
     {
@@ -4032,8 +4054,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_route",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "route"
     },
     {
@@ -4044,7 +4066,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_routecomponent",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "routecomponent()"
     },
     {
@@ -4088,52 +4110,41 @@
       "_origin": "ast",
       "id": "src_routes_main_update_index",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "_main.update.index.tsx"
     },
     {
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L13",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "src_routes_main_update_index_route",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 0,
+      "community_name": "shinigami.service.ts",
       "norm_label": "route"
     },
     {
       "label": "ComicCard()",
       "file_type": "code",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "src_routes_main_update_index_comiccard",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "comiccard()"
     },
     {
       "label": "RouteComponent()",
       "file_type": "code",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L139",
+      "source_location": "L154",
       "_origin": "ast",
       "id": "src_routes_main_update_index_routecomponent",
       "community": 0,
-      "community_name": "index.ts",
+      "community_name": "shinigami.service.ts",
       "norm_label": "routecomponent()"
-    },
-    {
-      "label": "IMPORTANT: return LIST-NYA",
-      "file_type": "rationale",
-      "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L158",
-      "_origin": "ast",
-      "id": "src_routes_main_update_index_rationale_158",
-      "community": 0,
-      "community_name": "index.ts",
-      "norm_label": "important: return list-nya"
     },
     {
       "label": "read.$comicId.$chapterId.index.tsx",
@@ -4143,7 +4154,7 @@
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "read.$comicid.$chapterid.index.tsx"
     },
     {
@@ -4153,8 +4164,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_route",
-      "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community": 1,
+      "community_name": "routeTree.gen.ts",
       "norm_label": "route"
     },
     {
@@ -4165,7 +4176,7 @@
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_readchapterpage",
       "community": 3,
-      "community_name": "shinigami.server.ts",
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "readchapterpage()"
     },
     {
@@ -4552,6 +4563,61 @@
       "community": 42,
       "community_name": "vite.config.ts",
       "norm_label": "config"
+    },
+    {
+      "label": "antigravity-rtk-rules.md",
+      "file_type": "document",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_rules_antigravity_rtk_rules",
+      "community": 14,
+      "community_name": "RTK - Rust Token Killer (Google Antigravity)",
+      "norm_label": "antigravity-rtk-rules.md"
+    },
+    {
+      "label": "RTK - Rust Token Killer (Google Antigravity)",
+      "file_type": "document",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
+      "community": 14,
+      "community_name": "RTK - Rust Token Killer (Google Antigravity)",
+      "norm_label": "rtk - rust token killer (google antigravity)"
+    },
+    {
+      "label": "Rule",
+      "file_type": "document",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "agents_rules_antigravity_rtk_rules_rule",
+      "community": 14,
+      "community_name": "RTK - Rust Token Killer (Google Antigravity)",
+      "norm_label": "rule"
+    },
+    {
+      "label": "Meta Commands",
+      "file_type": "document",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "agents_rules_antigravity_rtk_rules_meta_commands",
+      "community": 14,
+      "community_name": "RTK - Rust Token Killer (Google Antigravity)",
+      "norm_label": "meta commands"
+    },
+    {
+      "label": "Why",
+      "file_type": "document",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "agents_rules_antigravity_rtk_rules_why",
+      "community": 14,
+      "community_name": "RTK - Rust Token Killer (Google Antigravity)",
+      "norm_label": "why"
     },
     {
       "label": "Graphify Rules",
@@ -6993,7 +7059,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L110",
+      "source_location": "L144",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service",
@@ -7219,7 +7285,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L103",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7230,7 +7296,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L98",
+      "source_location": "L119",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7241,7 +7307,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L93",
+      "source_location": "L107",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7252,7 +7318,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L60",
+      "source_location": "L83",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7263,7 +7329,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L15",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7274,7 +7340,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L34",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7285,7 +7351,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L29",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7296,7 +7362,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L39",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
@@ -7307,11 +7373,33 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L77",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice",
       "target": "src_api_services_shinigami_service_shinigamiservice_getpopularcomic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safegetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
       "confidence_score": 1.0
     },
     {
@@ -7342,9 +7430,117 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getchapterdetail",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L127",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getchapterlist",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getcomicdetail",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getcomicgenre",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getcomicrecomendation",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getcomicstatus",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getcomicupdate",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/api/services/shinigami.service.ts",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_api_services_shinigami_service_shinigamiservice_getpopularcomic",
+      "target": "src_api_services_shinigami_service_shinigamiservice_safesetcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L23",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getcomicrecomendation",
@@ -7356,7 +7552,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L30",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getcomicupdate",
@@ -7368,7 +7564,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L35",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getcomicstatus",
@@ -7379,7 +7575,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L39",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
@@ -7391,7 +7587,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L39",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
@@ -7404,7 +7600,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L49",
+      "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
@@ -7416,7 +7612,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L69",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getcomicgenre",
@@ -7428,7 +7624,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L85",
+      "source_location": "L101",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getpopularcomic",
@@ -7440,7 +7636,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L94",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getcomicdetail",
@@ -7452,7 +7648,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L99",
+      "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getchapterlist",
@@ -7464,7 +7660,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/api/services/shinigami.service.ts",
-      "source_location": "L104",
+      "source_location": "L137",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_api_services_shinigami_service_shinigamiservice_getchapterdetail",
@@ -7745,6 +7941,30 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.index.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_index",
+      "target": "src_common_components_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.popular.index.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_popular_index",
+      "target": "src_common_components_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
       "source_location": "L10",
       "weight": 1.0,
@@ -7762,6 +7982,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_series_comicid_index",
+      "target": "src_common_components_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.update.index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_update_index",
       "target": "src_common_components_jsonld",
       "confidence_score": 1.0
     },
@@ -7805,6 +8037,30 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.index.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_index",
+      "target": "src_common_components_jsonld_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.popular.index.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_popular_index",
+      "target": "src_common_components_jsonld_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
       "source_location": "L10",
       "weight": 1.0,
@@ -7822,6 +8078,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_series_comicid_index",
+      "target": "src_common_components_jsonld_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.update.index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_update_index",
       "target": "src_common_components_jsonld_jsonld",
       "confidence_score": 1.0
     },
@@ -8324,7 +8592,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -8348,7 +8616,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -8396,7 +8664,7 @@
       "context": "field",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/BaseComicCard.tsx",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_basecomiccard_props",
@@ -8432,7 +8700,7 @@
       "context": "field",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCard.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccard_props",
@@ -8456,7 +8724,7 @@
       "context": "field",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCardBase.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccardbase_props",
@@ -8492,7 +8760,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -10229,7 +10497,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -10253,7 +10521,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -10479,7 +10747,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/BaseComicCard.tsx",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_basecomiccard",
@@ -10490,7 +10758,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/BaseComicCard.tsx",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_basecomiccard",
@@ -10713,7 +10981,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCard.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccard",
@@ -10724,7 +10992,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCard.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccard",
@@ -10759,7 +11027,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCardBase.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccardbase",
@@ -10770,7 +11038,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/comic/PopularComicCardBase.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_comic_popularcomiccardbase",
@@ -12077,7 +12345,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/_main.index.tsx",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -12089,7 +12357,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.index.tsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_index",
@@ -12100,7 +12368,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_popular_index",
@@ -12111,7 +12379,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L10",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_popular_index",
@@ -12122,7 +12390,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/_main.popular.index.tsx",
-      "source_location": "L47",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -12247,7 +12515,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -12258,7 +12526,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L13",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_update_index",
@@ -12269,24 +12537,13 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L14",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
       "source": "src_routes_main_update_index",
       "target": "src_routes_main_update_index_routecomponent",
       "confidence_score": 0.5
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "src/routes/_main.update.index.tsx",
-      "source_location": "L158",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_routes_main_update_index_rationale_158",
-      "target": "src_routes_main_update_index",
-      "confidence_score": 1.0
     },
     {
       "relation": "indirect_call",
@@ -12658,6 +12915,50 @@
       "_origin": "ast",
       "source": "vite_config",
       "target": "vite_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "agents_rules_antigravity_rtk_rules",
+      "target": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
+      "target": "agents_rules_antigravity_rtk_rules_meta_commands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
+      "target": "agents_rules_antigravity_rtk_rules_rule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/antigravity-rtk-rules.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
+      "target": "agents_rules_antigravity_rtk_rules_why",
       "confidence_score": 1.0
     },
     {
@@ -13151,5 +13452,5 @@
       "source_file": "audit-report.md"
     }
   ],
-  "built_at_commit": "94df5515abd65b2792fc646bcaa91a1dfe5dd3a5"
+  "built_at_commit": "42afd7197395cc84e2f54ae536d887a3681f493c"
 }

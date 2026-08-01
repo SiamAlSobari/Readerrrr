@@ -424,8 +424,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_separator",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 14,
+      "community_name": "@radix-ui/react-separator",
       "norm_label": "@radix-ui/react-separator"
     },
     {
@@ -435,8 +435,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "radix_ui_react_separator",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 14,
+      "community_name": "@radix-ui/react-separator",
       "norm_label": "@radix-ui/react-separator"
     },
     {
@@ -754,8 +754,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_dependencies_cheerio",
-      "community": 14,
-      "community_name": "cheerio",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "cheerio"
     },
     {
@@ -765,8 +765,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "cheerio",
-      "community": 14,
-      "community_name": "cheerio",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "cheerio"
     },
     {
@@ -1436,8 +1436,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicrecomendation",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "getcomicrecomendation"
     },
     {
@@ -1447,8 +1447,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicupdate",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "getcomicupdate"
     },
     {
@@ -1469,8 +1469,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getpopularcomic",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "getpopularcomic"
     },
     {
@@ -1546,8 +1546,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "shinigamiservice"
     },
     {
@@ -1568,8 +1568,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicrecomendation",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getcomicrecomendation()"
     },
     {
@@ -1579,8 +1579,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicupdate",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getcomicupdate()"
     },
     {
@@ -1590,8 +1590,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicstatus",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getcomicstatus()"
     },
     {
@@ -1601,8 +1601,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getgenrelist",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getgenrelist()"
     },
     {
@@ -1612,8 +1612,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicgenre",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getcomicgenre()"
     },
     {
@@ -1623,8 +1623,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getpopularcomic",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getpopularcomic()"
     },
     {
@@ -1634,8 +1634,8 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getcomicdetail",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getcomicdetail()"
     },
     {
@@ -1645,8 +1645,8 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getchapterlist",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getchapterlist()"
     },
     {
@@ -1656,8 +1656,8 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_getchapterdetail",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": ".getchapterdetail()"
     },
     {
@@ -1711,8 +1711,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_components_herosection",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "herosection.tsx"
     },
     {
@@ -1722,8 +1722,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_common_components_herosection_props",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "props"
     },
     {
@@ -1733,8 +1733,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_common_components_herosection_heroslider",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "heroslider()"
     },
     {
@@ -1766,8 +1766,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_components_notfound",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "notfound.tsx"
     },
     {
@@ -1777,8 +1777,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_common_components_notfound_notfound",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "notfound()"
     },
     {
@@ -1920,8 +1920,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_interface_index_apiresponse",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "apiresponse"
     },
     {
@@ -1964,8 +1964,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_common_interface_index_popularcomic",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomic"
     },
     {
@@ -2030,8 +2030,8 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "src_common_interface_index_taxonomyitem",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "taxonomyitem"
     },
     {
@@ -2217,8 +2217,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_button",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "button.tsx"
     },
     {
@@ -2228,8 +2228,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_button_buttonvariants",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "buttonvariants"
     },
     {
@@ -2239,8 +2239,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_button_button",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "button()"
     },
     {
@@ -2734,8 +2734,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_env",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "env.ts"
     },
     {
@@ -2745,8 +2745,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_common_utils_env_getenv",
-      "community": 9,
-      "community_name": "ShinigamiService",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "getenv"
     },
     {
@@ -2756,8 +2756,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_common_utils_env_api_url",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "api_url"
     },
     {
@@ -2885,7 +2885,7 @@
       "label": "Chapter",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapter",
       "community": 2,
@@ -2896,7 +2896,7 @@
       "label": "ChapterListProps",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlistprops",
       "community": 2,
@@ -2907,7 +2907,7 @@
       "label": "ChapterList()",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlist",
       "community": 3,
@@ -2987,8 +2987,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "basecomiccardskeleton.tsx"
     },
     {
@@ -2998,8 +2998,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton_basecomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "basecomiccardskeleton()"
     },
     {
@@ -3075,8 +3075,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccard.tsx"
     },
     {
@@ -3086,8 +3086,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard_props",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "props"
     },
     {
@@ -3097,8 +3097,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccard_popularcomiccard",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccard()"
     },
     {
@@ -3108,8 +3108,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccardbase.tsx"
     },
     {
@@ -3119,8 +3119,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_props",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "props"
     },
     {
@@ -3130,8 +3130,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_popularcomiccardbase",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccardbase()"
     },
     {
@@ -3163,8 +3163,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccardskeleton.tsx"
     },
     {
@@ -3174,8 +3174,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardskeleton_popularcomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "popularcomiccardskeleton()"
     },
     {
@@ -3218,8 +3218,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "updatecomiccardskeleton.tsx"
     },
     {
@@ -3229,8 +3229,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_updatecomiccardskeleton_updatecomiccardskeleton",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "updatecomiccardskeleton()"
     },
     {
@@ -3240,8 +3240,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_genre_genrelist",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "genrelist.tsx"
     },
     {
@@ -3251,8 +3251,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_features_genre_genrelist_props",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
@@ -3262,8 +3262,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_features_genre_genrelist_genrelist",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "genrelist()"
     },
     {
@@ -3801,8 +3801,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_home",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "_main.home.tsx"
     },
     {
@@ -3812,8 +3812,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_routes_main_home_queryrecommendation",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "queryrecommendation()"
     },
     {
@@ -3823,8 +3823,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_routes_main_home_querypopularcomic",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "querypopularcomic"
     },
     {
@@ -3834,8 +3834,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_routes_main_home_queryupdatecomic",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "queryupdatecomic"
     },
     {
@@ -3856,8 +3856,8 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_routes_main_home_routecomponent",
-      "community": 0,
-      "community_name": "index.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "routecomponent()"
     },
     {
@@ -3900,8 +3900,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_popular_index",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "_main.popular.index.tsx"
     },
     {
@@ -3911,8 +3911,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_comicsearch",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "comicsearch"
     },
     {
@@ -3922,8 +3922,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_route",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "route"
     },
     {
@@ -3933,8 +3933,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_routecomponent",
-      "community": 1,
-      "community_name": "routeTree.gen.ts",
+      "community": 9,
+      "community_name": "_main.home.tsx",
       "norm_label": "routecomponent()"
     },
     {
@@ -3952,7 +3952,7 @@
       "label": "Search",
       "file_type": "code",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L10",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_routes_main_search_index_search",
       "community": 0,
@@ -3963,7 +3963,7 @@
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "src_routes_main_search_index_route",
       "community": 0,
@@ -3974,7 +3974,7 @@
       "label": "RouteComponent()",
       "file_type": "code",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L41",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "src_routes_main_search_index_routecomponent",
       "community": 0,
@@ -3985,7 +3985,7 @@
       "label": "GridSkeleton()",
       "file_type": "code",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L128",
+      "source_location": "L153",
       "_origin": "ast",
       "id": "src_routes_main_search_index_gridskeleton",
       "community": 0,
@@ -3996,7 +3996,7 @@
       "label": "NotFound()",
       "file_type": "code",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L141",
+      "source_location": "L163",
       "_origin": "ast",
       "id": "src_routes_main_search_index_notfound",
       "community": 0,
@@ -4087,8 +4087,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_update_index",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "_main.update.index.tsx"
     },
     {
@@ -4109,8 +4109,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_routes_main_update_index_comiccard",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "comiccard()"
     },
     {
@@ -4120,8 +4120,8 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "src_routes_main_update_index_routecomponent",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "routecomponent()"
     },
     {
@@ -4131,8 +4131,8 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "src_routes_main_update_index_rationale_158",
-      "community": 5,
-      "community_name": "_main.genre.index.tsx",
+      "community": 0,
+      "community_name": "index.ts",
       "norm_label": "important: return list-nya"
     },
     {
@@ -4564,8 +4564,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "graphify rules",
-      "id": "agents_rules_graphify",
-      "community_name": "Graphify Rules"
+      "community_name": "Graphify Rules",
+      "id": "agents_rules_graphify"
     },
     {
       "label": "Caveman Commit README",
@@ -4578,8 +4578,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman commit readme",
-      "id": "agents_skills_caveman_commit_readme",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_commit_readme"
     },
     {
       "label": "Caveman Commit Skill",
@@ -4592,8 +4592,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman commit skill",
-      "id": "agents_skills_caveman_commit_skill",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_commit_skill"
     },
     {
       "label": "Caveman Help README",
@@ -4606,8 +4606,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman help readme",
-      "id": "agents_skills_caveman_help_readme",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_help_readme"
     },
     {
       "label": "Caveman Help Skill",
@@ -4620,8 +4620,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman help skill",
-      "id": "agents_skills_caveman_help_skill",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_help_skill"
     },
     {
       "label": "Caveman Mode README",
@@ -4634,8 +4634,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman mode readme",
-      "id": "agents_skills_caveman_readme",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_readme"
     },
     {
       "label": "Caveman Mode Skill",
@@ -4648,8 +4648,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman mode skill",
-      "id": "agents_skills_caveman_skill",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "agents_skills_caveman_skill"
     },
     {
       "label": "Graphify Workflow",
@@ -4662,8 +4662,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "graphify workflow",
-      "id": "agents_workflows_graphify",
-      "community_name": "Graphify Rules"
+      "community_name": "Graphify Rules",
+      "id": "agents_workflows_graphify"
     },
     {
       "label": "Komik READER Project",
@@ -4676,8 +4676,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "komik reader project",
-      "id": "readme",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "readme"
     },
     {
       "label": "Security & Performance Audit Report",
@@ -4690,8 +4690,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "security & performance audit report",
-      "id": "audit_report",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "audit_report"
     },
     {
       "label": "Komik Reader UI Screenshot",
@@ -4704,8 +4704,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "komik reader ui screenshot",
-      "id": "public_komik_reader_png",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "public_komik_reader_png"
     },
     {
       "label": "Logo SVG",
@@ -4718,8 +4718,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "logo svg",
-      "id": "src_logo_svg",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "src_logo_svg"
     },
     {
       "label": "React 19",
@@ -4732,8 +4732,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "react 19",
-      "id": "concept_react_19",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_react_19"
     },
     {
       "label": "TanStack Router",
@@ -4746,8 +4746,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "tanstack router",
-      "id": "concept_tanstack_router",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_tanstack_router"
     },
     {
       "label": "TanStack Query",
@@ -4760,8 +4760,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "tanstack query",
-      "id": "concept_tanstack_query",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_tanstack_query"
     },
     {
       "label": "TanStack Start",
@@ -4774,8 +4774,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "tanstack start",
-      "id": "concept_tanstack_start",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_tanstack_start"
     },
     {
       "label": "Shadcn UI",
@@ -4788,8 +4788,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "shadcn ui",
-      "id": "concept_shadcn_ui",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_shadcn_ui"
     },
     {
       "label": "Tailwind CSS 4",
@@ -4802,8 +4802,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "tailwind css 4",
-      "id": "concept_tailwind_css",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_tailwind_css"
     },
     {
       "label": "Vite Build Tool",
@@ -4816,8 +4816,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "vite build tool",
-      "id": "concept_vite",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_vite"
     },
     {
       "label": "Axios HTTP Client",
@@ -4830,8 +4830,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "axios http client",
-      "id": "concept_axios",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_axios"
     },
     {
       "label": "Framer Motion Animation",
@@ -4844,8 +4844,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "framer motion animation",
-      "id": "concept_framer_motion",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_framer_motion"
     },
     {
       "label": "Cheerio Web Scraping",
@@ -4858,8 +4858,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "cheerio web scraping",
-      "id": "concept_cheerio",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_cheerio"
     },
     {
       "label": "Zod Schema Validation",
@@ -4872,8 +4872,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "zod schema validation",
-      "id": "concept_zod_validation",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_zod_validation"
     },
     {
       "label": "date-fns Date Handling",
@@ -4886,8 +4886,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "date-fns date handling",
-      "id": "concept_date_fns",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_date_fns"
     },
     {
       "label": "Lucide React Icons",
@@ -4900,8 +4900,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "lucide react icons",
-      "id": "concept_lucide_react",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_lucide_react"
     },
     {
       "label": "XSS Vulnerability",
@@ -4914,8 +4914,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "xss vulnerability",
-      "id": "concept_xss_vulnerability",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_xss_vulnerability"
     },
     {
       "label": "SSR SEO Blocker",
@@ -4928,8 +4928,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "ssr seo blocker",
-      "id": "concept_ssr_seo_blocker",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_ssr_seo_blocker"
     },
     {
       "label": "Network Waterfall Performance",
@@ -4942,8 +4942,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "network waterfall performance",
-      "id": "concept_network_waterfall",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_network_waterfall"
     },
     {
       "label": "Cache Poisoning Vulnerability",
@@ -4956,8 +4956,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "cache poisoning vulnerability",
-      "id": "concept_cache_poisoning",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_cache_poisoning"
     },
     {
       "label": "Header Spoofing",
@@ -4970,8 +4970,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "header spoofing",
-      "id": "concept_header_spoofing",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_header_spoofing"
     },
     {
       "label": "Hydration Mismatch",
@@ -4984,8 +4984,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "hydration mismatch",
-      "id": "concept_hydration_mismatch",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_hydration_mismatch"
     },
     {
       "label": "Knowledge Graph",
@@ -4998,8 +4998,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "knowledge graph",
-      "id": "concept_knowledge_graph",
-      "community_name": "Graphify Rules"
+      "community_name": "Graphify Rules",
+      "id": "concept_knowledge_graph"
     },
     {
       "label": "Graphify Pipeline",
@@ -5012,8 +5012,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "graphify pipeline",
-      "id": "concept_graphify_pipeline",
-      "community_name": "Graphify Rules"
+      "community_name": "Graphify Rules",
+      "id": "concept_graphify_pipeline"
     },
     {
       "label": "Conventional Commits",
@@ -5026,8 +5026,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "conventional commits",
-      "id": "concept_conventional_commits",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "concept_conventional_commits"
     },
     {
       "label": "Token Efficiency",
@@ -5040,8 +5040,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "token efficiency",
-      "id": "concept_token_efficiency",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "concept_token_efficiency"
     },
     {
       "label": "Caveman Intensity Modes",
@@ -5054,8 +5054,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman intensity modes",
-      "id": "concept_caveman_modes",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "concept_caveman_modes"
     },
     {
       "label": "Commit Message Design Rationale",
@@ -5068,8 +5068,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "commit message design rationale",
-      "id": "rationale_commit_message_design",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "rationale_commit_message_design"
     },
     {
       "label": "Caveman Compression Rationale",
@@ -5082,8 +5082,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "caveman compression rationale",
-      "id": "rationale_caveman_compression",
-      "community_name": "Caveman Commit Skill"
+      "community_name": "Caveman Commit Skill",
+      "id": "rationale_caveman_compression"
     },
     {
       "label": "Komik READER",
@@ -5096,8 +5096,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "komik reader",
-      "id": "concept_komik_reader",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_komik_reader"
     },
     {
       "label": "Shinigami API",
@@ -5110,8 +5110,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "shinigami api",
-      "id": "concept_shinigami_api",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_shinigami_api"
     },
     {
       "label": "Redis Caching",
@@ -5124,8 +5124,8 @@
       "contributor": null,
       "community": 7,
       "norm_label": "redis caching",
-      "id": "concept_redis_caching",
-      "community_name": "Komik READER Project"
+      "community_name": "Komik READER Project",
+      "id": "concept_redis_caching"
     }
   ],
   "links": [
@@ -7745,6 +7745,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.search.index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_search_index",
+      "target": "src_common_components_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.series.$comicId.index.tsx",
       "source_location": "L6",
       "weight": 1.0,
@@ -7786,6 +7798,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
+      "target": "src_common_components_jsonld_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.search.index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_search_index",
       "target": "src_common_components_jsonld_jsonld",
       "confidence_score": 1.0
     },
@@ -8348,7 +8372,7 @@
       "context": "field",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist_chapterlistprops",
@@ -10112,7 +10136,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L94",
+      "source_location": "L120",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist_chapterlist",
@@ -10352,7 +10376,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -10363,7 +10387,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -10374,7 +10398,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -12110,7 +12134,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L128",
+      "source_location": "L153",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_search_index",
@@ -12121,7 +12145,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L141",
+      "source_location": "L163",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_search_index",
@@ -12132,7 +12156,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_search_index",
@@ -12143,7 +12167,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -12155,7 +12179,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.search.index.tsx",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_search_index",

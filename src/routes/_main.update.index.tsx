@@ -3,12 +3,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/common/shadcn-ui/button";
 import { Badge } from "@/common/shadcn-ui/badge";
-import { Eye, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, BookOpen, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { id } from "date-fns/locale";
 import { useQuery } from "@tanstack/react-query";
 import type { ApiResponse, UpdateComic } from "@/common/interface";
 import { API_URL } from "@/common/utils/env";
+import { JsonLd } from "@/common/components/JsonLd";
 
+const SITE_URL = "https://komik-reader.my.id";
 
 export const Route = createFileRoute("/_main/update/")({
   component: RouteComponent,
@@ -28,7 +31,6 @@ export const Route = createFileRoute("/_main/update/")({
       },
       { name: "author", content: "KOMIK READER" },
 
-      // Open Graph
       { property: "og:title", content: "KOMIK READER – Update KOMIK Terbaru" },
       {
         property: "og:description",
@@ -36,10 +38,9 @@ export const Route = createFileRoute("/_main/update/")({
           "Dapatkan update KOMIK terbaru setiap hari! Jangan ketinggalan chapter favoritmu di KOMIK READER.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: `https://komik-reader.my.id${match.pathname}` },
+      { property: "og:url", content: `${SITE_URL}${match.pathname}` },
       { property: "og:image", content: "/komik_reader.png" },
 
-      // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "KOMIK READER – Update KOMIK Terbaru" },
       {
@@ -50,7 +51,7 @@ export const Route = createFileRoute("/_main/update/")({
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
     links: [
-      { rel: "canonical", href: `https://komik-reader.my.id${match.pathname}` },
+      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
       { rel: "icon", href: "/komik_reader.png", type: "image/x-icon" },
     ],
     title: "KOMIK READER – Update Manga, Manhwa & Manhua Terbaru",
@@ -59,25 +60,38 @@ export const Route = createFileRoute("/_main/update/")({
 
 function ComicCard({ comic }: { comic: UpdateComic }) {
   const navigate = useNavigate();
+  const [imgError, setImgError] = useState(false);
 
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.03 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group relative overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600"
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.2 }}
+      className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-300 shadow-md hover:shadow-xl"
     >
       {/* Cover */}
-      <img
-        src={comic.cover_image_url}
-        alt={comic.title}
-        className="aspect-3/4 w-full object-cover group-hover:scale-110 transition-transform duration-500"
-      />
+      <div className="aspect-3/4 w-full overflow-hidden bg-zinc-850 relative">
+        {!imgError && comic.cover_image_url ? (
+          <img
+            src={comic.cover_image_url}
+            alt={comic.title}
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-zinc-800 text-zinc-500 text-xs font-bold p-3 text-center">
+            {comic.title}
+          </div>
+        )}
+      </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Actions */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
         <Button
           onClick={() =>
             navigate({
@@ -87,9 +101,9 @@ function ComicCard({ comic }: { comic: UpdateComic }) {
             })
           }
           size="sm"
-          className="w-32"
+          className="w-28 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl text-xs"
         >
-          <Eye className="mr-2 h-4 w-4" />
+          <Eye className="mr-1.5 h-3.5 w-3.5" />
           Detail
         </Button>
         <Button
@@ -104,29 +118,30 @@ function ComicCard({ comic }: { comic: UpdateComic }) {
           }
           size="sm"
           variant="secondary"
-          className="w-32"
+          className="w-28 bg-zinc-800 hover:bg-zinc-700 text-white font-bold rounded-xl text-xs"
         >
-          <BookOpen className="mr-2 h-4 w-4" />
-          Read
+          <BookOpen className="mr-1.5 h-3.5 w-3.5" />
+          Baca
         </Button>
       </div>
 
       {/* Info */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black via-black/80 to-transparent">
-        <h3 className="text-sm font-semibold line-clamp-2 text-white">
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
+        <h3 className="text-xs sm:text-sm font-extrabold line-clamp-2 text-white group-hover:text-red-400 transition-colors">
           {comic.title}
         </h3>
 
-        <p className="text-xs text-zinc-300 mt-1">
-          Ch {comic.latest_chapter_number} •{" "}
-          {formatDistanceToNow(new Date(comic.latest_chapter_time), {
+        <p className="text-[11px] text-zinc-400 mt-1 font-medium">
+          Ch. {comic.latest_chapter_number} •{" "}
+          {comic.latest_chapter_time ? formatDistanceToNow(new Date(comic.latest_chapter_time), {
             addSuffix: true,
-          })}
+            locale: id,
+          }) : "Baru saja"}
         </p>
 
-        <div className="flex gap-1.5 mt-2 flex-wrap">
+        <div className="flex gap-1 mt-1.5 flex-wrap">
           {comic.taxonomy?.Genre?.slice(0, 2).map((g) => (
-            <Badge key={g.name} variant="secondary" className="text-xs">
+            <Badge key={g.name} variant="secondary" className="text-[9px] px-1.5 py-0 rounded bg-zinc-800 text-zinc-300 border-none">
               {g.name}
             </Badge>
           ))}
@@ -154,23 +169,38 @@ function RouteComponent() {
 
       const res = await fetch(url);
       const json = await res.json();
-
-      // IMPORTANT: return LIST-NYA
       return json as ApiResponse<UpdateComic>;
     },
   });
+
   return (
-    <div className="min-h-screen px-4 py-6 md:px-6 lg:px-8">
+    <div className="min-h-screen container mx-auto px-4 py-6">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Update Komik Terbaru",
+          description: "Update manga, manhwa, dan manhua terbaru setiap hari di KOMIK READER.",
+          url: `${SITE_URL}/update`,
+        }}
+      />
+
       <div className="flex flex-col md:flex-row gap-6">
         {/* ========== SIDEBAR ========== */}
-        <aside className="md:w-64 shrink-0">
-          <h2 className="text-lg font-semibold mb-3 hidden md:block">
-            Update Type
-          </h2>
+        <aside className="md:w-56 shrink-0">
+          <div className="flex items-center gap-2 mb-3">
+            <RefreshCw className="w-5 h-5 text-red-500" />
+            <h2 className="text-base font-extrabold text-white">
+              Tipe Update
+            </h2>
+          </div>
 
-          <div className="flex md:flex-col gap-2 bg-zinc-900/50 p-3 rounded-xl md:bg-transparent">
+          <div className="flex md:flex-col gap-2 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800/80">
             <Button
               variant={type === "mirror" ? "default" : "ghost"}
+              className={`rounded-xl text-xs font-bold justify-start ${
+                type === "mirror" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
+              }`}
               onClick={() => {
                 setPage(1);
                 setType("mirror");
@@ -181,6 +211,9 @@ function RouteComponent() {
 
             <Button
               variant={type === "project" ? "default" : "ghost"}
+              className={`rounded-xl text-xs font-bold justify-start ${
+                type === "project" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
+              }`}
               onClick={() => {
                 setPage(1);
                 setType("project");
@@ -192,13 +225,13 @@ function RouteComponent() {
         </aside>
 
         {/* ========== CONTENT ========== */}
-        <div className="flex-1 space-y-8">
+        <div className="flex-1 space-y-6">
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
               {[...Array(10)].map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-3/4 rounded-xl bg-zinc-800 animate-pulse"
+                  className="aspect-3/4 rounded-2xl bg-zinc-850 animate-pulse"
                 />
               ))}
             </div>
@@ -206,10 +239,10 @@ function RouteComponent() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${type}-${page}`}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.2 }}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4"
               >
                 {comics?.data.map((comic: UpdateComic) => (
@@ -219,33 +252,29 @@ function RouteComponent() {
             </AnimatePresence>
           )}
 
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-3 pt-4">
             <Button
               size="icon"
               variant="outline"
               disabled={page === 1}
+              className="rounded-xl border-zinc-800 bg-zinc-900"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
             >
-              <ChevronLeft />
+              <ChevronLeft className="w-4 h-4" />
             </Button>
 
-            <p className="text-sm text-zinc-500">Page {page}</p>
+            <p className="text-xs text-zinc-400 font-medium">Halaman {page}</p>
 
             <Button
               size="icon"
               variant="outline"
               disabled={page === comics?.meta.total_page}
+              className="rounded-xl border-zinc-800 bg-zinc-900"
               onClick={() => setPage((p) => p + 1)}
             >
-              <ChevronRight />
+              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
-          {/* 
-          {isFetching && (
-            <p className="text-center text-xs text-zinc-500">
-              Updating...
-            </p>
-          )} */}
         </div>
       </div>
     </div>

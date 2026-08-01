@@ -155,9 +155,9 @@
     "semantic_hash": ""
   },
   "src/features/chapter/ChapterList.tsx": {
-    "mtime": 1781184574.4636242,
-    "ast_hash": "1f441549e8187f88974c28d679028977",
-    "semantic_hash": "1f441549e8187f88974c28d679028977"
+    "mtime": 1785586143.190451,
+    "ast_hash": "a9aa18e268d2b07af76910f5c09ee20b",
+    "semantic_hash": ""
   },
   "src/features/chapter/ChapterNavigation.tsx": {
     "mtime": 1772534157.9266396,
@@ -280,9 +280,9 @@
     "semantic_hash": "1283f3d2f621ec880c24a7c862ad1769"
   },
   "src/routes/_main.search.index.tsx": {
-    "mtime": 1780853663.7843173,
-    "ast_hash": "84e155cabba58c662b573d14222907b7",
-    "semantic_hash": "84e155cabba58c662b573d14222907b7"
+    "mtime": 1785586151.0434232,
+    "ast_hash": "5afa02a17e3c001a5dbc85e0a9ab7bd7",
+    "semantic_hash": ""
   },
   "src/routes/_main.series.$comicId.index.tsx": {
     "mtime": 1781184471.487336,

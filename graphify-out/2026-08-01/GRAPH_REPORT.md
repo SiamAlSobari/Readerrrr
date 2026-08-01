@@ -1,11 +1,11 @@
 # Graph Report - web  (2026-08-01)
 
 ## Corpus Check
-- 75 files · ~32,581 words
+- 75 files · ~33,132 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 450 nodes · 693 edges · 43 communities (15 shown, 28 thin omitted)
+- 450 nodes · 695 edges · 43 communities (15 shown, 28 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 21 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
@@ -24,12 +24,12 @@
 - compilerOptions
 - Komik READER Project
 - components.json
-- ShinigamiService
+- _main.home.tsx
 - _main.tsx
 - Caveman Commit Skill
 - dependencies
 - Graphify Rules
-- cheerio
+- @radix-ui/react-separator
 - class-variance-authority
 - date-fns
 - dotenv
@@ -93,16 +93,16 @@
 ## Communities (43 total, 28 thin omitted)
 
 ### Community 0 - "index.ts"
-Cohesion: 0.05
-Nodes (41): getComicRecomendation, getComicUpdate, HeroSlider(), Props, DUMMY_CHAPTER_DETAIL, DUMMY_CHAPTERS, DUMMY_COMIC_DETAIL, DUMMY_COMICS (+33 more)
+Cohesion: 0.06
+Nodes (33): ShinigamiService, DUMMY_CHAPTER_DETAIL, DUMMY_CHAPTERS, DUMMY_COMIC_DETAIL, DUMMY_COMICS, POPULAR_COMICS_DUMMY, UPDATE_COMICS_DUMMY, createAxiosClient() (+25 more)
 
 ### Community 1 - "routeTree.gen.ts"
 Cohesion: 0.06
-Nodes (37): getPopularComic, getRouter(), Route, Route, Route, ComicSearch, Route, Route (+29 more)
+Nodes (34): getRouter(), Route, Route, Route, Route, Route, Route, Route (+26 more)
 
 ### Community 2 - "cn"
 Cohesion: 0.08
-Nodes (32): Header(), Meta, cn(), Card(), CardAction(), CardContent(), CardDescription(), CardFooter() (+24 more)
+Nodes (34): Header(), Meta, cn(), Button(), buttonVariants, Card(), CardAction(), CardContent() (+26 more)
 
 ### Community 3 - "shinigami.server.ts"
 Cohesion: 0.09
@@ -113,8 +113,8 @@ Cohesion: 0.05
 Nodes (39): jsdom, devDependencies, jsdom, @tanstack/devtools-event-client, @tanstack/devtools-vite, @testing-library/dom, @testing-library/react, tw-animate-css (+31 more)
 
 ### Community 5 - "_main.genre.index.tsx"
-Cohesion: 0.09
-Nodes (22): getComicGenre, getGenreList, ComicDetail, TaxonomyItem, Badge(), badgeVariants, Button(), buttonVariants (+14 more)
+Cohesion: 0.14
+Nodes (15): getComicGenre, getGenreList, ComicDetail, Badge(), badgeVariants, ComicDetail(), LoadingGrid(), NoResultComicGenre() (+7 more)
 
 ### Community 6 - "compilerOptions"
 Cohesion: 0.07
@@ -128,9 +128,9 @@ Nodes (26): Security & Performance Audit Report, Axios HTTP Client, Cache Poison
 Cohesion: 0.11
 Nodes (18): aliases, components, hooks, lib, ui, utils, iconLibrary, registries (+10 more)
 
-### Community 9 - "ShinigamiService"
-Cohesion: 0.29
-Nodes (3): ShinigamiService, ApiResponse, getEnv
+### Community 9 - "_main.home.tsx"
+Cohesion: 0.11
+Nodes (19): getComicRecomendation, getComicUpdate, getPopularComic, HeroSlider(), Props, PopularComic, BaseComicCardSkeleton(), PopularComicCard() (+11 more)
 
 ### Community 10 - "_main.tsx"
 Cohesion: 0.20
@@ -142,7 +142,7 @@ Nodes (11): Caveman Commit README, Caveman Commit Skill, Caveman Help README, Ca
 
 ### Community 12 - "dependencies"
 Cohesion: 0.22
-Nodes (9): axios, clsx, dependencies, axios, clsx, @radix-ui/react-separator, @tanstack/router-plugin, @radix-ui/react-separator (+1 more)
+Nodes (9): axios, cheerio, clsx, dependencies, axios, cheerio, clsx, @tanstack/router-plugin (+1 more)
 
 ### Community 13 - "Graphify Rules"
 Cohesion: 0.50
@@ -156,17 +156,17 @@ Nodes (4): Graphify Rules, Graphify Workflow, Graphify Pipeline, Knowledge Graph
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `dependencies` connect `dependencies` to `shinigami.server.ts`, `devDependencies`, `cheerio`, `class-variance-authority`, `date-fns`, `dotenv`, `ioredis`, `lucide-react`, `motion`, `nitro`, `@radix-ui/react-dialog`, `@radix-ui/react-scroll-area`, `@radix-ui/react-slot`, `react-dom`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `@tanstack/react-devtools`, `@tanstack/react-query`, `@tanstack/react-query-devtools`, `@tanstack/react-router`, `@tanstack/react-router-devtools`, `@tanstack/react-router-ssr-query`, `@tanstack/react-start`, `@tanstack/react-store`, `@tanstack/store`, `@vercel/analytics`, `vite-tsconfig-paths`, `zod`?**
+- **Why does `dependencies` connect `dependencies` to `shinigami.server.ts`, `devDependencies`, `@radix-ui/react-separator`, `class-variance-authority`, `date-fns`, `dotenv`, `ioredis`, `lucide-react`, `motion`, `nitro`, `@radix-ui/react-dialog`, `@radix-ui/react-scroll-area`, `@radix-ui/react-slot`, `react-dom`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `@tanstack/react-devtools`, `@tanstack/react-query`, `@tanstack/react-query-devtools`, `@tanstack/react-router`, `@tanstack/react-router-devtools`, `@tanstack/react-router-ssr-query`, `@tanstack/react-start`, `@tanstack/react-store`, `@tanstack/store`, `@vercel/analytics`, `vite-tsconfig-paths`, `zod`?**
   _High betweenness centrality (0.302) - this node is a cross-community bridge._
 - **Why does `react` connect `shinigami.server.ts` to `dependencies`?**
   _High betweenness centrality (0.263) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
   _161 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05446853516657853 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05792349726775956 - nodes in this community are weakly interconnected._
 - **Should `routeTree.gen.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05673758865248227 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06312292358803986 - nodes in this community are weakly interconnected._
 - **Should `cn` be split into smaller, more focused modules?**
-  _Cohesion score 0.08484848484848485 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07918367346938776 - nodes in this community are weakly interconnected._
 - **Should `shinigami.server.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.08902439024390243 - nodes in this community are weakly interconnected._

@@ -12,99 +12,133 @@ class ShinigamiService {
         this.client = createAxiosClient(this.baseUrl);
     }
 
+    private async safeGetCache<T>(key: string): Promise<T | null> {
+        try {
+            const cached = await client.get(key);
+            if (cached) {
+                return JSON.parse(cached) as T;
+            }
+        } catch (e) {
+            console.warn(`[Redis Cache Error] GET ${key}:`, e);
+        }
+        return null;
+    }
+
+    private async safeSetCache(key: string, data: unknown, ttlSeconds: number): Promise<void> {
+        try {
+            await client.set(key, JSON.stringify(data), "EX", ttlSeconds);
+        } catch (e) {
+            console.warn(`[Redis Cache Error] SET ${key}:`, e);
+        }
+    }
+
     public async getComicRecomendation(format: string) {
         const cacheKey = `comic_recomendation_${format}`;
+        const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
+        if (cached) return cached;
 
-        const cached = await client.get(cacheKey);
-        if (cached) {
-            console.log("📌 Recomendation dari Redis cache");
-            return JSON.parse(cached) as ApiResponse<Comic>;
-        }
-        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?format=${format}&page=1&page_size=10&is_recommended=true&sort=latest&sort_order=desc`)
-        // Simpan object lengkap, sama seperti API
-        await client.set(cacheKey, JSON.stringify(res.data), "EX", 604800); // 7 hari
-        return res.data
+        const res: { data: ApiResponse<Comic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/list?format=${format}&page=1&page_size=10&is_recommended=true&sort=latest&sort_order=desc`
+        );
+        await this.safeSetCache(cacheKey, res.data, 604800); // 7 hari
+        return res.data;
     }
 
     public async getComicUpdate(type: string, page: number = 1, pageSize: number = 19) {
-        const res: { data: ApiResponse<UpdateComic> } = await this.client.get(`${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`)
-        return res.data
+        const cacheKey = `comic_update_${type}_${page}_${pageSize}`;
+        const cached = await this.safeGetCache<ApiResponse<UpdateComic>>(cacheKey);
+        if (cached) return cached;
+
+        const res: { data: ApiResponse<UpdateComic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`
+        );
+        await this.safeSetCache(cacheKey, res.data, 600); // 10 menit
+        return res.data;
     }
 
     public async getComicStatus(status: string) {
-        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include_mode=or&genre_exclude_mode=or&status=${status}&sort=latest&sort_order=desc`)
-        return res.data
+        const cacheKey = `comic_status_${status}`;
+        const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
+        if (cached) return cached;
+
+        const res: { data: ApiResponse<Comic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include_mode=or&genre_exclude_mode=or&status=${status}&sort=latest&sort_order=desc`
+        );
+        await this.safeSetCache(cacheKey, res.data, 86400); // 1 hari
+        return res.data;
     }
 
     public async getGenreList(): Promise<ApiResponse<TaxonomyItem>> {
         const cacheKey = "genre_list";
-
-        const cached = await client.get(cacheKey);
-        if (cached) {
-            console.log("📌 Genre dari Redis cache");
-            return JSON.parse(cached) as ApiResponse<TaxonomyItem>;
-        }
+        const cached = await this.safeGetCache<ApiResponse<TaxonomyItem>>(cacheKey);
+        if (cached) return cached;
 
         const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(
             `${getEnv().API_URL}/genre/list`
         );
-
-        // Simpan object lengkap, sama seperti API
-        await client.set(cacheKey, JSON.stringify(res.data), "EX", 604800); // 7 hari
-
-        console.log("📌 Genre dari API");
+        await this.safeSetCache(cacheKey, res.data, 604800); // 7 hari
         return res.data;
     }
 
-
     public async getComicGenre(genre: string) {
         const cacheKey = `comic_genre_${genre}`;
+        const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
+        if (cached) return cached;
 
-        const cached = await client.get(cacheKey);
-        if (cached) {
-            console.log("📌 Genre dari Redis cache");
-            return JSON.parse(cached) as ApiResponse<Comic>;
-        }
-        // 1️⃣ Cek cache dulu
-        const res: { data: ApiResponse<Comic> } = await this.client.get(`${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include=${genre}&genre_include_mode=or&genre_exclude_mode=or&sort=latest&sort_order=desc`)
-        // Simpan object lengkap, sama seperti API
-        await client.set(cacheKey, JSON.stringify(res.data), "EX", 172800); // 2 hari
-
-        console.log("📌 Genre dari API");
-        return res.data
+        const res: { data: ApiResponse<Comic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include=${genre}&genre_include_mode=or&genre_exclude_mode=or&sort=latest&sort_order=desc`
+        );
+        await this.safeSetCache(cacheKey, res.data, 172800); // 2 hari
+        return res.data;
     }
 
     public async getPopularComic(page: number = 1, pageSize: number = 16) {
         const cacheKey = `popular_comic_${page}_${pageSize}`;
+        const cached = await this.safeGetCache<ApiResponse<PopularComic>>(cacheKey);
+        if (cached) return cached;
 
-        const cached = await client.get(cacheKey);
-        if (cached) {
-            console.log("📌 Popular dari Redis cache");
-            return JSON.parse(cached) as ApiResponse<PopularComic>;
-        }
-        const res: { data: ApiResponse<PopularComic> } = await this.client.get(`${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`)
-        // Simpan object lengkap, sama seperti API
-        await client.set(cacheKey, JSON.stringify(res.data), "EX", 172000); // 2 hari
-
-        console.log("📌 Popular dari API");
-        return res.data
+        const res: { data: ApiResponse<PopularComic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`
+        );
+        await this.safeSetCache(cacheKey, res.data, 172800); // 2 hari
+        return res.data;
     }
 
     public async getComicDetail(comicId: string) {
-        const res: { data: ApiResponseDetail<ComicDetail> } = await this.client.get(`${getEnv().API_URL}/manga/detail/${comicId}`)
-        return res.data
+        const cacheKey = `comic_detail_${comicId}`;
+        const cached = await this.safeGetCache<ApiResponseDetail<ComicDetail>>(cacheKey);
+        if (cached) return cached;
 
+        const res: { data: ApiResponseDetail<ComicDetail> } = await this.client.get(
+            `${getEnv().API_URL}/manga/detail/${comicId}`
+        );
+        await this.safeSetCache(cacheKey, res.data, 7200); // 2 jam
+        return res.data;
     }
+
     public async getChapterList(comicId: string, page: number = 1, pageSize: number = 24) {
-        const res: { data: ApiResponse<ChapterList> } = await this.client.get(`${getEnv().API_URL}/chapter/${comicId}/list?page=${page}&page_size=${pageSize}&sort_by=chapter_number&sort_order=desc`)
-        return res.data
+        const cacheKey = `chapter_list_${comicId}_${page}_${pageSize}`;
+        const cached = await this.safeGetCache<ApiResponse<ChapterList>>(cacheKey);
+        if (cached) return cached;
+
+        const res: { data: ApiResponse<ChapterList> } = await this.client.get(
+            `${getEnv().API_URL}/chapter/${comicId}/list?page=${page}&page_size=${pageSize}&sort_by=chapter_number&sort_order=desc`
+        );
+        await this.safeSetCache(cacheKey, res.data, 3600); // 1 jam
+        return res.data;
     }
 
     public async getChapterDetail(chapterId: string) {
-        const res: { data: ApiResponseDetail<ChapterDetail> } = await this.client.get(`${getEnv().API_URL}/chapter/detail/${chapterId}`)
-        return res.data
+        const cacheKey = `chapter_detail_${chapterId}`;
+        const cached = await this.safeGetCache<ApiResponseDetail<ChapterDetail>>(cacheKey);
+        if (cached) return cached;
+
+        const res: { data: ApiResponseDetail<ChapterDetail> } = await this.client.get(
+            `${getEnv().API_URL}/chapter/detail/${chapterId}`
+        );
+        await this.safeSetCache(cacheKey, res.data, 21600); // 6 jam
+        return res.data;
     }
 }
 
-
-export const shinigamiService = new ShinigamiService
+export const shinigamiService = new ShinigamiService();
