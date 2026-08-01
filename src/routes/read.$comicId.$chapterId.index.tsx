@@ -38,9 +38,6 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
-    ],
     title: `Chapter ${params.chapterId} - Baca KOMIK Online | KOMIK READER`,
   }),
 });
@@ -325,6 +322,7 @@ function ReadChapterPage() {
             onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.prev_chapter_id! } })}
             className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors"
             title="Chapter Sebelumnya"
+            aria-label="Chapter Sebelumnya"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -335,6 +333,7 @@ function ReadChapterPage() {
             onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.next_chapter_id! } })}
             className="p-2 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors font-bold"
             title="Chapter Selanjutnya"
+            aria-label="Chapter Selanjutnya"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -344,6 +343,7 @@ function ReadChapterPage() {
           onClick={scrollToTop}
           className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 ml-1"
           title="Kembali ke atas"
+          aria-label="Kembali ke atas"
         >
           <ArrowUp className="w-4 h-4" />
         </button>

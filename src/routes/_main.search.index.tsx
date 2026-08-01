@@ -40,9 +40,6 @@ export const Route = createFileRoute("/_main/search/")({
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
       ],
-      links: [
-        { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
-      ],
       title,
     };
   },

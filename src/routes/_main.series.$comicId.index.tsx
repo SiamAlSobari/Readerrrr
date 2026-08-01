@@ -56,9 +56,6 @@ export const Route = createFileRoute('/_main/series/$comicId/')({
         { name: "twitter:description", content: description },
         ...(comic.cover_image_url ? [{ name: "twitter:image" as const, content: comic.cover_image_url }] : []),
       ],
-      links: [
-        { rel: "canonical", href: `${SITE_URL}/series/${params.comicId}` },
-      ],
       title,
     };
   },

@@ -98,6 +98,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setDesktopQuery("")}
+                  aria-label="Bersihkan pencarian"
                   className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
                 >
                   <X className="h-4 w-4" />
@@ -107,6 +108,7 @@ export default function Header() {
               <Button
                 type="submit"
                 size="icon"
+                aria-label="Cari komik"
                 className="
                   absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8
                   rounded-full bg-red-500 hover:bg-red-600
@@ -116,7 +118,7 @@ export default function Header() {
               </Button>
 
               {/* Shortcut hint */}
-              <span className="absolute right-20 top-1/2 -translate-y-1/2 text-xs text-gray-500 pointer-events-none">
+              <span className="absolute right-20 top-1/2 -translate-y-1/2 text-xs text-zinc-400 pointer-events-none">
                 ⌘K
               </span>
             </form>
@@ -124,7 +126,7 @@ export default function Header() {
             {/* MOBILE */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" className="md:hidden">
+                <Button size="icon" variant="ghost" aria-label="Buka menu navigasi" className="md:hidden">
                   <Menu />
                 </Button>
               </SheetTrigger>
@@ -148,6 +150,7 @@ export default function Header() {
                       value={mobileQuery}
                       onChange={(e) => setMobileQuery(e.target.value)}
                       placeholder="Search manga..."
+                      aria-label="Cari manga"
                       className="
                         h-11 rounded-full pl-12 pr-12
                         bg-white/5 border-white/10
@@ -159,6 +162,7 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => setMobileQuery("")}
+                        aria-label="Bersihkan pencarian mobile"
                         className="absolute right-14 top-1/2 -translate-y-1/2 text-gray-400"
                       >
                         <X className="h-4 w-4" />
@@ -168,6 +172,7 @@ export default function Header() {
                     <Button
                       type="submit"
                       size="icon"
+                      aria-label="Cari komik mobile"
                       className="absolute right-5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-red-500"
                     >
                       <Search className="h-4 w-4" />

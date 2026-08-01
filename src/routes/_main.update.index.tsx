@@ -50,10 +50,6 @@ export const Route = createFileRoute("/_main/update/")({
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
-      { rel: "icon", href: "/komik_reader.png", type: "image/x-icon" },
-    ],
     title: "KOMIK READER – Update Manga, Manhwa & Manhua Terbaru",
   }),
 });

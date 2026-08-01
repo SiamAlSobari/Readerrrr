@@ -37,9 +37,6 @@ export const Route = createFileRoute("/_main/history/")({
         content: "Lanjutkan membaca komik favorit Anda di KOMIK READER.",
       },
     ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}/history` },
-    ],
     title: "Riwayat Membaca - KOMIK READER",
   }),
 });

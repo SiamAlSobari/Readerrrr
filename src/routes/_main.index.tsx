@@ -55,9 +55,6 @@ export const Route = createFileRoute("/_main/")({
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}${match.pathname}` },
-    ],
     title: "KOMIK READER – Baca KOMIK Online Gratis",
   }),
 });
