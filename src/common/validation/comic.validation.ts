@@ -26,3 +26,19 @@ export const comicRecomendationValidation = z.object({
 export const comicGenreValidation = z.object({
   genre: z.string(),
 });
+
+export const comicUpdateValidation = z.object({
+  type: z.string().default("mirror"),
+  page: z.number().default(1),
+  pageSize: z.number().default(16),
+}).default({
+  type: "mirror",
+  page: 1,
+  pageSize: 16,
+});
+
+export const comicSearchValidation = z.object({
+  q: z.string(),
+  page: z.number().default(1),
+  pageSize: z.number().default(12),
+});

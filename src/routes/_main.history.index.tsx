@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { getChapterHistory, deleteHistoryItem, clearAllHistory, ChapterHistory } from "@/common/utils/chapter-history";
+import { filterAndRankChapters } from "@/common/utils/chapter-filter";
 import { Button } from "@/common/shadcn-ui/button";
 import { JsonLd } from "@/common/components/JsonLd";
 import { useServerFn } from "@tanstack/react-start";
@@ -125,13 +126,7 @@ function HistoryPage() {
 
   const filteredHistory = useMemo(() => {
     if (!searchQuery.trim()) return historyList;
-    const q = searchQuery.toLowerCase();
-    return historyList.filter(
-      item =>
-        item.comic_title?.toLowerCase().includes(q) ||
-        `ch ${item.chapter_number}`.includes(q) ||
-        `chapter ${item.chapter_number}`.includes(q)
-    );
+    return filterAndRankChapters(historyList, searchQuery, false);
   }, [historyList, searchQuery]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { RefreshCw, AlertCircle } from "lucide-react";
 
 type Props = {
@@ -10,7 +10,14 @@ type Props = {
   onLoadSuccess?: () => void;
 };
 
-export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLoadSuccess }: Props) {
+function ChapterImageComponent({
+  src,
+  fallbackSrc,
+  alt,
+  pageNumber,
+  priority = false,
+  onLoadSuccess,
+}: Props) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
@@ -25,14 +32,12 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
   }, [src]);
 
   const handleImageError = () => {
-    // If fallbackSrc exists and we haven't tried it yet, try fallbackSrc
     if (fallbackSrc && currentSrc !== fallbackSrc) {
       console.warn(`[ChapterImage] Page ${pageNumber} primary URL failed. Switching to fallback.`);
       setCurrentSrc(fallbackSrc);
       return;
     }
 
-    // Auto retry up to 3 times
     if (retryCount < 3) {
       const nextRetry = retryCount + 1;
       setRetryCount(nextRetry);
@@ -40,7 +45,6 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
       console.warn(`[ChapterImage] Page ${pageNumber} load error. Auto retry ${nextRetry}/3...`);
 
       setTimeout(() => {
-        // Append cache-buster query parameter to force reload
         const cacheBuster = `?retry=${Date.now()}`;
         const base = fallbackSrc || src;
         const newUrl = base.includes("?") ? `${base}&retry=${Date.now()}` : `${base}${cacheBuster}`;
@@ -74,13 +78,15 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
   };
 
   return (
-    <div className="relative w-full bg-zinc-950 flex flex-col items-center justify-center min-h-[300px] border-b border-zinc-900/50">
+    <div
+      className="relative w-full bg-zinc-950 flex flex-col items-center justify-center min-h-[300px] [content-visibility:auto] [contain-intrinsic-size:auto_800px_1200px]"
+    >
       {/* Skeleton / Loading indicator */}
       {!loaded && !error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900/80 backdrop-blur-xs text-zinc-400 gap-2 p-6 z-10">
-          <div className="w-8 h-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900/60 text-zinc-400 gap-2 p-6 z-10">
+          <div className="w-7 h-7 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
           <span className="text-xs font-medium text-zinc-400">
-            {isRetrying ? `Mencoba ulang halaman ${pageNumber}...` : `Memuat halaman ${pageNumber}...`}
+            {isRetrying ? `Mencoba ulang hal. ${pageNumber}...` : `Memuat hal. ${pageNumber}...`}
           </span>
         </div>
       )}
@@ -110,7 +116,7 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "auto"}
-          decoding={priority ? "sync" : "async"}
+          decoding="async"
           referrerPolicy="no-referrer"
           onLoad={handleImageLoad}
           onError={handleImageError}
@@ -121,7 +127,7 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
             object-contain
             select-none
             transition-opacity
-            duration-300
+            duration-200
             ${loaded ? "opacity-100" : "opacity-0"}
           `}
         />
@@ -129,3 +135,5 @@ export function ChapterImage({ src, fallbackSrc, alt, pageNumber, priority, onLo
     </div>
   );
 }
+
+export const ChapterImage = memo(ChapterImageComponent);

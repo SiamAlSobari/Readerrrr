@@ -1,10 +1,10 @@
-import { ApiResponse, Comic } from "@/common/interface";
-import { API_URL } from "@/common/utils/env";
+import { searchComicServer } from "@/api/servers/shinigami.server";
 import BaseComicCard from "@/features/comic/BaseComicCard";
 import BaseComicCardSkeleton from "@/features/comic/BaseComicCardSkeleton";
 import { Button } from "@/common/shadcn-ui/button";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Search as SearchIcon, Frown } from "lucide-react";
 import { JsonLd } from "@/common/components/JsonLd";
@@ -50,6 +50,7 @@ const PAGE_SIZE = 12;
 function RouteComponent() {
   const { q } = Route.useSearch();
   const [page, setPage] = useState(1);
+  const fetchSearch = useServerFn(searchComicServer);
 
   const {
     data,
@@ -58,14 +59,13 @@ function RouteComponent() {
   } = useQuery({
     queryKey: ["search", q, page],
     queryFn: async () => {
-      if (!q.trim()) return { data: [], meta: { page: 1, total_page: 1, total_data: 0 } } as ApiResponse<Comic>;
-      const url = `${API_URL}/manga/list?page=${page}&page_size=${PAGE_SIZE}&q=${encodeURIComponent(q)}`;
-      const res = await fetch(url);
-      const json = await res.json();
-      return json as ApiResponse<Comic>;
+      if (!q.trim()) return { data: [], meta: { page: 1, total_page: 1, total_data: 0 } };
+      const res = await fetchSearch({ data: { q: q.trim(), page, pageSize: PAGE_SIZE } });
+      return res.data;
     },
     enabled: !!q.trim(),
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5,
   });
 
   const comics = data?.data ?? [];

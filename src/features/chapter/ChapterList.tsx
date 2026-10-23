@@ -15,7 +15,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getChapterList } from "@/api/servers/shinigami.server";
 import { getLastReadChapter } from "@/common/utils/chapter-history";
-import { useState, useMemo } from "react";
+import { filterAndRankChapters } from "@/common/utils/chapter-filter";
+import { useState, useMemo, useEffect } from "react";
 
 interface Chapter {
   chapter_id: string;
@@ -43,6 +44,7 @@ export function ChapterList({
   const [filterQuery, setFilterQuery] = useState("");
   const [dialogFilterQuery, setDialogFilterQuery] = useState("");
   const [sortAsc, setSortAsc] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const totalPages = meta.total_page;
 
@@ -74,14 +76,14 @@ export function ChapterList({
         data: {
           comicId,
           page: pageParam,
-          pageSize: 50,
+          pageSize: 100, // Load more per batch for faster search
         },
       }),
     getNextPageParam: (lastPage) => {
       const metaData = lastPage.data.meta;
       return metaData.page < metaData.total_page ? metaData.page + 1 : undefined;
     },
-    enabled: false,
+    enabled: isDialogOpen,
   });
 
   const rawDialogChapters = useMemo(
@@ -89,32 +91,32 @@ export function ChapterList({
     [data]
   );
 
+  // Auto-fetch remaining chapters in modal if searching for a chapter not yet loaded
+  useEffect(() => {
+    if (!isDialogOpen) return;
+    const clean = dialogFilterQuery.trim().toLowerCase().replace(/^(ch(apter)?\.?\s*|#)/i, "").trim();
+    if (!clean) return;
+
+    const targetNum = Number(clean);
+    const isNum = !isNaN(targetNum);
+
+    const hasMatch = isNum
+      ? rawDialogChapters.some((ch) => ch.chapter_number === targetNum)
+      : rawDialogChapters.some((ch) => String(ch.chapter_number).startsWith(clean));
+
+    // If exact or prefix match is not in currently loaded chapters and more pages exist, fetch next
+    if (!hasMatch && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [dialogFilterQuery, isDialogOpen, rawDialogChapters, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  // Intelligent relevance filtering & ranking
   const filteredChapters = useMemo(() => {
-    let list = [...chapters];
-    if (filterQuery.trim()) {
-      const q = filterQuery.trim().toLowerCase();
-      list = list.filter((ch) => `ch ${ch.chapter_number}`.includes(q) || `${ch.chapter_number}`.includes(q));
-    }
-    if (sortAsc) {
-      list.sort((a, b) => a.chapter_number - b.chapter_number);
-    } else {
-      list.sort((a, b) => b.chapter_number - a.chapter_number);
-    }
-    return list;
+    return filterAndRankChapters(chapters, filterQuery, sortAsc);
   }, [chapters, filterQuery, sortAsc]);
 
   const filteredDialogChapters = useMemo(() => {
-    let list = [...rawDialogChapters];
-    if (dialogFilterQuery.trim()) {
-      const q = dialogFilterQuery.trim().toLowerCase();
-      list = list.filter((ch) => `ch ${ch.chapter_number}`.includes(q) || `${ch.chapter_number}`.includes(q));
-    }
-    if (sortAsc) {
-      list.sort((a, b) => a.chapter_number - b.chapter_number);
-    } else {
-      list.sort((a, b) => b.chapter_number - a.chapter_number);
-    }
-    return list;
+    return filterAndRankChapters(rawDialogChapters, dialogFilterQuery, sortAsc);
   }, [rawDialogChapters, dialogFilterQuery, sortAsc]);
 
   const lastRead = getLastReadChapter(comicId);
@@ -140,7 +142,7 @@ export function ChapterList({
               type="text"
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
-              placeholder="Cari Ch..."
+              placeholder="Cari Ch (misal: 1)..."
               className="w-full pl-9 pr-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500/50"
             />
           </div>
@@ -197,8 +199,19 @@ export function ChapterList({
       {/* MAIN LIST */}
       <div className="space-y-2.5">
         {filteredChapters.length === 0 ? (
-          <div className="text-center py-10 text-zinc-500 text-sm">
-            Tidak ada chapter yang cocok dengan "{filterQuery}".
+          <div className="text-center py-10 text-zinc-500 text-sm space-y-3 bg-zinc-900/30 rounded-2xl border border-zinc-800/60 p-6">
+            <p>Tidak ada chapter yang cocok dengan "{filterQuery}" di halaman ini.</p>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="rounded-xl bg-red-500/10 hover:bg-red-500 hover:text-white border border-red-500/20 text-red-400 font-semibold text-xs"
+              onClick={() => {
+                setDialogFilterQuery(filterQuery);
+                setIsDialogOpen(true);
+              }}
+            >
+              Cari "{filterQuery}" di Semua Chapter ({meta.total_data})
+            </Button>
           </div>
         ) : (
           filteredChapters.map((ch) => {
@@ -279,11 +292,8 @@ export function ChapterList({
 
         {/* ALL CHAPTERS DIALOG */}
         <Dialog
-          onOpenChange={(open) => {
-            if (open && rawDialogChapters.length === 0) {
-              fetchNextPage();
-            }
-          }}
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
         >
           <DialogTrigger asChild>
             <Button
@@ -311,7 +321,7 @@ export function ChapterList({
                 type="text"
                 value={dialogFilterQuery}
                 onChange={(e) => setDialogFilterQuery(e.target.value)}
-                placeholder="Ketik nomor chapter (misal: 15)..."
+                placeholder="Ketik nomor chapter (misal: 1 atau 15)..."
                 className="w-full pl-9 pr-3 py-2 bg-zinc-950 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500/50"
               />
             </div>
@@ -326,30 +336,36 @@ export function ChapterList({
                 }
               }}
             >
-              {filteredDialogChapters.map((ch) => (
-                <Link
-                  to="/read/$comicId/$chapterId"
-                  key={ch.chapter_id}
-                  params={{ comicId, chapterId: ch.chapter_id }}
-                  className="flex items-center justify-between rounded-xl p-3 bg-zinc-950/50 hover:bg-zinc-800/80 border border-zinc-850 hover:border-zinc-700 transition-colors"
-                >
-                  <span className="text-sm font-semibold text-white">
-                    Chapter {ch.chapter_number}
-                  </span>
-                  <span className="text-xs text-zinc-500">
-                    {new Date(ch.release_date).toLocaleDateString("id-ID", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
-                </Link>
-              ))}
+              {filteredDialogChapters.length === 0 && !isLoading && !isFetchingNextPage ? (
+                <div className="py-8 text-center text-xs text-zinc-500">
+                  Tidak ada chapter yang cocok dengan "{dialogFilterQuery}".
+                </div>
+              ) : (
+                filteredDialogChapters.map((ch) => (
+                  <Link
+                    to="/read/$comicId/$chapterId"
+                    key={ch.chapter_id}
+                    params={{ comicId, chapterId: ch.chapter_id }}
+                    className="flex items-center justify-between rounded-xl p-3 bg-zinc-950/50 hover:bg-zinc-800/80 border border-zinc-850 hover:border-zinc-700 transition-colors"
+                  >
+                    <span className="text-sm font-semibold text-white">
+                      Chapter {ch.chapter_number}
+                    </span>
+                    <span className="text-xs text-zinc-500">
+                      {new Date(ch.release_date).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                  </Link>
+                ))
+              )}
 
               {(isLoading || isFetchingNextPage) && (
                 <div className="py-4 text-center text-xs text-zinc-400 flex items-center justify-center gap-2">
                   <div className="w-3.5 h-3.5 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
-                  <span>Memuat chapter berikutnya...</span>
+                  <span>Mencari & memuat chapter...</span>
                 </div>
               )}
             </div>

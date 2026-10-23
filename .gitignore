@@ -11,3 +11,8 @@ count.txt
 .output
 .vinxi
 todos.json
+archify-*
+qa-report.md
+mnemo.json
+test-reports/
+artifacts/

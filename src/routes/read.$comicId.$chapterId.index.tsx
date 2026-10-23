@@ -3,17 +3,36 @@ import { Button } from "@/common/shadcn-ui/button";
 import { setChapterHistory } from "@/common/utils/chapter-history";
 import { ChapterImage } from "@/features/chapter/ChapterImage";
 import ChapterNavigation from "@/features/chapter/ChapterNavigation";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Play, Pause, Sparkles, Image as ImageIcon } from "lucide-react";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Play, Pause, Image as ImageIcon } from "lucide-react";
+import { useEffect, useState, useRef, useCallback, memo } from "react";
 import { JsonLd } from "@/common/components/JsonLd";
 
 const SITE_URL = "https://komik-reader.my.id";
 
+const queryChapter = (chapterId: string) =>
+  queryOptions({
+    queryKey: ["chapter", chapterId],
+    queryFn: () => getChapterDetail({ data: { chapterId } }),
+    staleTime: 1000 * 60 * 60, // 1 jam
+  });
+
+const queryComic = (comicId: string) =>
+  queryOptions({
+    queryKey: ["comic", comicId],
+    queryFn: () => getComicDetail({ data: { comicId } }),
+    staleTime: 1000 * 60 * 30, // 30 menit
+  });
+
 export const Route = createFileRoute("/read/$comicId/$chapterId/")({
-  component: ReadChapterPage,
+  loader: async ({ context, params }) => {
+    await Promise.all([
+      context.queryClient.ensureQueryData(queryChapter(params.chapterId)),
+      context.queryClient.ensureQueryData(queryComic(params.comicId)),
+    ]);
+  },
   head: ({ params, match }) => ({
     meta: [
       {
@@ -40,29 +59,139 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
     ],
     title: `Chapter ${params.chapterId} - Baca KOMIK Online | KOMIK READER`,
   }),
+  component: ReadChapterPage,
+});
+
+/**
+ * Isolated Progress Bar Component: Updates independently without re-rendering chapter images
+ */
+const ReadingProgressBar = memo(function ReadingProgressBar() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0) {
+            const p = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+            setProgress(p);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="fixed top-0 left-0 right-0 h-1 bg-zinc-900 z-50 pointer-events-none">
+      <div
+        className="h-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 transition-all duration-100 ease-out"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  );
+});
+
+/**
+ * Isolated Floating Action Bar: Shows reading percentage and controls without re-rendering parent
+ */
+interface FloatingActionBarProps {
+  comicId: string;
+  prevChapterId?: string | null;
+  nextChapterId?: string | null;
+  onPreloadNext?: () => void;
+  scrollToTop: () => void;
+}
+
+const FloatingActionBar = memo(function FloatingActionBar({
+  comicId,
+  prevChapterId,
+  nextChapterId,
+  onPreloadNext,
+  scrollToTop,
+}: FloatingActionBarProps) {
+  const navigate = useNavigate();
+  const [readingProgress, setReadingProgress] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0) {
+            const p = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+            setReadingProgress(p);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-zinc-900/90 border border-zinc-800 backdrop-blur-md px-3 py-2 rounded-2xl shadow-2xl">
+      <span className="text-xs font-semibold text-zinc-300 px-2 min-w-9 text-center">
+        {readingProgress}%
+      </span>
+
+      {prevChapterId && (
+        <button
+          onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: prevChapterId } })}
+          className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors"
+          title="Chapter Sebelumnya"
+          aria-label="Chapter Sebelumnya"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+      )}
+
+      {nextChapterId && (
+        <button
+          onMouseEnter={onPreloadNext}
+          onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: nextChapterId } })}
+          className="p-2 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors font-bold"
+          title="Chapter Selanjutnya"
+          aria-label="Chapter Selanjutnya"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      )}
+
+      <button
+        onClick={scrollToTop}
+        className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 ml-1"
+        title="Kembali ke atas"
+        aria-label="Kembali ke atas"
+      >
+        <ArrowUp className="w-4 h-4" />
+      </button>
+    </div>
+  );
 });
 
 function ReadChapterPage() {
   const { comicId, chapterId } = Route.useParams();
-  const chapterDetail = useServerFn(getChapterDetail);
-  const comicDetail = useServerFn(getComicDetail);
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const [useHighQuality, setUseHighQuality] = useState(false);
-  const [readingProgress, setReadingProgress] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-  const [autoScrollSpeed, setAutoScrollSpeed] = useState(2); // pixels per frame
+  const [autoScrollSpeed] = useState(2); // pixels per frame
   const autoScrollRef = useRef<number | null>(null);
 
-  const { data: chapter, isLoading: isChapterLoading } = useQuery({
-    queryKey: ["chapter", chapterId],
-    queryFn: () => chapterDetail({ data: { chapterId } }),
-  });
-
-  const { data: comic } = useQuery({
-    queryKey: ["comic", comicId],
-    queryFn: () => comicDetail({ data: { comicId } }),
-  });
+  const { data: chapter, isLoading: isChapterLoading } = useQuery(queryChapter(chapterId));
+  const { data: comic } = useQuery(queryComic(comicId));
 
   const chapterData = chapter?.data?.data;
   const comicData = comic?.data?.data;
@@ -78,37 +207,45 @@ function ReadChapterPage() {
       comic_title: comicData?.title,
       comic_cover_url: comicData?.cover_portrait_url || comicData?.cover_image_url,
     });
-  }, [chapterData, comicData, comicId, chapterId]);
+  }, [chapterData, comicData, comicId]);
 
-  // Track Reading Progress
+  // Preload next chapter query data in background
   useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        const currentProgress = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
-        setReadingProgress(currentProgress);
-      }
-    };
+    if (chapterData?.next_chapter_id) {
+      queryClient.prefetchQuery(queryChapter(chapterData.next_chapter_id));
+    }
+  }, [chapterData?.next_chapter_id, queryClient]);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Preload adjacent images
+  // Preload initial 5 images immediately
   useEffect(() => {
     if (!chapterData?.chapter?.data) return;
     const images = chapterData.chapter.data;
     const baseUrl = useHighQuality ? chapterData.base_url : chapterData.base_url_low;
     const path = chapterData.chapter.path;
 
-    // Preload first 5 images immediately
     images.slice(0, 5).forEach(img => {
       const imgObj = new Image();
       imgObj.src = `${baseUrl}${path}${img}`;
     });
   }, [chapterData, useHighQuality]);
 
-  // Auto Scroll Loop
+  // Preload next chapter images on demand (e.g. hover next button)
+  const handlePreloadNextChapter = useCallback(() => {
+    if (!chapterData?.next_chapter_id) return;
+    queryClient.prefetchQuery(queryChapter(chapterData.next_chapter_id)).then((data: any) => {
+      const nextImages = data?.data?.data?.chapter?.data;
+      const nextBase = useHighQuality ? data?.data?.data?.base_url : data?.data?.data?.base_url_low;
+      const nextPath = data?.data?.data?.chapter?.path;
+      if (nextImages && nextBase && nextPath) {
+        nextImages.slice(0, 3).forEach((img: string) => {
+          const preloadImg = new Image();
+          preloadImg.src = `${nextBase}${nextPath}${img}`;
+        });
+      }
+    });
+  }, [chapterData?.next_chapter_id, queryClient, useHighQuality]);
+
+  // Auto Scroll Loop (runs cleanly on requestAnimationFrame)
   const startAutoScroll = useCallback(() => {
     if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
     const scrollStep = () => {
@@ -153,9 +290,9 @@ function ReadChapterPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [chapterData, comicId, navigate]);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
   const imagesList = chapterData?.chapter?.data ?? [];
   const primaryBaseUrl = useHighQuality ? chapterData?.base_url : chapterData?.base_url_low;
@@ -164,13 +301,8 @@ function ReadChapterPage() {
 
   return (
     <div className="bg-black text-white min-h-screen relative selection:bg-red-500 selection:text-white">
-      {/* READING PROGRESS BAR */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-zinc-900 z-50">
-        <div
-          className="h-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 transition-all duration-150"
-          style={{ width: `${readingProgress}%` }}
-        />
-      </div>
+      {/* READING PROGRESS BAR (ISOLATED) */}
+      <ReadingProgressBar />
 
       {/* SEO STRUCTURED DATA */}
       {chapterData && (
@@ -207,7 +339,6 @@ function ReadChapterPage() {
       {/* TOP CHAPTER NAVIGATION */}
       {chapterData && (
         <ChapterNavigation
-          key={chapterData.chapter_id}
           comicId={comicId}
           chapter={chapterData}
         />
@@ -304,50 +435,20 @@ function ReadChapterPage() {
       {chapterData && (
         <div className="mt-8 pb-16">
           <ChapterNavigation
-            key={chapterData.chapter_id}
             comicId={comicId}
             chapter={chapterData}
           />
         </div>
       )}
 
-      {/* FLOATING ACTION BAR */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-zinc-900/90 border border-zinc-800 backdrop-blur-md px-3 py-2 rounded-2xl shadow-2xl">
-        <span className="text-xs font-semibold text-zinc-300 px-2">
-          {readingProgress}%
-        </span>
-
-        {chapterData?.prev_chapter_id && (
-          <button
-            onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.prev_chapter_id! } })}
-            className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors"
-            title="Chapter Sebelumnya"
-            aria-label="Chapter Sebelumnya"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-        )}
-
-        {chapterData?.next_chapter_id && (
-          <button
-            onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: chapterData.next_chapter_id! } })}
-            className="p-2 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors font-bold"
-            title="Chapter Selanjutnya"
-            aria-label="Chapter Selanjutnya"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        )}
-
-        <button
-          onClick={scrollToTop}
-          className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 ml-1"
-          title="Kembali ke atas"
-          aria-label="Kembali ke atas"
-        >
-          <ArrowUp className="w-4 h-4" />
-        </button>
-      </div>
+      {/* FLOATING ACTION BAR (ISOLATED) */}
+      <FloatingActionBar
+        comicId={comicId}
+        prevChapterId={chapterData?.prev_chapter_id}
+        nextChapterId={chapterData?.next_chapter_id}
+        onPreloadNext={handlePreloadNextChapter}
+        scrollToTop={scrollToTop}
+      />
     </div>
   );
 }

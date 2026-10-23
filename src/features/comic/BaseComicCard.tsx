@@ -1,26 +1,26 @@
 import { Comic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
 import { Clock, Star } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface Props {
   comic: Comic;
 }
 
-export default function BaseComicCard({ comic }: Props) {
+const COUNTRY_MAP: Record<
+  string,
+  { label: string; flag: string; color: string }
+> = {
+  KR: { label: "Manhwa", flag: "🇰🇷", color: "text-green-400" },
+  JP: { label: "Manga", flag: "🇯🇵", color: "text-blue-400" },
+  CN: { label: "Manhua", flag: "🇨🇳", color: "text-red-400" },
+};
+
+function BaseComicCardComponent({ comic }: Props) {
   const [imgError, setImgError] = useState(false);
 
   const genres = comic.taxonomy.Genre?.slice(0, 3) ?? [];
   const extraGenreCount = (comic.taxonomy.Genre?.length ?? 0) - genres.length;
-  const COUNTRY_MAP: Record<
-    string,
-    { label: string; flag: string; color: string }
-  > = {
-    KR: { label: "Manhwa", flag: "🇰🇷", color: "text-green-400" },
-    JP: { label: "Manga", flag: "🇯🇵", color: "text-blue-400" },
-    CN: { label: "Manhua", flag: "🇨🇳", color: "text-red-400" },
-  };
   const country = COUNTRY_MAP[comic.country_id];
 
   return (
@@ -29,10 +29,8 @@ export default function BaseComicCard({ comic }: Props) {
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
     >
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.2 }}
-        className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-900 via-zinc-900 to-black border border-zinc-800/60 hover:border-zinc-700 transition-all duration-300 hover:shadow-2xl hover:shadow-black/60"
+      <div
+        className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-900 via-zinc-900 to-black border border-zinc-800/60 hover:border-zinc-700 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60"
       >
         {/* Cover */}
         <div className="relative h-64 overflow-hidden bg-zinc-850">
@@ -123,7 +121,10 @@ export default function BaseComicCard({ comic }: Props) {
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </Link>
   );
 }
+
+const BaseComicCard = memo(BaseComicCardComponent);
+export default BaseComicCard;

@@ -1,22 +1,21 @@
 import { PopularComic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
 import { Clock, Star, TrendingUp, Eye, Bookmark } from "lucide-react";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface Props {
   comic: PopularComic;
 }
 
-export default function PopularComicCard({ comic }: Props) {
+const COUNTRY_MAP = {
+  KR: { label: "Manhwa", flag: "🇰🇷", color: "text-emerald-400" },
+  JP: { label: "Manga", flag: "🇯🇵", color: "text-sky-400" },
+  CN: { label: "Manhua", flag: "🇨🇳", color: "text-rose-400" },
+} as const;
+
+function PopularComicCardComponent({ comic }: Props) {
   const [imgError, setImgError] = useState(false);
-
-  const COUNTRY_MAP = {
-    KR: { label: "Manhwa", flag: "🇰🇷", color: "text-emerald-400" },
-    JP: { label: "Manga", flag: "🇯🇵", color: "text-sky-400" },
-    CN: { label: "Manhua", flag: "🇨🇳", color: "text-rose-400" },
-  } as const;
-
-  const country = COUNTRY_MAP[comic.country_id];
+  const country = COUNTRY_MAP[comic.country_id as keyof typeof COUNTRY_MAP];
 
   return (
     <Link
@@ -24,7 +23,7 @@ export default function PopularComicCard({ comic }: Props) {
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
     >
-      <div className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/50">
+      <div className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/50">
         {/* Cover */}
         <div className="relative h-52 overflow-hidden bg-zinc-850">
           {!imgError && comic.cover_image_url ? (
@@ -104,3 +103,6 @@ export default function PopularComicCard({ comic }: Props) {
     </Link>
   );
 }
+
+const PopularComicCard = memo(PopularComicCardComponent);
+export default PopularComicCard;

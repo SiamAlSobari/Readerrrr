@@ -3,12 +3,9 @@ import {
   Scripts,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { TanStackDevtools } from "@tanstack/react-devtools";
 import { inject } from "@vercel/analytics";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
-
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
@@ -20,6 +17,28 @@ interface MyRouterContext {
 }
 
 const SITE_URL = "https://komik-reader.my.id";
+
+const DevtoolsComponent = import.meta.env.DEV
+  ? React.lazy(() =>
+      Promise.all([
+        import("@tanstack/react-devtools"),
+        import("@tanstack/react-router-devtools"),
+      ]).then(([devtools, routerDevtools]) => ({
+        default: () => (
+          <devtools.TanStackDevtools
+            config={{ position: "bottom-right" }}
+            plugins={[
+              {
+                name: "Tanstack Router",
+                render: <routerDevtools.TanStackRouterDevtoolsPanel />,
+              },
+              TanStackQueryDevtools,
+            ]}
+          />
+        ),
+      }))
+    )
+  : () => null;
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   head: ({ match }) => {
@@ -119,18 +138,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
+        {import.meta.env.DEV && (
+          <Suspense fallback={null}>
+            <DevtoolsComponent />
+          </Suspense>
+        )}
         <Scripts />
       </body>
     </html>

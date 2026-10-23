@@ -1,15 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, memo } from "react";
 import { Button } from "@/common/shadcn-ui/button";
 import { Badge } from "@/common/shadcn-ui/badge";
 import { Eye, BookOpen, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { useQuery } from "@tanstack/react-query";
-import type { ApiResponse, UpdateComic } from "@/common/interface";
-import { API_URL } from "@/common/utils/env";
+import type { UpdateComic } from "@/common/interface";
 import { JsonLd } from "@/common/components/JsonLd";
+import { getComicUpdate } from "@/api/servers/shinigami.server";
+import { useServerFn } from "@tanstack/react-start";
 
 const SITE_URL = "https://komik-reader.my.id";
 
@@ -54,15 +54,13 @@ export const Route = createFileRoute("/_main/update/")({
   }),
 });
 
-function ComicCard({ comic }: { comic: UpdateComic }) {
+const ComicCard = memo(function ComicCard({ comic }: { comic: UpdateComic }) {
   const navigate = useNavigate();
   const [imgError, setImgError] = useState(false);
 
   return (
-    <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.2 }}
-      className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-300 shadow-md hover:shadow-xl"
+    <div
+      className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1.5"
     >
       {/* Cover */}
       <div className="aspect-3/4 w-full overflow-hidden bg-zinc-850 relative">
@@ -143,31 +141,28 @@ function ComicCard({ comic }: { comic: UpdateComic }) {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-}
+});
 
 function RouteComponent() {
   const [type, setType] = useState<"mirror" | "project">("mirror");
   const [page, setPage] = useState(1);
+  const fetchComicUpdate = useServerFn(getComicUpdate);
 
-  const { data: comics, isLoading } = useQuery({
+  const { data: updateResponse, isLoading } = useQuery({
     queryKey: ["comic-update", type, page],
-    queryFn: async () => {
-      const url =
-        `${API_URL}/manga/list` +
-        `?type=${type}` +
-        `&page=${page}` +
-        `&page_size=16` +
-        `&is_update=true` +
-        `&sort=latest` +
-        `&sort_order=desc`;
-
-      const res = await fetch(url);
-      const json = await res.json();
-      return json as ApiResponse<UpdateComic>;
-    },
+    queryFn: () =>
+      fetchComicUpdate({
+        data: {
+          type,
+          page,
+          pageSize: 16,
+        },
+      }),
   });
+
+  const comics = updateResponse?.data;
 
   return (
     <div className="min-h-screen container mx-auto px-4 py-6">
@@ -198,11 +193,11 @@ function RouteComponent() {
                 type === "mirror" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
               }`}
               onClick={() => {
-                setPage(1);
                 setType("mirror");
+                setPage(1);
               }}
             >
-              Mirror Comic
+              Mirror (Rilis Cepat)
             </Button>
 
             <Button
@@ -211,41 +206,42 @@ function RouteComponent() {
                 type === "project" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
               }`}
               onClick={() => {
-                setPage(1);
                 setType("project");
+                setPage(1);
               }}
             >
-              Project Comic
+              Project (Official TL)
             </Button>
           </div>
         </aside>
 
-        {/* ========== CONTENT ========== */}
+        {/* ========== MAIN CONTENT ========== */}
         <div className="flex-1 space-y-6">
+          <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+            <h1 className="text-xl font-extrabold text-white">
+              Daftar Update Komik
+            </h1>
+            <span className="text-xs text-zinc-400">
+              {type === "mirror" ? "Sumber: Mirror" : "Sumber: Project"}
+            </span>
+          </div>
+
+          {/* Cards Grid */}
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-              {[...Array(10)].map((_, i) => (
+              {Array.from({ length: 15 }).map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-3/4 rounded-2xl bg-zinc-850 animate-pulse"
+                  className="aspect-3/4 rounded-2xl bg-zinc-850 animate-pulse border border-zinc-800/80"
                 />
               ))}
             </div>
           ) : (
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${type}-${page}`}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.2 }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4"
-              >
-                {comics?.data.map((comic: UpdateComic) => (
-                  <ComicCard key={comic.manga_id} comic={comic} />
-                ))}
-              </motion.div>
-            </AnimatePresence>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+              {comics?.data.map((comic: UpdateComic) => (
+                <ComicCard key={comic.manga_id} comic={comic} />
+              ))}
+            </div>
           )}
 
           <div className="flex justify-center items-center gap-3 pt-4">

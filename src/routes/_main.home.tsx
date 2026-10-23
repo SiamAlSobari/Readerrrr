@@ -36,7 +36,7 @@ const queryPopularComic = queryOptions({
 });
 const queryUpdateComic = queryOptions({
   queryKey: ["update"],
-  queryFn: () => getComicUpdate(),
+  queryFn: () => getComicUpdate({ data: { type: "mirror", page: 1, pageSize: 6 } }),
 });
 
 export const Route = createFileRoute("/_main/home")({

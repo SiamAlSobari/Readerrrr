@@ -7,11 +7,12 @@ import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 const config = defineConfig({
   plugins: [
-    devtools(),
+    ...(isDev ? [devtools()] : []),
     nitro(),
-    // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
     }),
@@ -21,6 +22,12 @@ const config = defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,
+      outDir: '.output/public',
+      workbox: {
+        globDirectory: '.output/public',
+        globPatterns: ['**/*.{js,css,ico,png,svg,webmanifest}'],
+        navigateFallback: null,
+      },
       manifest: {
         name: 'KOMIK READER',
         short_name: 'KomikReader',
@@ -43,6 +50,32 @@ const config = defineConfig({
       }
     })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react/') || id.includes('react-dom/')) {
+              return 'vendor-react'
+            }
+            if (id.includes('@tanstack/react-query')) {
+              return 'vendor-query'
+            }
+            if (id.includes('@tanstack/react-router')) {
+              return 'vendor-router'
+            }
+            if (id.includes('lucide-react')) {
+              return 'vendor-icons'
+            }
+            if (id.includes('date-fns')) {
+              return 'vendor-date'
+            }
+          }
+        }
+      }
+    },
+    chunkSizeWarningLimit: 800,
+  }
 })
 
 export default config

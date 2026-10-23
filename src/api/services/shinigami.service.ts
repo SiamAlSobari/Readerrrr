@@ -139,6 +139,21 @@ class ShinigamiService {
         await this.safeSetCache(cacheKey, res.data, 21600); // 6 jam
         return res.data;
     }
+
+    public async searchComic(q: string, page: number = 1, pageSize: number = 12) {
+        if (!q || !q.trim()) {
+            return { data: [], meta: { page: 1, total_page: 1, total_data: 0 } } as ApiResponse<Comic>;
+        }
+        const cacheKey = `comic_search_${encodeURIComponent(q.trim())}_${page}_${pageSize}`;
+        const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
+        if (cached) return cached;
+
+        const res: { data: ApiResponse<Comic> } = await this.client.get(
+            `${getEnv().API_URL}/manga/list?page=${page}&page_size=${pageSize}&q=${encodeURIComponent(q.trim())}`
+        );
+        await this.safeSetCache(cacheKey, res.data, 3600); // 1 jam
+        return res.data;
+    }
 }
 
 export const shinigamiService = new ShinigamiService();
