@@ -57,7 +57,7 @@ export const Route = createFileRoute("/_main/home")({
       },
       { name: "author", content: "KOMIK READER" },
 
-      { property: "og:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
+      { property: "og:title", content: "Katalog Komik & Rekomendasi Terpopuler – KOMIK READER" },
       {
         property: "og:description",
         content:
@@ -68,7 +68,7 @@ export const Route = createFileRoute("/_main/home")({
       { property: "og:image", content: "/komik_reader.png" },
 
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
+      { name: "twitter:title", content: "Katalog Komik & Rekomendasi Terpopuler – KOMIK READER" },
       {
         name: "twitter:description",
         content:
@@ -76,7 +76,7 @@ export const Route = createFileRoute("/_main/home")({
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
-    title: "KOMIK READER – Baca KOMIK Online Gratis",
+    title: "Katalog Komik & Rekomendasi Terpopuler – KOMIK READER",
   }),
   loader: async ({ context }) => {
     await Promise.all([
@@ -121,6 +121,9 @@ function RouteComponent() {
       transition={{ duration: 0.4 }}
       className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden"
     >
+      {/* Primary H1 for SEO */}
+      <h1 className="sr-only">KOMIK READER – Baca Manga, Manhwa, dan Manhua Online Bahasa Indonesia Gratis</h1>
+
       {/* Hero Section */}
       <HeroSection comics={popularComic?.data.data ?? []} />
 

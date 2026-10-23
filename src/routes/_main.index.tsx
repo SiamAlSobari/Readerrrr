@@ -36,7 +36,7 @@ export const Route = createFileRoute("/_main/")({
       },
       { name: "author", content: "KOMIK READER" },
 
-      { property: "og:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
+      { property: "og:title", content: "KOMIK READER – Platform Baca Manga, Manhwa & Manhua Online Gratis" },
       {
         property: "og:description",
         content:
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/_main/")({
       { property: "og:image", content: "/komik_reader.png" },
 
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "KOMIK READER – Baca KOMIK Online Gratis" },
+      { name: "twitter:title", content: "KOMIK READER – Platform Baca Manga, Manhwa & Manhua Online Gratis" },
       {
         name: "twitter:description",
         content:
@@ -55,7 +55,7 @@ export const Route = createFileRoute("/_main/")({
       },
       { name: "twitter:image", content: "/komik_reader.png" },
     ],
-    title: "KOMIK READER – Baca KOMIK Online Gratis",
+    title: "KOMIK READER – Platform Baca Manga, Manhwa & Manhua Online Gratis",
   }),
 });
 

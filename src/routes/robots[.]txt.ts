@@ -7,13 +7,14 @@ export const Route = createFileRoute('/robots.txt')({
         const robots = `User-agent: *
 Allow: /
 Disallow: /search
-Crawl-Delay: 10
+Disallow: /history
 
 Sitemap: https://komik-reader.my.id/sitemap.xml`
 
         return new Response(robots, {
           headers: {
             'Content-Type': 'text/plain',
+            'Cache-Control': 'public, max-age=86400, s-maxage=86400',
           },
         })
       },

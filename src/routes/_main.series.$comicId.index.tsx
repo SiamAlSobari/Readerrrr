@@ -56,6 +56,9 @@ export const Route = createFileRoute('/_main/series/$comicId/')({
         { name: "twitter:description", content: description },
         ...(comic.cover_image_url ? [{ name: "twitter:image" as const, content: comic.cover_image_url }] : []),
       ],
+      links: [
+        { rel: "canonical", href: `${SITE_URL}/series/${params.comicId}` },
+      ],
       title,
     };
   },
@@ -76,7 +79,13 @@ function RouteComponent() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "Book",
+          "@type": "ComicSeries",
+          inLanguage: "id-ID",
+          publisher: {
+            "@type": "Organization",
+            name: "KOMIK READER",
+            url: SITE_URL,
+          },
           name: comic.title,
           alternateName: comic.alternative_title || undefined,
           description: comic.description?.slice(0, 500),

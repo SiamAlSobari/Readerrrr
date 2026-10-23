@@ -74,9 +74,9 @@ export default function HeroSlider({ comics }: Props) {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight text-white line-clamp-2">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight text-white line-clamp-2">
                   {comic.title}
-                </h1>
+                </h2>
 
                 {/* Description */}
                 {comic.description && (

@@ -5,7 +5,6 @@ import { ChapterImage } from "@/features/chapter/ChapterImage";
 import ChapterNavigation from "@/features/chapter/ChapterNavigation";
 import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Play, Pause, Image as ImageIcon } from "lucide-react";
 import { useEffect, useState, useRef, useCallback, memo } from "react";
 import { JsonLd } from "@/common/components/JsonLd";
@@ -28,37 +27,47 @@ const queryComic = (comicId: string) =>
 
 export const Route = createFileRoute("/read/$comicId/$chapterId/")({
   loader: async ({ context, params }) => {
-    await Promise.all([
+    const [chapter, comic] = await Promise.all([
       context.queryClient.ensureQueryData(queryChapter(params.chapterId)),
       context.queryClient.ensureQueryData(queryComic(params.comicId)),
     ]);
+    return { chapter, comic };
   },
-  head: ({ params, match }) => ({
-    meta: [
-      {
-        name: "description",
-        content: `Baca Chapter ${params.chapterId} KOMIK online gratis Bahasa Indonesia di KOMIK READER. Gambar jernih, load cepat, tanpa iklan mengganggu.`,
-      },
-      {
-        name: "keywords",
-        content: `baca chapter ${params.chapterId}, komik chapter ${params.chapterId}, manhwa chapter ${params.chapterId}, komik online, komik reader`,
-      },
-      { property: "og:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
-      {
-        property: "og:description",
-        content: `Baca Chapter ${params.chapterId} komik online gratis dengan tampilan reader terbaik dan gambar jernih di KOMIK READER.`,
-      },
-      { property: "og:url", content: `${SITE_URL}${match.pathname}` },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: `Chapter ${params.chapterId} - KOMIK READER` },
-      {
-        name: "twitter:description",
-        content: `Baca Chapter ${params.chapterId} komik online gratis di KOMIK READER.`,
-      },
-      { name: "robots", content: "index, follow, max-image-preview:large" },
-    ],
-    title: `Chapter ${params.chapterId} - Baca KOMIK Online | KOMIK READER`,
-  }),
+  head: ({ loaderData, params, match }) => {
+    const comic = loaderData?.comic?.data?.data;
+    const chapter = loaderData?.chapter?.data?.data;
+
+    const comicTitle = comic?.title || params.comicId.replace(/-/g, " ");
+    const chapterNum = chapter?.chapter_number ? `Chapter ${chapter.chapter_number}` : `Chapter ${params.chapterId}`;
+    const coverImage = comic?.cover_portrait_url || comic?.cover_image_url || `${SITE_URL}/komik_reader.png`;
+    const title = `Baca ${comicTitle} ${chapterNum} Bahasa Indonesia | KOMIK READER`;
+    const description = `Baca komik ${comicTitle} ${chapterNum} online gratis bahasa Indonesia di KOMIK READER. Gambar jernih kualitas HD, load cepat, tanpa iklan mengganggu.`;
+    const canonicalUrl = `${SITE_URL}${match.pathname}`;
+
+    return {
+      meta: [
+        { name: "description", content: description },
+        {
+          name: "keywords",
+          content: `baca ${comicTitle} ${chapterNum}, ${comicTitle} ${chapterNum}, komik ${comicTitle}, baca ${comicTitle} bahasa indonesia, baca manhwa online, komik reader`,
+        },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: canonicalUrl },
+        { property: "og:image", content: coverImage },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: coverImage },
+        { name: "robots", content: "index, follow, max-image-preview:large" },
+      ],
+      links: [
+        { rel: "canonical", href: canonicalUrl },
+      ],
+      title,
+    };
+  },
   component: ReadChapterPage,
 });
 
@@ -311,8 +320,9 @@ function ReadChapterPage() {
             data={{
               "@context": "https://schema.org",
               "@type": "ComicIssue",
-              name: `Chapter ${chapterData.chapter_number} - ${chapterData.chapter_title || comicData?.title || ""}`,
+              name: `${comicData?.title || "Komik"} Chapter ${chapterData.chapter_number}`,
               issueNumber: chapterData.chapter_number,
+              inLanguage: "id-ID",
               isPartOf: {
                 "@type": "ComicSeries",
                 name: comicData?.title || "Komik",
@@ -320,6 +330,11 @@ function ReadChapterPage() {
               },
               image: comicData?.cover_portrait_url || comicData?.cover_image_url,
               url: `${SITE_URL}/read/${comicId}/${chapterId}`,
+              publisher: {
+                "@type": "Organization",
+                name: "KOMIK READER",
+                url: SITE_URL,
+              },
             }}
           />
           <JsonLd
@@ -346,10 +361,10 @@ function ReadChapterPage() {
 
       {/* TOOLBAR & CONTROL BAR */}
       <div className="mx-auto w-full max-w-3xl px-4 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-900">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 min-w-0">
           <Button
             variant="secondary"
-            className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 rounded-xl text-xs"
+            className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 rounded-xl text-xs shrink-0"
             onClick={() => {
               navigate({
                 to: "/series/$comicId",
@@ -359,14 +374,13 @@ function ReadChapterPage() {
             }}
           >
             <ArrowLeft className="w-4 h-4" />
-            Detail Komik
+            <span className="hidden sm:inline">Detail Komik</span>
           </Button>
 
-          {chapterData && (
-            <span className="text-xs font-semibold text-zinc-400">
-              Ch. {chapterData.chapter_number}
-            </span>
-          )}
+          {/* PRIMARY H1 FOR SEO */}
+          <h1 className="text-xs sm:text-sm font-extrabold text-white truncate max-w-xs sm:max-w-md">
+            Baca {comicData?.title || comicId} Ch. {chapterData?.chapter_number || chapterId}
+          </h1>
         </div>
 
         {/* CONTROLS */}
@@ -422,7 +436,7 @@ function ReadChapterPage() {
                 key={`${chapterId}-${index}`}
                 src={primaryUrl}
                 fallbackSrc={fallbackUrl}
-                alt={`Halaman ${index + 1} Chapter ${chapterData?.chapter_number || ""}`}
+                alt={`Halaman ${index + 1} Komik ${comicData?.title || ""} Chapter ${chapterData?.chapter_number || ""}`}
                 pageNumber={index + 1}
                 priority={index < 3}
               />

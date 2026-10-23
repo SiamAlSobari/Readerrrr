@@ -20,7 +20,7 @@
   "18": "ioredis",
   "19": "lucide-react",
   "20": "motion",
-  "21": "nitro",
+  "21": "_main.update.index.tsx",
   "22": "@radix-ui/react-dialog",
   "23": "@radix-ui/react-scroll-area",
   "24": "@radix-ui/react-slot",
@@ -37,7 +37,7 @@
   "35": "@tanstack/react-start",
   "36": "@tanstack/react-store",
   "37": "@tanstack/store",
-  "38": "ChapterList.tsx",
+  "38": "_main.series.$comicId.index.tsx",
   "39": "vite-tsconfig-paths",
   "40": "zod",
   "41": "PopularComicCardBaseSkeleton.tsx",
@@ -53,6 +53,8 @@
   "51": "📋 Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
   "52": "📋 Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
   "53": "cheerio",
-  "54": "tailwind-merge",
-  "55": "@vercel/analytics"
+  "54": "react",
+  "55": "axios",
+  "56": "clsx",
+  "57": "@tanstack/router-plugin"
 }

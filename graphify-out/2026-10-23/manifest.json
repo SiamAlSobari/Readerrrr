@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "src/features/chapter/ChapterList.tsx": {
-    "mtime": 1785586143.190451,
-    "ast_hash": "a9aa18e268d2b07af76910f5c09ee20b",
+    "mtime": 1792773918.1975353,
+    "ast_hash": "4d4fb09cedba5a44e235d6e5cb7d0ecf",
     "semantic_hash": ""
   },
   "src/features/chapter/ChapterNavigation.tsx": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "src/routes/_main.history.index.tsx": {
-    "mtime": 1785588804.053503,
-    "ast_hash": "0239f494c1d869339b5c030ce6d91fc0",
+    "mtime": 1792773939.0791762,
+    "ast_hash": "092c5b22f4ddba25a1afcc47c7da2b06",
     "semantic_hash": ""
   },
   "src/routes/_main.home.tsx": {
@@ -692,6 +692,11 @@
   "artifacts/update-page.png": {
     "mtime": 1786725238.6758728,
     "ast_hash": "df13ccfafbb9ab94e5a023d158d9e07b",
+    "semantic_hash": ""
+  },
+  "src/common/utils/chapter-filter.ts": {
+    "mtime": 1792773891.1324446,
+    "ast_hash": "4d417d03a431a1b340022bcb87137e11",
     "semantic_hash": ""
   }
 }

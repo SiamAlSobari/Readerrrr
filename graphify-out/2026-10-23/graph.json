@@ -666,8 +666,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_tanstack_router_plugin",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 57,
+      "community_name": "@tanstack/router-plugin",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -677,8 +677,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tanstack_router_plugin",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 57,
+      "community_name": "@tanstack/router-plugin",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -710,8 +710,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_vercel_analytics",
-      "community": 55,
-      "community_name": "@vercel/analytics",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -721,8 +721,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "vercel_analytics",
-      "community": 55,
-      "community_name": "@vercel/analytics",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -732,8 +732,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "package_dependencies_axios",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 55,
+      "community_name": "axios",
       "norm_label": "axios"
     },
     {
@@ -743,8 +743,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "axios",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 55,
+      "community_name": "axios",
       "norm_label": "axios"
     },
     {
@@ -798,8 +798,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_dependencies_clsx",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 56,
+      "community_name": "clsx",
       "norm_label": "clsx"
     },
     {
@@ -809,8 +809,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "clsx",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 56,
+      "community_name": "clsx",
       "norm_label": "clsx"
     },
     {
@@ -930,8 +930,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "package_dependencies_nitro",
-      "community": 21,
-      "community_name": "nitro",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "nitro"
     },
     {
@@ -941,8 +941,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "nitro",
-      "community": 21,
-      "community_name": "nitro",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "nitro"
     },
     {
@@ -952,8 +952,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "package_dependencies_react",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 54,
+      "community_name": "react",
       "norm_label": "react"
     },
     {
@@ -963,8 +963,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "react",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 54,
+      "community_name": "react",
       "norm_label": "react"
     },
     {
@@ -996,8 +996,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "package_dependencies_tailwind_merge",
-      "community": 54,
-      "community_name": "tailwind-merge",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1007,8 +1007,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tailwind_merge",
-      "community": 54,
-      "community_name": "tailwind-merge",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1447,8 +1447,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicupdate",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "_main.update.index.tsx",
       "norm_label": "getcomicupdate"
     },
     {
@@ -1492,7 +1492,7 @@
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getchapterlist",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "getchapterlist"
     },
     {
@@ -1744,8 +1744,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_common_components_header_header",
-      "community": 2,
-      "community_name": "cn",
+      "community": 10,
+      "community_name": "_main.tsx",
       "norm_label": "header()"
     },
     {
@@ -1986,8 +1986,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_common_interface_index_meta",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "meta"
     },
     {
@@ -2382,8 +2382,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialog.tsx"
     },
     {
@@ -2393,8 +2393,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialog",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialog()"
     },
     {
@@ -2404,8 +2404,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogtrigger",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogtrigger()"
     },
     {
@@ -2415,8 +2415,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogportal",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogportal()"
     },
     {
@@ -2426,8 +2426,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogclose",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogclose()"
     },
     {
@@ -2437,8 +2437,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogoverlay",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogoverlay()"
     },
     {
@@ -2448,8 +2448,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogcontent",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogcontent()"
     },
     {
@@ -2459,8 +2459,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogheader",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogheader()"
     },
     {
@@ -2470,8 +2470,8 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogfooter",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogfooter()"
     },
     {
@@ -2481,8 +2481,8 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogtitle",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogtitle()"
     },
     {
@@ -2492,8 +2492,8 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogdescription",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "dialogdescription()"
     },
     {
@@ -2693,6 +2693,28 @@
       "community": 2,
       "community_name": "cn",
       "norm_label": "sheetdescription()"
+    },
+    {
+      "label": "chapter-filter.ts",
+      "file_type": "code",
+      "source_file": "src/common/utils/chapter-filter.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_common_utils_chapter_filter",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "norm_label": "chapter-filter.ts"
+    },
+    {
+      "label": "filterAndRankChapters()",
+      "file_type": "code",
+      "source_file": "src/common/utils/chapter-filter.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_common_utils_chapter_filter_filterandrankchapters",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "norm_label": "filterandrankchapters()"
     },
     {
       "label": "chapter-history.ts",
@@ -2954,41 +2976,41 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "chapterlist.tsx"
     },
     {
       "label": "Chapter",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapter",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "chapter"
     },
     {
       "label": "ChapterListProps",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlistprops",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "chapterlistprops"
     },
     {
       "label": "ChapterList()",
       "file_type": "code",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlist",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 3,
+      "community_name": "read.$comicId.$chapterId.index.tsx",
       "norm_label": "chapterlist()"
     },
     {
@@ -3097,8 +3119,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton",
-      "community": 45,
-      "community_name": "_main.search.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "basecomiccardskeleton.tsx"
     },
     {
@@ -3108,8 +3130,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton_basecomiccardskeleton",
-      "community": 45,
-      "community_name": "_main.search.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "basecomiccardskeleton()"
     },
     {
@@ -3130,8 +3152,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_features_comic_comicdetail_comicdetail",
-      "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "comicdetail()"
     },
     {
@@ -3142,7 +3164,7 @@
       "_origin": "ast",
       "id": "src_features_comic_comicdetailskeleton",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "comicdetailskeleton.tsx"
     },
     {
@@ -3153,7 +3175,7 @@
       "_origin": "ast",
       "id": "src_features_comic_comicdetailskeleton_comicdetailskeleton",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "comicdetailskeleton()"
     },
     {
@@ -3240,8 +3262,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase",
-      "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardbase.tsx"
     },
     {
@@ -3251,8 +3273,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_props",
-      "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
@@ -3262,8 +3284,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_country_map",
-      "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "country_map"
     },
     {
@@ -3273,8 +3295,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_popularcomiccardbasecomponent",
-      "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardbasecomponent()"
     },
     {
@@ -3284,8 +3306,8 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_features_comic_popularcomiccardbase_popularcomiccardbase",
-      "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "popularcomiccardbase"
     },
     {
@@ -3867,8 +3889,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "src_routes_root_rootdocument",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 54,
+      "community_name": "react",
       "norm_label": "rootdocument()"
     },
     {
@@ -3922,8 +3944,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_routes_main_genre_index_route",
-      "community": 5,
-      "community_name": "shinigami.server.ts",
+      "community": 46,
+      "community_name": "FileRoutesByPath",
       "norm_label": "route"
     },
     {
@@ -3974,7 +3996,7 @@
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "src_routes_main_history_index_route",
       "community": 46,
@@ -3985,7 +4007,7 @@
       "label": "HistoryPage()",
       "file_type": "code",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "src_routes_main_history_index_historypage",
       "community": 3,
@@ -4120,8 +4142,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_route",
-      "community": 46,
-      "community_name": "FileRoutesByPath",
+      "community": 43,
+      "community_name": "_main.popular.index.tsx",
       "norm_label": "route"
     },
     {
@@ -4209,7 +4231,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "_main.series.$comicid.index.tsx"
     },
     {
@@ -4220,7 +4242,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_chaptersearch",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "chaptersearch"
     },
     {
@@ -4231,7 +4253,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_route",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "route"
     },
     {
@@ -4242,7 +4264,7 @@
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_routecomponent",
       "community": 38,
-      "community_name": "ChapterList.tsx",
+      "community_name": "_main.series.$comicId.index.tsx",
       "norm_label": "routecomponent()"
     },
     {
@@ -4285,8 +4307,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_update_index",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "_main.update.index.tsx",
       "norm_label": "_main.update.index.tsx"
     },
     {
@@ -4296,8 +4318,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_routes_main_update_index_route",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "_main.update.index.tsx",
       "norm_label": "route"
     },
     {
@@ -4307,8 +4329,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_routes_main_update_index_comiccard",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "_main.update.index.tsx",
       "norm_label": "comiccard"
     },
     {
@@ -4318,8 +4340,8 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "src_routes_main_update_index_routecomponent",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "_main.update.index.tsx",
       "norm_label": "routecomponent()"
     },
     {
@@ -7637,7 +7659,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -7805,7 +7827,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -8842,7 +8864,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -8938,7 +8960,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -9516,7 +9538,7 @@
       "context": "field",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist_chapterlistprops",
@@ -10476,7 +10498,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -10572,7 +10594,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",
@@ -11055,6 +11077,89 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/common/utils/chapter-filter.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_common_utils_chapter_filter",
+      "target": "src_common_utils_chapter_filter_filterandrankchapters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/chapter/ChapterList.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_chapter_chapterlist",
+      "target": "src_common_utils_chapter_filter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.history.index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_history_index",
+      "target": "src_common_utils_chapter_filter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/chapter/ChapterList.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_chapter_chapterlist",
+      "target": "src_common_utils_chapter_filter_filterandrankchapters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/chapter/ChapterList.tsx",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_chapter_chapterlist_chapterlist",
+      "target": "src_common_utils_chapter_filter_filterandrankchapters"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.history.index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_history_index",
+      "target": "src_common_utils_chapter_filter_filterandrankchapters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/_main.history.index.tsx",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_routes_main_history_index_historypage",
+      "target": "src_common_utils_chapter_filter_filterandrankchapters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/common/utils/chapter-history.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -11219,7 +11324,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index_historypage",
@@ -11268,7 +11373,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L120",
+      "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist_chapterlist",
@@ -11291,7 +11396,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L121",
+      "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index_historypage",
@@ -11315,7 +11420,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index_historypage",
@@ -11494,7 +11599,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -11505,7 +11610,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -11516,7 +11621,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/chapter/ChapterList.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_chapter_chapterlist",
@@ -13242,7 +13347,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -13254,7 +13359,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/_main.history.index.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_main_history_index",

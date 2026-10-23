@@ -666,8 +666,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_tanstack_router_plugin",
-      "community": 57,
-      "community_name": "@tanstack/router-plugin",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -677,8 +677,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tanstack_router_plugin",
-      "community": 57,
-      "community_name": "@tanstack/router-plugin",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "@tanstack/router-plugin"
     },
     {
@@ -710,8 +710,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_vercel_analytics",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 48,
+      "community_name": "@vercel/analytics",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -721,8 +721,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "vercel_analytics",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 48,
+      "community_name": "@vercel/analytics",
       "norm_label": "@vercel/analytics"
     },
     {
@@ -732,8 +732,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "package_dependencies_axios",
-      "community": 55,
-      "community_name": "axios",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "axios"
     },
     {
@@ -743,8 +743,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "axios",
-      "community": 55,
-      "community_name": "axios",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "axios"
     },
     {
@@ -798,8 +798,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_dependencies_clsx",
-      "community": 56,
-      "community_name": "clsx",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "clsx"
     },
     {
@@ -809,8 +809,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "clsx",
-      "community": 56,
-      "community_name": "clsx",
+      "community": 12,
+      "community_name": "dependencies",
       "norm_label": "clsx"
     },
     {
@@ -930,8 +930,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "package_dependencies_nitro",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 44,
+      "community_name": "nitro",
       "norm_label": "nitro"
     },
     {
@@ -941,8 +941,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "nitro",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 44,
+      "community_name": "nitro",
       "norm_label": "nitro"
     },
     {
@@ -952,8 +952,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "package_dependencies_react",
-      "community": 54,
-      "community_name": "react",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "react"
     },
     {
@@ -963,8 +963,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "react",
-      "community": 54,
-      "community_name": "react",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "react"
     },
     {
@@ -996,8 +996,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "package_dependencies_tailwind_merge",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 47,
+      "community_name": "tailwind-merge",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1007,8 +1007,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "tailwind_merge",
-      "community": 12,
-      "community_name": "dependencies",
+      "community": 47,
+      "community_name": "tailwind-merge",
       "norm_label": "tailwind-merge"
     },
     {
@@ -1447,8 +1447,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getcomicupdate",
-      "community": 21,
-      "community_name": "_main.update.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "getcomicupdate"
     },
     {
@@ -1469,7 +1469,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_api_servers_shinigami_server_getpopularcomic",
-      "community": 43,
+      "community": 26,
       "community_name": "_main.popular.index.tsx",
       "norm_label": "getpopularcomic"
     },
@@ -1568,8 +1568,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_api_services_shinigami_service_shinigamiservice_constructor",
-      "community": 0,
-      "community_name": "ShinigamiService",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -1789,7 +1789,7 @@
       "_origin": "ast",
       "id": "src_common_components_jsonld",
       "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community_name": "JsonLd.tsx",
       "norm_label": "jsonld.tsx"
     },
     {
@@ -1800,7 +1800,7 @@
       "_origin": "ast",
       "id": "src_common_components_jsonld_jsonld",
       "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community_name": "JsonLd.tsx",
       "norm_label": "jsonld()"
     },
     {
@@ -1909,8 +1909,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_http_axios_client",
-      "community": 0,
-      "community_name": "ShinigamiService",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "axios.client.ts"
     },
     {
@@ -1920,8 +1920,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_common_http_axios_client_createaxiosclient",
-      "community": 0,
-      "community_name": "ShinigamiService",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "createaxiosclient()"
     },
     {
@@ -1931,8 +1931,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_http_headers",
-      "community": 0,
-      "community_name": "ShinigamiService",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "headers.ts"
     },
     {
@@ -1942,8 +1942,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_common_http_headers_getscraperheaders",
-      "community": 0,
-      "community_name": "ShinigamiService",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "getscraperheaders()"
     },
     {
@@ -1986,8 +1986,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_common_interface_index_meta",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "meta"
     },
     {
@@ -2074,8 +2074,8 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "src_common_interface_index_taxonomyitem",
-      "community": 2,
-      "community_name": "cn",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "taxonomyitem"
     },
     {
@@ -2107,8 +2107,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_libs_redis",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 0,
+      "community_name": "ShinigamiService",
       "norm_label": "redis.ts"
     },
     {
@@ -2118,8 +2118,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_common_libs_redis_client",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 0,
+      "community_name": "ShinigamiService",
       "norm_label": "client"
     },
     {
@@ -2382,8 +2382,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialog.tsx"
     },
     {
@@ -2393,8 +2393,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialog",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialog()"
     },
     {
@@ -2404,8 +2404,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogtrigger",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogtrigger()"
     },
     {
@@ -2415,8 +2415,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogportal",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogportal()"
     },
     {
@@ -2426,8 +2426,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogclose",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogclose()"
     },
     {
@@ -2437,8 +2437,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogoverlay",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogoverlay()"
     },
     {
@@ -2448,8 +2448,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogcontent",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogcontent()"
     },
     {
@@ -2459,8 +2459,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogheader",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogheader()"
     },
     {
@@ -2470,8 +2470,8 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogfooter",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogfooter()"
     },
     {
@@ -2481,8 +2481,8 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogtitle",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogtitle()"
     },
     {
@@ -2492,8 +2492,8 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_common_shadcn_ui_dialog_dialogdescription",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "dialogdescription()"
     },
     {
@@ -2701,8 +2701,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_chapter_filter",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapter-filter.ts"
     },
     {
@@ -2712,8 +2712,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_chapter_filter_filterandrankchapters",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "filterandrankchapters()"
     },
     {
@@ -2723,8 +2723,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapter-history.ts"
     },
     {
@@ -2734,8 +2734,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_chapterhistory",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapterhistory"
     },
     {
@@ -2745,8 +2745,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_getchapterhistory",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "getchapterhistory()"
     },
     {
@@ -2767,8 +2767,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_getlastreadchapter",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "getlastreadchapter()"
     },
     {
@@ -2778,8 +2778,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_clearallhistory",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "clearallhistory()"
     },
     {
@@ -2789,8 +2789,8 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_common_utils_chapter_history_deletehistoryitem",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "deletehistoryitem()"
     },
     {
@@ -2800,8 +2800,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_common_utils_env",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 0,
+      "community_name": "ShinigamiService",
       "norm_label": "env.ts"
     },
     {
@@ -2822,8 +2822,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_common_utils_env_api_url",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 0,
+      "community_name": "ShinigamiService",
       "norm_label": "api_url"
     },
     {
@@ -2976,8 +2976,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapterlist.tsx"
     },
     {
@@ -2987,8 +2987,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapter",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapter"
     },
     {
@@ -2998,8 +2998,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlistprops",
-      "community": 2,
-      "community_name": "cn",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapterlistprops"
     },
     {
@@ -3009,8 +3009,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_features_chapter_chapterlist_chapterlist",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "chapterlist()"
     },
     {
@@ -3119,8 +3119,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 45,
+      "community_name": "_main.search.index.tsx",
       "norm_label": "basecomiccardskeleton.tsx"
     },
     {
@@ -3130,8 +3130,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_comic_basecomiccardskeleton_basecomiccardskeleton",
-      "community": 9,
-      "community_name": "index.ts",
+      "community": 45,
+      "community_name": "_main.search.index.tsx",
       "norm_label": "basecomiccardskeleton()"
     },
     {
@@ -3460,8 +3460,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_genre_genrelist",
-      "community": 2,
-      "community_name": "cn",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "genrelist.tsx"
     },
     {
@@ -3471,8 +3471,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_features_genre_genrelist_props",
-      "community": 2,
-      "community_name": "cn",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "props"
     },
     {
@@ -3482,8 +3482,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_features_genre_genrelist_genrelist",
-      "community": 2,
-      "community_name": "cn",
+      "community": 9,
+      "community_name": "index.ts",
       "norm_label": "genrelist()"
     },
     {
@@ -3515,8 +3515,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_integrations_tanstack_query_devtools",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "devtools.tsx"
     },
     {
@@ -3724,8 +3724,8 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "src_routetree_gen_fileroutesbyid",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 46,
+      "community_name": "FileRoutesByPath",
       "norm_label": "fileroutesbyid"
     },
     {
@@ -3856,8 +3856,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_root",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "__root.tsx"
     },
     {
@@ -3867,8 +3867,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_routes_root_myroutercontext",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "myroutercontext"
     },
     {
@@ -3878,8 +3878,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_routes_root_route",
-      "community": 26,
-      "community_name": "__root.tsx",
+      "community": 46,
+      "community_name": "FileRoutesByPath",
       "norm_label": "route"
     },
     {
@@ -3889,8 +3889,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "src_routes_root_rootdocument",
-      "community": 54,
-      "community_name": "react",
+      "community": 43,
+      "community_name": "JsonLd.tsx",
       "norm_label": "rootdocument()"
     },
     {
@@ -3988,8 +3988,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_history_index",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "_main.history.index.tsx"
     },
     {
@@ -4010,8 +4010,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_routes_main_history_index_historypage",
-      "community": 3,
-      "community_name": "read.$comicId.$chapterId.index.tsx",
+      "community": 21,
+      "community_name": "ChapterList.tsx",
       "norm_label": "historypage()"
     },
     {
@@ -4088,7 +4088,7 @@
       "_origin": "ast",
       "id": "src_routes_main_index",
       "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community_name": "JsonLd.tsx",
       "norm_label": "_main.index.tsx"
     },
     {
@@ -4099,7 +4099,7 @@
       "_origin": "ast",
       "id": "src_routes_main_index_route",
       "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community_name": "JsonLd.tsx",
       "norm_label": "route"
     },
     {
@@ -4110,7 +4110,7 @@
       "_origin": "ast",
       "id": "src_routes_main_index_app",
       "community": 43,
-      "community_name": "_main.popular.index.tsx",
+      "community_name": "JsonLd.tsx",
       "norm_label": "app()"
     },
     {
@@ -4120,7 +4120,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_popular_index",
-      "community": 43,
+      "community": 26,
       "community_name": "_main.popular.index.tsx",
       "norm_label": "_main.popular.index.tsx"
     },
@@ -4131,7 +4131,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_comicsearch",
-      "community": 43,
+      "community": 26,
       "community_name": "_main.popular.index.tsx",
       "norm_label": "comicsearch"
     },
@@ -4142,7 +4142,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_route",
-      "community": 43,
+      "community": 26,
       "community_name": "_main.popular.index.tsx",
       "norm_label": "route"
     },
@@ -4153,7 +4153,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "src_routes_main_popular_index_routecomponent",
-      "community": 43,
+      "community": 26,
       "community_name": "_main.popular.index.tsx",
       "norm_label": "routecomponent()"
     },
@@ -4260,7 +4260,7 @@
       "label": "RouteComponent()",
       "file_type": "code",
       "source_file": "src/routes/_main.series.$comicId.index.tsx",
-      "source_location": "L64",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "src_routes_main_series_comicid_index_routecomponent",
       "community": 38,
@@ -4307,8 +4307,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_main_update_index",
-      "community": 21,
-      "community_name": "_main.update.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "_main.update.index.tsx"
     },
     {
@@ -4318,8 +4318,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_routes_main_update_index_route",
-      "community": 21,
-      "community_name": "_main.update.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "route"
     },
     {
@@ -4329,8 +4329,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_routes_main_update_index_comiccard",
-      "community": 21,
-      "community_name": "_main.update.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "comiccard"
     },
     {
@@ -4340,8 +4340,8 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "src_routes_main_update_index_routecomponent",
-      "community": 21,
-      "community_name": "_main.update.index.tsx",
+      "community": 2,
+      "community_name": "cn",
       "norm_label": "routecomponent()"
     },
     {
@@ -4359,7 +4359,7 @@
       "label": "queryChapter()",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L15",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_querychapter",
       "community": 3,
@@ -4370,7 +4370,7 @@
       "label": "queryComic()",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L22",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_querycomic",
       "community": 3,
@@ -4381,7 +4381,7 @@
       "label": "Route",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_route",
       "community": 46,
@@ -4392,7 +4392,7 @@
       "label": "ReadingProgressBar",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L68",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_readingprogressbar",
       "community": 3,
@@ -4403,7 +4403,7 @@
       "label": "FloatingActionBarProps",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L104",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_floatingactionbarprops",
       "community": 3,
@@ -4414,7 +4414,7 @@
       "label": "FloatingActionBar",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L112",
+      "source_location": "L121",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_floatingactionbar",
       "community": 3,
@@ -4425,7 +4425,7 @@
       "label": "ReadChapterPage()",
       "file_type": "code",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L183",
+      "source_location": "L192",
       "_origin": "ast",
       "id": "src_routes_read_comicid_chapterid_index_readchapterpage",
       "community": 3,
@@ -4871,545 +4871,6 @@
       "community": 14,
       "community_name": "RTK - Rust Token Killer (Google Antigravity)",
       "norm_label": "why"
-    },
-    {
-      "label": "qa-report.md",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "qa_report",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "qa-report.md"
-    },
-    {
-      "label": "\ud83c\udf10 Full-Site Quality Audit \u2014 KOMIK READER",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "qa_report_full_site_quality_audit_komik_reader",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83c\udf10 full-site quality audit \u2014 komik reader"
-    },
-    {
-      "label": "Phase 1 \u2014 Site Map & Route Discovery",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "qa_report_phase_1_site_map_route_discovery",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "phase 1 \u2014 site map & route discovery"
-    },
-    {
-      "label": "Phase 2 \u2014 Page-by-Page Audit",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "qa_report_phase_2_page_by_page_audit",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "phase 2 \u2014 page-by-page audit"
-    },
-    {
-      "label": "\ud83d\udd34 BUG-01 (Medium) \u2014 `/series/$comicId` 500s on missing comic",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L39",
-      "_origin": "ast",
-      "id": "qa_report_bug_01_medium_series_comicid_500s_on_missing_comic",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83d\udd34 bug-01 (medium) \u2014 `/series/$comicid` 500s on missing comic"
-    },
-    {
-      "label": "\ud83d\udfe1 INFO-01 (Dev-only) \u2014 `/manifest.webmanifest` 404 in dev",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L51",
-      "_origin": "ast",
-      "id": "qa_report_info_01_dev_only_manifest_webmanifest_404_in_dev",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83d\udfe1 info-01 (dev-only) \u2014 `/manifest.webmanifest` 404 in dev"
-    },
-    {
-      "label": "\ud83d\udfe2 OK \u2014 Static assets",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L59",
-      "_origin": "ast",
-      "id": "qa_report_ok_static_assets",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83d\udfe2 ok \u2014 static assets"
-    },
-    {
-      "label": "\ud83d\udfe2 OK \u2014 No debug leftovers",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L63",
-      "_origin": "ast",
-      "id": "qa_report_ok_no_debug_leftovers",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83d\udfe2 ok \u2014 no debug leftovers"
-    },
-    {
-      "label": "\ud83d\udfe2 OK \u2014 No global ErrorComponent",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "qa_report_ok_no_global_errorcomponent",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "\ud83d\udfe2 ok \u2014 no global errorcomponent"
-    },
-    {
-      "label": "Phase 3 \u2014 Visual & State Check",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L74",
-      "_origin": "ast",
-      "id": "qa_report_phase_3_visual_state_check",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "phase 3 \u2014 visual & state check"
-    },
-    {
-      "label": "Phase 4 \u2014 Summary",
-      "file_type": "document",
-      "source_file": "qa-report.md",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "qa_report_phase_4_summary",
-      "community": 44,
-      "community_name": "Phase 2 \u2014 Page-by-Page Audit",
-      "norm_label": "phase 4 \u2014 summary"
-    },
-    {
-      "label": "report-rep-1786725591601-7ujk.md",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "report-rep-1786725591601-7ujk.md"
-    },
-    {
-      "label": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udccb laporan hasil pengujian: full site quality audit - komik reader"
-    },
-    {
-      "label": "\ud83d\udcca Ringkasan Eksekusi",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_ringkasan_eksekusi",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udcca ringkasan eksekusi"
-    },
-    {
-      "label": "\ud83d\udeb6 Urutan Langkah Pengujian (Execution Steps)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_urutan_langkah_pengujian_execution_steps",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udeb6 urutan langkah pengujian (execution steps)"
-    },
-    {
-      "label": "\ud83d\udea8 Temuan Masalah & Error (Issues & Anomalies)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L111",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_temuan_masalah_error_issues_anomalies",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udea8 temuan masalah & error (issues & anomalies)"
-    },
-    {
-      "label": "\ud83d\udcf8 Bukti Pengujian (Screenshots & Artifacts)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L116",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_bukti_pengujian_screenshots_artifacts",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udcf8 bukti pengujian (screenshots & artifacts)"
-    },
-    {
-      "label": "\ud83d\udca1 Rekomendasi untuk AI Coding Agent / Developer",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L128",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786725591601_7ujk_rekomendasi_untuk_ai_coding_agent_developer",
-      "community": 51,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - KOMIK READER",
-      "norm_label": "\ud83d\udca1 rekomendasi untuk ai coding agent / developer"
-    },
-    {
-      "label": "report-rep-1786975552597-wk9y.md",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "report-rep-1786975552597-wk9y.md"
-    },
-    {
-      "label": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udccb laporan hasil pengujian: e2e testing flow - landing, home, comic detail, and comic reader"
-    },
-    {
-      "label": "\ud83d\udcca Ringkasan Eksekusi",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_ringkasan_eksekusi",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udcca ringkasan eksekusi"
-    },
-    {
-      "label": "\ud83d\udeb6 Urutan Langkah Pengujian (Execution Steps)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_urutan_langkah_pengujian_execution_steps",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udeb6 urutan langkah pengujian (execution steps)"
-    },
-    {
-      "label": "\ud83d\udea8 Temuan Masalah & Error (Issues & Anomalies)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L50",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_temuan_masalah_error_issues_anomalies",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udea8 temuan masalah & error (issues & anomalies)"
-    },
-    {
-      "label": "\ud83d\udcf8 Bukti Pengujian (Screenshots & Artifacts)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L55",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_bukti_pengujian_screenshots_artifacts",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udcf8 bukti pengujian (screenshots & artifacts)"
-    },
-    {
-      "label": "\ud83d\udca1 Rekomendasi untuk AI Coding Agent / Developer",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L64",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786975552597_wk9y_rekomendasi_untuk_ai_coding_agent_developer",
-      "community": 52,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Flow - Landing, Home, Comic Detail, and Comic Reader",
-      "norm_label": "\ud83d\udca1 rekomendasi untuk ai coding agent / developer"
-    },
-    {
-      "label": "report-rep-1786977070127-2xk4.md",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "report-rep-1786977070127-2xk4.md"
-    },
-    {
-      "label": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83d\udccb laporan hasil pengujian: full e2e testing - komik reader (landing, home, detail, reader, history)"
-    },
-    {
-      "label": "\ud83d\udcca Ringkasan Eksekutif",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_ringkasan_eksekutif",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83d\udcca ringkasan eksekutif"
-    },
-    {
-      "label": "\u26a1 Metrik Performa & Waktu Render Halaman",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_metrik_performa_waktu_render_halaman",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\u26a1 metrik performa & waktu render halaman"
-    },
-    {
-      "label": "\ud83c\udfaf Matriks Pengujian Tombol & Elemen Interaktif (Execution Steps)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83c\udfaf matriks pengujian tombol & elemen interaktif (execution steps)"
-    },
-    {
-      "label": "\ud83d\udea8 Temuan Isu, Console Error & Fetch Network Failure",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L66",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_temuan_isu_console_error_fetch_network_failure",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83d\udea8 temuan isu, console error & fetch network failure"
-    },
-    {
-      "label": "\ud83d\udcf8 Bukti Visual Kesalahan (Error Screenshots)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L71",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_bukti_visual_kesalahan_error_screenshots",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83d\udcf8 bukti visual kesalahan (error screenshots)"
-    },
-    {
-      "label": "\ud83d\udca1 Rekomendasi Tindakan untuk Developer / AI Coding Agent",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L76",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977070127_2xk4_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "community": 47,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full E2E Testing - Komik Reader (Landing, Home, Detail, Reader, History)",
-      "norm_label": "\ud83d\udca1 rekomendasi tindakan untuk developer / ai coding agent"
-    },
-    {
-      "label": "report-rep-1786977463516-etbv.md",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "report-rep-1786977463516-etbv.md"
-    },
-    {
-      "label": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83d\udccb laporan hasil pengujian: e2e testing report - komik reader"
-    },
-    {
-      "label": "\ud83d\udcca Ringkasan Eksekutif",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_ringkasan_eksekutif",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83d\udcca ringkasan eksekutif"
-    },
-    {
-      "label": "\u26a1 Metrik Performa & Waktu Render Halaman",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_metrik_performa_waktu_render_halaman",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\u26a1 metrik performa & waktu render halaman"
-    },
-    {
-      "label": "\ud83c\udfaf Matriks Pengujian Tombol & Elemen Interaktif (Execution Steps)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83c\udfaf matriks pengujian tombol & elemen interaktif (execution steps)"
-    },
-    {
-      "label": "\ud83d\udea8 Temuan Isu, Console Error & Fetch Network Failure",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L66",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_temuan_isu_console_error_fetch_network_failure",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83d\udea8 temuan isu, console error & fetch network failure"
-    },
-    {
-      "label": "\ud83d\udcf8 Bukti Visual Kesalahan (Error Screenshots)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L71",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_bukti_visual_kesalahan_error_screenshots",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83d\udcf8 bukti visual kesalahan (error screenshots)"
-    },
-    {
-      "label": "\ud83d\udca1 Rekomendasi Tindakan untuk Developer / AI Coding Agent",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L76",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977463516_etbv_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "community": 48,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: E2E Testing Report - Komik Reader",
-      "norm_label": "\ud83d\udca1 rekomendasi tindakan untuk developer / ai coding agent"
-    },
-    {
-      "label": "report-rep-1786977887171-s1v5.md",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "report-rep-1786977887171-s1v5.md"
-    },
-    {
-      "label": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83d\udccb laporan hasil pengujian: full site quality audit - komik reader headed mode"
-    },
-    {
-      "label": "\ud83d\udcca Ringkasan Eksekutif",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_ringkasan_eksekutif",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83d\udcca ringkasan eksekutif"
-    },
-    {
-      "label": "\u26a1 Metrik Performa & Waktu Render Halaman",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_metrik_performa_waktu_render_halaman",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\u26a1 metrik performa & waktu render halaman"
-    },
-    {
-      "label": "\ud83c\udfaf Matriks Pengujian Tombol & Elemen Interaktif (Execution Steps)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83c\udfaf matriks pengujian tombol & elemen interaktif (execution steps)"
-    },
-    {
-      "label": "\ud83d\udea8 Temuan Isu, Console Error & Fetch Network Failure",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_temuan_isu_console_error_fetch_network_failure",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83d\udea8 temuan isu, console error & fetch network failure"
-    },
-    {
-      "label": "\ud83d\udcf8 Bukti Visual Kesalahan (Error Screenshots)",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_bukti_visual_kesalahan_error_screenshots",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83d\udcf8 bukti visual kesalahan (error screenshots)"
-    },
-    {
-      "label": "\ud83d\udca1 Rekomendasi Tindakan untuk Developer / AI Coding Agent",
-      "file_type": "document",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "test_reports_report_rep_1786977887171_s1v5_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "community": 49,
-      "community_name": "\ud83d\udccb Laporan Hasil Pengujian: Full Site Quality Audit - Komik Reader Headed Mode",
-      "norm_label": "\ud83d\udca1 rekomendasi tindakan untuk developer / ai coding agent"
     },
     {
       "label": "Graphify Rules",
@@ -7863,7 +7324,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L25",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index_querycomic",
@@ -7911,7 +7372,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L18",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index_querychapter",
@@ -8936,7 +8397,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L11",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -9032,7 +8493,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L11",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -11348,7 +10809,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L202",
+      "source_location": "L211",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index_readchapterpage",
@@ -13642,7 +13103,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L112",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13653,7 +13114,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L104",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13664,7 +13125,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13675,7 +13136,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L22",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13686,7 +13147,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L62",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -13698,7 +13159,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L68",
+      "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13709,7 +13170,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index",
@@ -13721,7 +13182,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L193",
+      "source_location": "L202",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index_readchapterpage",
@@ -13733,7 +13194,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/routes/read.$comicId.$chapterId.index.tsx",
-      "source_location": "L194",
+      "source_location": "L203",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_routes_read_comicid_chapterid_index_readchapterpage",
@@ -14131,479 +13592,6 @@
       "_origin": "ast",
       "source": "agents_rules_antigravity_rtk_rules_rtk_rust_token_killer_google_antigravity",
       "target": "agents_rules_antigravity_rtk_rules_why",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report",
-      "target": "qa_report_full_site_quality_audit_komik_reader",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_full_site_quality_audit_komik_reader",
-      "target": "qa_report_phase_1_site_map_route_discovery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L37",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_full_site_quality_audit_komik_reader",
-      "target": "qa_report_phase_2_page_by_page_audit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L74",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_full_site_quality_audit_komik_reader",
-      "target": "qa_report_phase_3_visual_state_check",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L78",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_full_site_quality_audit_komik_reader",
-      "target": "qa_report_phase_4_summary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L39",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_phase_2_page_by_page_audit",
-      "target": "qa_report_bug_01_medium_series_comicid_500s_on_missing_comic",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L51",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_phase_2_page_by_page_audit",
-      "target": "qa_report_info_01_dev_only_manifest_webmanifest_404_in_dev",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L63",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_phase_2_page_by_page_audit",
-      "target": "qa_report_ok_no_debug_leftovers",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_phase_2_page_by_page_audit",
-      "target": "qa_report_ok_no_global_errorcomponent",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "qa-report.md",
-      "source_location": "L59",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "qa_report_phase_2_page_by_page_audit",
-      "target": "qa_report_ok_static_assets",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L14",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk",
-      "target": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L116",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "target": "test_reports_report_rep_1786725591601_7ujk_bukti_pengujian_screenshots_artifacts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L128",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "target": "test_reports_report_rep_1786725591601_7ujk_rekomendasi_untuk_ai_coding_agent_developer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "target": "test_reports_report_rep_1786725591601_7ujk_ringkasan_eksekusi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L111",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "target": "test_reports_report_rep_1786725591601_7ujk_temuan_masalah_error_issues_anomalies",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786725591601-7ujk.md",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786725591601_7ujk_laporan_hasil_pengujian_full_site_quality_audit_komik_reader",
-      "target": "test_reports_report_rep_1786725591601_7ujk_urutan_langkah_pengujian_execution_steps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L14",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y",
-      "target": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L55",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "target": "test_reports_report_rep_1786975552597_wk9y_bukti_pengujian_screenshots_artifacts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L64",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "target": "test_reports_report_rep_1786975552597_wk9y_rekomendasi_untuk_ai_coding_agent_developer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "target": "test_reports_report_rep_1786975552597_wk9y_ringkasan_eksekusi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L50",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "target": "test_reports_report_rep_1786975552597_wk9y_temuan_masalah_error_issues_anomalies",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786975552597-wk9y.md",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786975552597_wk9y_laporan_hasil_pengujian_e2e_testing_flow_landing_home_comic_detail_and_comic_reader",
-      "target": "test_reports_report_rep_1786975552597_wk9y_urutan_langkah_pengujian_execution_steps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4",
-      "target": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L71",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_bukti_visual_kesalahan_error_screenshots",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L29",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_metrik_performa_waktu_render_halaman",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L76",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_ringkasan_eksekutif",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977070127-2xk4.md",
-      "source_location": "L66",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977070127_2xk4_laporan_hasil_pengujian_full_e2e_testing_komik_reader_landing_home_detail_reader_history",
-      "target": "test_reports_report_rep_1786977070127_2xk4_temuan_isu_console_error_fetch_network_failure",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv",
-      "target": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L71",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_bukti_visual_kesalahan_error_screenshots",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L29",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_metrik_performa_waktu_render_halaman",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L76",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_ringkasan_eksekutif",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977463516-etbv.md",
-      "source_location": "L66",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977463516_etbv_laporan_hasil_pengujian_e2e_testing_report_komik_reader",
-      "target": "test_reports_report_rep_1786977463516_etbv_temuan_isu_console_error_fetch_network_failure",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5",
-      "target": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L73",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_bukti_visual_kesalahan_error_screenshots",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_matriks_pengujian_tombol_elemen_interaktif_execution_steps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L29",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_metrik_performa_waktu_render_halaman",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L78",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_rekomendasi_tindakan_untuk_developer_ai_coding_agent",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_ringkasan_eksekutif",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "test-reports/report-rep-1786977887171-s1v5.md",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_reports_report_rep_1786977887171_s1v5_laporan_hasil_pengujian_full_site_quality_audit_komik_reader_headed_mode",
-      "target": "test_reports_report_rep_1786977887171_s1v5_temuan_isu_console_error_fetch_network_failure",
       "confidence_score": 1.0
     },
     {
@@ -15097,5 +14085,5 @@
       "source_file": "audit-report.md"
     }
   ],
-  "built_at_commit": "75860a954298361e64c27b8186cf0931e30390da"
+  "built_at_commit": "3bdcc2a8f95d668529f6026a96463f85c5a05b9c"
 }

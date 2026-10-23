@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "src/common/components/HeroSection.tsx": {
-    "mtime": 1785587219.4460082,
-    "ast_hash": "1b2041edf46ce7381820b15fe0562931",
+    "mtime": 1792774502.4070523,
+    "ast_hash": "14327321d761d02f2849e5b81c3048a9",
     "semantic_hash": ""
   },
   "src/common/components/JsonLd.tsx": {
@@ -265,13 +265,13 @@
     "semantic_hash": ""
   },
   "src/routes/_main.home.tsx": {
-    "mtime": 1792773367.8034248,
-    "ast_hash": "e6f31cb42d48d5e25ea4decde2c27566",
+    "mtime": 1792774563.4821818,
+    "ast_hash": "fb360723ed903763700fe2b50cba89ad",
     "semantic_hash": ""
   },
   "src/routes/_main.index.tsx": {
-    "mtime": 1785588862.277184,
-    "ast_hash": "cc7e4cd6b06e957fa7cbab3dae81e313",
+    "mtime": 1792774582.792323,
+    "ast_hash": "63c1c9dab37e5e7e1f9d79725db363da",
     "semantic_hash": ""
   },
   "src/routes/_main.popular.index.tsx": {
@@ -285,8 +285,8 @@
     "semantic_hash": ""
   },
   "src/routes/_main.series.$comicId.index.tsx": {
-    "mtime": 1785588820.1490345,
-    "ast_hash": "210b9590f70106e5c49c4c281e5b9997",
+    "mtime": 1792774623.1465933,
+    "ast_hash": "18662626ad30c89031779a51cf0d3a84",
     "semantic_hash": ""
   },
   "src/routes/_main.tsx": {
@@ -300,19 +300,19 @@
     "semantic_hash": ""
   },
   "src/routes/read.$comicId.$chapterId.index.tsx": {
-    "mtime": 1792773602.0470538,
-    "ast_hash": "0a2b99a392b1703abf90eb4a7d2b06cc",
+    "mtime": 1792774494.2359562,
+    "ast_hash": "f2d24391d39130711a6f5385106f22f2",
     "semantic_hash": ""
   },
   "src/routes/robots[.]txt.ts": {
-    "mtime": 1780853807.8341784,
-    "ast_hash": "a97a640be870572d9346b2dd54a57292",
-    "semantic_hash": "a97a640be870572d9346b2dd54a57292"
+    "mtime": 1792774426.9594893,
+    "ast_hash": "0c8bcb94a55e28cbc33d2df621b2b81c",
+    "semantic_hash": ""
   },
   "src/routes/sitemap[.]xml.ts": {
-    "mtime": 1780853663.7873201,
-    "ast_hash": "b7db01113c2c61894f76fce2a878c251",
-    "semantic_hash": "b7db01113c2c61894f76fce2a878c251"
+    "mtime": 1792774441.013961,
+    "ast_hash": "e7de9e79a9acfadc60e75fea5734217c",
+    "semantic_hash": ""
   },
   "tsconfig.json": {
     "mtime": 1772534157.936641,
@@ -387,311 +387,6 @@
   ".agents/rules/antigravity-rtk-rules.md": {
     "mtime": 1785587301.4545407,
     "ast_hash": "73323e859081ca0acf785018ffcc031c",
-    "semantic_hash": ""
-  },
-  "archify-arch.json": {
-    "mtime": 1789849336.5471382,
-    "ast_hash": "000d394afb1f22422160987a033b3750",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.json": {
-    "mtime": 1789849360.9161236,
-    "ast_hash": "c6abf29084e97e47ea7bc73063a6475f",
-    "semantic_hash": ""
-  },
-  "archify-flow.json": {
-    "mtime": 1789849480.5189018,
-    "ast_hash": "6338af1828b838e4cd2a54ed74f741e2",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.json": {
-    "mtime": 1789849492.0046442,
-    "ast_hash": "c9a44762e3d861c1b36ecb2e3409fa6f",
-    "semantic_hash": ""
-  },
-  "archify-life.json": {
-    "mtime": 1789849585.2088234,
-    "ast_hash": "2fe990df9c0638ce8295b3c1c2ebcdba",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.json": {
-    "mtime": 1789849594.8794706,
-    "ast_hash": "31e1732915fc418ef8992233e3559021",
-    "semantic_hash": ""
-  },
-  "archify-seq.json": {
-    "mtime": 1789849413.987275,
-    "ast_hash": "94f26bc362b63859b549efcb05004986",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.json": {
-    "mtime": 1789849425.836852,
-    "ast_hash": "1f4e8d0551eb4970a1d14aad464e33f0",
-    "semantic_hash": ""
-  },
-  "archify-work.json": {
-    "mtime": 1789849377.5526347,
-    "ast_hash": "13a1a81689f6b97dd1c5778114a8d614",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.json": {
-    "mtime": 1789849387.4409852,
-    "ast_hash": "88d2a84f99b64cf20409faad692bd4b4",
-    "semantic_hash": ""
-  },
-  "mnemo.json": {
-    "mtime": 1785947436.773975,
-    "ast_hash": "d1dfd91ff95051b0941c91d7c81ffa88",
-    "semantic_hash": ""
-  },
-  "archify-arch.html": {
-    "mtime": 1789849352.6231186,
-    "ast_hash": "3c9359fe4b97473aff2fcb20006fc962",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.html": {
-    "mtime": 1789849360.9141097,
-    "ast_hash": "cab7bd85d8d206b4c3cbb689e752104e",
-    "semantic_hash": ""
-  },
-  "archify-flow.html": {
-    "mtime": 1789849488.7598636,
-    "ast_hash": "9ffeed7eb92f9f0e9e29a4140d5e8b2d",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.html": {
-    "mtime": 1789849492.0026715,
-    "ast_hash": "782538b18466239af77be4f2e6803cf8",
-    "semantic_hash": ""
-  },
-  "archify-life.html": {
-    "mtime": 1789849591.6727362,
-    "ast_hash": "fefb904913e98ede0e6ec43a3f6e409b",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.html": {
-    "mtime": 1789849594.8784714,
-    "ast_hash": "e863cdd4d3827543365498adb26462a0",
-    "semantic_hash": ""
-  },
-  "archify-seq.html": {
-    "mtime": 1789849422.6785703,
-    "ast_hash": "0aeee1468cfe407d74237ddd5d703833",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.html": {
-    "mtime": 1789849425.8353474,
-    "ast_hash": "ef17ab6b5dc641d84ecc273df05a0c43",
-    "semantic_hash": ""
-  },
-  "archify-work.html": {
-    "mtime": 1789849384.6375682,
-    "ast_hash": "65676f0d8afa71a3bd6831e40e4119d9",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.html": {
-    "mtime": 1789849387.4387498,
-    "ast_hash": "733441b6102201f31b83038ebc1939b8",
-    "semantic_hash": ""
-  },
-  "qa-report.md": {
-    "mtime": 1786724474.524123,
-    "ast_hash": "756fd5ab750c31727cbf71002a1e5f15",
-    "semantic_hash": ""
-  },
-  "test-reports/report-rep-1786725591601-7ujk.md": {
-    "mtime": 1786725591.602579,
-    "ast_hash": "ad50141ff7a07ffb33bb21892685dd47",
-    "semantic_hash": ""
-  },
-  "test-reports/report-rep-1786975552597-wk9y.md": {
-    "mtime": 1786975552.6030512,
-    "ast_hash": "123d01350e087ab0db80c074921d4adf",
-    "semantic_hash": ""
-  },
-  "test-reports/report-rep-1786977070127-2xk4.md": {
-    "mtime": 1786977070.1308887,
-    "ast_hash": "23eb77360ef2c68b015f7cae9b3a615f",
-    "semantic_hash": ""
-  },
-  "test-reports/report-rep-1786977463516-etbv.md": {
-    "mtime": 1786977463.5235386,
-    "ast_hash": "9ac3b733e553d387a649873677f2bbce",
-    "semantic_hash": ""
-  },
-  "test-reports/report-rep-1786977887171-s1v5.md": {
-    "mtime": 1786977887.1733987,
-    "ast_hash": "f41fa43abe46844537a766b9aa1839aa",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.1440x900.dark.png": {
-    "mtime": 1789849360.425356,
-    "ast_hash": "434f35a73b8e64321ea2ee6082dd2c22",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.1440x900.light.png": {
-    "mtime": 1789849358.7049289,
-    "ast_hash": "0f177200fd377f2440bb53b5ed13a1c6",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.2048x1320.dark.png": {
-    "mtime": 1789849360.9093316,
-    "ast_hash": "5114d984eeb2aa7a7153019b47f44be5",
-    "semantic_hash": ""
-  },
-  "archify-arch.visual-check.2048x1320.light.png": {
-    "mtime": 1789849359.9401717,
-    "ast_hash": "3916ab719a053ccffb220cdf045f84ba",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.1440x900.dark.png": {
-    "mtime": 1789849491.5478373,
-    "ast_hash": "7466e004ed9987b4dc4fc1a5d75f12c2",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.1440x900.light.png": {
-    "mtime": 1789849489.8922348,
-    "ast_hash": "f1be00065d78ef13f1ffe56695377607",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.2048x1320.dark.png": {
-    "mtime": 1789849491.9996665,
-    "ast_hash": "279cc2eeec1f5913c6ef1b3130ca2a58",
-    "semantic_hash": ""
-  },
-  "archify-flow.visual-check.2048x1320.light.png": {
-    "mtime": 1789849491.1026156,
-    "ast_hash": "241be221825681184c6fb9e909679457",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.1440x900.dark.png": {
-    "mtime": 1789849594.4261298,
-    "ast_hash": "2977f5c4e9dceb9e205b569effcb9046",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.1440x900.light.png": {
-    "mtime": 1789849592.7827177,
-    "ast_hash": "966370a4e76eca0dbd5be5f6d3db2f4f",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.2048x1320.dark.png": {
-    "mtime": 1789849594.8754716,
-    "ast_hash": "83ccb30c91bbe0c905ff7c5e1f5d56f4",
-    "semantic_hash": ""
-  },
-  "archify-life.visual-check.2048x1320.light.png": {
-    "mtime": 1789849593.9775362,
-    "ast_hash": "3b113df36b3813c219855c759ac17256",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.1440x900.dark.png": {
-    "mtime": 1789849425.392025,
-    "ast_hash": "bfe1a08b1ff69afa4fb56aa1797f9ef1",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.1440x900.light.png": {
-    "mtime": 1789849423.7747211,
-    "ast_hash": "8fca370310ccc59d663723990f8e7413",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.2048x1320.dark.png": {
-    "mtime": 1789849425.8340638,
-    "ast_hash": "3b23c728e7015f608260988bcb185b94",
-    "semantic_hash": ""
-  },
-  "archify-seq.visual-check.2048x1320.light.png": {
-    "mtime": 1789849424.9515595,
-    "ast_hash": "1fbf9334e92d5145416a86a9cf00c4d6",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.1440x900.dark.png": {
-    "mtime": 1789849387.043145,
-    "ast_hash": "8a8ce6f09c2144f0e4e33be94e6ea4ac",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.1440x900.light.png": {
-    "mtime": 1789849385.6940832,
-    "ast_hash": "9948fe1e2ae35469ab56f838b63d3fff",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.2048x1320.dark.png": {
-    "mtime": 1789849387.4343443,
-    "ast_hash": "90cd738d44bfc5b2735138683a740e02",
-    "semantic_hash": ""
-  },
-  "archify-work.visual-check.2048x1320.light.png": {
-    "mtime": 1789849386.6719975,
-    "ast_hash": "053334126b93447e1a27fbaf130471b3",
-    "semantic_hash": ""
-  },
-  "artifacts/comic_detail_page.png": {
-    "mtime": 1786975535.3734937,
-    "ast_hash": "960d2fbaf9ef09ae7ea1b1c9ebdc0b01",
-    "semantic_hash": ""
-  },
-  "artifacts/comic_reader_page.png": {
-    "mtime": 1786975542.1701167,
-    "ast_hash": "9afc3da834cb1eabc60aeb3fe975fbd4",
-    "semantic_hash": ""
-  },
-  "artifacts/comic_reader_scroll.png": {
-    "mtime": 1786975546.7091227,
-    "ast_hash": "97176377160f6440d928f858f418ca90",
-    "semantic_hash": ""
-  },
-  "artifacts/genre-page.png": {
-    "mtime": 1786725230.1947227,
-    "ast_hash": "b5043ba7376b29ac305ce41f5d71cf85",
-    "semantic_hash": ""
-  },
-  "artifacts/history-page.png": {
-    "mtime": 1786725241.2221477,
-    "ast_hash": "df13ccfafbb9ab94e5a023d158d9e07b",
-    "semantic_hash": ""
-  },
-  "artifacts/home_page.png": {
-    "mtime": 1786975524.3406508,
-    "ast_hash": "5a17a87b0ab65d1f0052c3bf995402be",
-    "semantic_hash": ""
-  },
-  "artifacts/homepage.png": {
-    "mtime": 1786725171.7441096,
-    "ast_hash": "c5c45542e4b69d0877783134c2f80891",
-    "semantic_hash": ""
-  },
-  "artifacts/landing_page.png": {
-    "mtime": 1786975513.1260164,
-    "ast_hash": "bba407c1aae022af6c505fdee0ccb27e",
-    "semantic_hash": ""
-  },
-  "artifacts/popular-page.png": {
-    "mtime": 1786725218.9603004,
-    "ast_hash": "9e2fe512e1f3b7fdc6c1af12cb0495fe",
-    "semantic_hash": ""
-  },
-  "artifacts/reader-page.png": {
-    "mtime": 1786725320.747611,
-    "ast_hash": "c6fff55d1ef273b4cac913a48b2b9303",
-    "semantic_hash": ""
-  },
-  "artifacts/screenshot-step-1786725474840.png": {
-    "mtime": 1786725475.1955097,
-    "ast_hash": "3cfe557b6f842715c6e292f89bd720ea",
-    "semantic_hash": ""
-  },
-  "artifacts/search-results.png": {
-    "mtime": 1786725474.9705958,
-    "ast_hash": "77aeb4ca717397185fddc347e5209f70",
-    "semantic_hash": ""
-  },
-  "artifacts/series-detail-page.png": {
-    "mtime": 1786725295.300099,
-    "ast_hash": "d81df1f26b1510291c2c6b537de38cae",
-    "semantic_hash": ""
-  },
-  "artifacts/update-page.png": {
-    "mtime": 1786725238.6758728,
-    "ast_hash": "df13ccfafbb9ab94e5a023d158d9e07b",
     "semantic_hash": ""
   },
   "src/common/utils/chapter-filter.ts": {
