@@ -1,147 +1,205 @@
 import { useEffect, useState } from "react";
-import { Book, Star, Trophy, TrendingUp } from "lucide-react";
+import { ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { PopularComic } from "@/common/interface";
-import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 interface Props {
   comics: PopularComic[];
 }
 
-export default function HeroSlider({ comics }: Props) {
-  const items = comics.slice(0, 3);
+const COUNTRY_LABEL: Record<string, string> = {
+  KR: "KR · MANHWA",
+  JP: "JP · MANGA",
+  CN: "CN · MANHUA",
+};
+
+export default function HeroSection({ comics }: Props) {
+  const items = comics.slice(0, 5);
   const [active, setActive] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!items.length) return;
+    if (items.length <= 1) return;
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % items.length);
-    }, 6000);
+    }, 6500);
     return () => clearInterval(timer);
   }, [items.length]);
 
   if (!items.length) return null;
 
-  const COUNTRY_MAP = {
-    KR: { label: "Manhwa", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
-    JP: { label: "Manga", color: "bg-sky-500/20 text-sky-300 border-sky-500/30" },
-    CN: { label: "Manhua", color: "bg-rose-500/20 text-rose-300 border-rose-500/30" },
-  } as const;
+  const current = items[active] ?? items[0];
+  const originLabel = COUNTRY_LABEL[current.country_id] || "INT · KOMIK";
+  const genres = current.taxonomy?.Genre?.slice(0, 4) ?? [];
 
   return (
-    <div className="relative mb-8 min-h-[480px] sm:h-120 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-950 via-zinc-900 to-black border border-zinc-800/80 shadow-2xl">
-      {items.map((comic, index) => {
-        const activeSlide = index === active;
-        const country = COUNTRY_MAP[comic.country_id] || { label: "Global", color: "bg-zinc-800 text-zinc-300 border-zinc-700" };
+    <section
+      aria-label="Sorotan Utama Sirkulasi"
+      className="mb-10 border border-[#27272e] bg-[#0c0c10]"
+    >
+      {/* Top Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#27272e] bg-[#101014] px-4 py-2.5 sm:px-6">
+        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-wider text-[#c8c2b6] tabular-nums">
+          <span className="bg-[#be123c] px-2 py-0.5 font-bold text-[#f4f1ea]">
+            TRENDING MINGGU INI
+          </span>
+          <span>PILIHAN #{String(active + 1).padStart(2, "0")}</span>
+          <span className="hidden sm:inline text-[#27272e]">/</span>
+          <span className="hidden sm:inline text-[#f4f1ea]">{originLabel}</span>
+        </div>
 
-        return (
-          <div
-            key={comic.manga_id}
-            className={`absolute inset-0 transition-all duration-700 ease-out
-              ${
-                activeSlide
-                  ? "opacity-100 translate-x-0 z-10"
-                  : "opacity-0 translate-x-8 z-0 pointer-events-none"
-              }
-            `}
+        <div className="flex items-center gap-1">
+          {items.map((item, idx) => {
+            const isSelected = idx === active;
+            return (
+              <button
+                key={item.manga_id}
+                type="button"
+                onClick={() => setActive(idx)}
+                aria-label={`Tampilkan sorotan ${idx + 1}: ${item.title}`}
+                aria-current={isSelected ? "true" : undefined}
+                className={`min-h-9 min-w-9 border px-2.5 font-mono text-xs font-bold tabular-nums transition-colors ${
+                  isSelected
+                    ? "border-[#be123c] bg-[#be123c] text-[#f4f1ea]"
+                    : "border-[#27272e] bg-[#141418] text-[#c8c2b6] hover:border-[#f4f1ea] hover:text-[#f4f1ea]"
+                }`}
+              >
+                {String(idx + 1).padStart(2, "0")}
+              </button>
+            );
+          })}
+          <button
+            type="button"
+            onClick={() => setActive((prev) => (prev - 1 + items.length) % items.length)}
+            aria-label="Sorotan sebelumnya"
+            className="ml-1 flex min-h-9 min-w-9 items-center justify-center border border-[#27272e] bg-[#141418] text-[#c8c2b6] transition-colors hover:border-[#f4f1ea] hover:text-[#f4f1ea]"
           >
-            <div className="flex h-full flex-col md:flex-row items-center gap-6 md:gap-10 p-6 md:px-10">
-              {/* LEFT: COVER */}
-              <div className="w-48 sm:w-60 md:w-64 shrink-0 shadow-2xl rounded-2xl overflow-hidden bg-zinc-800 border border-zinc-800">
-                <img
-                  src={comic.cover_portrait_url || comic.cover_image_url}
-                  alt={comic.title}
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                  className="h-72 sm:h-96 md:h-100 w-full object-cover"
-                />
-              </div>
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setActive((prev) => (prev + 1) % items.length)}
+            aria-label="Sorotan selanjutnya"
+            className="flex min-h-9 min-w-9 items-center justify-center border border-[#27272e] bg-[#141418] text-[#c8c2b6] transition-colors hover:border-[#f4f1ea] hover:text-[#f4f1ea]"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
 
-              {/* RIGHT: CONTENT */}
-              <div className="flex-1 space-y-4 text-center md:text-left">
-                {/* Badges */}
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-                  <span className="flex items-center gap-1.5 rounded-full bg-red-500 px-3 py-1 text-xs font-bold text-white shadow-md">
-                    <TrendingUp className="h-3.5 w-3.5" />
-                    TRENDING
-                  </span>
-                  <span
-                    className={`rounded-full px-3 py-1 text-xs font-bold border ${country.color}`}
-                  >
-                    {country.label}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight text-white line-clamp-2">
-                  {comic.title}
-                </h2>
-
-                {/* Description */}
-                {comic.description && (
-                  <p className="max-w-2xl line-clamp-3 text-sm text-zinc-300 leading-relaxed">
-                    {comic.description}
-                  </p>
-                )}
-
-                {/* Stats */}
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-5 text-white pt-1 text-sm font-semibold">
-                  <div className="flex items-center gap-1.5">
-                    <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                    <span className="text-amber-400 font-bold">
-                      {comic.user_rate ? comic.user_rate.toFixed(1) : "N/A"}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 text-zinc-300">
-                    <Book className="h-4 w-4 text-orange-400" />
-                    <span>Ch. {comic.latest_chapter_number}</span>
-                  </div>
-
-                  {comic.rank && (
-                    <div className="flex items-center gap-1.5 text-purple-300">
-                      <Trophy className="h-4 w-4 text-purple-400" />
-                      <span>Rank #{comic.rank}</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* CTA */}
-                <div className="pt-2">
-                  <button
-                    onClick={() =>
-                      navigate({
-                        to: `/read/$comicId/$chapterId`,
-                        params: {
-                          chapterId: comic.latest_chapter_id,
-                          comicId: comic.manga_id,
-                        },
-                      })
-                    }
-                    className="rounded-xl bg-red-500 hover:bg-red-600 active:scale-95 px-6 py-3 font-extrabold text-white text-xs sm:text-sm shadow-lg shadow-red-500/25 transition-all"
-                  >
-                    Baca Sekarang
-                  </button>
-                </div>
-              </div>
+      {/* Main Editorial Spread */}
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        {/* Left Cover Column (4 cols) */}
+        <div className="relative flex items-center justify-center border-b border-[#27272e] bg-[#09090b] p-6 sm:p-8 lg:col-span-4 lg:border-b-0 lg:border-r">
+          <div className="relative w-48 sm:w-56 border border-[#27272e] bg-[#141418]">
+            <div className="aspect-3/4 w-full overflow-hidden bg-[#141418]">
+              <img
+                src={current.cover_portrait_url || current.cover_image_url}
+                alt={current.title}
+                loading="eager"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            {/* Tankobon Obi Belly Band */}
+            <div className="flex items-center justify-between border-t border-[#27272e] bg-[#101014] px-3 py-2 font-mono text-xs font-bold uppercase tracking-wider text-[#f4f1ea] tabular-nums">
+              <span className="text-[#f43f5e]">
+                {current.rank ? `PERINGKAT #${String(current.rank).padStart(2, "0")}` : originLabel}
+              </span>
+              <span>CH. {current.latest_chapter_number}</span>
             </div>
           </div>
-        );
-      })}
+        </div>
 
-      {/* Indicators */}
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-        {items.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setActive(index)}
-            className={`h-2 rounded-full transition-all duration-300
-              ${index === active ? "w-6 bg-red-500" : "w-2 bg-white/30 hover:bg-white/60"}
-            `}
-          />
-        ))}
+        {/* Right Dossier Column (8 cols) */}
+        <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-8">
+          <div className="space-y-5">
+            <div>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#f4f1ea] line-clamp-2">
+                {current.title}
+              </h2>
+              {current.alternative_title && (
+                <p className="mt-1.5 font-mono text-xs text-[#c8c2b6] line-clamp-1">
+                  {current.alternative_title}
+                </p>
+              )}
+            </div>
+
+            {/* Specification Ledger */}
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-px border border-[#27272e] bg-[#27272e] font-mono text-xs tabular-nums">
+              <div className="bg-[#101014] p-3">
+                <dt className="text-xs uppercase text-[#c8c2b6]">JENIS KOMIK</dt>
+                <dd className="mt-1 font-bold text-[#f4f1ea]">{originLabel}</dd>
+              </div>
+              <div className="bg-[#101014] p-3">
+                <dt className="text-xs uppercase text-[#c8c2b6]">CHAPTER BARU</dt>
+                <dd className="mt-1 font-bold text-[#f43f5e]">
+                  CH. {current.latest_chapter_number}
+                </dd>
+              </div>
+              <div className="bg-[#101014] p-3">
+                <dt className="text-xs uppercase text-[#c8c2b6]">RATING</dt>
+                <dd className="mt-1 flex items-center gap-1 font-bold text-[#fbbf24]">
+                  <Star className="h-3.5 w-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+                  {current.user_rate ? current.user_rate.toFixed(1) : "N/A"} / 5.0
+                </dd>
+              </div>
+              <div className="bg-[#101014] p-3">
+                <dt className="text-xs uppercase text-[#c8c2b6]">PEMBACA</dt>
+                <dd className="mt-1 font-bold text-[#f4f1ea]">
+                  {current.view_count ? current.view_count.toLocaleString("id-ID") : "-"}
+                </dd>
+              </div>
+            </dl>
+
+            {/* Synopsis */}
+            {current.description && (
+              <p className="max-w-[68ch] text-sm sm:text-base leading-relaxed text-[#c8c2b6] line-clamp-3">
+                {current.description}
+              </p>
+            )}
+
+            {/* Genre Tags */}
+            {genres.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {genres.map((g) => (
+                  <span
+                    key={g.slug || g.name}
+                    className="border border-[#27272e] bg-[#141418] px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-[#c8c2b6]"
+                  >
+                    {g.name}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Action Bar */}
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-[#27272e] pt-5">
+            <Link
+              to="/read/$comicId/$chapterId"
+              params={{
+                comicId: current.manga_id,
+                chapterId: current.latest_chapter_id,
+              }}
+              className="inline-flex min-h-11 items-center gap-2 bg-[#be123c] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
+            >
+              <BookOpen className="h-4 w-4" />
+              <span>Baca Ch. {current.latest_chapter_number}</span>
+            </Link>
+
+            <Link
+              to="/series/$comicId"
+              params={{ comicId: current.manga_id }}
+              search={{ page: 1 }}
+              className="inline-flex min-h-11 items-center gap-2 border border-[#27272e] bg-[#141418] px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] hover:bg-[#181820]"
+            >
+              <span>Detail Komik</span>
+              <ArrowUpRight className="h-4 w-4 text-[#c8c2b6]" />
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

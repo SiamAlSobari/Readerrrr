@@ -1,39 +1,22 @@
 export default function PopularComicCardSkeleton() {
   return (
-    <div className="animate-pulse group relative overflow-hidden rounded-2xl bg-zinc-900">
-      {/* Cover Skeleton */}
-      <div className="relative h-52 bg-zinc-800">
-        {/* Gradient */}
-        <div className="absolute inset-0 bg-lienar-to-t from-black via-black/50 to-transparent" />
-
-        {/* Rank Skeleton */}
-        <div className="absolute left-3 top-3 h-5 w-14 rounded-full bg-zinc-700" />
-
-        {/* Rating Skeleton */}
-        <div className="absolute right-3 top-3 h-5 w-12 rounded-full bg-zinc-700" />
-
-        {/* Bottom Title & Chapter Skeleton */}
-        <div className="absolute bottom-3 left-3 right-3 space-y-1">
-          <div className="h-5 w-3/4 rounded bg-zinc-700" />
-          <div className="flex justify-between">
-            <div className="h-3 w-20 rounded bg-zinc-700" />
-            <div className="h-3 w-6 rounded bg-zinc-700" />
-          </div>
-        </div>
+    <div className="animate-pulse flex flex-col border border-[#27272e] bg-[#101014]">
+      <div className="flex items-center justify-between border-b border-[#27272e] bg-[#0c0c10] px-3 py-2">
+        <div className="h-4 w-8 bg-[#181820]" />
+        <div className="h-3 w-16 bg-[#181820]" />
+        <div className="h-3 w-10 bg-[#181820]" />
       </div>
-
-      {/* Content Skeleton */}
-      <div className="p-4 space-y-3">
-        {/* Stats Skeleton */}
-        <div className="flex justify-between">
-          <div className="h-4 w-24 rounded bg-zinc-700" />
-          <div className="h-4 w-24 rounded bg-zinc-700" />
-        </div>
-
-        {/* Meta Skeleton */}
-        <div className="flex justify-between">
-          <div className="h-4 w-20 rounded bg-zinc-700" />
-          <div className="h-4 w-14 rounded bg-zinc-700" />
+      <div className="flex gap-3.5 p-3.5">
+        <div className="h-32 w-24 shrink-0 bg-[#141418] border border-[#27272e]" />
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="h-4 w-4/5 bg-[#181820]" />
+            <div className="h-3 w-1/3 bg-[#181820]" />
+          </div>
+          <div className="space-y-1.5 border-t border-[#27272e] pt-2">
+            <div className="h-3 w-full bg-[#181820]" />
+            <div className="h-3 w-2/3 bg-[#181820]" />
+          </div>
         </div>
       </div>
     </div>

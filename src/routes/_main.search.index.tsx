@@ -1,12 +1,11 @@
 import { searchComicServer } from "@/api/servers/shinigami.server";
 import BaseComicCard from "@/features/comic/BaseComicCard";
 import BaseComicCardSkeleton from "@/features/comic/BaseComicCardSkeleton";
-import { Button } from "@/common/shadcn-ui/button";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
-import { Search as SearchIcon, Frown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search as SearchIcon, ChevronLeft, ChevronRight, SearchX } from "lucide-react";
 import { JsonLd } from "@/common/components/JsonLd";
 
 type Search = {
@@ -20,7 +19,8 @@ export const Route = createFileRoute("/_main/search/")({
     q: search.q || "",
   }),
   component: RouteComponent,
-  head: ({ match, search }) => {
+  head: ({ match }) => {
+    const search = match.search as Search | undefined;
     const queryTerm = search?.q ? `"${search.q}"` : "";
     const title = queryTerm
       ? `Hasil Pencarian ${queryTerm} - KOMIK READER`
@@ -32,7 +32,11 @@ export const Route = createFileRoute("/_main/search/")({
     return {
       meta: [
         { name: "description", content: description },
-        { name: "keywords", content: "cari komik, search komik, komik online, baca komik, manga, manhwa, manhua" },
+        {
+          name: "keywords",
+          content:
+            "cari komik, search komik, komik online, baca komik, manga, manhwa, manhua",
+        },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:url", content: `${SITE_URL}${match.pathname}` },
@@ -49,18 +53,24 @@ const PAGE_SIZE = 12;
 
 function RouteComponent() {
   const { q } = Route.useSearch();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
+  const [inputQuery, setInputQuery] = useState(q);
   const fetchSearch = useServerFn(searchComicServer);
 
-  const {
-    data,
-    isLoading,
-    isFetching,
-  } = useQuery({
+  useEffect(() => {
+    setInputQuery(q);
+    setPage(1);
+  }, [q]);
+
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: ["search", q, page],
     queryFn: async () => {
-      if (!q.trim()) return { data: [], meta: { page: 1, total_page: 1, total_data: 0 } };
-      const res = await fetchSearch({ data: { q: q.trim(), page, pageSize: PAGE_SIZE } });
+      if (!q.trim())
+        return { data: [], meta: { page: 1, total_page: 1, total_data: 0, total_record: 0 } };
+      const res = await fetchSearch({
+        data: { q: q.trim(), page, pageSize: PAGE_SIZE },
+      });
       return res.data;
     },
     enabled: !!q.trim(),
@@ -70,10 +80,17 @@ function RouteComponent() {
 
   const comics = data?.data ?? [];
   const totalPage = data?.meta?.total_page ?? 1;
-  const totalData = data?.meta?.total_data ?? comics.length;
+  const totalData = data?.meta?.total_record ?? data?.meta?.total_data ?? comics.length;
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = inputQuery.trim();
+    if (!trimmed) return;
+    navigate({ to: "/search", search: { q: trimmed } });
+  };
 
   return (
-    <div className="space-y-6 container mx-auto px-4 py-6">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-8">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -83,18 +100,48 @@ function RouteComponent() {
         }}
       />
 
-      {/* Header */}
-      <div className="border-b border-zinc-800/80 pb-4">
-        <div className="flex items-center gap-2 mb-1">
-          <SearchIcon className="w-5 h-5 text-red-500" />
-          <h1 className="text-2xl font-extrabold text-white">
-            Hasil Pencarian: <span className="text-red-400">"{q}"</span>
+      {/* Masthead & Inline Search Bar */}
+      <header className="flex flex-col justify-between gap-6 border-b border-[#27272e] pb-6 lg:flex-row lg:items-end">
+        <div>
+          <h1 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#f4f1ea]">
+            {q ? (
+              <>
+                Hasil Pencarian: <span className="text-[#f43f5e]">"{q}"</span>
+              </>
+            ) : (
+              "Cari Komik"
+            )}
           </h1>
+          <p className="mt-1.5 font-mono text-xs uppercase text-[#c8c2b6] tabular-nums">
+            {q
+              ? `DITEMUKAN ${totalData} JUDUL KOMIK TERKAIT`
+              : "KETIK JUDUL KOMIK YANG INGIN KAMU BACA"}
+          </p>
         </div>
-        <p className="text-sm text-zinc-400">
-          Ditemukan {totalData} komik terkait
-        </p>
-      </div>
+
+        <form
+          onSubmit={handleSearchSubmit}
+          className="flex w-full max-w-md border border-[#27272e] bg-[#141418]"
+        >
+          <div className="relative flex-1">
+            <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c8c2b6]" />
+            <input
+              type="search"
+              value={inputQuery}
+              onChange={(e) => setInputQuery(e.target.value)}
+              placeholder="Ketik judul Manga, Manhwa, Manhua..."
+              aria-label="Cari judul komik"
+              className="min-h-11 w-full bg-transparent pl-10 pr-3 font-mono text-xs text-[#f4f1ea] placeholder-[#c8c2b6]/60 focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            className="min-h-11 bg-[#be123c] px-5 font-mono text-xs font-bold uppercase tracking-wider text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
+          >
+            Cari
+          </button>
+        </form>
+      </header>
 
       {/* Content */}
       {isLoading ? (
@@ -102,7 +149,7 @@ function RouteComponent() {
       ) : comics.length === 0 ? (
         <NotFound query={q} />
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {comics.map((comic) => (
             <BaseComicCard key={comic.manga_id} comic={comic} />
           ))}
@@ -111,36 +158,36 @@ function RouteComponent() {
 
       {/* Pagination */}
       {comics.length > 0 && (
-        <div className="flex justify-center items-center gap-3 pt-6">
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={page === 1 || isFetching}
-            className="rounded-xl border-zinc-800 bg-zinc-900 text-xs"
+        <div className="flex items-center justify-between border border-[#27272e] bg-[#0c0c10] p-3">
+          <button
+            type="button"
+            disabled={page <= 1 || isFetching}
             onClick={() => {
               setPage((p) => p - 1);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
+            className="inline-flex min-h-11 items-center gap-2 border border-[#27272e] bg-[#141418] px-4 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] disabled:opacity-40 disabled:pointer-events-none"
           >
-            Sebelumnya
-          </Button>
+            <ChevronLeft className="h-4 w-4" />
+            <span>Sebelumnya</span>
+          </button>
 
-          <span className="text-xs text-zinc-400 font-medium">
-            Halaman {page} dari {totalPage}
+          <span className="font-mono text-xs font-bold uppercase text-[#c8c2b6] tabular-nums">
+            HALAMAN {page} DARI {totalPage}
           </span>
 
-          <Button
-            variant="outline"
-            size="sm"
+          <button
+            type="button"
             disabled={page >= totalPage || isFetching}
-            className="rounded-xl border-zinc-800 bg-zinc-900 text-xs"
             onClick={() => {
               setPage((p) => p + 1);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
+            className="inline-flex min-h-11 items-center gap-2 border border-[#27272e] bg-[#141418] px-4 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] disabled:opacity-40 disabled:pointer-events-none"
           >
-            Selanjutnya
-          </Button>
+            <span>Selanjutnya</span>
+            <ChevronRight className="h-4 w-4" />
+          </button>
         </div>
       )}
     </div>
@@ -149,7 +196,7 @@ function RouteComponent() {
 
 function GridSkeleton() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {Array.from({ length: PAGE_SIZE }).map((_, i) => (
         <BaseComicCardSkeleton key={i} />
       ))}
@@ -159,13 +206,15 @@ function GridSkeleton() {
 
 function NotFound({ query }: { query: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-20 text-center bg-zinc-900/30 border border-zinc-800/80 rounded-3xl p-6">
-      <Frown className="w-12 h-12 text-zinc-600 mb-3" />
-      <h2 className="text-lg font-bold text-zinc-300">
-        Komik "{query}" tidak ditemukan
+    <div className="flex flex-col items-center justify-center border border-[#27272e] bg-[#0c0c10] py-20 px-6 text-center">
+      <SearchX className="mb-3 h-12 w-12 text-[#c8c2b6]" />
+      <h2 className="font-display text-2xl font-black uppercase tracking-tight text-[#f4f1ea]">
+        {query ? `Tidak Ada Hasil untuk "${query}"` : "Mulai Pencarian Katalog"}
       </h2>
-      <p className="text-sm text-zinc-500 mt-1 max-w-md">
-        Coba gunakan kata kunci lain atau periksa kembali ejaan pencarian Anda.
+      <p className="mt-1.5 max-w-md text-sm text-[#c8c2b6]">
+        {query
+          ? "Coba gunakan kata kunci judul lain atau periksa kembali ejaan pencarian Anda."
+          : "Ketik judul komik pada kolom pencarian di atas untuk menampilkan hasil."}
       </p>
     </div>
   );

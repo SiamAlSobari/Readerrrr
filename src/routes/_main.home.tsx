@@ -1,10 +1,7 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  Flame,
-  TrendingUp,
-  Clock,
-  ChevronRight,
+  ArrowRight,
   BookOpen,
   Library,
   ScrollText,
@@ -16,7 +13,6 @@ import {
   getPopularComic,
 } from "@/api/servers/shinigami.server";
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { motion, AnimatePresence } from "framer-motion";
 
 import PopularComicCard from "@/features/comic/PopularComicCard";
 import BaseComicCard from "@/features/comic/BaseComicCard";
@@ -87,166 +83,207 @@ export const Route = createFileRoute("/_main/home")({
   },
 });
 
+const TABS = [
+  {
+    key: "manhwa",
+    label: "Manhwa",
+    origin: "KR",
+    icon: ScrollText,
+  },
+  {
+    key: "manga",
+    label: "Manga",
+    origin: "JP",
+    icon: BookOpen,
+  },
+  {
+    key: "manhua",
+    label: "Manhua",
+    origin: "CN",
+    icon: Library,
+  },
+] as const;
+
 function RouteComponent() {
   const [activeTab, setActiveTab] = useState("manhwa");
-  const navigate = useNavigate();
   const { data: comicRecomendation, isLoading: comicRecomendationLoading } =
     useQuery(queryRecommendation(activeTab));
   const { data: popularComic, isLoading: popularComicLoading } =
     useQuery(queryPopularComic);
   const { data: updateComic, isLoading: updateCommicLoading } =
     useQuery(queryUpdateComic);
-  const TABS = [
-    {
-      key: "manhwa",
-      label: "Manhwa",
-      icon: ScrollText, // Korea style / webtoon
-    },
-    {
-      key: "manga",
-      label: "Manga",
-      icon: BookOpen, // Jepang
-    },
-    {
-      key: "manhua",
-      label: "Manhua",
-      icon: Library, // China
-    },
-  ] as const;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-linear-to-b from-black to-gray-900 overflow-x-hidden"
-    >
-      {/* Primary H1 for SEO */}
-      <h1 className="sr-only">KOMIK READER – Baca Manga, Manhwa, dan Manhua Online Bahasa Indonesia Gratis</h1>
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      {/* Page Masthead */}
+      <header className="mb-8 flex flex-col justify-between gap-4 border-b border-[#27272e] pb-6 sm:flex-row sm:items-end">
+        <div>
+          <h1 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#f4f1ea]">
+            Katalog Komik Pilihan
+          </h1>
+          <p className="mt-1.5 max-w-[65ch] text-sm text-[#c8c2b6]">
+            Temukan Manhwa Korea, Manga Jepang, dan Manhua Tiongkok pilihan serta update chapter terbaru setiap hari.
+          </p>
+        </div>
 
-      {/* Hero Section */}
+        <div className="flex items-center gap-2 font-mono text-xs uppercase text-[#c8c2b6] tabular-nums">
+          <Link
+            to="/genre"
+            search={{ g: "action" }}
+            className="inline-flex min-h-10 items-center border border-[#27272e] bg-[#141418] px-3.5 py-2 font-bold text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
+          >
+            Pilih Genre
+          </Link>
+          <Link
+            to="/popular"
+            search={{ page: 1 }}
+            className="inline-flex min-h-10 items-center border border-[#27272e] bg-[#141418] px-3.5 py-2 font-bold text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
+          >
+            Komik Terpopuler
+          </Link>
+        </div>
+      </header>
+
+      {/* Featured Spotlight */}
       <HeroSection comics={popularComic?.data.data ?? []} />
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-        {/* Left Column */}
-        <div className="lg:col-span-2">
-          <div className="mb-6">
-            <h2 className="text-xl sm:text-2xl text-white font-bold mb-6 flex items-center gap-3">
-              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" />
-              Top Recommendations
-              <div className="h-px flex-1 bg-linear-to-r from-red-500 to-transparent"></div>
-            </h2>
-
-            {/* Tabs - RESPONSIVE */}
-            <div className="flex gap-6 mb-8 border-b border-gray-800 overflow-x-auto scrollbar-hide">
-              {TABS.map(({ key, label, icon: Icon }) => (
-                <button
-                  key={key}
-                  onClick={() => setActiveTab(key)}
-                  className={`
-                pb-4 px-1 font-semibold text-sm sm:text-lg
-                flex items-center gap-2 whitespace-nowrap
-                transition-colors
-                ${
-                  activeTab === key
-                    ? "text-white border-b-2 border-red-500"
-                    : "text-gray-400 hover:text-white"
-                }
-              `}
+      {/* Main 12-Column Layout */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+        {/* Left 8 Columns: Curated Recommendations + All-Time Popular */}
+        <div className="space-y-12 lg:col-span-8">
+          {/* Section 1: Recommendations */}
+          <section aria-labelledby="heading-kurasi">
+            <div className="mb-5 flex flex-col justify-between gap-4 border-b border-[#27272e] pb-4 sm:flex-row sm:items-center">
+              <div>
+                <h2
+                  id="heading-kurasi"
+                  className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#f4f1ea]"
                 >
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                  {label}
-                </button>
-              ))}
+                  Rekomendasi Pilihan
+                </h2>
+                <p className="mt-1 font-mono text-xs text-[#c8c2b6]">
+                  Pilih jenis komik sesuai negara asalnya
+                </p>
+              </div>
+
+              {/* Tradition Switcher */}
+              <div
+                role="tablist"
+                aria-label="Filter tradisi komik"
+                className="flex border border-[#27272e] bg-[#0c0c10]"
+              >
+                {TABS.map(({ key, label, origin, icon: Icon }) => {
+                  const isActive = activeTab === key;
+                  return (
+                    <button
+                      key={key}
+                      role="tab"
+                      type="button"
+                      aria-selected={isActive}
+                      onClick={() => setActiveTab(key)}
+                      className={`flex min-h-11 items-center gap-2 border-r border-[#27272e] px-3.5 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-colors last:border-r-0 ${
+                        isActive
+                          ? "bg-[#be123c] text-[#f4f1ea]"
+                          : "bg-[#141418] text-[#c8c2b6] hover:bg-[#181820] hover:text-[#f4f1ea]"
+                      }`}
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      <span>{label}</span>
+                      <span className="opacity-75">[{origin}]</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Comic Grid */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {comicRecomendationLoading
+                ? Array.from({ length: 8 }).map((_, idx) => (
+                    <BaseComicCardSkeleton key={idx} />
+                  ))
+                : comicRecomendation?.data.data.slice(0, 8).map((comic) => (
+                    <BaseComicCard key={comic.manga_id} comic={comic} />
+                  ))}
+            </div>
+          </section>
+
+          {/* Section 2: Popular All Time */}
+          <section aria-labelledby="heading-populer">
+            <div className="mb-5 flex items-end justify-between border-b border-[#27272e] pb-4">
+              <div>
+                <h2
+                  id="heading-populer"
+                  className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#f4f1ea]"
+                >
+                  Komik Terpopuler Sepanjang Masa
+                </h2>
+                <p className="mt-1 font-mono text-xs text-[#c8c2b6]">
+                  Judul dengan pembaca terbanyak dan rating tertinggi
+                </p>
+              </div>
+
+              <Link
+                to="/popular"
+                search={{ page: 1 }}
+                className="inline-flex min-h-10 items-center gap-1.5 border border-[#27272e] bg-[#141418] px-3.5 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
               >
-                {comicRecomendationLoading
-                  ? Array.from({ length: 5 }).map((_, idx) => (
-                      <BaseComicCardSkeleton key={idx} />
-                    ))
-                  : comicRecomendation?.data.data.map((comic) => (
-                      <BaseComicCard key={comic.manga_id} comic={comic} />
-                    ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <span>Lihat Semua</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
 
-          {/* Popular Section */}
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center gap-3">
-              <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-              Popular All Time
-              <div className="h-px flex-1 bg-linear-to-r from-orange-500 to-transparent"></div>
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {popularComicLoading
-                ? Array.from({ length: 5 }).map((_, idx) => (
+                ? Array.from({ length: 6 }).map((_, idx) => (
                     <PopularComicCardSkeleton key={idx} />
                   ))
-                : popularComic?.data.data.map((comic) => (
+                : popularComic?.data.data.slice(0, 6).map((comic) => (
                     <PopularComicCard key={comic.manga_id} comic={comic} />
                   ))}
             </div>
-          </div>
+          </section>
         </div>
 
-        {/* Right Column - Sidebar */}
-        <div className="space-y-6">
-          <div className="bg-linear-to-b from-gray-900/50 to-black/50 rounded-2xl p-4 sm:p-6">
-            <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center gap-3">
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
-              Latest Updates
-              <div className="h-px flex-1 bg-linear-to-r from-green-500 to-transparent"></div>
-            </h2>
+        {/* Right 4 Columns: Latest Updates */}
+        <aside aria-labelledby="heading-rilis" className="lg:col-span-4">
+          <div className="border border-[#27272e] bg-[#0c0c10]">
+            <div className="flex items-center justify-between border-b border-[#27272e] bg-[#101014] px-4 py-3.5">
+              <div>
+                <h2
+                  id="heading-rilis"
+                  className="font-display text-xl font-black uppercase tracking-tight text-[#f4f1ea]"
+                >
+                  Update Terbaru
+                </h2>
+                <p className="font-mono text-xs text-[#c8c2b6]">
+                  CHAPTER BARU HARI INI
+                </p>
+              </div>
+              <span className="h-2.5 w-2.5 bg-[#34d399]" title="Update Aktif" />
+            </div>
 
-            <motion.div
-              variants={{
-                hidden: {},
-                show: {
-                  transition: { staggerChildren: 0.08 },
-                },
-              }}
-              className="space-y-4"
-            >
+            <div className="divide-y divide-[#27272e] p-4 space-y-3">
               {updateCommicLoading
-                ? Array.from({ length: 5 }).map((_, idx) => (
+                ? Array.from({ length: 6 }).map((_, idx) => (
                     <UpdateComicCardSkeleton key={idx} />
                   ))
                 : updateComic?.data.data.map((comic) => (
-                    <motion.div
-                      key={comic.manga_id}
-                      variants={{
-                        hidden: { opacity: 0, x: 20 },
-                        show: { opacity: 1, x: 0 },
-                      }}
-                    >
-                      <UpdateComicCard comic={comic} />
-                    </motion.div>
+                    <UpdateComicCard key={comic.manga_id} comic={comic} />
                   ))}
-            </motion.div>
+            </div>
 
-            <button
-              onClick={() => navigate({ to: "/update" })}
-              className="w-full mt-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
-            >
-              View All Updates
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            <div className="border-t border-[#27272e] bg-[#101014] p-4">
+              <Link
+                to="/update"
+                className="flex min-h-11 w-full items-center justify-center gap-2 bg-[#be123c] px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
+              >
+                <span>Lihat Semua Update</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-        </div>
+        </aside>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -1,126 +1,97 @@
 import { Comic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
-import { Clock, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { useState, memo } from "react";
 
 interface Props {
   comic: Comic;
 }
 
-const COUNTRY_MAP: Record<
-  string,
-  { label: string; flag: string; color: string }
-> = {
-  KR: { label: "Manhwa", flag: "🇰🇷", color: "text-green-400" },
-  JP: { label: "Manga", flag: "🇯🇵", color: "text-blue-400" },
-  CN: { label: "Manhua", flag: "🇨🇳", color: "text-red-400" },
+const COUNTRY_CODE: Record<string, string> = {
+  KR: "KR · MANHWA",
+  JP: "JP · MANGA",
+  CN: "CN · MANHUA",
 };
 
 function BaseComicCardComponent({ comic }: Props) {
   const [imgError, setImgError] = useState(false);
 
-  const genres = comic.taxonomy.Genre?.slice(0, 3) ?? [];
-  const extraGenreCount = (comic.taxonomy.Genre?.length ?? 0) - genres.length;
-  const country = COUNTRY_MAP[comic.country_id];
+  const genres = comic.taxonomy?.Genre?.slice(0, 2) ?? [];
+  const originCode =
+    COUNTRY_CODE[comic.country_id] ||
+    comic.taxonomy?.Format?.[0]?.name?.toUpperCase() ||
+    "KOMIK";
 
   return (
     <Link
       search={{ page: 1 }}
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
+      className="group flex h-full flex-col border border-[#27272e] bg-[#101014] transition-colors duration-150 hover:border-[#f4f1ea] hover:bg-[#141418] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f43f5e]"
     >
-      <div
-        className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-900 via-zinc-900 to-black border border-zinc-800/60 hover:border-zinc-700 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60"
-      >
-        {/* Cover */}
-        <div className="relative h-64 overflow-hidden bg-zinc-850">
-          {!imgError && comic.cover_image_url ? (
-            <img
-              src={comic.cover_image_url}
-              alt={comic.title}
-              loading="lazy"
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onError={() => setImgError(true)}
-              className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 text-zinc-500 text-xs font-semibold p-4 text-center">
-              {comic.title}
-            </div>
-          )}
+      {/* Top Stamp Strip */}
+      <div className="flex items-center justify-between border-b border-[#27272e] bg-[#0c0c10] px-2.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider tabular-nums">
+        <span className="text-[#c8c2b6] truncate">{originCode}</span>
+        {comic.user_rate > 0 ? (
+          <span className="flex items-center gap-1 text-[#fbbf24] shrink-0">
+            <Star className="h-3 w-3 fill-[#fbbf24] text-[#fbbf24]" />
+            {Number(comic.user_rate).toFixed(1)}
+          </span>
+        ) : (
+          <span className="text-[#c8c2b6] shrink-0">{comic.release_year || "EDISI"}</span>
+        )}
+      </div>
 
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-          {/* Top Badges */}
-          <div className="absolute z-20 top-3 left-3 flex gap-1.5">
-            {comic.taxonomy.Format?.[0]?.name && (
-              <span className="px-2 py-0.5 rounded-lg bg-black/80 backdrop-blur-md text-[10px] font-bold text-white uppercase border border-white/10">
-                {comic.taxonomy.Format[0].name}
-              </span>
-            )}
-
-            {comic.user_rate > 0 && (
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-red-500/90 text-[10px] font-extrabold text-white shadow-md">
-                <Star className="h-3 w-3 fill-white" />
-                {comic.user_rate}
-              </span>
-            )}
+      {/* Cover Frame */}
+      <div className="relative aspect-3/4 w-full overflow-hidden bg-[#141418]">
+        {!imgError && comic.cover_image_url ? (
+          <img
+            src={comic.cover_image_url}
+            alt={comic.title}
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-[#141418] p-4 text-center font-mono text-xs font-bold uppercase text-[#c8c2b6]">
+            {comic.title}
           </div>
+        )}
 
-          {/* Bottom Info */}
-          <div className="absolute z-20 bottom-3 left-3 right-3">
-            <h3 className="line-clamp-1 text-base font-extrabold text-white group-hover:text-red-400 transition-colors">
-              {comic.title}
-            </h3>
-
-            <div className="mt-1 flex items-center justify-between text-xs">
-              <span className="text-zinc-300 font-medium">
-                Ch. {comic.latest_chapter_number}
-              </span>
-
-              <span className={`text-sm ${country?.color ?? "text-zinc-400"}`}>
-                {country?.flag ?? "🌍"}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-3.5 space-y-2.5">
-          {/* Genre */}
-          <div className="flex flex-wrap gap-1">
-            {genres.map((genre, index) => (
-              <span
-                key={index}
-                className="rounded-md bg-zinc-800/80 px-2 py-0.5 text-[10px] text-zinc-300 font-medium"
-              >
-                {genre.name}
-              </span>
-            ))}
-
-            {extraGenreCount > 0 && (
-              <span className="rounded-md bg-zinc-800/50 px-1.5 py-0.5 text-[10px] text-zinc-500">
-                +{extraGenreCount}
-              </span>
-            )}
-          </div>
-
-          {/* Meta */}
-          <div className="flex items-center justify-between text-xs text-zinc-400 pt-1">
-            <div className="flex items-center gap-1">
-              <Clock className="h-3.5 w-3.5 text-zinc-500" />
-              <span>{comic.release_year}</span>
-            </div>
-
-            <span className="font-semibold text-emerald-400 text-[11px]">
+        {/* Bottom Obi Strip on Cover */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-[#27272e] bg-[#09090b]/95 px-2.5 py-1.5 font-mono text-xs font-bold tabular-nums">
+          <span className="text-[#f43f5e]">CH. {comic.latest_chapter_number}</span>
+          {comic.latest_chapter_time && (
+            <span className="text-[#c8c2b6]">
               {new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
                 day: "numeric",
                 month: "short",
               })}
             </span>
-          </div>
+          )}
         </div>
+      </div>
+
+      {/* Editorial Caption */}
+      <div className="flex flex-1 flex-col justify-between p-3">
+        <h3 className="line-clamp-2 font-sans text-sm font-bold leading-snug text-[#f4f1ea] group-hover:text-[#f43f5e] transition-colors">
+          {comic.title}
+        </h3>
+
+        {genres.length > 0 && (
+          <div className="mt-2.5 flex flex-wrap gap-1 border-t border-[#27272e] pt-2">
+            {genres.map((genre) => (
+              <span
+                key={genre.slug || genre.name}
+                className="border border-[#27272e] bg-[#0c0c10] px-1.5 py-0.5 font-mono text-xs uppercase text-[#c8c2b6]"
+              >
+                {genre.name}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </Link>
   );

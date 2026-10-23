@@ -70,6 +70,9 @@ const config = defineConfig({
             if (id.includes('date-fns')) {
               return 'vendor-date'
             }
+            if (id.includes('three')) {
+              return 'vendor-three'
+            }
           }
         }
       }

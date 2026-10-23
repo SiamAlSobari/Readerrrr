@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T00:47:00+07:00",
+  "title": "Design System: KOMIK READER",
+  "extensions": {
+    "colorMeta": {
+      "hanko-vermilion": {
+        "role": "primary",
+        "displayName": "Hanko Vermilion",
+        "canonical": "#be123c",
+        "tonalRamp": ["#4c0519", "#881337", "#9f1239", "#be123c", "#e11d48", "#f43f5e", "#fb7185", "#fda4af"]
+      },
+      "obsidian-ground": {
+        "role": "neutral",
+        "displayName": "Obsidian Ink Ground",
+        "canonical": "#09090b",
+        "tonalRamp": ["#09090b", "#0c0c10", "#101014", "#141418", "#181820", "#27272e", "#52525b", "#71717a"]
+      },
+      "newsprint-bone": {
+        "role": "neutral",
+        "displayName": "Newsprint Bone",
+        "canonical": "#f4f1ea",
+        "tonalRamp": ["#57534e", "#78716c", "#a8a29e", "#c8c2b6", "#d6d0c4", "#e6e0d2", "#f4f1ea", "#faf8f5"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Masthead",
+        "purpose": "Primary hero stage masthead (H1) set in uppercase condensed grotesque."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Section headers (H2) and selected 3D volume titles."
+      },
+      "body": {
+        "displayName": "Editorial Prose",
+        "purpose": "Comic synopses and section descriptions capped at 65-68ch."
+      },
+      "label": {
+        "displayName": "Tabular Index Mono",
+        "purpose": "Volume indices, chapter numbers, ratings, and release timestamps."
+      }
+    },
+    "shadows": [
+      {
+        "name": "stage-frame",
+        "value": "0 24px 60px rgba(0, 0, 0, 0.75)",
+        "purpose": "Anchors the primary 12-column 3D Tankobon stage container against the obsidian canvas."
+      }
+    ],
+    "motion": [
+      {
+        "name": "damping-spring",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Smooth exponential interpolation for 3D Tankobon volume selection and tilt."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Read CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width or inline high-contrast Hanko vermilion trigger to open a chapter immediately.",
+      "html": "<button class=\"ds-btn-primary\"><span>BACA CHAPTER 142 SEKARANG</span><span class=\"ds-badge\">LANGSUNG BACA</span></button>",
+      "css": ".ds-btn-primary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; padding: 14px 24px; background: #be123c; color: #f4f1ea; font-family: 'Big Shoulders Display', Impact, sans-serif; font-size: 1.25rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; border: none; border-radius: 0; cursor: pointer; transition: background-color 0.15s ease; } .ds-btn-primary:hover { background: #9f1239; } .ds-btn-primary:focus-visible { outline: 2px solid #f43f5e; outline-offset: 2px; } .ds-badge { font-family: 'Chivo Mono', monospace; font-size: 0.75rem; font-weight: 700; background: rgba(9,9,11,0.6); padding: 4px 10px; }"
+    },
+    {
+      "name": "Secondary Structural Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Sharp 1px-bordered graphite button for catalog navigation and angle switching.",
+      "html": "<button class=\"ds-btn-secondary\">BUKA KATALOG LENGKAP</button>",
+      "css": ".ds-btn-secondary { min-height: 44px; padding: 10px 20px; background: #141418; color: #f4f1ea; border: 1px solid #27272e; border-radius: 0; font-family: 'Chivo Mono', monospace; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: background-color 0.15s ease, border-color 0.15s ease; } .ds-btn-secondary:hover { background: #1e1e26; border-color: #f4f1ea; } .ds-btn-secondary:focus-visible { outline: 2px solid #f43f5e; outline-offset: 2px; }"
+    },
+    {
+      "name": "Quick Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Zero-radius editorial search input with high-contrast focus border.",
+      "html": "<input class=\"ds-input-search\" type=\"search\" placeholder=\"Cari judul komik...\" />",
+      "css": ".ds-input-search { min-height: 44px; width: 280px; padding: 10px 14px; background: #141418; color: #f4f1ea; border: 1px solid #27272e; border-radius: 0; font-family: 'Barlow', sans-serif; font-size: 0.875rem; } .ds-input-search::placeholder { color: rgba(200, 194, 182, 0.7); } .ds-input-search:focus { border-color: #be123c; outline: 2px solid #f43f5e; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shibuya Tankōbon Darkroom Press",
+    "overview": "KOMIK READER treats digital Manga (JP), Manhwa (KR), and Manhua (CN) with the tactile weight of physical print editions inspected under a darkroom safelight. Every surface is anchored by 1px architectural rules, condensed spine typography, tabular serialization indices, and live cover artwork fetched directly from the catalog server.",
+    "keyCharacteristics": [
+      "Physical 3D Tankōbon book geometry with 6 distinct face materials (front cover + Obi band, custom vertical spine, stacked paper fore-edges, back cover colophon).",
+      "Obsidian darkroom ground (#09090b) paired with warm newsprint paper foregrounds (#f4f1ea) and a single Hanko vermilion seal accent (#be123c / #f43f5e).",
+      "Crisp 1px structural hairline grids (#27272e) and zero-radius architectural frames (0px) inspired by manga panel borders and serialization tables.",
+      "Tabular monospace metadata (Chivo Mono) for chapter numbers, volume indices, release dates, and reader ratings."
+    ],
+    "rules": [
+      {
+        "name": "The Single Hanko Seal Rule",
+        "body": "Vermilion (#be123c / #f43f5e) is the sole chromatic accent on the landing and navigation surfaces. It marks only the active volume, the primary reading trigger, or an active filter state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Serialization Rule",
+        "body": "Every numeric indicator (volume numbers, chapter numbers, ratings, release dates, and rank indices) must use Chivo Mono with font-variant-numeric: tabular-nums.",
+        "section": "typography"
+      },
+      {
+        "name": "The 1px Panel Gutter Rule",
+        "body": "Section dividers, specification tables, and serialization lists use 1px hairline borders (#27272e) and 1px grid gaps rather than soft drop shadows or thick colored side stripes.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do wire every comic title, cover, chapter number, and rating to live server data (getPopularComic, getComicUpdate, getComicRecomendation).",
+      "Do provide keyboard-accessible HTML controls (role=\"tab\", Prev/Next buttons, direct links) for every item represented in the 3D WebGL canvas.",
+      "Do give container backgrounds or borders the hover feedback rather than scaling <img> elements on hover."
+    ],
+    "donts": [
+      "Don't display fabricated statistics (10,000+ Judul, 100K+ Pembaca), fake testimonials, or unverified claims.",
+      "Don't place pill badges or eyebrow kickers above <h1>, <h2>, or <h3> headings.",
+      "Don't use gradient text (bg-clip-text text-transparent), em dashes (—), or decorative multi-px left borders (border-l-4) on cards."
+    ]
+  }
+}

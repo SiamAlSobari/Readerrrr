@@ -1,62 +1,38 @@
-export default function UpdateComicCardSkeleton({ variant = "default" }: { variant?: "default" | "compact" }) {
+export default function UpdateComicCardSkeleton({
+  variant = "default",
+}: {
+  variant?: "default" | "compact";
+}) {
   if (variant === "compact") {
     return (
-      <div className="animate-pulse relative flex gap-3 p-3 bg-zinc-900/50 rounded-xl">
-        <div className="relative w-20 h-28 shrink-0 bg-zinc-800 rounded-lg" />
-        <div className="flex-1 min-w-0 space-y-2">
-          <div className="h-4 w-3/4 bg-zinc-700 rounded" />
-          <div className="h-3 w-full bg-zinc-700 rounded" />
-          <div className="flex justify-between mt-2">
-            <div className="h-4 w-20 bg-zinc-700 rounded" />
-            <div className="h-4 w-12 bg-zinc-700 rounded" />
-          </div>
+      <div className="animate-pulse flex gap-3 border border-[#27272e] bg-[#101014] p-2.5">
+        <div className="h-20 w-15 shrink-0 bg-[#141418] border border-[#27272e]" />
+        <div className="flex-1 space-y-2 py-1">
+          <div className="h-3 w-1/2 bg-[#181820]" />
+          <div className="h-4 w-4/5 bg-[#181820]" />
+          <div className="h-3 w-2/3 bg-[#181820]" />
         </div>
       </div>
-    )
+    );
   }
 
-  // Default variant
   return (
-    <div className="animate-pulse relative overflow-hidden rounded-xl bg-zinc-900 p-4">
-      <div className="flex gap-4">
-        {/* Image section */}
-        <div className="relative w-28 h-40 shrink-0 bg-zinc-800 rounded-lg" />
-
-        {/* Content section */}
-        <div className="flex-1 min-w-0 space-y-3">
-          {/* Title */}
-          <div className="space-y-1">
-            <div className="h-5 w-3/4 bg-zinc-700 rounded" />
-            <div className="h-3 w-1/2 bg-zinc-700 rounded" />
+    <div className="animate-pulse flex gap-3.5 border border-[#27272e] bg-[#101014] p-3">
+      <div className="h-28 w-20 shrink-0 bg-[#141418] border border-[#27272e]" />
+      <div className="flex-1 flex flex-col justify-between py-0.5">
+        <div className="space-y-2">
+          <div className="flex justify-between">
+            <div className="h-4 w-14 bg-[#181820]" />
+            <div className="h-3 w-12 bg-[#181820]" />
           </div>
-
-          {/* Description */}
-          <div className="h-12 bg-zinc-700 rounded" />
-
-          {/* Stats row */}
-          <div className="flex flex-wrap gap-4">
-            <div className="h-4 w-20 bg-zinc-700 rounded" />
-            <div className="h-4 w-20 bg-zinc-700 rounded" />
-            <div className="h-4 w-20 bg-zinc-700 rounded" />
-          </div>
-
-          {/* Genre tags */}
-          <div className="flex gap-2">
-            <div className="h-5 w-12 bg-zinc-700 rounded-md" />
-            <div className="h-5 w-10 bg-zinc-700 rounded-md" />
-            <div className="h-5 w-14 bg-zinc-700 rounded-md" />
-          </div>
-
-          {/* Bottom info row */}
-          <div className="flex justify-between pt-2 border-t border-gray-800/50">
-            <div className="flex gap-3">
-              <div className="h-5 w-20 bg-zinc-700 rounded-full" />
-              <div className="h-5 w-14 bg-zinc-700 rounded-full" />
-            </div>
-            <div className="h-5 w-14 bg-zinc-700 rounded-full" />
-          </div>
+          <div className="h-4 w-3/4 bg-[#181820]" />
+          <div className="h-3 w-1/3 bg-[#181820]" />
+        </div>
+        <div className="flex justify-between border-t border-[#27272e] pt-2">
+          <div className="h-3 w-20 bg-[#181820]" />
+          <div className="h-3 w-14 bg-[#181820]" />
         </div>
       </div>
     </div>
-  )
+  );
 }

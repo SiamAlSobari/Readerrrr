@@ -1,8 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, memo } from "react";
-import { Button } from "@/common/shadcn-ui/button";
-import { Badge } from "@/common/shadcn-ui/badge";
-import { Eye, BookOpen, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, ArrowUpRight, Star } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { useQuery } from "@tanstack/react-query";
@@ -54,16 +52,44 @@ export const Route = createFileRoute("/_main/update/")({
   }),
 });
 
-const ComicCard = memo(function ComicCard({ comic }: { comic: UpdateComic }) {
-  const navigate = useNavigate();
+const COUNTRY_CODE: Record<string, string> = {
+  KR: "KR · MANHWA",
+  JP: "JP · MANGA",
+  CN: "CN · MANHUA",
+  ID: "ID · KOMIK",
+};
+
+const UpdateDispatchCard = memo(function UpdateDispatchCard({
+  comic,
+}: {
+  comic: UpdateComic;
+}) {
   const [imgError, setImgError] = useState(false);
+  const originCode = COUNTRY_CODE[comic.country_id] || "INT · KOMIK";
+  const genres = comic.taxonomy?.Genre?.slice(0, 2) ?? [];
 
   return (
-    <div
-      className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1.5"
-    >
-      {/* Cover */}
-      <div className="aspect-3/4 w-full overflow-hidden bg-zinc-850 relative">
+    <article className="group flex flex-col border border-[#27272e] bg-[#101014] transition-colors hover:border-[#f4f1ea] hover:bg-[#141418]">
+      {/* Top Stamp Header */}
+      <div className="flex items-center justify-between border-b border-[#27272e] bg-[#0c0c10] px-2.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider tabular-nums">
+        <span className="text-[#c8c2b6] truncate">{originCode}</span>
+        {comic.user_rate > 0 ? (
+          <span className="flex items-center gap-1 text-[#fbbf24] shrink-0">
+            <Star className="h-3 w-3 fill-[#fbbf24] text-[#fbbf24]" />
+            {Number(comic.user_rate).toFixed(1)}
+          </span>
+        ) : (
+          <span className="text-[#34d399] shrink-0">BARU</span>
+        )}
+      </div>
+
+      {/* Cover Image Link */}
+      <Link
+        to="/series/$comicId"
+        params={{ comicId: comic.manga_id }}
+        search={{ page: 1 }}
+        className="relative aspect-3/4 w-full overflow-hidden bg-[#141418] block"
+      >
         {!imgError && comic.cover_image_url ? (
           <img
             src={comic.cover_image_url}
@@ -72,76 +98,80 @@ const ComicCard = memo(function ComicCard({ comic }: { comic: UpdateComic }) {
             decoding="async"
             referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="h-full w-full object-cover"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-zinc-800 text-zinc-500 text-xs font-bold p-3 text-center">
+          <div className="flex h-full w-full items-center justify-center p-3 text-center font-mono text-xs font-bold uppercase text-[#c8c2b6]">
             {comic.title}
           </div>
         )}
-      </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Obi Strip */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-[#27272e] bg-[#09090b]/95 px-2.5 py-1.5 font-mono text-xs font-bold tabular-nums">
+          <span className="text-[#f43f5e]">CH. {comic.latest_chapter_number}</span>
+          <span className="text-[#34d399] truncate max-w-[110px]">
+            {comic.latest_chapter_time
+              ? formatDistanceToNow(new Date(comic.latest_chapter_time), {
+                  addSuffix: true,
+                  locale: id,
+                })
+              : "Baru saja"}
+          </span>
+        </div>
+      </Link>
 
-      {/* Actions */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-        <Button
-          onClick={() =>
-            navigate({
-              to: "/series/$comicId",
-              search: { page: 1 },
-              params: { comicId: comic.manga_id },
-            })
-          }
-          size="sm"
-          className="w-28 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl text-xs"
-        >
-          <Eye className="mr-1.5 h-3.5 w-3.5" />
-          Detail
-        </Button>
-        <Button
-          onClick={() =>
-            navigate({
-              to: "/read/$comicId/$chapterId",
-              params: {
-                chapterId: comic.latest_chapter_id,
-                comicId: comic.manga_id,
-              },
-            })
-          }
-          size="sm"
-          variant="secondary"
-          className="w-28 bg-zinc-800 hover:bg-zinc-700 text-white font-bold rounded-xl text-xs"
-        >
-          <BookOpen className="mr-1.5 h-3.5 w-3.5" />
-          Baca
-        </Button>
-      </div>
+      {/* Body Info */}
+      <div className="flex flex-1 flex-col justify-between p-3">
+        <div>
+          <Link
+            to="/series/$comicId"
+            params={{ comicId: comic.manga_id }}
+            search={{ page: 1 }}
+            className="line-clamp-2 font-sans text-sm font-bold leading-snug text-[#f4f1ea] group-hover:text-[#f43f5e] transition-colors"
+          >
+            {comic.title}
+          </Link>
 
-      {/* Info */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
-        <h3 className="text-xs sm:text-sm font-extrabold line-clamp-2 text-white group-hover:text-red-400 transition-colors">
-          {comic.title}
-        </h3>
+          {genres.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {genres.map((g) => (
+                <span
+                  key={g.name}
+                  className="border border-[#27272e] bg-[#0c0c10] px-1.5 py-0.5 font-mono text-xs uppercase text-[#c8c2b6]"
+                >
+                  {g.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
 
-        <p className="text-[11px] text-zinc-400 mt-1 font-medium">
-          Ch. {comic.latest_chapter_number} •{" "}
-          {comic.latest_chapter_time ? formatDistanceToNow(new Date(comic.latest_chapter_time), {
-            addSuffix: true,
-            locale: id,
-          }) : "Baru saja"}
-        </p>
+        {/* Direct Action Split Bar (Accessible on both Mobile & Desktop) */}
+        <div className="mt-3 grid grid-cols-2 gap-1.5 border-t border-[#27272e] pt-2.5 font-mono text-xs font-bold uppercase">
+          <Link
+            to="/read/$comicId/$chapterId"
+            params={{
+              chapterId: comic.latest_chapter_id,
+              comicId: comic.manga_id,
+            }}
+            className="flex min-h-9 items-center justify-center gap-1 bg-[#be123c] px-2 py-1.5 text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
+          >
+            <BookOpen className="h-3 w-3 shrink-0" />
+            <span className="truncate">Baca</span>
+          </Link>
 
-        <div className="flex gap-1 mt-1.5 flex-wrap">
-          {comic.taxonomy?.Genre?.slice(0, 2).map((g) => (
-            <Badge key={g.name} variant="secondary" className="text-[9px] px-1.5 py-0 rounded bg-zinc-800 text-zinc-300 border-none">
-              {g.name}
-            </Badge>
-          ))}
+          <Link
+            to="/series/$comicId"
+            params={{ comicId: comic.manga_id }}
+            search={{ page: 1 }}
+            className="flex min-h-9 items-center justify-center gap-1 border border-[#27272e] bg-[#141418] px-2 py-1.5 text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
+          >
+            <span className="truncate">Detail</span>
+            <ArrowUpRight className="h-3 w-3 shrink-0 text-[#c8c2b6]" />
+          </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 });
 
@@ -163,111 +193,143 @@ function RouteComponent() {
   });
 
   const comics = updateResponse?.data;
+  const totalPages = comics?.meta?.total_page || 1;
 
   return (
-    <div className="min-h-screen container mx-auto px-4 py-6">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Update Komik Terbaru",
-          description: "Update manga, manhwa, dan manhua terbaru setiap hari di KOMIK READER.",
+          description:
+            "Update manga, manhwa, dan manhua terbaru setiap hari di KOMIK READER.",
           url: `${SITE_URL}/update`,
         }}
       />
 
-      <div className="flex flex-col md:flex-row gap-6">
-        {/* ========== SIDEBAR ========== */}
-        <aside className="md:w-56 shrink-0">
-          <div className="flex items-center gap-2 mb-3">
-            <RefreshCw className="w-5 h-5 text-red-500" />
-            <h2 className="text-base font-extrabold text-white">
-              Tipe Update
-            </h2>
-          </div>
-
-          <div className="flex md:flex-col gap-2 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800/80">
-            <Button
-              variant={type === "mirror" ? "default" : "ghost"}
-              className={`rounded-xl text-xs font-bold justify-start ${
-                type === "mirror" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
-              }`}
-              onClick={() => {
-                setType("mirror");
-                setPage(1);
-              }}
-            >
-              Mirror (Rilis Cepat)
-            </Button>
-
-            <Button
-              variant={type === "project" ? "default" : "ghost"}
-              className={`rounded-xl text-xs font-bold justify-start ${
-                type === "project" ? "bg-red-500 hover:bg-red-600 text-white" : "text-zinc-400 hover:text-white"
-              }`}
-              onClick={() => {
-                setType("project");
-                setPage(1);
-              }}
-            >
-              Project (Official TL)
-            </Button>
-          </div>
-        </aside>
-
-        {/* ========== MAIN CONTENT ========== */}
-        <div className="flex-1 space-y-6">
-          <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3">
-            <h1 className="text-xl font-extrabold text-white">
-              Daftar Update Komik
-            </h1>
-            <span className="text-xs text-zinc-400">
-              {type === "mirror" ? "Sumber: Mirror" : "Sumber: Project"}
-            </span>
-          </div>
-
-          {/* Cards Grid */}
-          {isLoading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-              {Array.from({ length: 15 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-3/4 rounded-2xl bg-zinc-850 animate-pulse border border-zinc-800/80"
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-              {comics?.data.map((comic: UpdateComic) => (
-                <ComicCard key={comic.manga_id} comic={comic} />
-              ))}
-            </div>
-          )}
-
-          <div className="flex justify-center items-center gap-3 pt-4">
-            <Button
-              size="icon"
-              variant="outline"
-              disabled={page === 1}
-              className="rounded-xl border-zinc-800 bg-zinc-900"
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-
-            <p className="text-xs text-zinc-400 font-medium">Halaman {page}</p>
-
-            <Button
-              size="icon"
-              variant="outline"
-              disabled={page === comics?.meta.total_page}
-              className="rounded-xl border-zinc-800 bg-zinc-900"
-              onClick={() => setPage((p) => p + 1)}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
+      {/* Masthead */}
+      <header className="mb-8 flex flex-col justify-between gap-4 border-b border-[#27272e] pb-6 md:flex-row md:items-end">
+        <div>
+          <h1 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#f4f1ea]">
+            Update Komik Terbaru
+          </h1>
+          <p className="mt-1.5 max-w-[65ch] text-sm text-[#c8c2b6]">
+            Daftar komik yang baru merilis chapter hari ini. Pilih Mirror untuk rilis cepat atau Project untuk garapan tim translasi khusus.
+          </p>
         </div>
+
+        {/* Feed Source Switcher */}
+        <div
+          role="tablist"
+          aria-label="Sumber pembaruan komik"
+          className="flex border border-[#27272e] bg-[#0c0c10] self-start md:self-auto"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={type === "mirror"}
+            onClick={() => {
+              setType("mirror");
+              setPage(1);
+            }}
+            className={`min-h-11 border-r border-[#27272e] px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+              type === "mirror"
+                ? "bg-[#be123c] text-[#f4f1ea]"
+                : "bg-[#141418] text-[#c8c2b6] hover:bg-[#181820] hover:text-[#f4f1ea]"
+            }`}
+          >
+            Mirror [Rilis Cepat]
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected={type === "project"}
+            onClick={() => {
+              setType("project");
+              setPage(1);
+            }}
+            className={`min-h-11 px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+              type === "project"
+                ? "bg-[#be123c] text-[#f4f1ea]"
+                : "bg-[#141418] text-[#c8c2b6] hover:bg-[#181820] hover:text-[#f4f1ea]"
+            }`}
+          >
+            Project [Tim TL]
+          </button>
+        </div>
+      </header>
+
+      {/* Status Bar */}
+      <div className="mb-6 flex items-center justify-between border border-[#27272e] bg-[#0c0c10] px-4 py-2.5 font-mono text-xs uppercase text-[#c8c2b6] tabular-nums">
+        <span>
+          SUMBER:{" "}
+          <strong className="text-[#f4f1ea]">
+            {type === "mirror" ? "MIRROR" : "PROJECT"}
+          </strong>
+        </span>
+        <span>
+          HALAMAN {page} / {totalPages}
+        </span>
+      </div>
+
+      {/* Cards Grid */}
+      {isLoading ? (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <div
+              key={i}
+              className="animate-pulse flex flex-col border border-[#27272e] bg-[#101014]"
+            >
+              <div className="h-7 border-b border-[#27272e] bg-[#0c0c10]" />
+              <div className="aspect-3/4 w-full bg-[#141418]" />
+              <div className="p-3 space-y-2">
+                <div className="h-4 w-4/5 bg-[#181820]" />
+                <div className="h-8 w-full bg-[#181820] mt-3" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {comics?.data.map((comic: UpdateComic) => (
+            <UpdateDispatchCard key={comic.manga_id} comic={comic} />
+          ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      <div className="mt-10 flex items-center justify-between border border-[#27272e] bg-[#0c0c10] p-3">
+        <button
+          type="button"
+          disabled={page <= 1}
+          onClick={() => {
+            setPage((p) => Math.max(1, p - 1));
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="inline-flex min-h-11 items-center gap-2 border border-[#27272e] bg-[#141418] px-4 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] disabled:opacity-40 disabled:pointer-events-none"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          <span>Sebelumnya</span>
+        </button>
+
+        <span className="font-mono text-xs font-bold uppercase text-[#c8c2b6] tabular-nums">
+          HALAMAN {page} DARI {totalPages}
+        </span>
+
+        <button
+          type="button"
+          disabled={page >= totalPages}
+          onClick={() => {
+            setPage((p) => p + 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="inline-flex min-h-11 items-center gap-2 border border-[#27272e] bg-[#141418] px-4 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] disabled:opacity-40 disabled:pointer-events-none"
+        >
+          <span>Selanjutnya</span>
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
     </div>
   );

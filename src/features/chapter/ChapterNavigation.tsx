@@ -1,5 +1,6 @@
 import { ChapterDetail } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { memo } from "react";
 
 type Props = {
@@ -21,8 +22,8 @@ function ChapterNavigationComponent({ chapter, comicId }: Props) {
     chapter.next_chapter_number !== null;
 
   return (
-    <div className="bg-black/80 backdrop-blur border-b border-white/10">
-      <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <div className="border-y border-[#27272e] bg-[#0c0c10]">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3 font-mono text-xs uppercase tabular-nums">
         {/* PREV */}
         {hasPrev ? (
           <Link
@@ -31,20 +32,23 @@ function ChapterNavigationComponent({ chapter, comicId }: Props) {
               comicId,
               chapterId: chapter.prev_chapter_id!,
             }}
-            className="px-4 py-2 text-sm bg-white/10 hover:bg-white/20 rounded transition"
+            className="inline-flex min-h-10 items-center gap-1.5 border border-[#27272e] bg-[#141418] px-4 py-2 font-bold text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
           >
-            ← Ch. {chapter.prev_chapter_number}
+            <ChevronLeft className="h-3.5 w-3.5" />
+            <span>CH. {chapter.prev_chapter_number}</span>
           </Link>
         ) : (
-          <span className="px-4 py-2 text-sm text-white/30">
-            First Chapter
+          <span className="inline-flex min-h-10 items-center border border-[#27272e] bg-[#101014] px-4 py-2 text-[#c8c2b6]/50">
+            CH. AWAL
           </span>
         )}
 
         {/* TITLE */}
         <div className="text-center">
-          <p className="text-xs text-white/60">Chapter</p>
-          <p className="font-semibold">{chapter.chapter_number}</p>
+          <p className="text-xs tracking-widest text-[#c8c2b6]">EDISI BACA</p>
+          <p className="text-sm font-bold text-[#f4f1ea]">
+            CHAPTER {chapter.chapter_number}
+          </p>
         </div>
 
         {/* NEXT */}
@@ -55,13 +59,14 @@ function ChapterNavigationComponent({ chapter, comicId }: Props) {
               comicId,
               chapterId: chapter.next_chapter_id!,
             }}
-            className="px-4 py-2 text-sm bg-white/10 hover:bg-white/20 rounded transition"
+            className="inline-flex min-h-10 items-center gap-1.5 bg-[#be123c] px-4 py-2 font-bold text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
           >
-            Ch. {chapter.next_chapter_number} →
+            <span>CH. {chapter.next_chapter_number}</span>
+            <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         ) : (
-          <span className="px-4 py-2 text-sm text-white/30">
-            Latest Chapter
+          <span className="inline-flex min-h-10 items-center border border-[#27272e] bg-[#101014] px-4 py-2 text-[#c8c2b6]/50">
+            CH. TERBARU
           </span>
         )}
       </div>

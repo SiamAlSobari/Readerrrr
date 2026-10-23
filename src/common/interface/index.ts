@@ -19,6 +19,7 @@ export interface Meta {
   page_size: number;
   total_page: number;
   total_record: number;
+  total_data?: number;
 }
 
 
@@ -75,6 +76,8 @@ export interface PopularComic {
   latest_chapter_id: string;
   latest_chapter_number: number;
   latest_chapter_time: string;
+
+  taxonomy?: Taxonomy;
 
   created_at: string;
   updated_at: string;

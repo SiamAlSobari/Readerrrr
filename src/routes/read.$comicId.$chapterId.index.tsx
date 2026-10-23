@@ -1,11 +1,18 @@
 import { getChapterDetail, getComicDetail } from "@/api/servers/shinigami.server";
-import { Button } from "@/common/shadcn-ui/button";
 import { setChapterHistory } from "@/common/utils/chapter-history";
 import { ChapterImage } from "@/features/chapter/ChapterImage";
 import ChapterNavigation from "@/features/chapter/ChapterNavigation";
 import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Play, Pause, Image as ImageIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUp,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Image as ImageIcon,
+} from "lucide-react";
 import { useEffect, useState, useRef, useCallback, memo } from "react";
 import { JsonLd } from "@/common/components/JsonLd";
 
@@ -15,14 +22,14 @@ const queryChapter = (chapterId: string) =>
   queryOptions({
     queryKey: ["chapter", chapterId],
     queryFn: () => getChapterDetail({ data: { chapterId } }),
-    staleTime: 1000 * 60 * 60, // 1 jam
+    staleTime: 1000 * 60 * 60,
   });
 
 const queryComic = (comicId: string) =>
   queryOptions({
     queryKey: ["comic", comicId],
     queryFn: () => getComicDetail({ data: { comicId } }),
-    staleTime: 1000 * 60 * 30, // 30 menit
+    staleTime: 1000 * 60 * 30,
   });
 
 export const Route = createFileRoute("/read/$comicId/$chapterId/")({
@@ -38,8 +45,13 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
     const chapter = loaderData?.chapter?.data?.data;
 
     const comicTitle = comic?.title || params.comicId.replace(/-/g, " ");
-    const chapterNum = chapter?.chapter_number ? `Chapter ${chapter.chapter_number}` : `Chapter ${params.chapterId}`;
-    const coverImage = comic?.cover_portrait_url || comic?.cover_image_url || `${SITE_URL}/komik_reader.png`;
+    const chapterNum = chapter?.chapter_number
+      ? `Chapter ${chapter.chapter_number}`
+      : `Chapter ${params.chapterId}`;
+    const coverImage =
+      comic?.cover_portrait_url ||
+      comic?.cover_image_url ||
+      `${SITE_URL}/komik_reader.png`;
     const title = `Baca ${comicTitle} ${chapterNum} Bahasa Indonesia | KOMIK READER`;
     const description = `Baca komik ${comicTitle} ${chapterNum} online gratis bahasa Indonesia di KOMIK READER. Gambar jernih kualitas HD, load cepat, tanpa iklan mengganggu.`;
     const canonicalUrl = `${SITE_URL}${match.pathname}`;
@@ -62,18 +74,13 @@ export const Route = createFileRoute("/read/$comicId/$chapterId/")({
         { name: "twitter:image", content: coverImage },
         { name: "robots", content: "index, follow, max-image-preview:large" },
       ],
-      links: [
-        { rel: "canonical", href: canonicalUrl },
-      ],
+      links: [{ rel: "canonical", href: canonicalUrl }],
       title,
     };
   },
   component: ReadChapterPage,
 });
 
-/**
- * Isolated Progress Bar Component: Updates independently without re-rendering chapter images
- */
 const ReadingProgressBar = memo(function ReadingProgressBar() {
   const [progress, setProgress] = useState(0);
 
@@ -82,9 +89,13 @@ const ReadingProgressBar = memo(function ReadingProgressBar() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const totalHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
           if (totalHeight > 0) {
-            const p = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+            const p = Math.min(
+              100,
+              Math.max(0, Math.round((window.scrollY / totalHeight) * 100))
+            );
             setProgress(p);
           }
           ticking = false;
@@ -98,18 +109,15 @@ const ReadingProgressBar = memo(function ReadingProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 bg-zinc-900 z-50 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-[#141418] pointer-events-none">
       <div
-        className="h-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 transition-all duration-100 ease-out"
+        className="h-full bg-[#be123c] transition-all duration-100 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>
   );
 });
 
-/**
- * Isolated Floating Action Bar: Shows reading percentage and controls without re-rendering parent
- */
 interface FloatingActionBarProps {
   comicId: string;
   prevChapterId?: string | null;
@@ -133,9 +141,13 @@ const FloatingActionBar = memo(function FloatingActionBar({
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const totalHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
           if (totalHeight > 0) {
-            const p = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+            const p = Math.min(
+              100,
+              Math.max(0, Math.round((window.scrollY / totalHeight) * 100))
+            );
             setReadingProgress(p);
           }
           ticking = false;
@@ -149,41 +161,54 @@ const FloatingActionBar = memo(function FloatingActionBar({
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-zinc-900/90 border border-zinc-800 backdrop-blur-md px-3 py-2 rounded-2xl shadow-2xl">
-      <span className="text-xs font-semibold text-zinc-300 px-2 min-w-9 text-center">
+    <div className="fixed bottom-5 right-5 z-40 flex items-center border border-[#27272e] bg-[#09090b]/95 font-mono text-xs tabular-nums">
+      <span className="border-r border-[#27272e] px-3 py-2.5 font-bold text-[#f4f1ea] min-w-12 text-center">
         {readingProgress}%
       </span>
 
       {prevChapterId && (
         <button
-          onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: prevChapterId } })}
-          className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors"
+          type="button"
+          onClick={() =>
+            navigate({
+              to: "/read/$comicId/$chapterId",
+              params: { comicId, chapterId: prevChapterId },
+            })
+          }
+          className="flex min-h-10 min-w-10 items-center justify-center border-r border-[#27272e] text-[#c8c2b6] transition-colors hover:bg-[#141418] hover:text-[#f4f1ea]"
           title="Chapter Sebelumnya"
           aria-label="Chapter Sebelumnya"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
         </button>
       )}
 
       {nextChapterId && (
         <button
+          type="button"
           onMouseEnter={onPreloadNext}
-          onClick={() => navigate({ to: "/read/$comicId/$chapterId", params: { comicId, chapterId: nextChapterId } })}
-          className="p-2 hover:bg-red-500/20 text-red-400 rounded-xl transition-colors font-bold"
+          onClick={() =>
+            navigate({
+              to: "/read/$comicId/$chapterId",
+              params: { comicId, chapterId: nextChapterId },
+            })
+          }
+          className="flex min-h-10 min-w-10 items-center justify-center border-r border-[#27272e] bg-[#be123c] text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
           title="Chapter Selanjutnya"
           aria-label="Chapter Selanjutnya"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="h-4 w-4" />
         </button>
       )}
 
       <button
+        type="button"
         onClick={scrollToTop}
-        className="p-2 hover:bg-white/10 rounded-xl text-zinc-300 hover:text-white transition-colors border-l border-zinc-800 ml-1"
+        className="flex min-h-10 min-w-10 items-center justify-center text-[#c8c2b6] transition-colors hover:bg-[#141418] hover:text-[#f4f1ea]"
         title="Kembali ke atas"
         aria-label="Kembali ke atas"
       >
-        <ArrowUp className="w-4 h-4" />
+        <ArrowUp className="h-4 w-4" />
       </button>
     </div>
   );
@@ -196,16 +221,17 @@ function ReadChapterPage() {
 
   const [useHighQuality, setUseHighQuality] = useState(false);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-  const [autoScrollSpeed] = useState(2); // pixels per frame
+  const [autoScrollSpeed] = useState(2);
   const autoScrollRef = useRef<number | null>(null);
 
-  const { data: chapter, isLoading: isChapterLoading } = useQuery(queryChapter(chapterId));
+  const { data: chapter, isLoading: isChapterLoading } = useQuery(
+    queryChapter(chapterId)
+  );
   const { data: comic } = useQuery(queryComic(comicId));
 
   const chapterData = chapter?.data?.data;
   const comicData = comic?.data?.data;
 
-  // Save reading history
   useEffect(() => {
     if (!chapterData) return;
     setChapterHistory({
@@ -214,52 +240,58 @@ function ReadChapterPage() {
       chapter_number: chapterData.chapter_number,
       last_read_time: Date.now(),
       comic_title: comicData?.title,
-      comic_cover_url: comicData?.cover_portrait_url || comicData?.cover_image_url,
+      comic_cover_url:
+        comicData?.cover_portrait_url || comicData?.cover_image_url,
     });
   }, [chapterData, comicData, comicId]);
 
-  // Preload next chapter query data in background
   useEffect(() => {
     if (chapterData?.next_chapter_id) {
       queryClient.prefetchQuery(queryChapter(chapterData.next_chapter_id));
     }
   }, [chapterData?.next_chapter_id, queryClient]);
 
-  // Preload initial 5 images immediately
   useEffect(() => {
     if (!chapterData?.chapter?.data) return;
     const images = chapterData.chapter.data;
-    const baseUrl = useHighQuality ? chapterData.base_url : chapterData.base_url_low;
+    const baseUrl = useHighQuality
+      ? chapterData.base_url
+      : chapterData.base_url_low;
     const path = chapterData.chapter.path;
 
-    images.slice(0, 5).forEach(img => {
+    images.slice(0, 5).forEach((img) => {
       const imgObj = new Image();
       imgObj.src = `${baseUrl}${path}${img}`;
     });
   }, [chapterData, useHighQuality]);
 
-  // Preload next chapter images on demand (e.g. hover next button)
   const handlePreloadNextChapter = useCallback(() => {
     if (!chapterData?.next_chapter_id) return;
-    queryClient.prefetchQuery(queryChapter(chapterData.next_chapter_id)).then((data: any) => {
-      const nextImages = data?.data?.data?.chapter?.data;
-      const nextBase = useHighQuality ? data?.data?.data?.base_url : data?.data?.data?.base_url_low;
-      const nextPath = data?.data?.data?.chapter?.path;
-      if (nextImages && nextBase && nextPath) {
-        nextImages.slice(0, 3).forEach((img: string) => {
-          const preloadImg = new Image();
-          preloadImg.src = `${nextBase}${nextPath}${img}`;
-        });
-      }
-    });
+    queryClient
+      .prefetchQuery(queryChapter(chapterData.next_chapter_id))
+      .then((data: any) => {
+        const nextImages = data?.data?.data?.chapter?.data;
+        const nextBase = useHighQuality
+          ? data?.data?.data?.base_url
+          : data?.data?.data?.base_url_low;
+        const nextPath = data?.data?.data?.chapter?.path;
+        if (nextImages && nextBase && nextPath) {
+          nextImages.slice(0, 3).forEach((img: string) => {
+            const preloadImg = new Image();
+            preloadImg.src = `${nextBase}${nextPath}${img}`;
+          });
+        }
+      });
   }, [chapterData?.next_chapter_id, queryClient, useHighQuality]);
 
-  // Auto Scroll Loop (runs cleanly on requestAnimationFrame)
   const startAutoScroll = useCallback(() => {
     if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
     const scrollStep = () => {
       window.scrollBy({ top: autoScrollSpeed, behavior: "instant" });
-      if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 10) {
+      if (
+        window.innerHeight + window.scrollY <
+        document.documentElement.scrollHeight - 10
+      ) {
         autoScrollRef.current = requestAnimationFrame(scrollStep);
       } else {
         setIsAutoScrolling(false);
@@ -279,7 +311,6 @@ function ReadChapterPage() {
     };
   }, [isAutoScrolling, startAutoScroll]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft" && chapterData?.prev_chapter_id) {
@@ -304,16 +335,18 @@ function ReadChapterPage() {
   }, []);
 
   const imagesList = chapterData?.chapter?.data ?? [];
-  const primaryBaseUrl = useHighQuality ? chapterData?.base_url : chapterData?.base_url_low;
-  const fallbackBaseUrl = useHighQuality ? chapterData?.base_url_low : chapterData?.base_url;
+  const primaryBaseUrl = useHighQuality
+    ? chapterData?.base_url
+    : chapterData?.base_url_low;
+  const fallbackBaseUrl = useHighQuality
+    ? chapterData?.base_url_low
+    : chapterData?.base_url;
   const path = chapterData?.chapter?.path ?? "";
 
   return (
-    <div className="bg-black text-white min-h-screen relative selection:bg-red-500 selection:text-white">
-      {/* READING PROGRESS BAR (ISOLATED) */}
+    <div className="min-h-screen bg-[#09090b] text-[#f4f1ea] relative selection:bg-[#be123c] selection:text-[#f4f1ea]">
       <ReadingProgressBar />
 
-      {/* SEO STRUCTURED DATA */}
       {chapterData && (
         <>
           <JsonLd
@@ -328,7 +361,8 @@ function ReadChapterPage() {
                 name: comicData?.title || "Komik",
                 url: `${SITE_URL}/series/${comicId}`,
               },
-              image: comicData?.cover_portrait_url || comicData?.cover_image_url,
+              image:
+                comicData?.cover_portrait_url || comicData?.cover_image_url,
               url: `${SITE_URL}/read/${comicId}/${chapterId}`,
               publisher: {
                 "@type": "Organization",
@@ -342,9 +376,27 @@ function ReadChapterPage() {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, item: { "@id": SITE_URL, name: "Beranda" } },
-                { "@type": "ListItem", position: 2, item: { "@id": `${SITE_URL}/series/${comicId}`, name: comicData?.title || "Detail Komik" } },
-                { "@type": "ListItem", position: 3, item: { "@id": `${SITE_URL}/read/${comicId}/${chapterId}`, name: `Chapter ${chapterData.chapter_number}` } },
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  item: { "@id": SITE_URL, name: "Beranda" },
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  item: {
+                    "@id": `${SITE_URL}/series/${comicId}`,
+                    name: comicData?.title || "Detail Komik",
+                  },
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  item: {
+                    "@id": `${SITE_URL}/read/${comicId}/${chapterId}`,
+                    name: `Chapter ${chapterData.chapter_number}`,
+                  },
+                },
               ],
             }}
           />
@@ -353,18 +405,15 @@ function ReadChapterPage() {
 
       {/* TOP CHAPTER NAVIGATION */}
       {chapterData && (
-        <ChapterNavigation
-          comicId={comicId}
-          chapter={chapterData}
-        />
+        <ChapterNavigation comicId={comicId} chapter={chapterData} />
       )}
 
       {/* TOOLBAR & CONTROL BAR */}
-      <div className="mx-auto w-full max-w-3xl px-4 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-900">
-        <div className="flex items-center gap-3 min-w-0">
-          <Button
-            variant="secondary"
-            className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 rounded-xl text-xs shrink-0"
+      <div className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 border-b border-[#27272e] bg-[#0c0c10] px-4 py-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <button
+            type="button"
+            className="inline-flex min-h-10 shrink-0 items-center gap-2 border border-[#27272e] bg-[#141418] px-3 py-1.5 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:border-[#f4f1ea]"
             onClick={() => {
               navigate({
                 to: "/series/$comicId",
@@ -373,58 +422,64 @@ function ReadChapterPage() {
               });
             }}
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Detail Komik</span>
-          </Button>
+          </button>
 
-          {/* PRIMARY H1 FOR SEO */}
-          <h1 className="text-xs sm:text-sm font-extrabold text-white truncate max-w-xs sm:max-w-md">
-            Baca {comicData?.title || comicId} Ch. {chapterData?.chapter_number || chapterId}
+          <h1 className="truncate font-mono text-xs sm:text-sm font-bold uppercase text-[#f4f1ea] max-w-xs sm:max-w-md tabular-nums">
+            {comicData?.title || comicId} · CH.{" "}
+            {chapterData?.chapter_number || chapterId}
           </h1>
         </div>
 
         {/* CONTROLS */}
-        <div className="flex items-center gap-2">
-          {/* HD Quality Toggle */}
+        <div className="flex items-center gap-2 font-mono text-xs uppercase">
           <button
-            onClick={() => setUseHighQuality(prev => !prev)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+            type="button"
+            onClick={() => setUseHighQuality((prev) => !prev)}
+            className={`inline-flex min-h-10 items-center gap-1.5 border px-3 py-1.5 font-bold transition-colors ${
               useHighQuality
-                ? "bg-red-500/20 border-red-500/40 text-red-400"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                ? "border-[#be123c] bg-[#be123c] text-[#f4f1ea]"
+                : "border-[#27272e] bg-[#141418] text-[#c8c2b6] hover:border-[#f4f1ea] hover:text-[#f4f1ea]"
             }`}
             title="Ubah Kualitas Gambar"
           >
-            <ImageIcon className="w-3.5 h-3.5" />
-            <span>{useHighQuality ? "Kualitas HD" : "Hemat Data"}</span>
+            <ImageIcon className="h-3.5 w-3.5" />
+            <span>{useHighQuality ? "Cetak HD" : "Hemat Data"}</span>
           </button>
 
-          {/* Auto Scroll Toggle */}
           <button
-            onClick={() => setIsAutoScrolling(prev => !prev)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+            type="button"
+            onClick={() => setIsAutoScrolling((prev) => !prev)}
+            className={`inline-flex min-h-10 items-center gap-1.5 border px-3 py-1.5 font-bold transition-colors ${
               isAutoScrolling
-                ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400 animate-pulse"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                ? "border-[#34d399] bg-[#34d399] text-[#09090b]"
+                : "border-[#27272e] bg-[#141418] text-[#c8c2b6] hover:border-[#f4f1ea] hover:text-[#f4f1ea]"
             }`}
             title="Auto Scroll Reader"
           >
-            {isAutoScrolling ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+            {isAutoScrolling ? (
+              <Pause className="h-3.5 w-3.5" />
+            ) : (
+              <Play className="h-3.5 w-3.5" />
+            )}
             <span>Auto Scroll</span>
           </button>
         </div>
       </div>
 
-      {/* MANHWA READER CONTAINER */}
-      <main className="mx-auto w-full max-w-3xl bg-black min-h-[60vh] shadow-2xl">
+      {/* READER CANVAS */}
+      <main className="mx-auto w-full max-w-3xl bg-[#09090b] min-h-[60vh] border-x border-[#27272e]">
         {isChapterLoading ? (
           <div className="py-24 text-center space-y-4">
-            <div className="w-10 h-10 border-3 border-red-500 border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-sm text-zinc-400 font-medium">Memuat chapter manhwa...</p>
+            <div className="h-9 w-9 border-2 border-[#be123c] border-t-transparent animate-spin mx-auto" />
+            <p className="font-mono text-xs uppercase text-[#c8c2b6]">
+              Memuat lembaran chapter...
+            </p>
           </div>
         ) : imagesList.length === 0 ? (
-          <div className="py-24 text-center text-zinc-500">
-            Chapter tidak memiliki gambar atau tidak tersedia.
+          <div className="py-24 text-center font-mono text-xs uppercase text-[#c8c2b6]">
+            Chapter tidak memiliki gambar atau belum tersedia.
           </div>
         ) : (
           imagesList.map((img, index) => {
@@ -448,14 +503,11 @@ function ReadChapterPage() {
       {/* BOTTOM NAVIGATION */}
       {chapterData && (
         <div className="mt-8 pb-16">
-          <ChapterNavigation
-            comicId={comicId}
-            chapter={chapterData}
-          />
+          <ChapterNavigation comicId={comicId} chapter={chapterData} />
         </div>
       )}
 
-      {/* FLOATING ACTION BAR (ISOLATED) */}
+      {/* FLOATING ACTION BAR */}
       <FloatingActionBar
         comicId={comicId}
         prevChapterId={chapterData?.prev_chapter_id}

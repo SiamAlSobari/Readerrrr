@@ -23,11 +23,11 @@ export default function Header() {
   }, []);
 
   const NAV_ITEMS = [
-    { name: "Home", href: "/home" },
-    { name: "Popular", href: "/popular" },
+    { name: "Katalog", href: "/home" },
+    { name: "Populer", href: "/popular" },
     { name: "Genre", href: "/genre" },
     { name: "Update", href: "/update" },
-    { name: "History", href: "/history" },
+    { name: "Riwayat", href: "/history" },
   ];
 
   const handleSearch = (query: string) => {
@@ -38,28 +38,35 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
-      <div className="px-4 sm:px-6">
-        <div className="flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-[#27272e] bg-[#09090b]/95">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between gap-4">
           {/* LEFT */}
           <div className="flex items-center gap-8">
-            <Link to="/" className="text-xl font-black tracking-wide">
-              <span className="bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                COMIC
+            <Link
+              to="/"
+              className="flex items-center gap-2 font-display text-2xl font-black tracking-tight uppercase text-[#f4f1ea]"
+            >
+              <span className="px-2 py-0.5 bg-[#be123c] text-[#f4f1ea]">
+                KOMIK
               </span>
-              <span className="text-white">READER</span>
+              <span>READER</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-8">
+            <nav
+              aria-label="Navigasi utama"
+              className="hidden md:flex items-center gap-6"
+            >
               {NAV_ITEMS.map((item) => (
                 <Link key={item.name} to={item.href}>
                   {({ isActive }) => (
                     <span
-                      className={`relative text-sm font-medium transition
-                      ${isActive ? "text-white" : "text-gray-400 hover:text-white"}
-                      after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full
-                      after:origin-left after:scale-x-0 after:bg-red-500 after:transition-transform
-                      ${isActive ? "after:scale-x-100" : "hover:after:scale-x-100"}`}
+                      className={`relative min-h-11 inline-flex items-center font-mono-tabular text-xs font-bold uppercase tracking-wider transition-colors
+                      ${
+                        isActive
+                          ? "text-[#f43f5e]"
+                          : "text-[#c8c2b6] hover:text-[#f4f1ea]"
+                      }`}
                     >
                       {item.name}
                     </span>
@@ -77,19 +84,21 @@ export default function Header() {
                 e.preventDefault();
                 handleSearch(desktopQuery);
               }}
-              className="relative hidden md:block group"
+              className="relative hidden md:flex items-center"
             >
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c8c2b6]" />
 
               <Input
                 ref={searchInputRef}
                 value={desktopQuery}
                 onChange={(e) => setDesktopQuery(e.target.value)}
-                placeholder="Search manga..."
+                placeholder="Cari komik..."
+                aria-label="Cari komik"
                 className="
-                  h-10 w-72 rounded-full pl-11 pr-20 text-sm
-                  bg-white/5 border border-white/10
-                  focus:border-red-500/50 focus:ring-2 focus:ring-red-500/30
+                  h-10 w-72 rounded-none pl-10 pr-24 text-sm
+                  bg-[#141418] text-[#f4f1ea] placeholder:text-[#c8c2b6]/70
+                  border border-[#27272e]
+                  focus:border-[#e11d48] focus:ring-0
                   transition
                 "
               />
@@ -99,43 +108,47 @@ export default function Header() {
                   type="button"
                   onClick={() => setDesktopQuery("")}
                   aria-label="Bersihkan pencarian"
-                  className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-14 top-1/2 -translate-y-1/2 text-[#c8c2b6] hover:text-[#f4f1ea] p-1"
                 >
                   <X className="h-4 w-4" />
                 </button>
               )}
 
+              <span className="absolute right-11 top-1/2 -translate-y-1/2 font-mono-tabular text-xs text-[#c8c2b6] pointer-events-none">
+                ⌘K
+              </span>
+
               <Button
                 type="submit"
                 size="icon"
-                aria-label="Cari komik"
+                aria-label="Jalankan pencarian"
                 className="
                   absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8
-                  rounded-full bg-red-500 hover:bg-red-600
+                  rounded-none bg-[#be123c] hover:bg-[#9f1239] text-[#f4f1ea]
                 "
               >
-                <Search className="h-4 w-4 text-white" />
+                <Search className="h-4 w-4" />
               </Button>
-
-              {/* Shortcut hint */}
-              <span className="absolute right-20 top-1/2 -translate-y-1/2 text-xs text-zinc-400 pointer-events-none">
-                ⌘K
-              </span>
             </form>
 
-            {/* MOBILE */}
+            {/* MOBILE MENU */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" aria-label="Buka menu navigasi" className="md:hidden">
-                  <Menu />
+                <Button
+                  variant="ghost"
+                  aria-label="Buka menu navigasi"
+                  className="md:hidden min-h-11 px-3 rounded-none border border-[#27272e] bg-[#141418] text-[#f4f1ea] font-mono-tabular text-xs font-bold uppercase gap-2"
+                >
+                  <Menu className="h-4 w-4" />
+                  <span>Menu</span>
                 </Button>
               </SheetTrigger>
 
               <SheetContent
                 side="left"
-                className="bg-black/95 border-white/10 pt-10 w-80"
+                className="bg-[#09090b] border-r border-[#27272e] pt-12 w-80 text-[#f4f1ea]"
               >
-                <div className="space-y-8">
+                <div className="space-y-6">
                   {/* SEARCH MOBILE */}
                   <form
                     onSubmit={(e) => {
@@ -144,17 +157,17 @@ export default function Header() {
                     }}
                     className="relative px-4"
                   >
-                    <Search className="absolute left-7 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <Search className="absolute left-7 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c8c2b6]" />
 
                     <Input
                       value={mobileQuery}
                       onChange={(e) => setMobileQuery(e.target.value)}
-                      placeholder="Search manga..."
-                      aria-label="Cari manga"
+                      placeholder="Cari judul komik..."
+                      aria-label="Cari komik di mobile"
                       className="
-                        h-11 rounded-full pl-12 pr-12
-                        bg-white/5 border-white/10
-                        focus:ring-2 focus:ring-red-500/40
+                        h-11 rounded-none pl-10 pr-12
+                        bg-[#141418] text-[#f4f1ea] border-[#27272e]
+                        focus:border-[#e11d48]
                       "
                     />
 
@@ -163,7 +176,7 @@ export default function Header() {
                         type="button"
                         onClick={() => setMobileQuery("")}
                         aria-label="Bersihkan pencarian mobile"
-                        className="absolute right-14 top-1/2 -translate-y-1/2 text-gray-400"
+                        className="absolute right-14 top-1/2 -translate-y-1/2 text-[#c8c2b6]"
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -173,26 +186,30 @@ export default function Header() {
                       type="submit"
                       size="icon"
                       aria-label="Cari komik mobile"
-                      className="absolute right-5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-red-500"
+                      className="absolute right-5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-none bg-[#be123c] text-[#f4f1ea]"
                     >
                       <Search className="h-4 w-4" />
                     </Button>
                   </form>
 
                   {/* NAV MOBILE */}
-                  <nav className="flex flex-col px-4">
+                  <nav
+                    aria-label="Navigasi mobile"
+                    className="flex flex-col px-4 divide-y divide-[#27272e] border-t border-b border-[#27272e]"
+                  >
                     {NAV_ITEMS.map((item) => (
                       <Link key={item.name} to={item.href}>
                         {({ isActive }) => (
                           <span
-                            className={`block py-3 text-lg font-medium transition
+                            className={`flex items-center justify-between min-h-12 px-2 font-mono-tabular text-sm font-bold uppercase transition-colors
                             ${
                               isActive
-                                ? "text-white border-l-4 border-red-500 pl-4"
-                                : "text-gray-300 hover:text-white pl-5"
+                                ? "text-[#f43f5e] bg-[#141418]"
+                                : "text-[#c8c2b6] hover:text-[#f4f1ea]"
                             }`}
                           >
-                            {item.name}
+                            <span>{item.name}</span>
+                            <span className="text-xs opacity-60">BUKA</span>
                           </span>
                         )}
                       </Link>

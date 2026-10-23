@@ -1,31 +1,44 @@
 import { PopularComic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
-import { Clock, Star, TrendingUp, Eye, Bookmark } from "lucide-react";
+import { Star, Eye, Bookmark } from "lucide-react";
 import { useState, memo } from "react";
 
 interface Props {
   comic: PopularComic;
 }
 
-const COUNTRY_MAP = {
-  KR: { label: "Manhwa", flag: "🇰🇷", color: "text-emerald-400" },
-  JP: { label: "Manga", flag: "🇯🇵", color: "text-sky-400" },
-  CN: { label: "Manhua", flag: "🇨🇳", color: "text-rose-400" },
-} as const;
+const COUNTRY_CODE: Record<string, string> = {
+  KR: "KR · MANHWA",
+  JP: "JP · MANGA",
+  CN: "CN · MANHUA",
+};
 
 function PopularComicCardComponent({ comic }: Props) {
   const [imgError, setImgError] = useState(false);
-  const country = COUNTRY_MAP[comic.country_id as keyof typeof COUNTRY_MAP];
+  const originCode = COUNTRY_CODE[comic.country_id] || "INT · KOMIK";
 
   return (
     <Link
       search={{ page: 1 }}
       params={{ comicId: comic.manga_id }}
       to="/series/$comicId"
+      className="group flex h-full flex-col border border-[#27272e] bg-[#101014] transition-colors duration-150 hover:border-[#f4f1ea] hover:bg-[#141418] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f43f5e]"
     >
-      <div className="group relative overflow-hidden rounded-2xl bg-zinc-900/60 border border-zinc-800/80 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/50">
-        {/* Cover */}
-        <div className="relative h-52 overflow-hidden bg-zinc-850">
+      {/* Top Rank & Rating Bar */}
+      <div className="flex items-center justify-between border-b border-[#27272e] bg-[#0c0c10] px-3 py-2 font-mono text-xs font-bold tabular-nums">
+        <span className="bg-[#be123c] px-2 py-0.5 text-[#f4f1ea]">
+          #{String(comic.rank || 1).padStart(2, "0")}
+        </span>
+        <span className="text-[#c8c2b6]">{originCode}</span>
+        <span className="flex items-center gap-1 text-[#fbbf24]">
+          <Star className="h-3.5 w-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+          {comic.user_rate ? comic.user_rate.toFixed(1) : "N/A"}
+        </span>
+      </div>
+
+      {/* Horizontal or Compact Tankobon Spread */}
+      <div className="flex flex-1 gap-3.5 p-3.5">
+        <div className="relative h-32 w-24 shrink-0 overflow-hidden border border-[#27272e] bg-[#141418]">
           {!imgError && comic.cover_image_url ? (
             <img
               src={comic.cover_image_url}
@@ -34,69 +47,47 @@ function PopularComicCardComponent({ comic }: Props) {
               decoding="async"
               referrerPolicy="no-referrer"
               onError={() => setImgError(true)}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="h-full w-full object-cover"
             />
           ) : (
-            <div className="h-full w-full flex items-center justify-center bg-zinc-800 text-zinc-500 text-xs font-semibold p-4 text-center">
+            <div className="flex h-full w-full items-center justify-center p-2 text-center font-mono text-xs font-bold uppercase text-[#c8c2b6]">
               {comic.title}
             </div>
           )}
-
-          {/* Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-
-          {/* Rank */}
-          <div className="absolute left-3 top-3 flex items-center gap-1 rounded-lg bg-black/80 px-2.5 py-1 text-xs font-extrabold text-amber-400 backdrop-blur-md border border-amber-500/20 shadow-md">
-            <TrendingUp className="h-3.5 w-3.5" />#{comic.rank}
-          </div>
-
-          {/* Rating */}
-          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-lg bg-black/80 px-2.5 py-1 text-xs font-bold text-white backdrop-blur-md border border-white/10 shadow-md">
-            <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-            {comic.user_rate ? comic.user_rate.toFixed(1) : "N/A"}
-          </div>
-
-          {/* Bottom */}
-          <div className="absolute bottom-3 left-3 right-3">
-            <h3 className="line-clamp-2 text-base font-extrabold text-white group-hover:text-red-400 transition-colors">
-              {comic.title}
-            </h3>
-
-            <div className="mt-1 flex items-center justify-between text-xs text-zinc-300 font-medium">
-              <span>Ch. {comic.latest_chapter_number}</span>
-              <span className={country?.color}>{country?.flag ?? "🌍"}</span>
-            </div>
-          </div>
         </div>
 
-        {/* Content */}
-        <div className="space-y-2.5 p-3.5">
-          {/* Stats */}
-          <div className="flex items-center justify-between text-xs text-zinc-400">
-            <div className="flex items-center gap-1.5">
-              <Eye className="h-3.5 w-3.5 text-zinc-500" />
-              <span>{comic.view_count.toLocaleString("id-ID")}</span>
-            </div>
-
-            <div className="flex items-center gap-1.5">
-              <Bookmark className="h-3.5 w-3.5 text-zinc-500" />
-              <span>{comic.bookmark_count.toLocaleString("id-ID")}</span>
-            </div>
+        <div className="flex min-w-0 flex-1 flex-col justify-between">
+          <div>
+            <h3 className="line-clamp-2 font-sans text-sm font-bold leading-snug text-[#f4f1ea] group-hover:text-[#f43f5e] transition-colors">
+              {comic.title}
+            </h3>
+            <p className="mt-1.5 font-mono text-xs font-bold text-[#f43f5e] tabular-nums">
+              CH. {comic.latest_chapter_number}
+            </p>
           </div>
 
-          {/* Meta */}
-          <div className="flex items-center justify-between text-xs text-zinc-400">
-            <div className="flex items-center gap-1">
-              <Clock className="h-3.5 w-3.5 text-zinc-500" />
-              <span>{comic.release_year}</span>
+          <div className="space-y-1.5 border-t border-[#27272e] pt-2 font-mono text-xs text-[#c8c2b6] tabular-nums">
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1">
+                <Eye className="h-3 w-3" />
+                {comic.view_count ? comic.view_count.toLocaleString("id-ID") : "0"}
+              </span>
+              <span className="flex items-center gap-1">
+                <Bookmark className="h-3 w-3" />
+                {comic.bookmark_count ? comic.bookmark_count.toLocaleString("id-ID") : "0"}
+              </span>
             </div>
-
-            <span className="text-emerald-400 font-semibold text-[11px]">
-              {new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
-                day: "numeric",
-                month: "short",
-              })}
-            </span>
+            <div className="flex items-center justify-between text-xs">
+              <span>RILIS {comic.release_year || "-"}</span>
+              <span className="text-[#34d399]">
+                {comic.latest_chapter_time
+                  ? new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "short",
+                    })
+                  : " AKTIF"}
+              </span>
+            </div>
           </div>
         </div>
       </div>

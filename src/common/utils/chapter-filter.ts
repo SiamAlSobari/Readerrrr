@@ -1,11 +1,12 @@
 export function filterAndRankChapters<T extends { chapter_number: number }>(
-  chapters: T[],
+  chapters: T[] | null | undefined,
   query: string,
   sortAsc: boolean = false
 ): T[] {
-  const trimmed = query.trim();
+  const safeChapters = Array.isArray(chapters) ? chapters.filter(Boolean) : [];
+  const trimmed = (query ?? "").trim();
   if (!trimmed) {
-    const list = [...chapters];
+    const list = [...safeChapters];
     return sortAsc
       ? list.sort((a, b) => a.chapter_number - b.chapter_number)
       : list.sort((a, b) => b.chapter_number - a.chapter_number);
@@ -24,7 +25,7 @@ export function filterAndRankChapters<T extends { chapter_number: number }>(
 
   const scored: ScoredItem[] = [];
 
-  for (const ch of chapters) {
+  for (const ch of safeChapters) {
     const num = ch.chapter_number;
     const numStr = String(num);
 

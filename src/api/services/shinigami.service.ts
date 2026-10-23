@@ -32,76 +32,117 @@ class ShinigamiService {
         }
     }
 
+    private normalizeListResponse<T>(resp: ApiResponse<T> | null | undefined): ApiResponse<T> {
+        if (!resp) {
+            return {
+                retcode: 0,
+                message: "OK",
+                meta: {
+                    request_id: "",
+                    timestamp: Date.now(),
+                    process_time: "0ms",
+                    page: 1,
+                    page_size: 24,
+                    total_page: 1,
+                    total_record: 0,
+                },
+                data: [],
+            };
+        }
+        return {
+            ...resp,
+            data: Array.isArray(resp.data) ? resp.data : [],
+        };
+    }
+
     public async getComicRecomendation(format: string) {
         const cacheKey = `comic_recomendation_${format}`;
         const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<Comic> } = await this.client.get(
             `${getEnv().API_URL}/manga/list?format=${format}&page=1&page_size=10&is_recommended=true&sort=latest&sort_order=desc`
         );
-        await this.safeSetCache(cacheKey, res.data, 604800); // 7 hari
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 604800); // 7 hari
+        }
+        return normalized;
     }
 
     public async getComicUpdate(type: string, page: number = 1, pageSize: number = 19) {
         const cacheKey = `comic_update_${type}_${page}_${pageSize}`;
         const cached = await this.safeGetCache<ApiResponse<UpdateComic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<UpdateComic> } = await this.client.get(
             `${getEnv().API_URL}/manga/list?type=${type}&page=${page}&page_size=${pageSize}&is_update=true&sort=latest&sort_order=desc`
         );
-        await this.safeSetCache(cacheKey, res.data, 600); // 10 menit
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 600); // 10 menit
+        }
+        return normalized;
     }
 
     public async getComicStatus(status: string) {
         const cacheKey = `comic_status_${status}`;
         const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<Comic> } = await this.client.get(
             `${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include_mode=or&genre_exclude_mode=or&status=${status}&sort=latest&sort_order=desc`
         );
-        await this.safeSetCache(cacheKey, res.data, 86400); // 1 hari
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 86400); // 1 hari
+        }
+        return normalized;
     }
 
     public async getGenreList(): Promise<ApiResponse<TaxonomyItem>> {
         const cacheKey = "genre_list";
         const cached = await this.safeGetCache<ApiResponse<TaxonomyItem>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<TaxonomyItem> } = await this.client.get(
             `${getEnv().API_URL}/genre/list`
         );
-        await this.safeSetCache(cacheKey, res.data, 604800); // 7 hari
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 604800); // 7 hari
+        }
+        return normalized;
     }
 
     public async getComicGenre(genre: string) {
         const cacheKey = `comic_genre_${genre}`;
         const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<Comic> } = await this.client.get(
             `${getEnv().API_URL}/manga/list?page=1&page_size=24&genre_include=${genre}&genre_include_mode=or&genre_exclude_mode=or&sort=latest&sort_order=desc`
         );
-        await this.safeSetCache(cacheKey, res.data, 172800); // 2 hari
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 172800); // 2 hari
+        }
+        return normalized;
     }
 
     public async getPopularComic(page: number = 1, pageSize: number = 16) {
         const cacheKey = `popular_comic_${page}_${pageSize}`;
         const cached = await this.safeGetCache<ApiResponse<PopularComic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<PopularComic> } = await this.client.get(
             `${getEnv().API_URL}/manga/top?filter=all_time&page=${page}&page_size=${pageSize}`
         );
-        await this.safeSetCache(cacheKey, res.data, 172800); // 2 hari
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 172800); // 2 hari
+        }
+        return normalized;
     }
 
     public async getComicDetail(comicId: string) {
@@ -119,13 +160,18 @@ class ShinigamiService {
     public async getChapterList(comicId: string, page: number = 1, pageSize: number = 24) {
         const cacheKey = `chapter_list_${comicId}_${page}_${pageSize}`;
         const cached = await this.safeGetCache<ApiResponse<ChapterList>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data) && cached.data.length > 0) {
+            return this.normalizeListResponse(cached);
+        }
 
         const res: { data: ApiResponse<ChapterList> } = await this.client.get(
             `${getEnv().API_URL}/chapter/${comicId}/list?page=${page}&page_size=${pageSize}&sort_by=chapter_number&sort_order=desc`
         );
-        await this.safeSetCache(cacheKey, res.data, 3600); // 1 jam
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 3600); // 1 jam
+        }
+        return normalized;
     }
 
     public async getChapterDetail(chapterId: string) {
@@ -142,17 +188,20 @@ class ShinigamiService {
 
     public async searchComic(q: string, page: number = 1, pageSize: number = 12) {
         if (!q || !q.trim()) {
-            return { data: [], meta: { page: 1, total_page: 1, total_data: 0 } } as ApiResponse<Comic>;
+            return this.normalizeListResponse<Comic>(null);
         }
         const cacheKey = `comic_search_${encodeURIComponent(q.trim())}_${page}_${pageSize}`;
         const cached = await this.safeGetCache<ApiResponse<Comic>>(cacheKey);
-        if (cached) return cached;
+        if (cached && Array.isArray(cached.data)) return this.normalizeListResponse(cached);
 
         const res: { data: ApiResponse<Comic> } = await this.client.get(
             `${getEnv().API_URL}/manga/list?page=${page}&page_size=${pageSize}&q=${encodeURIComponent(q.trim())}`
         );
-        await this.safeSetCache(cacheKey, res.data, 3600); // 1 jam
-        return res.data;
+        const normalized = this.normalizeListResponse(res.data);
+        if (normalized.data.length > 0) {
+            await this.safeSetCache(cacheKey, normalized, 3600); // 1 jam
+        }
+        return normalized;
     }
 }
 

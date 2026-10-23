@@ -1,99 +1,88 @@
 import { PopularComic } from "@/common/interface";
 import { Link } from "@tanstack/react-router";
-import { Clock, Star } from "lucide-react";
+import { Eye, Star } from "lucide-react";
 import { useState, memo } from "react";
 
 interface Props {
   comic: PopularComic;
 }
 
-const COUNTRY_MAP: Record<string, { label: string; flag: string; color: string }> = {
-  KR: { label: "Manhwa", flag: "🇰🇷", color: "text-emerald-400" },
-  JP: { label: "Manga", flag: "🇯🇵", color: "text-sky-400" },
-  CN: { label: "Manhua", flag: "🇨🇳", color: "text-rose-400" },
+const COUNTRY_CODE: Record<string, string> = {
+  KR: "KR · MANHWA",
+  JP: "JP · MANGA",
+  CN: "CN · MANHUA",
 };
 
 function PopularComicCardBaseComponent({ comic }: Props) {
   const [imgError, setImgError] = useState(false);
-
-  const country =
-    COUNTRY_MAP[comic.country_id] ?? {
-      label: "Komik",
-      flag: "🌍",
-      color: "text-zinc-400",
-    };
+  const originCode = COUNTRY_CODE[comic.country_id] || "INT · KOMIK";
 
   return (
     <Link
       to="/series/$comicId"
       params={{ comicId: comic.manga_id }}
       search={{ page: 1 }}
-      className="block w-full"
+      className="group flex h-full flex-col border border-[#27272e] bg-[#101014] transition-colors duration-150 hover:border-[#f4f1ea] hover:bg-[#141418] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f43f5e]"
     >
-      <div className="group relative rounded-2xl overflow-hidden bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-200 hover:-translate-y-1 shadow-md hover:shadow-xl">
-        {/* Cover */}
-        <div className="aspect-3/4 overflow-hidden bg-zinc-850 relative">
-          {!imgError && (comic.cover_portrait_url || comic.cover_image_url) ? (
-            <img
-              src={comic.cover_portrait_url || comic.cover_image_url}
-              alt={comic.title}
-              loading="lazy"
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onError={() => setImgError(true)}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-zinc-800 text-zinc-500 text-xs font-bold p-3 text-center">
-              {comic.title}
-            </div>
-          )}
-        </div>
+      {/* Top Stamp Header */}
+      <div className="flex items-center justify-between border-b border-[#27272e] bg-[#0c0c10] px-2.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider tabular-nums">
+        {comic.rank ? (
+          <span className="bg-[#be123c] px-1.5 py-0.5 text-[#f4f1ea]">
+            #{String(comic.rank).padStart(2, "0")}
+          </span>
+        ) : (
+          <span className="text-[#c8c2b6]">{originCode}</span>
+        )}
+        <span className="flex items-center gap-1 text-[#fbbf24]">
+          <Star className="h-3 w-3 fill-[#fbbf24] text-[#fbbf24]" />
+          {comic.user_rate ? comic.user_rate.toFixed(1) : "N/A"}
+        </span>
+      </div>
 
-        {/* Badges */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10">
-          {comic.rank && (
-            <div className="bg-red-500/90 backdrop-blur-md px-2 py-0.5 rounded-lg text-[10px] font-extrabold text-white shadow-md">
-              #{comic.rank}
-            </div>
-          )}
-        </div>
-
-        {/* Info */}
-        <div className="p-3">
-          <h3 className="font-extrabold text-xs sm:text-sm line-clamp-2 text-white group-hover:text-red-400 transition-colors min-h-[36px]">
+      {/* Cover */}
+      <div className="relative aspect-3/4 w-full overflow-hidden bg-[#141418]">
+        {!imgError && (comic.cover_portrait_url || comic.cover_image_url) ? (
+          <img
+            src={comic.cover_portrait_url || comic.cover_image_url}
+            alt={comic.title}
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-[#141418] p-3 text-center font-mono text-xs font-bold uppercase text-[#c8c2b6]">
             {comic.title}
-          </h3>
-
-          <div className="flex justify-between items-center mt-2.5 text-xs text-zinc-400">
-            <span className="font-medium">Ch. {comic.latest_chapter_number}</span>
-            <span className={`font-bold text-[11px] ${country.color}`}>
-              {country.flag} {country.label}
-            </span>
           </div>
+        )}
+
+        {/* Obi Strip */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-[#27272e] bg-[#09090b]/95 px-2.5 py-1.5 font-mono text-xs font-bold tabular-nums">
+          <span className="text-[#f43f5e]">CH. {comic.latest_chapter_number}</span>
+          <span className="text-[#c8c2b6]">{originCode.split(" · ")[0]}</span>
         </div>
+      </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-          <div className="absolute bottom-0 p-4 text-white w-full">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-              <span className="text-base font-extrabold text-amber-400">
-                {comic.user_rate ? comic.user_rate.toFixed(1) : "N/A"}
-              </span>
-            </div>
+      {/* Info */}
+      <div className="flex flex-1 flex-col justify-between p-3">
+        <h3 className="line-clamp-2 font-sans text-sm font-bold leading-snug text-[#f4f1ea] group-hover:text-[#f43f5e] transition-colors">
+          {comic.title}
+        </h3>
 
-            <p className="text-xs font-medium text-zinc-300">
-              Chapter {comic.latest_chapter_number}
-            </p>
-            <p className="flex items-center gap-1 text-[10px] text-zinc-400 mt-1">
-              <Clock className="h-3 w-3" />
-              {new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
-                day: "numeric",
-                month: "short",
-              })}
-            </p>
-          </div>
+        <div className="mt-2.5 flex items-center justify-between border-t border-[#27272e] pt-2 font-mono text-xs text-[#c8c2b6] tabular-nums">
+          <span className="flex items-center gap-1">
+            <Eye className="h-3 w-3" />
+            {comic.view_count ? (comic.view_count / 1000).toFixed(1) + "K" : "0"}
+          </span>
+          <span>
+            {comic.latest_chapter_time
+              ? new Date(comic.latest_chapter_time).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "short",
+                })
+              : comic.release_year}
+          </span>
         </div>
       </div>
     </Link>

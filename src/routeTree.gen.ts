@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main.index'
+import { Route as ApiCoverRouteImport } from './routes/api.cover'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainUpdateIndexRouteImport } from './routes/_main.update.index'
 import { Route as MainSearchIndexRouteImport } from './routes/_main.search.index'
@@ -40,6 +41,11 @@ const MainIndexRoute = MainIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => MainRoute,
+} as any)
+const ApiCoverRoute = ApiCoverRouteImport.update({
+  id: '/api/cover',
+  path: '/api/cover',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const MainHomeRoute = MainHomeRouteImport.update({
   id: '/home',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/home': typeof MainHomeRoute
+  '/api/cover': typeof ApiCoverRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/history': typeof MainHistoryIndexRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/home': typeof MainHomeRoute
+  '/api/cover': typeof ApiCoverRoute
   '/': typeof MainIndexRoute
   '/genre': typeof MainGenreIndexRoute
   '/history': typeof MainHistoryIndexRoute
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_main/home': typeof MainHomeRoute
+  '/api/cover': typeof ApiCoverRoute
   '/_main/': typeof MainIndexRoute
   '/_main/genre/': typeof MainGenreIndexRoute
   '/_main/history/': typeof MainHistoryIndexRoute
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/home'
+    | '/api/cover'
     | '/'
     | '/genre'
     | '/history'
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/home'
+    | '/api/cover'
     | '/'
     | '/genre'
     | '/history'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/_main/home'
+    | '/api/cover'
     | '/_main/'
     | '/_main/genre/'
     | '/_main/history/'
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   MainRoute: typeof MainRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiCoverRoute: typeof ApiCoverRoute
   ReadComicIdChapterIdIndexRoute: typeof ReadComicIdChapterIdIndexRoute
 }
 
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRoute
+    }
+    '/api/cover': {
+      id: '/api/cover'
+      path: '/api/cover'
+      fullPath: '/api/cover'
+      preLoaderRoute: typeof ApiCoverRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_main/home': {
       id: '/_main/home'
@@ -291,6 +311,7 @@ const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiCoverRoute: ApiCoverRoute,
   ReadComicIdChapterIdIndexRoute: ReadComicIdChapterIdIndexRoute,
 }
 export const routeTree = rootRouteImport

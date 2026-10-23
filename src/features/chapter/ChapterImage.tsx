@@ -33,7 +33,6 @@ function ChapterImageComponent({
 
   const handleImageError = () => {
     if (fallbackSrc && currentSrc !== fallbackSrc) {
-      console.warn(`[ChapterImage] Page ${pageNumber} primary URL failed. Switching to fallback.`);
       setCurrentSrc(fallbackSrc);
       return;
     }
@@ -42,12 +41,13 @@ function ChapterImageComponent({
       const nextRetry = retryCount + 1;
       setRetryCount(nextRetry);
       setIsRetrying(true);
-      console.warn(`[ChapterImage] Page ${pageNumber} load error. Auto retry ${nextRetry}/3...`);
 
       setTimeout(() => {
         const cacheBuster = `?retry=${Date.now()}`;
         const base = fallbackSrc || src;
-        const newUrl = base.includes("?") ? `${base}&retry=${Date.now()}` : `${base}${cacheBuster}`;
+        const newUrl = base.includes("?")
+          ? `${base}&retry=${Date.now()}`
+          : `${base}${cacheBuster}`;
         setCurrentSrc(newUrl);
         setIsRetrying(false);
       }, 1000 * nextRetry);
@@ -65,7 +65,9 @@ function ChapterImageComponent({
     setIsRetrying(true);
     const cacheBuster = `?manualRetry=${Date.now()}`;
     const base = fallbackSrc || src;
-    const newUrl = base.includes("?") ? `${base}&manualRetry=${Date.now()}` : `${base}${cacheBuster}`;
+    const newUrl = base.includes("?")
+      ? `${base}&manualRetry=${Date.now()}`
+      : `${base}${cacheBuster}`;
     setCurrentSrc(newUrl);
     setTimeout(() => setIsRetrying(false), 500);
   };
@@ -78,38 +80,42 @@ function ChapterImageComponent({
   };
 
   return (
-    <div
-      className="relative w-full bg-zinc-950 flex flex-col items-center justify-center min-h-[300px] [content-visibility:auto] [contain-intrinsic-size:auto_800px_1200px]"
-    >
-      {/* Skeleton / Loading indicator */}
+    <div className="relative flex w-full flex-col items-center justify-center bg-[#09090b] min-h-[300px] [content-visibility:auto] [contain-intrinsic-size:auto_800px_1200px]">
       {!loaded && !error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900/60 text-zinc-400 gap-2 p-6 z-10">
-          <div className="w-7 h-7 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs font-medium text-zinc-400">
-            {isRetrying ? `Mencoba ulang hal. ${pageNumber}...` : `Memuat hal. ${pageNumber}...`}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-[#0c0c10] p-6 font-mono text-xs uppercase text-[#c8c2b6] tabular-nums">
+          <div className="h-6 w-6 animate-spin border-2 border-[#be123c] border-t-transparent" />
+          <span>
+            {isRetrying
+              ? `MEMUAT ULANG HAL. ${pageNumber}...`
+              : `MEMUAT HAL. ${pageNumber}...`}
           </span>
         </div>
       )}
 
-      {/* Error Retry Fallback UI */}
       {error && (
-        <div className="w-full py-16 px-4 bg-zinc-900/90 border border-red-500/20 rounded-xl my-4 flex flex-col items-center justify-center text-center gap-3">
-          <AlertCircle className="w-10 h-10 text-red-400" />
+        <div className="my-4 flex w-full flex-col items-center justify-center gap-3 border border-[#be123c]/40 bg-[#0c0c10] py-16 px-4 text-center">
+          <AlertCircle className="h-9 w-9 text-[#f43f5e]" />
           <div>
-            <p className="text-sm font-semibold text-zinc-200">Gagal memuat gambar halaman {pageNumber}</p>
-            <p className="text-xs text-zinc-500 mt-1">Koneksi terputus atau server gambar sibuk.</p>
+            <p className="font-mono text-xs font-bold uppercase text-[#f4f1ea] tabular-nums">
+              Gagal Memuat Lembaran Halaman {pageNumber}
+            </p>
+            <p className="mt-1 text-xs text-[#c8c2b6]">
+              Koneksi terputus atau server gambar sedang padat.
+            </p>
           </div>
           <button
+            type="button"
             onClick={handleManualRetry}
-            className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 active:scale-95 text-white rounded-xl text-xs font-semibold shadow-md transition-all"
+            className="mt-2 inline-flex min-h-10 items-center gap-2 bg-[#be123c] px-4 py-2 font-mono text-xs font-bold uppercase text-[#f4f1ea] transition-colors hover:bg-[#9f1239]"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${isRetrying ? "animate-spin" : ""}`} />
-            Coba Muat Ulang
+            <RefreshCw
+              className={`h-3.5 w-3.5 ${isRetrying ? "animate-spin" : ""}`}
+            />
+            <span>Muat Ulang Halaman</span>
           </button>
         </div>
       )}
 
-      {/* Actual Image */}
       {!error && (
         <img
           src={currentSrc}
@@ -120,16 +126,9 @@ function ChapterImageComponent({
           referrerPolicy="no-referrer"
           onLoad={handleImageLoad}
           onError={handleImageError}
-          className={`
-            w-full
-            h-auto
-            block
-            object-contain
-            select-none
-            transition-opacity
-            duration-200
-            ${loaded ? "opacity-100" : "opacity-0"}
-          `}
+          className={`block h-auto w-full object-contain select-none transition-opacity duration-200 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
         />
       )}
     </div>

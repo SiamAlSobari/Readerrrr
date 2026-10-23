@@ -9,12 +9,14 @@ export const Route = createFileRoute("/_main")({
 
 function RouteComponent() {
   return (
-    <main>
+    <div className="min-h-screen bg-[#09090b] text-[#f4f1ea] flex flex-col selection:bg-[#be123c] selection:text-[#f4f1ea]">
       <ThemeProvider>
         <Header />
-        <Outlet />
+        <div className="flex-1">
+          <Outlet />
+        </div>
         <Footer />
       </ThemeProvider>
-    </main>
+    </div>
   );
 }
