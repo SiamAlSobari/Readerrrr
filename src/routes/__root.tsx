@@ -2,6 +2,7 @@ import {
   HeadContent,
   Scripts,
   createRootRouteWithContext,
+  useRouter,
 } from "@tanstack/react-router";
 import { inject } from "@vercel/analytics";
 
@@ -17,6 +18,15 @@ interface MyRouterContext {
 }
 
 const SITE_URL = "https://komik-reader.my.id";
+
+// Google Analytics 4 measurement ID
+const GA_ID = "G-L9BC6FV4EY";
+
+declare global {
+  interface Window {
+    gtag: ((...args: unknown[]) => void) | undefined;
+  }
+}
 
 const DevtoolsComponent = import.meta.env.DEV
   ? React.lazy(() =>
@@ -98,12 +108,44 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         { rel: "apple-touch-icon", href: "/komik_reader.png" },
         { rel: "manifest", href: "/manifest.webmanifest" },
       ],
+      scripts: [
+        // Google tag (gtag.js) — Google Analytics
+        { src: `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`, async: true },
+        {
+          children: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_ID}');`,
+        },
+      ],
       title: "KOMIK READER : Baca KOMIK Online Terbaru & Populer",
     };
   },
 
   shellComponent: RootDocument,
 });
+
+// Sends a page_view to GA4 on every client-side navigation.
+// The gtag config script already fires one on initial load, so skip the first resolved event.
+function AnalyticsPageView() {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    let isFirst = true;
+
+    return router.subscribe("onResolved", () => {
+      if (isFirst) {
+        isFirst = false;
+        return;
+      }
+
+      window.gtag?.("event", "page_view", {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+      });
+    });
+  }, [router]);
+
+  return null;
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
@@ -158,6 +200,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           }}
         />
         {children}
+        <AnalyticsPageView />
         {import.meta.env.DEV && (
           <Suspense fallback={null}>
             <DevtoolsComponent />
